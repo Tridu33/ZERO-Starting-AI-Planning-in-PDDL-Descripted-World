@@ -1,0 +1,150 @@
+# Project information
+site_description: ZERO-Starting AI Planning in PDDL-Descripted World
+site_author: 'tridu33'
+copyright: 'Copyright &copy; 2020 tridu33'
+#网页名
+site_name: AI Planning in PDDL-Descripted World
+site_url : null
+#源文件路径
+docs_dir: 'docs'
+#网页静态文件生成路径
+site_dir: 'site'
+# 额外信息
+extra:
+    # 版本号
+    version: 0.1.0
+# Repository
+repo_name: 'PDDL笔记'
+repo_url: 'https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World'
+
+
+# 主题
+theme: 
+    # name: 'readthedocs'
+    # name: 'mkdocs'
+    #name: 'material'
+# Configuration
+    name: 'ivory' #'ivory'
+    language: 'zh'
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - python
+
+
+
+# Customization
+extra:
+  search:
+    language: 'en'
+    manifest: 'manifest.webmanifest'
+  social:
+    - type: 'github'
+      link: 'https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World'
+
+
+# Github pages
+remote_branch: gh-pages
+remote_name: origin
+
+# Google Analytics
+google_analytics:
+  - 'UA-XXXXXXXX-X'
+  - 'auto'
+
+# Extensions 
+# markdown扩展markdown_extensions:
+markdown_extensions:
+  # 参考[MathJax](https://squidfunk.github.io/mkdocs-material/reference/mathjax/)，支持数学公式渲染
+  - pymdownx.arithmatex:
+      generic: true
+    # 参考[Icons + Emojis](https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/)，执行Markdown Emoji
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.caret 
+  - pymdownx.critic 
+  - pymdownx.details 
+  - pymdownx.inlinehilite 
+  - pymdownx.magiclink 
+  - pymdownx.mark 
+  - pymdownx.smartsymbols 
+  - pymdownx.superfences 
+  - pymdownx.tasklist 
+  - pymdownx.tilde
+  - admonition 
+  - pymdownx.betterem: 
+      smart_enable: all 
+  - codehilite: 
+      guess_lang: false 
+      linenums: false 
+  - toc: 
+      permalink: true 
+  - footnotes 
+  - meta 
+  - def_list 
+  - attr_list
+  - pymdownx.superfences:
+      # make exceptions to highlighting of code:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid
+          #https://squidfunk.github.io/mkdocs-material/reference/diagrams/
+
+#mermaid https://github.com/fralau/mkdocs-mermaid2-plugin#installation
+plugins:
+  - search:
+  - minify:
+      minify_html: true
+
+# mathjax https://cdnjs.com/
+extra_javascript:
+    - js/umlconvert.js
+    - js/sequence-loader.js
+    - https://unpkg.com/mermaid/dist/mermaid.min.js
+    - https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js
+    - https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js
+    - https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js
+    - https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js
+
+
+#nav
+nav:
+    - Home: index.md
+    - 规划界黑话:
+      - PDDL进化史:
+        - ADL: PlanLanguages/ADL.md
+        - STRIPS: PlanLanguages/STRIPS语言.md
+        - PDDL: 
+          - HelloPDDL: PlanLanguages/PDDL语言.md
+          - 版本迭代: PlanLanguages/version.md
+          - PDDL扩展 : PlanLanguages/Extension to PDDL(SAS).md          
+      - 机器人世界:
+        - Golog: PlanLanguages/Golog/Golog_ROS.md
+    - PDDL使用:
+      - 本地环境使用: Usage/LocalSolvers.md
+      - 线上求解器使用: Usage/OnlineSolver.md
+      - Visual Studio Code使用: Usage/VSCode.md
+    - PDDL语法:
+      - 语法总览: Syntax/PDDL axioms.md
+      - Parser: Syntax/PDDLParser.md
+      - 实例演示: Syntax/PDDL Benchmark Instances.md
+    - PDDL-Descripted AI Planning World:
+      - SolversBaseOnPDDL: 
+        - Solvers:  SolversBaseOnPDDL/Solvers.md
+        - LPG: SolversBaseOnPDDL\LPG（本地搜索规划图）.md
+        - PyperPlan: SolversBaseOnPDDL\PyperPlan.md
+        - grahPlan: SolversBaseOnPDDL\grahPlan.md      
+        - PDDL4j: SolversBaseOnPDDL\PDDL4j.md
+
+      - PDDL-plan-validators: 
+        - validators: Extensions\PDDL-plan-validator\PDDL-plan-validator.md
+        - INVAL: Extensions\PDDL-plan-validator\Lisp-pddl-INVAL-validator.md
+        - VAL: Extensions\PDDL-plan-validator\VScode-PDDL插件VAL.md
+    - 进击的PDDL:
+      - PDDL+RL强化学习: FurtherMore\PDDLGYM.md
+      - Curry-Howard correspondence: FurtherMore\控制流图CFG语义网络petri迁移系统扩展应用.md
+    - Issue跟踪讨论 : https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues
+
+
