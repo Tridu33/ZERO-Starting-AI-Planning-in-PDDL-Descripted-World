@@ -141,7 +141,6 @@ nav:
       
     - PDDL-Descripted AI Planning World:
       - Papers:
-        - paperReadedTemplate: Papers/paperReadedTemplate.md
         - reviewOfGP: Papers/A review of generalized planning.md
         - GP_summary: Papers/GP_summary.md
         - ReviewOfMLforAP: Papers/A Review of Machine Learning for Automated Planning.md
