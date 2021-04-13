@@ -10,3 +10,6 @@
 
 - [ ] 结果
 
+```
+git subtree push --prefix=dist origin gh-pages
+```
