@@ -1,3 +1,5 @@
+## CFG ~TransitionSystem ==> ModelCheck
+
  语义网络petri迁移系统扩展应用
 
 **Curry-Howard correspondence** 从自动机到文法(符号自动机)
@@ -13,12 +15,6 @@ https://arxiv.org/abs/1910.04999
 
 广义计划是生成对一组计划问题有效的单个解决方案的任务。在本文中，我们展示了如何使用过程域控制知识（DCK）来表示和计算广义计划。我们定义一种<\ it分而治之>方法，该方法首先生成过程DCK，以解决代表某些子任务的一组计划问题，然后将其编译为总体广义计划问题的可调用过程。我们的过程调用机制允许任意的嵌套和递归过程调用，并在PDDL中实现，以便现成的计划者可以计算和利用过程DCK。实验表明，使用程序化DCK作为可调用过程的现成的经典计划器可以在广泛的领域（包括非平凡的领域）中计算广义的计划，
 https://bibbase.org/network/publication/segovia-jimenez-jonsson-generalizedplanningwithproceduraldomaincontrolknowledge
-
-
-
-
-
-
 
 
 

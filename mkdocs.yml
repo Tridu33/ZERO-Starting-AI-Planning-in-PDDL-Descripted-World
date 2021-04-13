@@ -23,9 +23,11 @@ theme:
     # name: 'readthedocs'
     # name: 'mkdocs'
     #name: 'material'
-# Configuration
+    # Configuration
     name: 'ivory' #'ivory'
     language: 'zh'
+    logo: imgs/logo.jpg
+    favicon: imgs/logo.jpg
     highlightjs: true
     hljs_languages:
         - yaml
@@ -38,6 +40,7 @@ extra:
   search:
     language: 'en'
     manifest: 'manifest.webmanifest'
+  homepage: https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/
   social:
     - type: 'github'
       link: 'https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World'
@@ -119,32 +122,76 @@ nav:
         - PDDL: 
           - HelloPDDL: PlanLanguages/PDDL语言.md
           - 版本迭代: PlanLanguages/version.md
-          - PDDL扩展 : PlanLanguages/Extension to PDDL(SAS).md          
+          - PDDL扩展 : PlanLanguages/Extension to PDDL(SAS).md  
+                
       - 机器人世界:
         - Golog: PlanLanguages/Golog/Golog_ROS.md
+    
     - PDDL使用:
       - 本地环境使用: Usage/LocalSolvers.md
       - 线上求解器使用: Usage/OnlineSolver.md
       - Visual Studio Code使用: Usage/VSCode.md
+      - 实例演示: Syntax/PDDL Benchmark Instances.md
+      - 经典demos: 
+        - 刊物上经典demos: SolversBaseOnPDDL/刊物上经典demos.md
+    
     - PDDL语法:
       - 语法总览: Syntax/PDDL axioms.md
       - Parser: Syntax/PDDLParser.md
-      - 实例演示: Syntax/PDDL Benchmark Instances.md
+      
     - PDDL-Descripted AI Planning World:
-      - SolversBaseOnPDDL: 
-        - Solvers:  SolversBaseOnPDDL/Solvers.md
-        - LPG: SolversBaseOnPDDL\LPG（本地搜索规划图）.md
-        - PyperPlan: SolversBaseOnPDDL\PyperPlan.md
-        - grahPlan: SolversBaseOnPDDL\grahPlan.md      
-        - PDDL4j: SolversBaseOnPDDL\PDDL4j.md
+      - Papers:
+        - paperReadedTemplate: Papers/paperReadedTemplate.md
+        - reviewOfGP: Papers/A review of generalized planning.md
+        - GP_summary: Papers/GP_summary.md
+        - ReviewOfMLforAP: Papers/A Review of Machine Learning for Automated Planning.md
+        - GPwithDeep-RL: Papers/Generalized Planning With Deep Reinforcement Learning.md
+        - researchSurvey: researchSurvey/Survey of research literature.md
 
+      - SolversBaseOnPDDL: 
+        - PyperPlan_STRIPS: SolversBaseOnPDDL/PyperPlan_STRIPS.md
+        - Solvers:  SolversBaseOnPDDL/Solvers.md
+        - CP:
+          - FF: SolversBaseOnPDDL/CP/ffPlaner.md
+          - FD: SolversBaseOnPDDL/CP/fast-downward.md
+          - LAPKT轻量自动规划工具包: SolversBaseOnPDDL/CP/LAPKT轻量自动规划工具包.md
+
+        - GP_Numerical: 
+          - QNP_ReduceTo_GraphProblem: SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem.md
+          - 图法QNP: SolversBaseOnPDDL/GP_Numerical/图法QNP.md
+          - LPG: SolversBaseOnPDDL/GP_Numerical/LPG（本地搜索规划图）.md
+          - grahPlan: SolversBaseOnPDDL/GP_Numerical/grahPlan.md
+          - SGPlan6: SolversBaseOnPDDL/GP_Numerical/SGPlan6.md
+          - PRP: SolversBaseOnPDDL/GP_Numerical/PRP.md
+          - myND: SolversBaseOnPDDL/GP_Numerical/myND.md
+        - QNP_FONS_SAT:
+          - CNF_py: SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py.md
+          - FOND: SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND.md
+          - QA_FOND: SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND.md
+          - 例解FOND: SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/例解FOND+CNF.md
+          - QNP: SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP.md
+          - qnp2fond: SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond.md
+          - QNP2SAT: SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT.md
+          
       - PDDL-plan-validators: 
         - validators: Extensions\PDDL-plan-validator\PDDL-plan-validator.md
         - INVAL: Extensions\PDDL-plan-validator\Lisp-pddl-INVAL-validator.md
         - VAL: Extensions\PDDL-plan-validator\VScode-PDDL插件VAL.md
+
+      - PDDL-Auto Planning: 
+        - PDDL4j : Extensions\AP\PDDL4j_Java for自动规划.md
+        - Tarski : Extensions\AP\Tarski - An AI Planning Modeling Framework.md
+        - QNP2AP: Extensions\AP\实例中学习QNP定义实现AP(AutomatedPlanning)
+        - PDDLGYM: Extensions\RL\PDDLGYM.md
+        - PDDL+RL强化学习: Extensions\RL\RLPlanPapers.md
+
     - 进击的PDDL:
-      - PDDL+RL强化学习: FurtherMore\PDDLGYM.md
-      - Curry-Howard correspondence: FurtherMore\控制流图CFG语义网络petri迁移系统扩展应用.md
+      - Curry-Howard correspondence: 
+        - CFG语义网络: FurtherMore\控制流图CFG语义网络petri迁移系统扩展应用.md
+        - PDDL-Solver2AST: FurtherMore\PDDL-Solver2AST.md
+        - CFG=TransitionSystemModelCheck.md:  FurtherMore\TransitionSystemModelCheck.md
+        - qnp2ast2program: FurtherMore\qnp2ast2program.md
+
     - Issue跟踪讨论 : https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues
 
 

@@ -36,8 +36,9 @@ youtube.com/watch?v=XW0z8Oik6G8
 
 网站
 
+https://planning.wiki/ github有源码 https://github.com/nergmada/planning-wiki
 
-https://planning.wiki/ github有源码
+https://github.com/jan-dolejsi/pddl-reference/tree/master/docs  有关PDDL，计划，历史记录，用法和研究的更多详细信息，请参阅指南。
 
 
 视频教程：
@@ -193,6 +194,16 @@ Compiled and source course materials (please [contact teacher in this url](mailt
 - Publicly Available PDDL Domains
   - [IPC PDDL Domains](https://github.com/potassco/pddl-instances)
 - Book: [An Introduction to the Planning Domain Definition Language](http://www.morganclaypoolpublishers.com/catalog_Orig/product_info.php?products_id=1384)
+
+# ThePlanningCommunity
+
+https://app.slack.com/plans/TK9TZPZD3?entry_point=team_messages_limit_meter&feature=unlimited_messages
+
+Stack有一个planning community里面有很多资料
+
+
+
+
 
 ## Why MkDocs?
 

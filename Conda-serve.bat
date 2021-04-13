@@ -1,3 +1,1 @@
-%windir%\System32\cmd.exe "/K" d:\Users\tridu33\anaconda3\Scripts\activate.bat d:\Users\tridu33\anaconda3
-
-mkdocs serve
+%windir%\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy ByPass -NoExit -Command "& 'C:\Users\HUMAN\anaconda3\shell\condabin\conda-hook.ps1' ; conda activate 'C:\Users\HUMAN\anaconda3'  ; mkdocs serve;"
