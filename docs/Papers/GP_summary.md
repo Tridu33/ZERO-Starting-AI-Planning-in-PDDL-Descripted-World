@@ -1,7 +1,10 @@
 
+
+[TOC]
+
 [Zotero + Web of Science，如何做文献泛读](https://zhuanlan.zhihu.com/p/259723540)
 
-
+# GP summary
 ## 1.1. 经典问题例子
 
 Aminof, B., Giacomo, G. D., Murano, A., & Rubin, S. (2019). Planning under ltl environment specifications. In *Proc. ICAPS,* pp. 31-39.积木世界QNP实例
@@ -10,7 +13,7 @@ Bonet, B., Frances, G., & Geffner, H. (2019). Learning features and abstract act
 
 Bonet, B., & Geffner, H. (2015). Policies that generalize: Solving many planning problems with the same policy.. In *IJCAI,* pp. 2798-2804.很多经典问题
 
-# 2. Generalized planning通用规划
+## 2. Generalized planning通用规划
 
 Jimenez, S., Segovia-Aguas, J., & Jonsson, A. (2019). **综述A review of  Generalized planning**. *The Knowledge Engineering Review, 34.*
 
@@ -59,7 +62,7 @@ Srivastava, S., Zilberstein, S., Immerman, N., & Geffner, H. (2011). Qualitative
 
 Srivastava, S., Immerman, N., & Zilberstein, S. (2011). A new representation and associated algorithms for **Generalized planning**. *Artificial Intelligence, 175*(2), 615-647.介绍QNP很有用地表述“GP通用规划”
 
-# 3. 结合逻辑神经机
+## 3. 结合逻辑神经机
 
 Garnelo, M., & Shanahan, M. (2019). Reconciling deep learning with symbolic artificial intelligence: representing objects and relations. *Current Opinion in Behavioral Sciences, 29,* 17-23.<--- **将深度学习与符号人工智能相结合：表示对象和关系**
 

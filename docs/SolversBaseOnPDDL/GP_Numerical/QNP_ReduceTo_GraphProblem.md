@@ -47,7 +47,7 @@ QNP中的O动作集则reduce to图G中的节点之间有向边Edges。
 - 算法第四步：向有环通路图$G_{HalfSolution}$应用第二步的可逆合并操作，解除SCC的合并(第二步要记录入度点和出度点们，SCC还原的时候要用)，得到**有向有环通路图**$G_{Solution}$
 - 再从放松约束relaxed problem收紧，变成前文提到的“含if条件的确定性动作"，应用V数值的if条件condition判断功能,从图$G_{Solution}$生成唯一可执行的Policy：$S_{F,V}\rightarrow O_{actions}$,可以对应动作序列{a1,a1,a1,a2,a3,......}解。
 
-![qnp图法设计_1598498581_30912](.\_v_images\qnp图法设计_1598498581_30912.png)
+![qnp图法设计_1598498581_30912](_v_images\qnp图法设计_1598498581_30912.png)
 
 
 

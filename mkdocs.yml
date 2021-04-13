@@ -131,9 +131,9 @@ nav:
       - 本地环境使用: Usage/LocalSolvers.md
       - 线上求解器使用: Usage/OnlineSolver.md
       - Visual Studio Code使用: Usage/VSCode.md
-      - 实例演示: Syntax/PDDL Benchmark Instances.md
       - 经典demos: 
         - 刊物上经典demos: SolversBaseOnPDDL/刊物上经典demos.md
+        - BenchMark: SolversBaseOnPDDL/PDDL Benchmark Instances.md
     
     - PDDL语法:
       - 语法总览: Syntax/PDDL axioms.md
@@ -145,7 +145,7 @@ nav:
         - GP_summary: Papers/GP_summary.md
         - ReviewOfMLforAP: Papers/A Review of Machine Learning for Automated Planning.md
         - GPwithDeep-RL: Papers/Generalized Planning With Deep Reinforcement Learning.md
-        - researchSurvey: researchSurvey/Survey of research literature.md
+        - researchSurvey: Papers/Survey of research literature.md
 
       - SolversBaseOnPDDL: 
         - PyperPlan_STRIPS: SolversBaseOnPDDL/PyperPlan_STRIPS.md
@@ -180,7 +180,7 @@ nav:
       - PDDL-Auto Planning: 
         - PDDL4j : Extensions\AP\PDDL4j_Java for自动规划.md
         - Tarski : Extensions\AP\Tarski - An AI Planning Modeling Framework.md
-        - QNP2AP: Extensions\AP\实例中学习QNP定义实现AP(AutomatedPlanning)
+        - QNP2AP: Extensions\AP\实例中学习QNP定义实现AP(AutomatedPlanning).md
         - PDDLGYM: Extensions\RL\PDDLGYM.md
         - PDDL+RL强化学习: Extensions\RL\RLPlanPapers.md
 

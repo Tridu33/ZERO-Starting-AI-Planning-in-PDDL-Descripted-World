@@ -116,7 +116,7 @@ AP算法需要正确和完整的动作模型，这些动作模型指示了世界
 
 > 不关心
 
-# Learning Planning Search Control Knowledge 学习规划图的控制结构知识(类比tf计算图)
+## Learning Planning Search Control Knowledge 学习规划图的控制结构知识(类比tf计算图)
 
 学习AP的搜索控制知识的四种不同方法（宏动作，广义策略，广义启发式函数和层次分解方法）
 
@@ -376,7 +376,7 @@ RL的目的与AP的学习目的紧密相关。但是，RL在解决AP问题时通
 
 
 
-# Conclution
+## Conclution
 
 
 

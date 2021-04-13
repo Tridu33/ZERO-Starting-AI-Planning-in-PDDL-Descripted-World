@@ -75,7 +75,7 @@ The **generalized  planner** box  refers  to  an  algorithm  d  with  aninput-ou
 2. 经典规划的最新算法是在状态空间中进行启发式搜索[37，30]或编译为其他形式的问题解决方法，例如SAT [78]
 3. 经典计划是一系列动作，经典计划的执行和验证在计划的长度上都是线性的。然而，具有条件影响，变量和控制流结构的动作可以用来更紧凑地表示经典计划任务的解决方案[52，81]。
 
-## Representing Sets of Planning Tasks
+### Representing Sets of Planning Tasks
 
 different formalisms for representing sets of planning taskswithin generalized planning.7
 
@@ -180,7 +180,7 @@ Universal variables**通用变量**。通用变量断言，给定的属性或关
 **hierarchical generalized plans [83]对任意大小的数字列表选择排序算法**
 
 
-# **执行和验证**
+### **执行和验证**
 
 
 
@@ -223,11 +223,11 @@ Universal variables**通用变量**。通用变量断言，给定的属性或关
 
 
 
-## 实验等评价指标
+### 实验等评价指标
 
 
 
-### **评估**
+#### **评估**
 
 给定一组计划实例，不同的广义计划可以与其*保持一致*，例如，图11、12和14中所示的不同的广义计划可以将任何高度的砌块塔堆叠起来。然后有必要定义一种方法，该方法可以量化给定的广义计划的能力，以阐明可能的解决方案之间的偏好。
 
@@ -243,7 +243,7 @@ Universal variables**通用变量**。通用变量断言，给定的属性或关
 
 
 
-## Solver
+### Solver
 
 
 
@@ -281,7 +281,7 @@ Universal variables**通用变量**。通用变量断言，给定的属性或关
 
 
 
-### 重用广义计划Srivastava的方法
+#### 重用广义计划Srivastava的方法
 
 从头开始计算广义计划的另一种方法是重用现有解决方案。即使某个通用计划不正确（从某种意义上说它无法解决给定实例）或不完整（它没有定义要在给定实例*上应用的动作*），它也可能包含有用的知识。例如，计划可能能够解决给定的广义计划任务的子问题或类似实例（例如，这是一个解决方案，但针对不同类型的对象），或者在调整控件中的条件后解决新实例流结构。在这些情况下，采用先前存在的广义计划可以取得回报。
 
@@ -298,7 +298,7 @@ Universal variables**通用变量**。通用变量断言，给定的属性或关
 [^77]: Miquel Ramirez and Hector Geffner.  Heuristics for planning, plan recog-nition and parsing.arXiv preprint arXiv:1605.05807, 2016
 [^P]: C
 
-#### **计算宏动作**
+###### **计算宏动作**
 
 *宏观行动*是计算有效解决不同计划任务的常识的最早建议之一[25]。文献中有多种方法可用于计算宏动作[12，18，47，13]，但是最常见的方法是：
 
@@ -313,7 +313,7 @@ Universal variables**通用变量**。通用变量断言，给定的属性或关
 [^P]: C
 [^P]: C
 
-#### **计算广义策略**
+### **计算广义策略**
 *广义策略*是一组规则，它定义状态和目标的映射，成优选*动作接下来要执行。*像宏动作一样，广义策略也允许参数，并且可以从共享相同域理论的经典规划实例的一组解决方案中得出[^57][^99][^21]。但是，通用策略比宏动作更灵活，因为它们可以定义带有分支和循环的执行流。
 
 [^57]: Mario  Mart ́ın  and  Hector  Geffner.   Learning  generalized  policies  fromplanning examples using concept languages.Applied Intelligence, 20(1):9–19, 2004.
@@ -468,7 +468,7 @@ CBP系统实现了识别与要解决的实例相似的实例的*检索*机制，
 [^51]: Alan Leung, John Sarracino, and Sorin Lerner. Interactive parser synthesisby example. InACM SIGPLAN Notices, volume 50, pages 565–574. ACM,2015
 [^P]: C
 
-# 总结
+### 总结
 
 
 
