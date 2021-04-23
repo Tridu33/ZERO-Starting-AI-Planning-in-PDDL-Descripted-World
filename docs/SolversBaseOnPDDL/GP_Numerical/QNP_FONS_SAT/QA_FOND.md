@@ -2,26 +2,7 @@
 [TOC]
 
 
-# Q&A
-
-群友问：
-
->如何理解语义和语法呢
-语义是语言的特性吗
-
-
-
-zz 回答：
-
-
-
->一个语言只有语义而没有语法，你就无法进行证明，而一个语言只有语法而没有语义，你就无法判断对错。  
-从语法的可推出，到语义的有效，是谓可靠性。从语义的有效到到语法的可推出，是谓完全性也。
-
-
-
-
-
+# QA_FONDSAT
 第一个strong cyclic planning,
 
 挑出来一些算strong planning.
@@ -76,7 +57,7 @@ G={n(x)=0}
 
 
 
-# minisat
+## minisat
 
 ```
 USAGE: ./minisat <input-file> <result-output-file>
@@ -89,7 +70,7 @@ USAGE: ./minisat <input-file> <result-output-file>
 
 
 
-# FOND-SAT
+## FOND-SAT
 
 **核心代码**：
 
@@ -533,7 +514,7 @@ Done
 ```
 
 
-# bugs
+## bugs
 
 ```
 from parser import Parser
@@ -548,7 +529,7 @@ from parser import Parser
 
 
 
-##  bug2
+###  bug2
 
 ```
 Traceback (most recent call last):
@@ -585,7 +566,7 @@ FileNotFoundError: [Errno 2] No such file or directory: 'outsat-temp.txt'
 FileNotFoundError: [Errno 2] No such file or directory: 'outsat-temp.txt'
 
 
-## debug
+### debug
 
 
 
@@ -665,7 +646,7 @@ Linux下
 
 
 
-## from parser import Parser 
+### from parser import Parser 
 
 
 
@@ -977,6 +958,27 @@ class Parser:
 
 
 ```
+
+
+
+## Q&A
+
+
+群友问：
+
+>如何理解语义和语法呢
+语义是语言的特性吗
+
+
+
+zz 回答：
+
+
+
+>一个语言只有语义而没有语法，你就无法进行证明，而一个语言只有语法而没有语义，你就无法判断对错。  
+从语法的可推出，到语义的有效，是谓可靠性。从语义的有效到到语法的可推出，是谓完全性也。
+
+
 
 
 

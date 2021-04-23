@@ -18,7 +18,7 @@
                 <span class=k>continue</span><span class=p>;</span>
             <span class=p>};</span>
             <span class=kt>int</span> <span class=n>left</span> <span class=o>=</span> <span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>;</span>
-            <span class=kt>int</span> <span class=n>right</span> <span class=o>=</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>()</span> <span class=o>-</span><span class=mi>1</span><span class=p>;</span>
+            <span class=kt>int</span> <span class=n>right</span> <span class=o>=</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>()</span> <span class=mi>-1</span><span class=p>;</span>
             <span class=k>while</span><span class=p>(</span><span class=n>left</span> <span class=o>&lt;</span> <span class=n>right</span><span class=p>){</span>
                 <span class=c1>// 去重复逻辑如果放在这里，0，0，0 的情况，可能直接导致 right&lt;=left 了，从而漏掉了 0,0,0 这种三元组</span>
                 <span class=cm>/*</span>

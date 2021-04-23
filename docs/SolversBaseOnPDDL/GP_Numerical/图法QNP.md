@@ -91,10 +91,10 @@ $Goal = S_{22}(E,\overline{X},D,n=0,m>0)$
 
 ```mermaid
 graph LR;
-　　S16(E,&notX,&notD,n>0,m>0) -->|拿x上石n&darr或拿y上石m&darr| S0(&notE,&notX,&notD,n>0,m>0);
-　　S16(E,&notX,&notD,n>0,m>0) -->|当n==1拿x上石n&darr| S2(&notE,&notX,&notD,n=0,m>0) ;
-　　S17(E,&notX,&notD,n>0,m=0) -->|当n>1拿x上石n&darr| S1(&notE,&notX,&notD,n>0,m=0);
-　　S17(E,&notX,&notD,n>0,m=0) -->|当n==1拿x上石n&darr| S3(&notE,&notX,&notD,n=0,m=0);
+　　S16(E,非X,非D,n>0,m>0) -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0(非E,非X,非D,n>0,m>0);
+　　S16(E,非X,非D,n>0,m>0) -->|当n==1拿x上石n_DownArrow| S2(非E,非X,非D,n=0,m>0) ;
+　　S17(E,非X,非D,n>0,m=0) -->|当n>1拿x上石n_DownArrow| S1(非E,非X,非D,n>0,m=0);
+　　S17(E,非X,非D,n>0,m=0) -->|当n==1拿x上石n_DownArrow| S3(非E,非X,非D,n=0,m=0);
 ```
 
 
@@ -110,10 +110,10 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S16(E,&notX,&notD,n>0,m>0) -->|拿x上石n&darr或拿y上石m&darr| S0(&notE,&notX,&notD,n>0,m>0);
-　　S18(E,&notX,&notD,n=0,m>0) -->|当m>1拿y上石m&darr| S2(&notE,&notX,&notD,n=0,m>0);
-　　S18(E,&notX,&notD,n=0,m>0) -->|当m==1拿y上石m&darr| S3(&notE,&notX,&notD,n=0,m=0);
-　　S16(E,&notX,&notD,n>0,m>0) -->|当m==1拿y上石m&darr| S1(&notE,&notX,&notD,n>0,m=0) ;
+　　S16(E,非X,非D,n>0,m>0) -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0(非E,非X,非D,n>0,m>0);
+　　S18(E,非X,非D,n=0,m>0) -->|当m>1拿y上石m_DownArrow| S2(非E,非X,非D,n=0,m>0);
+　　S18(E,非X,非D,n=0,m>0) -->|当m==1拿y上石m_DownArrow| S3(非E,非X,非D,n=0,m=0);
+　　S16(E,非X,非D,n>0,m>0) -->|当m==1拿y上石m_DownArrow| S1(非E,非X,非D,n>0,m=0) ;
 ```
 
 
@@ -129,10 +129,10 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S0(&notE,&notX,&notD,n>0,m>0) -->|put-aside放一边| S16(E,&notX,&notD,n>0,m>0);
-　　S2(&notE,&notX,&notD,n=0,m>0) -->|put_aside放一边| S18(E,&notX,&notD,n=0,m>0);
-　　S1(&notE,&notX,&notD,n>0,m=0) -->|put_aside放一边| S17(E,&notX,&notD,n>0,m=0);
-　　S3(&notE,&notX,&notD,n=0,m=0) -->|put_aside放一边| S19(E,&notX,&notD,n=0,m=0);
+　　S0(非E,非X,非D,n>0,m>0) -->|put-aside放一边| S16(E,非X,非D,n>0,m>0);
+　　S2(非E,非X,非D,n=0,m>0) -->|put_aside放一边| S18(E,非X,非D,n=0,m>0);
+　　S1(非E,非X,非D,n>0,m=0) -->|put_aside放一边| S17(E,非X,非D,n>0,m=0);
+　　S3(非E,非X,非D,n=0,m=0) -->|put_aside放一边| S19(E,非X,非D,n=0,m=0);
 ```
 
 
@@ -157,7 +157,7 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S19(E,&notX,&notD,n=0,m=0) -->|拿x积木| S11(E,&notX,&notD,n=0,m=0);
+　　S19(E,非X,非D,n=0,m=0) -->|拿x积木| S11(E,非X,非D,n=0,m=0);
 ```
 
 
@@ -202,7 +202,7 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S11(E,&notX,&notD,n=0,m=0) -->|把x放在y上| S22(E,&notX,D,n=0,m>0);
+　　S11(E,非X,非D,n=0,m=0) -->|把x放在y上| S22(E,非X,D,n=0,m>0);
 ```
 
 
@@ -217,7 +217,7 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S11(E,&notX,&notD,n=0,m=0) -->|put_x_aside| S19(E,&notX,&notD,n=0,m=0);
+　　S11(E,非X,非D,n=0,m=0) -->|put_x_aside| S19(E,非X,非D,n=0,m=0);
 ```
 
 
@@ -266,7 +266,7 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S_(&notE,_,_,_,_) -->|put-aside| S__(E,_,_,_,_);
+　　S_(非E,_,_,_,_) -->|put-aside| S__(E,_,_,_,_);
 ```
 
 简单来说，_缺省值也是QNPSAT方法中，把在r步以内”$S_0,S_G,S_1,...,S_{r-2}$“状态值统统枚举，喂进去生成”原子命题“的原因。
@@ -284,22 +284,22 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S12(&notE,X,D,n>0,m>0) -->|put-aside放一边| S28(E,X,D,n>0,m>0);
-　　S14(&notE,X,D,n=0,m>0) -->|put_aside放一边| S30(E,X,D,n=0,m>0);
-　　S13(&notE,X,D,n>0,m=0) -->|put_aside放一边| S29(E,X,D,n>0,m=0);
-　　S15(&notE,X,D,n=0,m=0) -->|put_aside放一边| S31(E,X,D,n=0,m=0);　
-　　S8(&notE,X,&notD,n>0,m>0) -->|put-aside放一边| S24(E,X,&notD,n>0,m>0);
-　　S10(&notE,X,&notD,n=0,m>0) -->|put_aside放一边| S26(E,X,&notD,n=0,m>0);
-　　S9(&notE,X,&notD,n>0,m=0) -->|put_aside放一边| S25(E,X,&notD,n>0,m=0);
-　　S11(&notE,X,&notD,n=0,m=0) -->|put_aside放一边| S27(E,X,&notD,n=0,m=0);
-　　S4(&notE,&notX,D,n>0,m>0) -->|put-aside放一边| S20(E,&notX,D,n>0,m>0);
-　　S6(&notE,&notX,D,n=0,m>0) -->|put_aside放一边| S22(E,&notX,D,n=0,m>0);
-　　S5(&notE,&notX,D,n>0,m=0) -->|put_aside放一边| S21(E,&notX,D,n>0,m=0);
-　　S7(&notE,&notX,D,n=0,m=0) -->|put_aside放一边| S23(E,&notX,D,n=0,m=0);　
-　　S0(&notE,&notX,&notD,n>0,m>0) -->|put-aside放一边| S16(E,&notX,&notD,n>0,m>0);
-　　S2(&notE,&notX,&notD,n=0,m>0) -->|put_aside放一边| S18(E,&notX,&notD,n=0,m>0);
-　　S1(&notE,&notX,&notD,n>0,m=0) -->|put_aside放一边| S17(E,&notX,&notD,n>0,m=0);
-　　S3(&notE,&notX,&notD,n=0,m=0) -->|put_aside放一边| S19(E,&notX,&notD,n=0,m=0);
+　　S12(非E,X,D,n>0,m>0) -->|put-aside放一边| S28(E,X,D,n>0,m>0);
+　　S14(非E,X,D,n=0,m>0) -->|put_aside放一边| S30(E,X,D,n=0,m>0);
+　　S13(非E,X,D,n>0,m=0) -->|put_aside放一边| S29(E,X,D,n>0,m=0);
+　　S15(非E,X,D,n=0,m=0) -->|put_aside放一边| S31(E,X,D,n=0,m=0);　
+　　S8(非E,X,非D,n>0,m>0) -->|put-aside放一边| S24(E,X,非D,n>0,m>0);
+　　S10(非E,X,非D,n=0,m>0) -->|put_aside放一边| S26(E,X,非D,n=0,m>0);
+　　S9(非E,X,非D,n>0,m=0) -->|put_aside放一边| S25(E,X,非D,n>0,m=0);
+　　S11(非E,X,非D,n=0,m=0) -->|put_aside放一边| S27(E,X,非D,n=0,m=0);
+　　S4(非E,非X,D,n>0,m>0) -->|put-aside放一边| S20(E,非X,D,n>0,m>0);
+　　S6(非E,非X,D,n=0,m>0) -->|put_aside放一边| S22(E,非X,D,n=0,m>0);
+　　S5(非E,非X,D,n>0,m=0) -->|put_aside放一边| S21(E,非X,D,n>0,m=0);
+　　S7(非E,非X,D,n=0,m=0) -->|put_aside放一边| S23(E,非X,D,n=0,m=0);　
+　　S0(非E,非X,非D,n>0,m>0) -->|put-aside放一边| S16(E,非X,非D,n>0,m>0);
+　　S2(非E,非X,非D,n=0,m>0) -->|put_aside放一边| S18(E,非X,非D,n=0,m>0);
+　　S1(非E,非X,非D,n>0,m=0) -->|put_aside放一边| S17(E,非X,非D,n>0,m=0);
+　　S3(非E,非X,非D,n=0,m=0) -->|put_aside放一边| S19(E,非X,非D,n=0,m=0);
 ```
 
 
@@ -312,10 +312,10 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S0(&notE,&notX,&notD,n>0,m>0) -->|put-aside放一边| S16(E,&notX,&notD,n>0,m>0);
-　　S2(&notE,&notX,&notD,n=0,m>0) -->|put_aside放一边| S18(E,&notX,&notD,n=0,m>0);
-　　S1(&notE,&notX,&notD,n>0,m=0) -->|put_aside放一边| S17(E,&notX,&notD,n>0,m=0);
-　　S3(&notE,&notX,&notD,n=0,m=0) -->|put_aside放一边| S19(E,&notX,&notD,n=0,m=0);
+　　S0(非E,非X,非D,n>0,m>0) -->|put-aside放一边| S16(E,非X,非D,n>0,m>0);
+　　S2(非E,非X,非D,n=0,m>0) -->|put_aside放一边| S18(E,非X,非D,n=0,m>0);
+　　S1(非E,非X,非D,n>0,m=0) -->|put_aside放一边| S17(E,非X,非D,n>0,m=0);
+　　S3(非E,非X,非D,n=0,m=0) -->|put_aside放一边| S19(E,非X,非D,n=0,m=0);
 ```
 
 
@@ -332,16 +332,16 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S16 -->|拿x上石n&darr或拿y上石m&darr| S0;
+　　S16 -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
 　　S0 -->|put-aside放一边| S16;
-　　S16 -->|当n==1拿x上石n&darr| S2 ;
+　　S16 -->|当n==1拿x上石n_DownArrow| S2 ;
 　　S2 -->|put_aside放一边| S18;
-　　S18 -->|当m>1拿y上石m&darr| S2;
-　　S18 -->|当m==1拿y上石m&darr| S3;
-　　S16 -->|当m==1拿y上石m&darr| S1 ;
+　　S18 -->|当m>1拿y上石m_DownArrow| S2;
+　　S18 -->|当m==1拿y上石m_DownArrow| S3;
+　　S16 -->|当m==1拿y上石m_DownArrow| S1 ;
 　　S1 -->|put_aside放一边| S17;
-　　S17 -->|当n>1拿x上石n&darr| S1;
-　　S17 -->|当n==1拿x上石n&darr| S3;
+　　S17 -->|当n>1拿x上石n_DownArrow| S1;
+　　S17 -->|当n==1拿x上石n_DownArrow| S3;
 　　S3 -->|put_aside放一边| S19;
 　　S19 -->|拿x积木| S11;
 　　S11 -->|put_x_aside| S19;
@@ -350,38 +350,31 @@ graph LR;
 
 其中：
 
-
-
-```mermaid
-graph LR;
-　　$S16(E,&notX,&notD,n>0,m>0),S0(&notE,&notX,&notD,n>0,m>0)$
-　　$S2(&notE,&notX,&notD,n=0,m>0),S18(E,&notX,&notD,n=0,m>0)$
-　　$S1(&notE,&notX,&notD,n>0,m=0),S17(E,&notX,&notD,n>0,m=0)$
-　　$S3(&notE,&notX,&notD,n=0,m=0),S11(E,&notX,&notD,n=0,m=0),S19(E,&notX,&notD,n=0,m=0),S22(E,&notX,D,n=0,m>0)$
-　　
-```
-
-
+$S16(E,非X,非D,n>0,m>0),S0(非E,非X,非D,n>0,m>0)$
+$S2(非E,非X,非D,n=0,m>0),S18(E,非X,非D,n=0,m>0)$
+$S1(非E,非X,非D,n>0,m=0),S17(E,非X,非D,n>0,m=0)$
+$S3(非E,非X,非D,n=0,m=0),S11(E,非X,非D,n=0,m=0)$
+$S19(E,非X,非D,n=0,m=0),S22(E,非X,D,n=0,m>0)$　
 
 
 如果换成状态详细的图就是：
 
 ```mermaid
 graph LR;
-　　S16(E,&notX,&notD,n>0,m>0) -->|拿x上石n&darr或拿y上石m&darr| S0(&notE,&notX,&notD,n>0,m>0);
-　　S0(&notE,&notX,&notD,n>0,m>0) -->|put-aside放一边| S16(E,&notX,&notD,n>0,m>0);
-　　S16(E,&notX,&notD,n>0,m>0) -->|当n==1拿x上石n&darr| S2(&notE,&notX,&notD,n=0,m>0) ;
-　　S2(&notE,&notX,&notD,n=0,m>0) -->|put_aside放一边| S18(E,&notX,&notD,n=0,m>0);
-　　S18(E,&notX,&notD,n=0,m>0) -->|当m>1拿y上石m&darr| S2(&notE,&notX,&notD,n=0,m>0);
-　　S18(E,&notX,&notD,n=0,m>0) -->|当m==1拿y上石m&darr| S3(&notE,&notX,&notD,n=0,m=0);
-　　S16(E,&notX,&notD,n>0,m>0) -->|当m==1拿y上石m&darr| S1(&notE,&notX,&notD,n>0,m=0) ;
-　　S1(&notE,&notX,&notD,n>0,m=0) -->|put_aside放一边| S17(E,&notX,&notD,n>0,m=0);
-　　S17(E,&notX,&notD,n>0,m=0) -->|当n>1拿x上石n&darr| S1(&notE,&notX,&notD,n>0,m=0);
-　　S17(E,&notX,&notD,n>0,m=0) -->|当n==1拿x上石n&darr| S3(&notE,&notX,&notD,n=0,m=0);
-　　S3(&notE,&notX,&notD,n=0,m=0) -->|put_aside放一边| S19(E,&notX,&notD,n=0,m=0);
-　　S19(E,&notX,&notD,n=0,m=0) -->|拿x积木| S11(E,&notX,&notD,n=0,m=0);
-　　S11(E,&notX,&notD,n=0,m=0) -->|put_x_aside| S19(E,&notX,&notD,n=0,m=0);
-　　S11(E,&notX,&notD,n=0,m=0) -->|把x放在y上| S22(E,&notX,D,n=0,m>0);
+　　S16(E,非X,非D,n>0,m>0) -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0(非E,非X,非D,n>0,m>0);
+　　S0(非E,非X,非D,n>0,m>0) -->|put-aside放一边| S16(E,非X,非D,n>0,m>0);
+　　S16(E,非X,非D,n>0,m>0) -->|当n==1拿x上石n_DownArrow| S2(非E,非X,非D,n=0,m>0) ;
+　　S2(非E,非X,非D,n=0,m>0) -->|put_aside放一边| S18(E,非X,非D,n=0,m>0);
+　　S18(E,非X,非D,n=0,m>0) -->|当m>1拿y上石m_DownArrow| S2(非E,非X,非D,n=0,m>0);
+　　S18(E,非X,非D,n=0,m>0) -->|当m==1拿y上石m_DownArrow| S3(非E,非X,非D,n=0,m=0);
+　　S16(E,非X,非D,n>0,m>0) -->|当m==1拿y上石m_DownArrow| S1(非E,非X,非D,n>0,m=0) ;
+　　S1(非E,非X,非D,n>0,m=0) -->|put_aside放一边| S17(E,非X,非D,n>0,m=0);
+　　S17(E,非X,非D,n>0,m=0) -->|当n>1拿x上石n_DownArrow| S1(非E,非X,非D,n>0,m=0);
+　　S17(E,非X,非D,n>0,m=0) -->|当n==1拿x上石n_DownArrow| S3(非E,非X,非D,n=0,m=0);
+　　S3(非E,非X,非D,n=0,m=0) -->|put_aside放一边| S19(E,非X,非D,n=0,m=0);
+　　S19(E,非X,非D,n=0,m=0) -->|拿x积木| S11(E,非X,非D,n=0,m=0);
+　　S11(E,非X,非D,n=0,m=0) -->|put_x_aside| S19(E,非X,非D,n=0,m=0);
+　　S11(E,非X,非D,n=0,m=0) -->|把x放在y上| S22(E,非X,D,n=0,m>0);
 ```
 
 
@@ -507,16 +500,16 @@ A邻接矩阵：
 
 ```mermaid
 graph LR;
-　　S16 -->|拿x上石n&darr或拿y上石m&darr| S0;
+　　S16 -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
 　　S0 -->|put-aside放一边| S16;
-　　S16 -->|当n==1拿x上石n&darr| S2 ;
+　　S16 -->|当n==1拿x上石n_DownArrow| S2 ;
 　　S2 -->|put_aside放一边| S18;
-　　S18 -->|当m>1拿y上石m&darr| S2;
-　　S18 -->|当m==1拿y上石m&darr| S3;
-　　S16 -->|当m==1拿y上石m&darr| S1 ;
+　　S18 -->|当m>1拿y上石m_DownArrow| S2;
+　　S18 -->|当m==1拿y上石m_DownArrow| S3;
+　　S16 -->|当m==1拿y上石m_DownArrow| S1 ;
 　　S1 -->|put_aside放一边| S17;
-　　S17 -->|当n>1拿y上石n&darr| S1;
-　　S17 -->|当n==1拿y上石n&darr| S3;
+　　S17 -->|当n>1拿y上石n_DownArrow| S1;
+　　S17 -->|当n==1拿y上石n_DownArrow| S3;
 　　S3 -->|put_aside放一边| S19;
 　　S19 -->|拿x积木| S11;
 　　S11 -->|put_x_aside| S19;
@@ -524,7 +517,7 @@ graph LR;
 ```
 
 
-```
+```python
 do{
     changed=0;
     if(存在对角元素1-1) {"强连通等效+changed=1};
@@ -540,10 +533,10 @@ do{
 
 ```mermaid
 graph LR;
-　　S0-16 -->|当n==1拿x上石n&darr| S2-18 ;
-　　S2-18 -->|当m==1拿y上石m&darr| S3;
-　　S0-16 -->|当m==1拿y上石m&darr| S1-17 ;
-　　S1-17 -->|当n==1拿y上石n&darr| S3;
+　　S0-16 -->|当n==1拿x上石n_DownArrow| S2-18 ;
+　　S2-18 -->|当m==1拿y上石m_DownArrow| S3;
+　　S0-16 -->|当m==1拿y上石m_DownArrow| S1-17 ;
+　　S1-17 -->|当n==1拿y上石n_DownArrow| S3;
 　　S3 -->|put_aside放一边| S19-11;
 　　S19-11 -->|把x放在y上| S22;
 ```
@@ -688,12 +681,12 @@ ISM技术是递阶结构模型技术，最开始是美国J.N.沃菲尔德教授1
 
 ```mermaid
 graph LR;
-　　M -->|区域划分| 块对角M&ltP&gt;
-　　块对角M&ltP&gt --> |级位划分| 区域块三角M&ltL&gt;
-　　区域块三角M&ltL&gt --> |缩减强连接要素合并| 区域块三角M'&ltL&gt;
-　　区域块三角M'&ltL&gt --> |剔除越级关系| 骨架矩阵M''&ltL&gt;
-　　骨架矩阵M''&ltL&gt --> |去掉结点自身可达关系| A';
-　　A' --> |绘图| G&ltA'&gt;
+　　M -->|区域划分| 块对角M_P;
+　　块对角M_P --> |级位划分| 区域块三角M_L;
+　　区域块三角M_L --> |缩减强连接要素合并| 区域块三角M'_L;
+　　区域块三角M'_L --> |剔除越级关系| 骨架矩阵M''_L;
+　　骨架矩阵M''_L --> |去掉结点自身可达关系| A';
+　　A' --> |绘图| G_A';
 ```
 
 
@@ -894,7 +887,7 @@ graph LR;
 
 这个有向无环图DAG可以使用ISM技术，或者拓扑排序试试看。
 
-# 设计deisgn
+## 设计deisgn
 
 
 
@@ -974,7 +967,7 @@ a6   #put-x-aside,建议别定义这动作，这是一个危险（毫无意义�
 
 区分QNP2SAT方法中连```n,n-1,n-2,...,2,1```都要分不同状态来一以区分，每个动作前提要
 
->S16 -->|当n==1拿x上石n&darr| S2 ;
+>S16 -->|当n==1拿x上石n_DownArrow| S2 ;
 
 这个动作为例：
 
@@ -1050,16 +1043,16 @@ a6   #put-x-aside,建议别定义这动作，这是一个危险（毫无意义�
 
 ```mermaid
 graph LR;
-　　S16 -->|拿x上石n&darr或拿y上石m&darr| S0;
+　　S16 -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
 　　S0 -->|put-aside放一边| S16;
-　　S16 -->|当n==1拿x上石n&darr| S2 ;
+　　S16 -->|当n==1拿x上石n_DownArrow| S2 ;
 　　S2 -->|put_aside放一边| S18;
-　　S18 -->|当m>1拿y上石m&darr| S2;
-　　S18 -->|当m==1拿y上石m&darr| S3;
-　　S16 -->|当m==1拿y上石m&darr| S1 ;
+　　S18 -->|当m>1拿y上石m_DownArrow| S2;
+　　S18 -->|当m==1拿y上石m_DownArrow| S3;
+　　S16 -->|当m==1拿y上石m_DownArrow| S1 ;
 　　S1 -->|put_aside放一边| S17;
-　　S17 -->|当n>1拿x上石n&darr| S1;
-　　S17 -->|当n==1拿x上石n&darr| S3;
+　　S17 -->|当n>1拿x上石n_DownArrow| S1;
+　　S17 -->|当n==1拿x上石n_DownArrow| S3;
 　　S3 -->|put_aside放一边| S19;
 　　S19 -->|拿x积木| S11;
 　　S11 -->|put_x_aside| S19;
@@ -1120,12 +1113,12 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S16 -->|拿x上石n&darr或拿y上石m&darr| S0;
+　　S16 -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
 　　S0 -->|put-aside放一边| S16;
-　　S16 -->|当n==1拿x上石n&darr| S2 ;
+　　S16 -->|当n==1拿x上石n_DownArrow| S2 ;
 　　S2 -->|put_aside放一边| S18;
-　　S18 -->|当m>1拿y上石m&darr| S2;
-　　S18 -->|当m==1拿y上石m&darr| S3;
+　　S18 -->|当m>1拿y上石m_DownArrow| S2;
+　　S18 -->|当m==1拿y上石m_DownArrow| S3;
 　　S3 -->|put_aside放一边| S19;
 　　S19 -->|拿x积木| S11;
 　　S11 -->|put_x_aside| S19;
@@ -1146,16 +1139,16 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S16 -->|拿x上石n&darr或拿y上石m&darr| S0;
+　　S16 -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
 　　S0 -->|put-aside放一边| S16;
-　　S16 -->|当n==1拿x上石n&darr| S2 ;
+　　S16 -->|当n==1拿x上石n_DownArrow| S2 ;
 　　S2 -->|put_aside放一边| S18;
-　　S18 -->|当m>1拿y上石m&darr| S2;
-　　S18 -->|当m==1拿y上石m&darr| S3;
-　　S16 -->|当m==1拿y上石m&darr| S1 ;
+　　S18 -->|当m>1拿y上石m_DownArrow| S2;
+　　S18 -->|当m==1拿y上石m_DownArrow| S3;
+　　S16 -->|当m==1拿y上石m_DownArrow| S1 ;
 　　S1 -->|put_aside放一边| S17;
-　　S17 -->|当n>1拿x上石n&darr| S1;
-　　S17 -->|当n==1拿x上石n&darr| S3;
+　　S17 -->|当n>1拿x上石n_DownArrow| S1;
+　　S17 -->|当n==1拿x上石n_DownArrow| S3;
 　　S3 -->|put_aside放一边| S19;
 　　S19 -->|拿x积木| S11;
 　　S11 -->|put_x_aside| S19;
@@ -1167,13 +1160,13 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S16 -->|拿x上石n&darr或拿y上石m&darr| S0;
+　　S16 -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
 　　S0 -->|put-aside放一边| S16;
-　　S16 -->|当n==1拿x上石n&darr| S2 ;
-　　S16 -->|当m==1拿y上石m&darr| S1 ;
+　　S16 -->|当n==1拿x上石n_DownArrow| S2 ;
+　　S16 -->|当m==1拿y上石m_DownArrow| S1 ;
 　　S1 -->|put_aside放一边| S17;
-　　S17 -->|当n>1拿x上石n&darr| S1;
-　　S17 -->|当n==1拿x上石n&darr| S3;
+　　S17 -->|当n>1拿x上石n_DownArrow| S1;
+　　S17 -->|当n==1拿x上石n_DownArrow| S3;
 　　S3 -->|put_aside放一边| S19;
 　　S19 -->|拿x积木| S11;
 　　S11 -->|put_x_aside| S19;
@@ -1185,12 +1178,12 @@ graph LR;
 
 ```mermaid
 graph LR;
-　　S16 -->|拿x上石n&darr或拿y上石m&darr| S0;
+　　S16 -->|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
 　　S0 -->|put-aside放一边| S16;
-　　S16 -->|当n==1拿x上石n&darr| S2 ;
+　　S16 -->|当n==1拿x上石n_DownArrow| S2 ;
 　　S2 -->|put_aside放一边| S18;
-　　S18 -->|当m>1拿y上石m&darr| S2;
-　　S18 -->|当m==1拿y上石m&darr| S3;
+　　S18 -->|当m>1拿y上石m_DownArrow| S2;
+　　S18 -->|当m==1拿y上石m_DownArrow| S3;
 　　S3 -->|put_aside放一边| S19;
 　　S19 -->|拿x积木| S11;
 　　S11 -->|put_x_aside| S19;

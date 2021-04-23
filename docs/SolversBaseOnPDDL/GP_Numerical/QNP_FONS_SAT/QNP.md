@@ -73,8 +73,8 @@ QNP可以通过两个步骤解决（Srivastava等，2011）。
 1. 首先，将QNP Q转换为标准的完全可观察的非确定性（FOND）问题P（Cimatti，Pistore，Roveri和Traverso，2003年）。  
 
 2. 然后，测试由现成的FOND规划器获得的P的解是否**终止**。这最后一步是必需的，因为FOND问题P中的不确定性是unfair，但在条件上是fair：如果X的增加不超过有限数，则数值变量X的无穷定性减量最终使表达式X = 0成立。 （Bonet，De Giacomo，Geffner和Rubin，2017年）。
- 
- 
+
+
 那么，解决P 并终止的策略就是解决QNP Q 的策略（Srivastava et al。，2011）。
 
 但是，遵循这种生成和测试方法解决QNP的计算缺点是两个。
@@ -208,22 +208,10 @@ Sieve算法
 ![](_v_images/1594908128_29744.png)
 
 
-# FOND互相转换QNP
+## FOND互相转换QNP
 
 
-跟着文章介绍的转
-
-
-
-
-
-
-
-
-
-
-
-
+跟着 Bonet 文章介绍的转
 
 
 

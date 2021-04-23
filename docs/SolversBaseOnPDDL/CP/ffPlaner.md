@@ -1,5 +1,10 @@
 [TOC]
 
+https://github.com/pucrs-automated-planning/pddl-parser Classical Planning in Python
+
+- [PDDL.py](https://github.com/pucrs-automated-planning/pddl-parser/blob/master/PDDL.py)用PDDL解析器
+- 有计划者的[planner.py](https://github.com/pucrs-automated-planning/pddl-parser/blob/master/planner.py)
+
 # ffPlaner
 
 在线编辑求解FF Planer online： http://editor.planning.domains/#      

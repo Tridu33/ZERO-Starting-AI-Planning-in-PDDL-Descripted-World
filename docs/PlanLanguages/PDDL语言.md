@@ -1,12 +1,14 @@
 ## PDDL简介
 
-en.wikipedia.org/wiki/Planning_Domain_Definition_Language
+https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language 版本语言特征wiki介绍
 
-https://dblp.uni-trier.de/search?q=pddl
+https://dblp.uni-trier.de/search?q=pddl 可以看到研究现状很热，而且很自然地快进到游戏编程领域人工智能的行为树Optimized Execution of PDDL Plans using **Behavior Trees**(本质上和算法决策动作decision structure一个概念)。
+
+
 
 [Writing Planning Domains and Problems in PDDL](http://users.cecs.anu.edu.au/~patrik/pddlman/writing.html)
 
-en.wikipedia.org/wiki/Planning_Domain_Definition_Language
+
 
 古典计划使用从STRIPS建模语言[Richard E Fikes and Nils J Nilsson.  Strips: A new approach to the application of theorem proving to problemsolving.Artificial intelligence, 2(3-4):189–208, 1971]派生而来的正式描述语言，称为计划领域定义语言（PDDL）[Drew McDermott, Malik Ghallab, Adele Howe, Craig Knoblock, Ashwin Ram, Manuela Veloso, Daniel Weld,and David Wilkins. Pddl-the planning domain definition language, 1998.]
 
@@ -43,19 +45,19 @@ PDDL代表规划域定义语言。它是用于计划任务的标准编码。请�
 
 另一方面，Prolog是图灵完备的编程语言。这尤其意味着你可以表现一切任何编程语言，你可以也表达序言。您可以通过使用Prolog模拟图灵机来显示此信息：
 
+
+
+## 在PDDL中编写计划领域和问题
+
 以下是一些其他参考资料，希望对您有用：
 
 https://www.cs.toronto.edu/~sheila/2542/s14/A1/introtopddl2.pdf
 
-## 在PDDL中编写计划领域和问题
+PDDL背景 http://homepages.inf.ed.ac.uk/mfourman/tools/propplan/pddl.pdf 1.2手册
 
-PDDL背景
+http://users.cecs.anu.edu.au/~thiebaux/papers/ijcai03.pdf In Defense of PDDL Axioms∗
 
-http://homepages.inf.ed.ac.uk/mfourman/tools/propplan/pddl.pdf
 
-http://users.cecs.anu.edu.au/~thiebaux/papers/ijcai03.pdf
-
-https://fai.cs.uni-saarland.de/hoffmann/papers/ki11.pdf
 
 在线 https://editor.planning.domains/# PDDL编辑器
 

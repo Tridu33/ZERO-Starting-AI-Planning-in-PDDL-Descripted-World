@@ -6,7 +6,7 @@
 http://www.pudn.com/Download/item/id/2027508.html
 
 
-# Sensory GraphPlan home site
+## Sensory GraphPlan home site
 aiweb.cs.washington.edu/ai/sgp.html
 
 web.cs.wpi.edu/~nth/cs534/resources/SensoryGraphPlan/sgp/

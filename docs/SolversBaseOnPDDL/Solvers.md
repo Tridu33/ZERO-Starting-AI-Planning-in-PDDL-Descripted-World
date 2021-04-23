@@ -1,6 +1,6 @@
+#  solver汇总
 
-
-## IPC故事开始的地方
+## IPC比赛---故事开始的地方
 
 https://www.icaps-conference.org/competitions/  汇总每一届比赛链接
 
@@ -21,7 +21,7 @@ eecs.oregonstate.edu/ipc-learn/ 6
 cs.cmu.edu/afs/cs/project/jair/pub/volume20/long03a-html/node2.html
   国际规划大赛系列
 
-#  solver汇总
+
 
 主要分：
 

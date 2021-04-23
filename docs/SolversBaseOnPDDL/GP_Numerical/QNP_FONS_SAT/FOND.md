@@ -1,8 +1,8 @@
 [TOC]
 
 
-
-# begin
+# FOND
+## begin
 
 [paperswithcode代码](https://paperswithcode.com/paper/compact-policies-for-fully-observable-non#)
 
@@ -38,7 +38,7 @@ QNP $\Leftrightarrow$ FOND
 
 
 
-# FOND
+## FOND
 
 定义：
 
@@ -108,7 +108,7 @@ G, the set of goal atoms
 **strong cyclic solution**
 
  A policy $\pi$ is a strong solution for P if the complete state trajectories induced by $\pi$ are all goal reaching, and it is a strong cyclic solution for P if the complete state trajectories induced by $\pi$ that are **fair** are all goal reaching. 
- 
+
  Strong and strong cyclic solutions are also called strong and strong cyclic policies for P respectively.
 
 
@@ -118,7 +118,7 @@ G, the set of goal atoms
 
 
 
-# QNP
+## QNP
 models S(Q):
 
 S(Q)=<S状态,$S_o$初态 ,Act动作 ,A,F,$S_G$目标态>
@@ -163,7 +163,7 @@ Q =⟨F，V，I，O，G⟩其中⟩F是一组命题变量。
 
 
 
-# FOND求解
+## FOND求解
 定义：
 
 Q=<F,I,O,G>
@@ -232,7 +232,7 @@ bi ∈ a.
 states into plans for the relaxation.
 
 
-## Classical Replanning for FOND Planning
+### Classical Replanning for FOND Planning
 
 For a given FOND problem P,complete classical replanners yield strong cyclic policies that solve P by 
 computing a partial function p mapping non-goal states s into classical plans p(s) for the **deterministic relaxation** of P with initial state s. 
@@ -241,7 +241,7 @@ computing a partial function p mapping non-goal states s into classical plans p(
 
 We write p(s) = b,p to denote a plan for s in the relaxation that starts with the action b followed by the action sequence p.用p(s) = b,p 表示松弛问题下，状态s施加动作b的后续动作序列P 的一个plan
 
-### 确保strong cyclic policy的条件
+#### 确保strong cyclic policy的条件
 The following conditions ensure that the partial function ρ encodes a strong cyclic policy for P (Geffner and
 Bonet 2013):
 
@@ -275,13 +275,13 @@ FOND问题有三种计划（Daniele，Traverso和Vardi 2000）：弱循环，强
 
 
 
-## 解决过程中PRP典型例子
+### 解决过程中PRP典型例子
 - 没deadend 状态时，过程单调结束或者根据迭代数值边界终止 策略
  In a problem with no deadend states, the process finishes monotonically in a number of iterations and classical planner calls that is bounded by the number of states that are reachable with the policy.
- 
+
  PRP uses **regression** to reduce this number, resulting in policies that map partial states into actions and may have an exponentially smaller size. 
  这里regression回归 方法不太懂具体指什么，PRP,导致samller size。同时PRP还使用inferring and generalizing在一观察后就排除特定cases中一些weak plan
- 
+
  - 有deadend时，类似回溯，搜索进程restart匹配更多“动作-状态对”，排除之前每次失败的p(觉得是关闭那个失败的映射方式，比如bi)
  In the presence of deadends, the computation in PRP is similar but the process is restarted from scratch with more action-state pairs excluded each time that the classical planner fails to
 find a plan and close the function ρ. 
@@ -289,7 +289,7 @@ find a plan and close the function ρ.
 
 
 
-## Challenges in FOND
+### Challenges in FOND
 **Problem Size.** The size of the state space *M (P)* for a FOND problem *P* is exponential in the number of problem atoms.
 
 
@@ -325,7 +325,7 @@ and let $L_m(P)$ be the mini-mum $L_π(P)$ over all such policies π.最优解$L
 
 
 
-# 本文方法：SAT Approach to FOND Planning
+## 本文方法：SAT Approach to FOND Planning
 
 
 We provide a SAT approach to FOND planning that is based on CNF encodings that are polynomial in the number of atoms and actions.
@@ -378,7 +378,7 @@ On the other hand, if q is false in n and not added by b, q(n') is forced to be 
 
 
 
-## 基础编码
+### 基础编码
 
 
 
@@ -457,7 +457,7 @@ Starting with k =1 this bound is increased by 1 until the formula is satisfiable
 
 If the formula C(P, k) is unsatisfiable for k = |S|, then P has no strong cyclic solution.合取公式C(P,K)如果对于“ k = |S|”是不可满足的,那么FOND问题没有强循环解
 
-## 策略
+### 策略
 A satisfying assignment σ of the formula C(P, k) defines a policy πσ that is a function from controller states n into actions of P.
 公式C（P，k）的可满足的赋值σ定义了策略$π_σ$，它是从控制器状态n映射到P的动作的函数。
 
@@ -484,7 +484,7 @@ We say that the compact policy $π_σ$ is a strong cyclic (resp. strong) policy 
 我们说紧凑策略$π_σ$是对P的强循环（相对强）策略，当且仅当,π对于$P_σ$是对循环的强（相对强）策略。
 
 
-## 性质
+### 性质
 文中分别证明
 
 1. 健壮可靠性sound。If σ is a satisfying assignment for C(P, k), the compact policy π σ is a strongly cyclic solution for P.如果σ是C（P，k）的满意分配，紧致策略$π_σ$是P的强循环解
@@ -495,7 +495,7 @@ We say that the compact policy $π_σ$ is a strong cyclic (resp. strong) policy 
 3. 紧性(Compactness).The size of the policy $π_σ$ for a truth assignment σ satisfying C(P, k) can be exponentially smaller than the number of states reachable by $π_σ$.
 满足C（P，k）的真值分配σ的策略$π_σ$的大小可指数级小于$π_σ$可达的状态数。
 
-## Optimizations
+### Optimizations
 
 We introduced simple extensions and modifications to the SAT encoding to make it more efficient and scalable while maintaining its formal properties.我们对SAT编码进行了简单的扩展和修改，以使其在保持其正式属性的同时更加有效和可扩展。
 
@@ -521,7 +521,7 @@ the last clause only for actions b that do not add p but have siblings that do. 
 Finally, extra formulas are added for breaking symmetries that result from exchanges in the names (numbers) associated with different control nodes, other than n0 and nG, that result in equivalent controllers.最后，添加了额外的公式来打破对称性，这种对称性是由与不同控制节点（n0和nG除外）相关联的名称（数字）的交换所导致的，从而导致等效的控制器。
 
 
-# 实验
+## 实验
 软件获取地址：
 
 The version of `PRP` is from 8/2017, from https://bitbucket.org/haz/deadend-and-strengthening. 
@@ -574,7 +574,7 @@ Miner. An agent has to retrieve a number of items that can be found in two regio
 
 
 
-# dual FOND planning
+## dual FOND planning
 展望进一步研究方向，改进方法
 A feature of the SAT approach that is not shared by either classical replanners, OBDD-planners, or explicit AND/OR search approaches like MyND and Grendel, is that in SAT, it is very simple to reason with a combination of actions that can be assumed to be fair, with actions that cannot, leading to a form of planning that is neither strong nor strong cyclic. We call this Dual FOND planning. 传统的重新规划者，OBDD-规划者或诸如MyND和Grendel之类的显式AND / OR搜索方法所不具有的SAT方法的一个特征是，在SAT中，很容易通过组合可以假定是公平的，采取了无法采取的行动，从而导致规划的形式既不强也不强。我们称此为对偶FOND规划。
 
@@ -609,7 +609,7 @@ We have run some experiments for dual planning, using the example above where th
 
 
 
-# 全文结论
+## 全文结论
 
 We have introduced the first SAT formulation for FOND planning that is compact and can produce compact policies. Small changes in the formulation account for strong, strong cyclic, and a combined form of strong and strong cyclic planning, that we call dual FOND planning, where some actions are assumed fair and the others unfair. From a computational point of view, the SAT approach performs well in problems that are not too large and that do not require large controllers, where it is not affected by the presence of a large number of misleading plans. Classical replanners like PRP and explicit AND/OR search planners like MyND can scale up to larger problems or problems with larger controllers respectively, but do not appear to be as robust to non-determinism.
 

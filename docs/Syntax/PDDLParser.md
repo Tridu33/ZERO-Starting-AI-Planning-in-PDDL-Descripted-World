@@ -1,34 +1,65 @@
 
 
- pddl3BNF
-
-https://github.com/nergmada/planning-wiki/blob/master/_citedpapers/pddl3bnf.pdf
-
-  PDDLParser
-
-https://cn.bing.com/search?q=PDDL+parser&ensearch=1&FORM=BESBTP&PC=U316
-
-合集
+BNF文法描述PDDL: pddl3BNF https://github.com/nergmada/planning-wiki/blob/master/_citedpapers/pddl3bnf.pdf
 
 
-github.com/topics/pddl
+
+github仓库合集 https://github.com/topics/pddl ，其中parser有很多：
+
+
 
 
 python
 
-github.com/pucrs-automated-planning/pddl-parser
+https://github.com/hfoffani/pddl-lib  一个PDDL库，通过使用**ANTLR 4**语法来解析PDDL文件，它提供了一个非常简单的界面来与域问题进行交互。该库发布一个对象类，其API公开了用于获取以下内容的方法：
 
-github.com/boompig/pddl-parser-2
+- 初始状态。
+- 目标。
+- 运算符列表。
+- 正面和负面的先决条件以及正面和负面的影响。
+- 给定算子的*接地*状态（接地变量，前提条件和影响）。
 
-github.com/makintunde/ply-pddl-parser
+用户足以专注于状态空间或计划空间搜索算法的实现。
 
-java
+```
+pip install pddlpy
+```
 
 
-github.com/gerryai/pddl-parser
 
-universal-pddl-parser 
-https://github.com/wisdompoet/universal-pddl-parser
+西班牙组大佬参与书写的 universal-pddl-parser https://github.com/wisdompoet/universal-pddl-parser 一种用于解析PDDL格式的任何计划问题的算法。当前支持STRIPS计划，时间计划，多主体计划。Scons构建。
+
+https://github.com/makintunde/ply-pddl-parser A PDDL parser written using PLY.
+
+
+
+ a collection of utilities to read PDDL and POND (Partially-Observable Non-Deterministic) files.https://github.com/boompig/pddl-parser-2
+
+**java** https://github.com/gerryai/pddl-parser
+
+**js**  
+
+pddl2json
+
+尝试针对pegjs.org的基本STRIPS PDDL语法分析器。
+实例学习怎么从pddl到json结构化数据
+
+https://gist.github.com/primaryobjects/22363e71112d716ea183
+
+```
+ pip install pddlpy#pddl parser
+ # 读取pddl文件进入内存，变成python可以访问的结构化数据格式
+ # 需要函数pddl2json则是输出转换json结构，这种结构化文件网络编程javascript几乎唯一选择
+```
+
+https://pegjs.org/online
+ 在线工具peg.js
+
+
+
+
+
+
 
 https://www.upf.edu/web/ai-ml/universal-pddl-parser 其学校介绍软件的网页
 

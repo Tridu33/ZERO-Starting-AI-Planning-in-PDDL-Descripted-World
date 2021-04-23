@@ -6,8 +6,13 @@
 
 ## plan-wiki
 
-
 https://github.com/nergmada/planning-wiki
+
+https://fai.cs.uni-saarland.de/hoffmann/papers/ki11.pdf Everything You Always Wanted to Know AboutPlanning(But Were Afraid to Ask)
+
+
+
+人工智能规划很好的课程资料 https://yawgmoth.github.io/PF-3335/  PF 3335  Artificial Intelligence Planning 课程项目：https://yawgmoth.github.io/PF-3335/project/ 在线版本PPT  https://yawgmoth.github.io/PF-3335/slides/
 
 ## Resources
 
@@ -195,14 +200,11 @@ Compiled and source course materials (please [contact teacher in this url](mailt
   - [IPC PDDL Domains](https://github.com/potassco/pddl-instances)
 - Book: [An Introduction to the Planning Domain Definition Language](http://www.morganclaypoolpublishers.com/catalog_Orig/product_info.php?products_id=1384)
 
-# ThePlanningCommunity
+## ThePlanningCommunity
 
 https://app.slack.com/plans/TK9TZPZD3?entry_point=team_messages_limit_meter&feature=unlimited_messages
 
 Stack有一个planning community里面有很多资料
-
-
-
 
 
 ## Why MkDocs?

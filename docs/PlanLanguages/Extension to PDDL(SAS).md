@@ -17,7 +17,7 @@ Extending PDDL for Hierarchical Planning and Topological Abstraction
 
 pddl进阶SAS：
 
-
+wiki列表相关扩展很丰富：https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language 
 
 
 

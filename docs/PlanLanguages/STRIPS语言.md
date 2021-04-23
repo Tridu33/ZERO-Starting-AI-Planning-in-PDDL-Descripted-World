@@ -15,17 +15,9 @@ fluent
 要将基于STRIPS的AI规划集成到您的应用程序或游戏中，可以使用node.js [strips](https://www.npmjs.com/package/strips)库，该库支持广度优先，深度优先和A *搜索。Strips库的[github主页](https://github.com/primaryobjects/strips/)提供了对该库的更高层次的概述，其中包括[Starcraft](https://github.com/primaryobjects/strips/#starcraft)域的示例。
 
 
-入门看这里
+https://en.wikipedia.org/wiki/Stanford_Research_Institute_Problem_Solver 入门看这里 http://www.primaryobjects.com/2015/11/06/artificial-intelligence-planning-with-strips-a-gentle-introduction/
 
-
-primaryobjects.com/2015/11/06/artificial-intelligence-planning-with-strips-a-gentle-introduction/#:~:text=The%20Standford%20Research%20Institute%20Problem%20Solver%20%28STRIPS%29%20is,things%20you%20can%20do%20in%20the%20game%20world.
-
-
-简介
-jiqizhixin.com/graph/technologies/9ad9b15f-b57d-4a18-b4fa-6d1728c35b63
-
-
-en.wikipedia.org/wiki/Stanford_Research_Institute_Problem_Solver
+[机械之心提到过一下这个](https://www.jiqizhixin.com/graph/technologies/9ad9b15f-b57d-4a18-b4fa-6d1728c35b63)简介
 
 STRIPS 表达式一种以行动为中心的表示，它对于每个动作（action）来说，都需要指定这个动作所获得的效果（effect）。一个这样的表示就是**STRIPS representation**。“斯坦福研究院问题解决器”(Stanford Research Institute Problem Solver)的缩写，
 
@@ -74,9 +66,15 @@ precondition
 
 
 
-npmjs.com/package/strips
-
-github.com/primaryobjects/strips
 
 
+https://github.com/primaryobjects/strips
+
+AI Automated Planning with STRIPS and PDDL in Node.js
+
+https://www.npmjs.com/package/strips
+
+```
+npm install strips
+```
 

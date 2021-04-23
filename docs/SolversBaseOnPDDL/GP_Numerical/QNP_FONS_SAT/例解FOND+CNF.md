@@ -388,9 +388,9 @@ cnf.py
 		self.generateMutexGroupsClauses(task, controllerStates, debug)
 ```
 
- 
+
  ###  cnf.26Variables --> 70Clauses
- 
+
 对应的子句生成如下所示：
 
 ```
@@ -1031,7 +1031,7 @@ Fair actions: True
 ```
 
 
-# 我的stupid road demo run in Ipython/Jupyter
+## 我的stupid road demo run in Ipython/Jupyter
 
 ## main.py
 
