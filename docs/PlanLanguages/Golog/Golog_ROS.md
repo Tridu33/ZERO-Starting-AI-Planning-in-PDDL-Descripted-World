@@ -1,18 +1,19 @@
 
 
-# GOLOG and PDDL  What is the RelativeExpressiveness
+# GOLOG and PDDL  
+What is the RelativeExpressiveness
 
 https://jens-classen.net/pub/EyerichEtAl2006.pdf
 
 
 
-# PDDL+Golog
+## PDDL+Golog
 
 基于PDDL的生成的计划的执行与常规的Golog程序和执行监视相结合。
 
 https://www.fawkesrobotics.org/projects/golog-cp/
 
-# prolog验证
+## prolog验证
 
 [Source Code Verification for Embedded Systems using Prolog](
 https://arxiv.org/abs/1701.00630)

@@ -1,4 +1,4 @@
-## PDDL简介
+# PDDL简介
 
 https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language 版本语言特征wiki介绍
 
