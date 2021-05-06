@@ -1,0 +1,479 @@
+<!DOCTYPE html><html> <head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=author content=tridu33><link rel="shortcut icon" href=../../img/favicon.ico><title>ffPlanner_demo &mdash; AI Planning in PDDL-Descripted World</title><link rel=stylesheet href="//fonts.googleapis.com/css?family=Lato:400,700"><link rel=stylesheet href=//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/all.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//code.jquery.com/jquery-2.1.1.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js></script><script>
+        hljs.initHighlightingOnLoad();
+    </script></head> <body ontouchstart> <div id=container> <aside> <div class=home> <div class=title> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div class=search> <div role=search> <form id=rtd-search-form class=wy-form action=../../search.html method=get> <input type=text name=q placeholder="Search docs" title="Type search term here"> </form> </div> </div> </div> <nav class=nav> <ul class=root> <li class=toctree-l1><a class=nav-item href=../..>Home</a></li> <li class=toctree-l1><button class="section nav-item">规划界黑话</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">PDDL进化史</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/ class=nav-item>HelloPDDL</a></li> <li class=toctree-l3><a href=../../PlanLanguages/PDDL_basic/ class=nav-item>PDDL-Basic</a></li> <li class=toctree-l3><a href=../../PlanLanguages/ADL/ class=nav-item>ADL</a></li> <li class=toctree-l3><a href=../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/ class=nav-item>STRIPS</a></li> <li class=toctree-l3><button class="section nav-item hide">PDDL</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../PlanLanguages/Extension%20to%20PDDL/ class=nav-item>PDDL扩展</a></li> <li class=toctree-l4><a href=../../PlanLanguages/FOND-QNP%28SAS%2B%29/ class=nav-item>FOND-QNP(SAS+)</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">机器人世界</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../PlanLanguages/Golog/Golog_ROS/ class=nav-item>Golog</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL使用</button> <ul class=subnav> <li class=toctree-l2> <a href=../LocalSolvers/ class=nav-item>本地环境使用</a></li> <li class=toctree-l2> <a href=../OnlineSolver/ class=nav-item>线上求解器使用</a></li> <li class=toctree-l2> <a href=../VSCode/ class=nav-item>Visual Studio Code使用</a></li> <li class="toctree-l2 current"><a href=./ class="nav-item current">ffPlanner_demo</a> <ul class=subnav> </ul></li> <li class=toctree-l2><button class="section nav-item hide">经典demos</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/%E5%88%8A%E7%89%A9%E4%B8%8A%E7%BB%8F%E5%85%B8demos/ class=nav-item>刊物上经典demos</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PDDL%20Benchmark%20Instances/ class=nav-item>BenchMark</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL语法</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Syntax/PDDL%20axioms/ class=nav-item>语法总览</a></li> <li class=toctree-l2> <a href=../../Syntax/PDDLParser/ class=nav-item>Parser</a></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL-Descripted AI Planning World</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Papers</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Papers/A%20review%20of%20generalized%20planning/ class=nav-item>reviewOfGP</a></li> <li class=toctree-l3><a href=../../Papers/GP_summary/ class=nav-item>GP_summary</a></li> <li class=toctree-l3><a href=../../Papers/A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/ class=nav-item>ReviewOfMLforAP</a></li> <li class=toctree-l3><a href=../../Papers/Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/ class=nav-item>GPwithDeep-RL</a></li> <li class=toctree-l3><a href=../../Papers/Survey%20of%20research%20literature/ class=nav-item>researchSurvey</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">SolversBaseOnPDDL</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PyperPlan_STRIPS/ class=nav-item>PyperPlan_STRIPS</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/Solvers/ class=nav-item>Solvers</a></li> <li class=toctree-l3><button class="section nav-item hide">CP</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/ffPlaner/ class=nav-item>FF</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/fast-downward/ class=nav-item>FD</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/LAPKT%E8%BD%BB%E9%87%8F%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92%E5%B7%A5%E5%85%B7%E5%8C%85/ class=nav-item>LAPKT轻量自动规划工具包</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">GP_Numerical</button> <ul class="subnav hide"> <li class=toctree-l4> <a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem/ class=nav-item>QNP_ReduceTo_GraphProblem</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/%E5%9B%BE%E6%B3%95QNP/ class=nav-item>图法QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/ class=nav-item>LPG</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/grahPlan/ class=nav-item>grahPlan</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/SGPlan6/ class=nav-item>SGPlan6</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/PRP/ class=nav-item>PRP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/myND/ class=nav-item>myND</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">QNP_FONS_SAT</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py/ class=nav-item>CNF_py</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND/ class=nav-item>FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND/ class=nav-item>QA_FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/ class=nav-item>例解FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP/ class=nav-item>QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond/ class=nav-item>qnp2fond</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT/ class=nav-item>QNP2SAT</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-plan-validators</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/PDDL-plan-validator/ class=nav-item>validators</a></li> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator/ class=nav-item>INVAL</a></li> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/VScode-PDDL%E6%8F%92%E4%BB%B6VAL/ class=nav-item>VAL</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-Auto Planning</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Extensions/AP/PDDL4j_Java%20for%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92/ class=nav-item>PDDL4j</a></li> <li class=toctree-l3><a href=../../Extensions/AP/Tarski%20-%20An%20AI%20Planning%20Modeling%20Framework/ class=nav-item>Tarski</a></li> <li class=toctree-l3><a href=../../Extensions/AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/ class=nav-item>QNP2AP</a></li> <li class=toctree-l3><a href=../../Extensions/RL/PDDLGYM/ class=nav-item>PDDLGYM</a></li> <li class=toctree-l3><a href=../../Extensions/RL/RLPlanPapers/ class=nav-item>PDDL+RL强化学习</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">进击的PDDL</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Curry-Howard correspondence</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/ class=nav-item>CFG语义网络</a></li> <li class=toctree-l3><a href=../../FurtherMore/PDDL-Solver2AST/ class=nav-item>PDDL-Solver2AST</a></li> <li class=toctree-l3><a href=../../FurtherMore/TransitionSystemModelCheck/ class=nav-item>CFG=TransitionSystemModelCheck.md</a></li> <li class=toctree-l3><a href=../../FurtherMore/qnp2ast2program/ class=nav-item>qnp2ast2program</a></li> </ul></li> </ul></li> <li class=toctree-l1> <a class=nav-item href=https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues>Issue跟踪讨论</a></li> </ul> </nav> <div class=repo> <div class=link> </div> <div class=previous><a href=../VSCode/ >&laquo; Previous</a></div> <div class=next><a href=../../SolversBaseOnPDDL/%E5%88%8A%E7%89%A9%E4%B8%8A%E7%BB%8F%E5%85%B8demos/ >Next &raquo;</a></div> </div> </aside> <div id=spacer><button class=arrow></button></div> <main> <div class=home-top> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div id=main> <nav class=breadcrumbs> <ul> <li>PDDL使用</li> </ul> </nav> <div id=content><div class=toc> <ul> <li><a href=#pddl-ff-planner>pddl---FF Planner</a></li> </ul> </div> <h1 id=pddl-ff-planner>pddl---FF Planner<a class=headerlink href=#pddl-ff-planner title="Permanent link">&para;</a></h1> <p>FF Planer online： <a href=http://editor.planning.domains/#>http://editor.planning.domains/#</a> 注意不要使用https否则会报malformed url</p> <p>pddl---Planning Domain Definition Language语法：</p> <p>基本内容：</p> <p>• Domain Name • Requirements • Types • Constants • Domain Variables • Predicates • Actions</p> <p>以下图为例:</p> <p>演示demo</p> <ul> <li>spare tire</li> </ul> <p>domain_spare_tire_d.pddl</p> <div class=highlight><pre><span></span><code>；给出domain名称，语法使用就是(domain 名称)
+(define (domain spare_tire )
+   ;给出依赖项，比如这里的三个都是依赖项，语法使用是“:依赖项”,
+   ;strip---The most basic subset of PDDL, consisting of STRIPS only
+   ;equality---This requirement means that the domain uses the predicate =, interpreted as equality.
+   ;typing---This requirement means that the domain uses types (see Typing below).
+   ;adl---Means that the domain uses some or all of ADL (相当于同时满足这几个:strips:typing
+:disjunctive-preconditions:equality:quantified-preconditions:condition-effects)
+   (:requirements : strips : equality : typing )
+   (:types physob location )
+   ；定义该domain当中需要使用的类型，比如physic object、location都是类型，直接将你需要定义的类型加入到:type的后面
+   (:predicates  ( Tire ?x − physob);define predicates here
+                  ( at ?x − physob ?y − location ))
+   ；定义该domain需要使用的谓词，单元谓词表示属性，如这里的Tire x表示x这个physic object是否有轮胎属性。
+   ；谓词名称最先给出，然后依次给出该谓词的项，格式为“？参数 – 参数类型”，
+   ；比如这里的“？x – physob ？y – physob”表示x这个参数的类型应该是physob的，不能传递其他类型的参数。
+   ；整个“Tire ？x – physob”对应Tire(x)这一原子（公式）。
+   ；二元谓词表示关系，比如这里的at表示x物体是否在y这个位置，分析与上面的单元谓词类似
+
+;车轴上卸下胎x,x放地上
+    (:action Remove
+    :parameters (?x − physob ?y − location )
+    :precondition (At ?x ?y)
+    :effect (and(not(At ?x ?y) ) (At ?x Ground) )
+    )
+    ;定义该domain中的操作，这里的remove表示移除操作，这个操作需要给定参数，参数定义规则与前面的谓词一样；
+    ;action执行需要一定的前提条件，前提条件是一个逻辑表达式，
+    ;根据其真值判断操作是否可以执行；
+    ;最后执行这个操作会导致一定的结果，这在effect中指定，指定的effect会改写当前状态（相当于改写知识库中基础原子的真值）
+    ;语法上来说，precondition后面可以给出原子公式的与或非组合，
+    ;其中原子公式语法前面谓词说过了，非：（not 原子公式）；与：（and 原子公式1 原子公式2 等等）；或与and用法一致，把and换为or即可
+
+    (:action PutOn
+    :parameters (?x − physob)
+    :precondition (and( Tire ?x) (At ?x Ground)
+                   (not(At Flat Axle) ) )
+    :effect (and(not(At ?x Ground) ) (At ?x Axle) ) 
+    ) ;把地上的X装上车轴
+
+;放着不动过夜
+    (:action LeaveOvernight
+    :effect (and(not(At Spare Ground) ) (not(At Spare Axle) )
+             (not(At Spare Trunk) ) (not(At Flat Ground) )
+             (not(At Flat Axle) ) (not(At Flat Trunk) )
+             )
+    )
+
+)
+</code></pre></div> <p><a href=https://www.ques10.com/p/30415/explain-planning-problem-for-spare-tyre-problem/ >具体解释这个例子的含义</a> spare_tire_p.pddl</p> <div class=highlight><pre><span></span><code> (define (problem prob)
+  (:domain spare_tire )
+  (:objects Flat Spare −physob Axle Trunk Ground − location )
+  (:init ( Tire Flat ) ( Tire Spare) (At Flat Axle) (At Spare Trunk) )
+  (:goal (At Spare Axle) )
+ )
+</code></pre></div> <p>然后执行</p> <div class=highlight><pre><span></span><code>$ ff -o domain_spare_tire.pddl -f spare_tire.pddl
+
+ff: parsing domain file
+domain <span class=s1>&#39;SPARE_TIRE&#39;</span> defined
+ ... <span class=k>done</span>.
+ff: parsing problem file
+problem <span class=s1>&#39;PROB&#39;</span> defined
+ ... <span class=k>done</span>.
+
+
+
+Cueing down from goal distance:    <span class=m>3</span> into depth <span class=o>[</span><span class=m>1</span><span class=o>]</span>
+                                   <span class=m>2</span>            <span class=o>[</span><span class=m>1</span><span class=o>]</span>
+                                   <span class=m>1</span>            <span class=o>[</span><span class=m>1</span><span class=o>]</span>
+                                   <span class=m>0</span>
+
+ff: found legal plan as follows
+
+step    <span class=m>0</span>: REMOVE FLAT AXLE把原来的轮胎flat卸下车轴
+        <span class=m>1</span>: REMOVE SPARE TRUNK把spare胎卸下货车
+        <span class=m>2</span>: PUTON SPARE装上车轴，到达目标
+
+
+<span class=nb>time</span> spent:    <span class=m>0</span>.00 seconds instantiating <span class=m>9</span> easy, <span class=m>0</span> hard action templates
+               <span class=m>0</span>.00 seconds reachability analysis, yielding <span class=m>11</span> facts and <span class=m>8</span> actions
+               <span class=m>0</span>.00 seconds creating final representation with <span class=m>10</span> relevant facts
+               <span class=m>0</span>.00 seconds building connectivity graph
+               <span class=m>0</span>.00 seconds searching, evaluating <span class=m>4</span> states, to a max depth of <span class=m>1</span>
+               <span class=m>0</span>.00 seconds total <span class=nb>time</span>
+</code></pre></div> <ul> <li>breiefcase world</li> </ul> <p>forall和when的用法,</p> <p>首先讲一下这个domain的含义，然后将下面的forall和when用法</p> <p>briefcase_d.pddl</p> <div class=highlight><pre><span></span><code>(define (domain briefcase)
+(:requirements :strips :typing :conditional-effects :universal-preconditions)
+(:types portable location - object)
+(:predicates (at ?y - portable ?x - location)
+             (in ?x - portable)
+             (is-at ?x - location))
+
+
+(:action move
+  :parameters (?m ?l - location)
+  :precondition  (is-at ?m)
+  :effect (and (is-at ?l) (not (is-at ?m))
+            (forall (?x - portable) (when (in ?x)
+              (and (at ?x ?l) (not (at ?x ?m)))))))
+
+  (:action take-out
+      :parameters (?x - portable)
+      :precondition (in ?x)
+      :effect (not (in ?x)))
+
+  (:action put-in
+      :parameters (?x - portable ?l - location)
+      :precondition (and (not (in ?x)) (at ?x ?l) (is-at ?l))
+      :effect (in ?x)))
+</code></pre></div> <p>然后就是数据文件，给出这个问题的定义：</p> <blockquote> <p>;注意到写在effect中的这段代码： (forall (?z - physob) (when (and (in ?z) (not (= ?z B))) ;这里意思就是遍历所有的object z，当z在B中，就产生effect ;即将z的位置location设置为l（因为z在briefcase当中，briefcase被携带到了l地点，那么z自然也被移动到l） (and (at ?z ?l) (not (at ?z ?m))) ;这里必须使用forall，因为你无法设置是哪个对象在briefcase中，所以需要遍历判断</p> </blockquote> <p>它涉及的domain、 问题的参数定义、 问题的初始状态、 问题的目标状态</p> <p>briefcase_p.pddl <div class=highlight><pre><span></span><code>(define (problem pb1)
+    (:domain briefcase)
+    (:requirements :strips :typing :conditional-effects :universal-preconditions)
+    (:objects home l1 - location
+             o1 - portable)
+    (:init (is-at home) (at o1 l1))              
+    (:goal (and (is-at home)  (at o1 home)))
+)
+</code></pre></div></p> <p>定义好问题后我们调用求解器，他会给我们求解出一系列的action使得问题从初始状态到达目标状态（如果有解） result</p> <div class=highlight><pre><span></span><code>$ ff -o briefcase_d.pddl  -f br
+iefcase_p.pddl
+
+ff: parsing domain file
+domain <span class=s1>&#39;BRIEFCASE&#39;</span> defined
+ ... <span class=k>done</span>.
+ff: parsing problem file
+problem <span class=s1>&#39;PB1&#39;</span> defined
+ ... <span class=k>done</span>.
+
+
+
+Cueing down from goal distance:    <span class=m>3</span> into depth <span class=o>[</span><span class=m>1</span><span class=o>][</span><span class=m>2</span><span class=o>]</span>
+                                   <span class=m>1</span>            <span class=o>[</span><span class=m>1</span><span class=o>]</span>
+                                   <span class=m>0</span>
+
+ff: found legal plan as follows
+
+step    <span class=m>0</span>: MOVE HOME L1
+        <span class=m>1</span>: PUT-IN O1 L1
+        <span class=m>2</span>: MOVE L1 HOME
+
+
+<span class=nb>time</span> spent:    <span class=m>0</span>.01 seconds instantiating <span class=m>7</span> easy, <span class=m>0</span> hard action templates
+               <span class=m>0</span>.00 seconds reachability analysis, yielding <span class=m>6</span> facts and <span class=m>7</span> actions
+               <span class=m>0</span>.00 seconds creating final representation with <span class=m>6</span> relevant facts
+               <span class=m>0</span>.00 seconds building connectivity graph
+               <span class=m>0</span>.00 seconds searching, evaluating <span class=m>4</span> states, to a max depth of <span class=m>2</span>
+               <span class=m>0</span>.01 seconds total <span class=nb>time</span>
+</code></pre></div> <ul> <li>boxman</li> </ul> <p>boxman_d.pddl <div class=highlight><pre><span></span><code>(define (domain boxman)
+  (:requirements :strips :typing:equality
+                 :universal-preconditions
+                 :conditional-effects)
+  (:types loc)
+  (:predicates
+      (boxAt ?y - loc)
+      (manAt ?y - loc)
+      (adjacent ?x - loc ?y -loc) 
+      (notClear ?x - loc)
+      (line ?x ?y ?z -loc)
+      )   
+
+    (:action push
+    :parameters(?mp ?bp ?np - loc ?)
+    :precondition(and (manAt ?mp)(boxAt ?bp)(not (notClear ?np))(line ?mp ?bp ?np))
+        :effect(and (not (notClear ?mp))(notClear ?np)
+                    (not (manAt ?mp))(manAt ?bp)
+                    (not (boxAt ?bp))(boxAt ?np)
+        )
+    )
+
+    (:action move
+        :parameters(?x ?y - loc)
+        :precondition(and (manAt ?x)(not (notClear ?y))(adjacent ?x ?y) )
+        :effect(and (not (manAt ?x))(manAt ?y)
+                    (not (notClear ?x))(notClear ?y)
+        )
+    )
+
+
+)
+</code></pre></div></p> <p>boxman_p.pddl <div class=highlight><pre><span></span><code>(define (problem prob)
+    (:domain boxman)
+    (:objects P1 P2 P3 P4 P5 P6 P7 P8 P9 P10 P11 P12 P13 P14 P15 P16 P17 P18 P19 P20 - loc)
+    (:init (manAt P20) (boxAt P7) (boxAt P11) (boxAt P17) (notClear P20) (notClear P7) (notClear P11) (notClear P17)
+            (adjacent P1 P2) (adjacent P1 P3) 
+            (adjacent P2 P1) (adjacent P2 P4)
+            (adjacent P3 P1) (adjacent P3 P4) (adjacent P3 P5)
+            (adjacent P4 P2) (adjacent P4 P3) (adjacent P4 P6)
+            (adjacent P5 P3) (adjacent P5 P6)
+            (adjacent P6 P4) (adjacent P6 P5) (adjacent P6 P7) (adjacent P6 P11)
+            (adjacent P7 P8) (adjacent P7 P6) (adjacent P7 P12)
+            (adjacent P8 P9) (adjacent P8 P7) (adjacent P8 P13)
+            (adjacent P9 P10) (adjacent P9 P8) (adjacent P9 P14)
+            (adjacent P10 P9) (adjacent P10 P15)
+            (adjacent P11 P12) (adjacent P11 P6) (adjacent P11 P16)
+            (adjacent P12 P7) (adjacent P12 P11) (adjacent P12 P13)
+            (adjacent P13 P8) (adjacent P13 P14) (adjacent P13 P12) (adjacent P13 P17)
+            (adjacent P14 P15) (adjacent P14 P9) (adjacent P14 P13)
+            (adjacent P15 P14) (adjacent P15 P10)
+            (adjacent P16 P11) (adjacent P16 P18)
+            (adjacent P17 P13) (adjacent P17 P20)
+            (adjacent P18 P16) (adjacent P18 P19)
+            (adjacent P19 P18) (adjacent P19 P20)
+            (adjacent P20 P17) (adjacent P20 P19)
+            (line P1 P3 P5)
+            (line P2 P4 P6)
+            (line P4 P6 P11)
+            (line P6 P11 P16)
+            (line P11 P16 P18)
+            (line P8 P13 P17)
+            (line P13 P17 P20)
+            (line P5 P6 P7)
+            (line P6 P7 P8)
+            (line P7 P8 P9)
+            (line P8 P9 P10)
+            (line P11 P12 P13)
+            (line P12 P13 P14)
+            (line P13 P14 P15)
+            (line P18 P19 P20)
+            (line P5 P3 P1)
+            (line P6 P4 P2)
+            (line P11 P6 P4)
+            (line P16 P11 P6)
+            (line P18 P16 P11)
+            (line P17 P13 P8)
+            (line P20 P17 P13)
+            (line P7 P6 P5)
+            (line P8 P7 P6)
+            (line P9 P8 P7)
+            (line P10 P9 P8)
+            (line P13 P12 P11)
+            (line P14 P13 P12)
+            (line P15 P14 P13)
+            (line P20 P19 P18)
+    )
+    (:goal (and (boxAt P7) (boxAt P6) (boxAt P18)) )
+)
+</code></pre></div></p> <p>result</p> <div class=highlight><pre><span></span><code>$ ff -o boxman_d.pddl  -f boxman_p.pddl
+
+ff: parsing domain file
+domain &#39;BOXMAN&#39; defined
+ ... done.
+ff: parsing problem file
+problem &#39;PROB&#39; defined
+ ... done.
+
+
+
+Cueing down from goal distance:   11 into depth [1]
+                                   6            [1]
+                                   5            [1]
+                                   4            [1][2]
+
+Enforced Hill-climbing failed !
+switching to Best-first Search now.
+
+advancing to distance :   11
+                           6
+                           5
+                           4
+                           3
+                           2
+                           1
+                           0
+
+ff: found legal plan as follows
+
+step    0: MOVE P20 P19
+        1: MOVE P19 P18
+        2: MOVE P18 P16
+        3: PUSH P16 P11 P6
+        4: MOVE P11 P16
+        5: MOVE P16 P18
+        6: MOVE P18 P19
+        7: MOVE P19 P20
+        8: PUSH P20 P17 P13
+        9: MOVE P17 P20
+       10: MOVE P20 P19
+       11: MOVE P19 P18
+       12: MOVE P18 P16
+       13: MOVE P16 P11
+       14: PUSH P11 P6 P4
+       15: MOVE P6 P5
+       16: MOVE P5 P3
+       17: MOVE P3 P1
+       18: MOVE P1 P2
+       19: PUSH P2 P4 P6
+       20: PUSH P4 P6 P11
+       21: PUSH P6 P11 P16
+       22: MOVE P11 P12
+       23: PUSH P12 P13 P14
+       24: MOVE P13 P8
+       25: MOVE P8 P9
+       26: MOVE P9 P10
+       27: MOVE P10 P15
+       28: PUSH P15 P14 P13
+       29: PUSH P14 P13 P12
+       30: MOVE P13 P17
+       31: MOVE P17 P20
+       32: MOVE P20 P19
+       33: MOVE P19 P18
+       34: PUSH P18 P16 P11
+       35: PUSH P16 P11 P6
+       36: PUSH P11 P6 P4
+       37: MOVE P6 P5
+       38: MOVE P5 P3
+       39: MOVE P3 P1
+       40: MOVE P1 P2
+       41: PUSH P2 P4 P6
+       42: PUSH P4 P6 P11
+       43: PUSH P6 P11 P16
+       44: MOVE P11 P6
+       45: PUSH P6 P7 P8
+       46: PUSH P7 P8 P9
+       47: MOVE P8 P13
+       48: MOVE P13 P17
+       49: MOVE P17 P20
+       50: MOVE P20 P19
+       51: MOVE P19 P18
+       52: PUSH P18 P16 P11
+       53: PUSH P16 P11 P6
+       54: PUSH P11 P6 P4
+       55: MOVE P6 P5
+       56: MOVE P5 P3
+       57: MOVE P3 P1
+       58: MOVE P1 P2
+       59: PUSH P2 P4 P6
+       60: MOVE P4 P3
+       61: MOVE P3 P5
+       62: PUSH P5 P6 P7
+       63: MOVE P6 P11
+       64: MOVE P11 P16
+       65: MOVE P16 P18
+       66: MOVE P18 P19
+       67: MOVE P19 P20
+       68: MOVE P20 P17
+       69: MOVE P17 P13
+       70: PUSH P13 P12 P11
+       71: MOVE P12 P13
+       72: MOVE P13 P17
+       73: MOVE P17 P20
+       74: MOVE P20 P19
+       75: MOVE P19 P18
+       76: MOVE P18 P16
+       77: PUSH P16 P11 P6
+       78: PUSH P11 P6 P4
+       79: MOVE P6 P5
+       80: MOVE P5 P3
+       81: MOVE P3 P1
+       82: MOVE P1 P2
+       83: PUSH P2 P4 P6
+       84: PUSH P4 P6 P11
+       85: PUSH P6 P11 P16
+       86: PUSH P11 P16 P18
+       87: MOVE P16 P11
+       88: MOVE P11 P12
+       89: MOVE P12 P13
+       90: MOVE P13 P8
+       91: PUSH P8 P7 P6
+       92: MOVE P7 P8
+       93: MOVE P8 P13
+       94: MOVE P13 P14
+       95: MOVE P14 P15
+       96: MOVE P15 P10
+       97: PUSH P10 P9 P8
+       98: PUSH P9 P8 P7
+
+
+time spent:    0.00 seconds instantiating 82 easy, 0 hard action templates
+               0.00 seconds reachability analysis, yielding 77 facts and 78 actions
+               0.00 seconds creating final representation with 77 relevant facts
+               0.00 seconds building connectivity graph
+               0.01 seconds searching, evaluating 4711 states, to a max depth of 2
+               0.01 seconds total time
+</code></pre></div> <p>网站http://editor.planning.domains/# 还找到不一样的求解过程：</p> <div class=highlight><pre><span></span><code>Found Plan (output)
+(push p20 p17 p13)
+(move p17 p20)
+(move p20 p19)
+(move p19 p18)
+(move p18 p16)
+(push p16 p11 p6)
+(move p11 p12)
+(push p12 p13 p14)
+(move p13 p8)
+(move p8 p9)
+(move p9 p10)
+(move p10 p15)
+(push p15 p14 p13)
+(push p14 p13 p12)
+(move p13 p17)
+(move p17 p20)
+(move p20 p19)
+(move p19 p18)
+(move p18 p16)
+(move p16 p11)
+(push p11 p6 p4)
+(push p6 p7 p8)
+(push p7 p8 p9)
+(move p8 p13)
+(push p13 p12 p11)
+(move p12 p7)
+(move p7 p6)
+(push p6 p11 p16)
+(push p11 p16 p18)
+(move p16 p11)
+(move p11 p6)
+(move p6 p7)
+(move p7 p8)
+(move p8 p13)
+(move p13 p14)
+(move p14 p15)
+(move p15 p10)
+(push p10 p9 p8)
+(push p9 p8 p7)
+(move p8 p13)
+(move p13 p12)
+(move p12 p11)
+(move p11 p6)
+(move p6 p5)
+(move p5 p3)
+(move p3 p1)
+(move p1 p2)
+(push p2 p4 p6)
+</code></pre></div> <ul> <li>blockworld</li> </ul> <p>There are a collection of blocks: a block can be on the table, or on the top of another block.</p> <p>There are three predicates</p> <p>•clear(x): there is no block on top of block x;</p> <p>•on(x,y): block x is on the top of block y;</p> <p>•onTable(x): block x is on the table</p> <p>There are two actions in this task:</p> <p>•move(x,y): move block x onto block y, provided that both x and y are clear;</p> <p>•moveToTable(x): move block x on to the table, provided that x is clear and x is not on thetable;</p> <p>Give initial state and goal state, find the actions change the initial state to the goal state.</p> <p>domain_blocks_d.pddl</p> <div class=highlight><pre><span></span><code>; Header  and  description
+( define (domain blocks )
+    ;remove  requirements  that  are  not  needed
+    (:requirements :strips :typing :conditional−effects :equality :universal−preconditions : negative−preconditions )
+    (:types
+        ; todo: enumerate types and their  hierarchy here , e.g. car truckbus  −  vehicle
+        physob
+    )
+
+    ;un−comment following  line  if constants are  needed
+    ;( :constants  )
+
+    (:predicates; todo: define  predicates here
+        (ontable ?x − physob)
+        (clear ?x − physob)
+        (on ?x ?y − physob)
+    )
+
+    ;(:functions; todo:define numeric functions here
+    ;)
+
+    ;define actions here
+    (:action move
+        :parameters (?x ?y − physob)
+        :precondition (and( clear ?x) ( clear ?y) )
+        :effect (and(on ?x ?y) (not( clear ?y) )
+            (when( ontable ?x) (not( ontable ?x) ) )
+            (forall (?z − physob) (when(on ?x ?z) (and(not(on ?x ?z) ) (clear ?z) ) ) )
+        )
+    )
+
+    (:action moveToTable
+        :parameters (?x − physob)
+        :precondition (and( clear ?x) (not( ontable ?x) ) )
+        :effect (and(not( clear ?x) ) ( ontable ?x)
+        ( forall (?z − physob) (when(on ?x ?z) (and(not(on ?x ?z) ) (clear ?z) ) ) )
+        )
+    )
+)
+</code></pre></div> <p>domain_blocks_p.pddl <div class=highlight><pre><span></span><code>(define (problem prob) (:domain blocks)
+    (:objects
+        A B C D E F − physob
+    )
+    (:init
+        ; todo :put  the   initial   state ’ s   facts  and  numeric  values   here
+        (clear A) (on A B) (on B C) (ontable C) (ontable D)
+        (ontable F) (on E D) (clear E) (clear F)
+    )
+    (:goal (and
+        ; todo :   put  the   goal   condition   here
+        (clear F) (on F A) (on A C) (ontable C) (clear E)
+        (on E B) (on B D) (ontable D)
+        )
+    )
+    ;un−comment  the   following   line   if   metric   is   needed
+    ;(:metric  minimize  ( ? ? ? ) )
+)
+</code></pre></div></p> <p>FF规划器并不能生成最优的方案，例如在Puzzle问题中就出现了连续拨动数字6的情况，经过手动验证两个问题的Plan都是正确的。</p></div> <footer> <div class=footer-buttons> <div class=previous><a href=../VSCode/ title="Visual Studio Code使用"><span>Previous</span></a></div> <div class=next><a href=../../SolversBaseOnPDDL/%E5%88%8A%E7%89%A9%E4%B8%8A%E7%BB%8F%E5%85%B8demos/ title=刊物上经典demos><span>Next</span></a></div> </div> <div class=footer-note> <p> Built with <a href=http://www.mkdocs.org>MkDocs</a> using <a href=https://github.com/daizutabi/mkdocs-ivory>Ivory theme</a>. </p> </div> </footer> </div> </main> </div> <script>var base_url = '../..';</script> <script src=../../js/theme.js></script> <script src=../../js/umlconvert.js></script> <script src=../../js/sequence-loader.js></script> <script src=https://unpkg.com/mermaid/dist/mermaid.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js></script> <script src=../../search/main.js></script> </body> </html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html><html> <head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=author content=tridu33><link rel="shortcut icon" href=../../img/favicon.ico><title>PDDL-Basic &mdash; AI Planning in PDDL-Descripted World</title><link rel=stylesheet href="//fonts.googleapis.com/css?family=Lato:400,700"><link rel=stylesheet href=//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/all.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//code.jquery.com/jquery-2.1.1.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js></script><script>
+        hljs.initHighlightingOnLoad();
+    </script></head> <body ontouchstart> <div id=container> <aside> <div class=home> <div class=title> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div class=search> <div role=search> <form id=rtd-search-form class=wy-form action=../../search.html method=get> <input type=text name=q placeholder="Search docs" title="Type search term here"> </form> </div> </div> </div> <nav class=nav> <ul class=root> <li class=toctree-l1><a class=nav-item href=../..>Home</a></li> <li class=toctree-l1><button class="section nav-item">规划界黑话</button> <ul class=subnav> <li class="toctree-l2 current"><button class="section nav-item">PDDL进化史</button> <ul class=subnav> <li class=toctree-l3><a href=../PDDL%E8%AF%AD%E8%A8%80/ class=nav-item>HelloPDDL</a></li> <li class="toctree-l3 current"><a href=./ class="nav-item current">PDDL-Basic</a> <ul class=subnav> <li class=toctree-l4><a class="nav-item toc" href=#domain>domain</a></li> <li class=toctree-l4><a class="nav-item toc" href=#problem>problem</a></li> <li class=toctree-l4><a class="nav-item toc" href=#plan-quality-criterion>Plan Quality Criterion</a></li> <li class=toctree-l4><a class="nav-item toc" href=#issues>issues</a></li> </ul></li> <li class=toctree-l3><a href=../ADL/ class=nav-item>ADL</a></li> <li class=toctree-l3><a href=../STRIPS%E8%AF%AD%E8%A8%80/ class=nav-item>STRIPS</a></li> <li class=toctree-l3><button class="section nav-item hide">PDDL</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../Extension%20to%20PDDL/ class=nav-item>PDDL扩展</a></li> <li class=toctree-l4><a href=../FOND-QNP%28SAS%2B%29/ class=nav-item>FOND-QNP(SAS+)</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">机器人世界</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../Golog/Golog_ROS/ class=nav-item>Golog</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL使用</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Usage/LocalSolvers/ class=nav-item>本地环境使用</a></li> <li class=toctree-l2> <a href=../../Usage/OnlineSolver/ class=nav-item>线上求解器使用</a></li> <li class=toctree-l2> <a href=../../Usage/VSCode/ class=nav-item>Visual Studio Code使用</a></li> <li class=toctree-l2><a href=../../Usage/FFPlanner_demo/ class=nav-item>ffPlanner_demo</a></li> <li class=toctree-l2><button class="section nav-item hide">经典demos</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/%E5%88%8A%E7%89%A9%E4%B8%8A%E7%BB%8F%E5%85%B8demos/ class=nav-item>刊物上经典demos</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PDDL%20Benchmark%20Instances/ class=nav-item>BenchMark</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL语法</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Syntax/PDDL%20axioms/ class=nav-item>语法总览</a></li> <li class=toctree-l2> <a href=../../Syntax/PDDLParser/ class=nav-item>Parser</a></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL-Descripted AI Planning World</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Papers</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Papers/A%20review%20of%20generalized%20planning/ class=nav-item>reviewOfGP</a></li> <li class=toctree-l3><a href=../../Papers/GP_summary/ class=nav-item>GP_summary</a></li> <li class=toctree-l3><a href=../../Papers/A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/ class=nav-item>ReviewOfMLforAP</a></li> <li class=toctree-l3><a href=../../Papers/Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/ class=nav-item>GPwithDeep-RL</a></li> <li class=toctree-l3><a href=../../Papers/Survey%20of%20research%20literature/ class=nav-item>researchSurvey</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">SolversBaseOnPDDL</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PyperPlan_STRIPS/ class=nav-item>PyperPlan_STRIPS</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/Solvers/ class=nav-item>Solvers</a></li> <li class=toctree-l3><button class="section nav-item hide">CP</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/ffPlaner/ class=nav-item>FF</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/fast-downward/ class=nav-item>FD</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/LAPKT%E8%BD%BB%E9%87%8F%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92%E5%B7%A5%E5%85%B7%E5%8C%85/ class=nav-item>LAPKT轻量自动规划工具包</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">GP_Numerical</button> <ul class="subnav hide"> <li class=toctree-l4> <a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem/ class=nav-item>QNP_ReduceTo_GraphProblem</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/%E5%9B%BE%E6%B3%95QNP/ class=nav-item>图法QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/ class=nav-item>LPG</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/grahPlan/ class=nav-item>grahPlan</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/SGPlan6/ class=nav-item>SGPlan6</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/PRP/ class=nav-item>PRP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/myND/ class=nav-item>myND</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">QNP_FONS_SAT</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py/ class=nav-item>CNF_py</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND/ class=nav-item>FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND/ class=nav-item>QA_FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/ class=nav-item>例解FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP/ class=nav-item>QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond/ class=nav-item>qnp2fond</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT/ class=nav-item>QNP2SAT</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-plan-validators</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/PDDL-plan-validator/ class=nav-item>validators</a></li> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator/ class=nav-item>INVAL</a></li> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/VScode-PDDL%E6%8F%92%E4%BB%B6VAL/ class=nav-item>VAL</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-Auto Planning</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Extensions/AP/PDDL4j_Java%20for%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92/ class=nav-item>PDDL4j</a></li> <li class=toctree-l3><a href=../../Extensions/AP/Tarski%20-%20An%20AI%20Planning%20Modeling%20Framework/ class=nav-item>Tarski</a></li> <li class=toctree-l3><a href=../../Extensions/AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/ class=nav-item>QNP2AP</a></li> <li class=toctree-l3><a href=../../Extensions/RL/PDDLGYM/ class=nav-item>PDDLGYM</a></li> <li class=toctree-l3><a href=../../Extensions/RL/RLPlanPapers/ class=nav-item>PDDL+RL强化学习</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">进击的PDDL</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Curry-Howard correspondence</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/ class=nav-item>CFG语义网络</a></li> <li class=toctree-l3><a href=../../FurtherMore/PDDL-Solver2AST/ class=nav-item>PDDL-Solver2AST</a></li> <li class=toctree-l3><a href=../../FurtherMore/TransitionSystemModelCheck/ class=nav-item>CFG=TransitionSystemModelCheck.md</a></li> <li class=toctree-l3><a href=../../FurtherMore/qnp2ast2program/ class=nav-item>qnp2ast2program</a></li> </ul></li> </ul></li> <li class=toctree-l1> <a class=nav-item href=https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues>Issue跟踪讨论</a></li> </ul> </nav> <div class=repo> <div class=link> </div> <div class=previous><a href=../PDDL%E8%AF%AD%E8%A8%80/ >&laquo; Previous</a></div> <div class=next><a href=../ADL/ >Next &raquo;</a></div> </div> </aside> <div id=spacer><button class=arrow></button></div> <main> <div class=home-top> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div id=main> <nav class=breadcrumbs> <ul> <li>规划界黑话 &raquo; </li><li>PDDL进化史</li> </ul> </nav> <div id=content><h1 id=pddl-basic>PDDL basic<a class=headerlink href=#pddl-basic title="Permanent link">&para;</a></h1> <p><a href=https://www.ida.liu.se/~TDDC17/info/labs/planning/writing.shtml>TDDC17这是好的PDDL简介入门内容</a>,这个也很好 <a href=http://users.cecs.anu.edu.au/~patrik/pddlman/writing.html>在PDDL中编写计划领域和问题</a></p> <p>PDDL问题定义的各个部分。</p> <p>基本包括domain.pddl+problemX.pddl两个文件，虽然可以写在一个文件中，但是大多数计划人员都要求这两部分位于单独的文件中。</p> <h2 id=domain>domain<a class=headerlink href=#domain title="Permanent link">&para;</a></h2> <p>The format of a (simple) domain definition is:</p> <div class=highlight><pre><span></span><code>(define (domain DOMAIN_NAME)
+  (:requirements [:strips] [:equality] [:typing] [:adl])
+  (:predicates (PREDICATE_1_NAME ?A1 ?A2 ... ?AN)
+               (PREDICATE_2_NAME ?A1 ?A2 ... ?AN)
+           ...)
+
+  (:action ACTION_1_NAME
+    [:parameters (?P1 ?P2 ... ?PN)]
+    [:precondition PRECOND_FORMULA]
+    [:effect EFFECT_FORMULA]
+   )
+
+  (:action ACTION_2_NAME
+    ...)
+
+  ...)
+</code></pre></div> <p>[]中的元素是可选的。</p> <p>名称（域，谓词，动作*等*）通常由字母数字字符，连字符（“ <code>-</code> ”）和下划线（“ <code>_</code> ”）组成，但可能有些计划者不允许使用。</p> <p>谓词和操作的参数通过以问号（“？”）开头来区分。</p> <p>谓词声明（<code>：predicates</code> 部分）中使用的参数除指定谓词应具有的参数数量外没有其他功能，*即*参数名称无关紧要（只要它们是不同的）。谓词可以具有零个参数（但在这种情况下，谓词名称仍必须写在括号内）。</p> <p>除了特殊谓词<code>=之外</code>，域定义中的谓词*没有内在含义*。域定义的<code>：predicates</code>部分仅指定域中使用的谓词名称及其参数数量（如果域使用键入，则为参数类型）。谓词的“含义”在某种意义上可以是正确的参数组合以及它与其他谓词的关系，是由域中的动作可以对谓词产生的影响以及谓词的哪些实例决定的在问题定义的初始状态中，谓词被列为true。</p> <p>在*静态*谓词和 *动态*谓词之间进行区分是很常见的：静态谓词不会因任何操作而改变。因此，在问题中，静态谓词的正确和错误实例将始终恰好是问题定义的初始状态规范中列出的那些实例。请注意，PDDL中的静态和动态谓词在语法上没有区别：它们在域的<code>：predicates</code>声明部分看起来完全相同。但是，某些计划者可能会围绕静态和动态谓词支持不同的构造，例如，允许将静态谓词否定为动作前提，而不是动态谓词。</p> <p>根据PDDL规范，除了名称之外，动作定义的所有部分都是可选的（尽管如此，没有效果的动作几乎没有用）。但是，对于没有先决条件的操作，某些计划人员可能需要使用<code>：precondition（）</code>或<code>：precondition（and）</code>形式的“空”前提 <code>条件</code>，而某些计划人员也可能要求针对没有参数的操作使用空的<code>：parameter</code>列表。注意：一些计划者要求操作的参数都不同，即同一对象不能实例化两个参数。如果一个人不知道，可能会造成一些困难（*例如，*问题变得无法解决）。</p> <h3 id=requirements>：requirements<a class=headerlink href=#requirements title="Permanent link">&para;</a></h3> <p>version 2.1相关requirement</p> <div class=highlight><pre><span></span><code>Requirement Description
+:strips                         Basic STRIPS style adds and deletes
+:typing                        Allow type names in declarations of variables
+:disjunctive-preconditions     Allow or in goal descriptions
+:equality                       Support=as built-in predicate
+:existential-preconditions     Allow exists in goal descriptions
+:universal-preconditions     Allow forall in goal descriptions
+:quantified-preconditions   =:existential-preconditions
+                             +:universal-preconditions
+:conditional-effects              Allow when in action effects
+:action-expansions               Allow actions to have expansions
+:foreach-expansions               Allow actions expansions to use foreach implies :action-expansions
+:dag-expansions                  Allow labeled subactions implies :action-expansions
+:domain-axioms                   Allow domains to have axioms
+:subgoal-through-axioms         Given axioms p \supset q and goal q generate subgoal p
+:safety-constraints              Allow safety conditions for a domain
+:expression-evaluation          Supportevalpredicateinaxioms implies :domain-axioms    
+:fluents                         Support type fluentt Implies:expression-evaluation
+:open-world                      Don&#39;t make the closed-world assumption forall predicates i.e. if an atomic formula is not known to be true it is not necessarily assumed false
+:true-negation                  Don&#39;t handle not using negation as failure but treat it as in first-order logic implies:open-world  
+:adl                             =:strips+typing
+                                 +:disjunctive-preconditions&quot;
+                                 +:equality
+                                 +:quantified-preconditions&quot;
+                                 +:conditional-effects
+:ucpop!                              =:adl&quot;
+                                     +:domain-axioms&quot;
+                                     +:safety-constraints
+</code></pre></div> <p>The most commonly used requirements are:</p> <ul> <li><code>:strips</code></li> </ul> <p>The most basic subset of PDDL, consisting of STRIPS only.</p> <ul> <li><code>:equality</code></li> </ul> <p>The domain uses the predicate <code>=</code>, interpreted as equality.</p> <ul> <li><code>:typing</code></li> </ul> <p>The domain uses object types (see below).</p> <ul> <li><code>:adl</code></li> </ul> <p>The domain uses some or all of ADL (<em>i.e.</em> disjunctions and quantifiers in preconditions and goals, and quantified and conditional effects).</p> <p>大部分solvers仅仅支持部分特性进行parser进而逻辑处理求解，自定义特性关键字只需要<code>:mineKeyWords</code>自定义修改parser处理这部分requirements并且定义<code>(myfeatures ...)</code>进行解析输入处理。严谨的PDDL版本迭代规范看前文IPC的文档，具体问题具体分析，下面说些比较通用的：</p> <p><strong>:typing</strong></p> <p>PDDL具有（非常）特殊的语法，用于声明参数和对象类型。如果要在域中使用类型，则域首先应声明要求：typing。</p> <p>其次，必须在使用类型名称之前声明它们（通常是在：predicates 声明之前）。这是通过声明完成的</p> <p>(:types NAME1 ... NAME_N) 然后，要声明谓词或操作的参数类型，可以写？X-TYPE_OF_X。相同类型的参数列表可以缩写为？X？Y？Z-TYPE_OF_XYZ。请注意，参数和类型名称之间的连字符必须是“独立的”，即被空白包围。</p> <p>在问题定义中声明对象类型的语法相同</p> <p>universally quantified</p> <div class=highlight><pre><span></span><code>(forall (?v1 ... ?vn)&lt;effect&gt;)
+</code></pre></div> <p>conditional:</p> <div class=highlight><pre><span></span><code>(when&lt;condition&gt;&lt;effect&gt;)
+</code></pre></div> <p>Example on the web: crazy-switches.pddl</p> <h3 id=_1>类型定义<a class=headerlink href=#_1 title="Permanent link">&para;</a></h3> <p>在大多数当前的计划人员中，可以将对象声明为具有特定类型，例如“容器”，“位置”，“车辆”等。如果要在域中使用对象类型，则域首先应声明要求<code>：typing</code>。</p> <p>所有类型名称都必须在使用前声明（通常是在<code>：predicates</code>声明之前）。这是通过以下声明完成的：</p> <div class=highlight><pre><span></span><code>(:types NAME1 ... NAME_N)
+</code></pre></div> <p>Dock Worker机器人域的示例：</p> <div class=highlight><pre><span></span><code>(define (domain dock-worker-robots)
+    (:requirements 
+        :strips
+        :typing )
+
+    (:types 
+        location    ; there are several connected locations in the harbor 
+        pile    ; attached to a location, holds a pallet + a stack of containers 
+        robot   ; holds at most 1 container, only 1 robot per location
+        crane   ; belongs to a location to pickup containers
+        container)
+)
+</code></pre></div> <p>在讨论谓词定义，动作定义和对象规范时，我们将返回对象类型。</p> <h3 id=_2>谓词定义<a class=headerlink href=#_2 title="Permanent link">&para;</a></h3> <p>在<code>：predicates下</code>，您定义要在域中使用的所有谓词（“布尔状态变量”）。每个谓词声明中使用的参数变量除了指定谓词应具有的参数数量外没有其他功能，*即*参数名称无关紧要（只要它们是不同的）。谓词可以具有零个参数（但在这种情况下，谓词名称仍必须写在括号内）。</p> <p>如果要使用类型化的参数，则每个参数都写为 <code>？X-TYPE_OF_X</code>。相同类型的参数列表可以缩写为<code>？X？Y？Z-TYPE_OF_XYZ</code>。请注意，参数和类型名称之间的连字符必须由空格包围。Dock Worker机器人域的示例：</p> <div class=highlight><pre><span></span><code>(define (domain dock-worker-robots)
+   (:requirements ...)
+   (:types ...)
+   (:predicates
+    (adjacent   ?l1  ?l2 - location)        ; can move from ?l1 directly to ?l2
+    (attached   ?p - pile ?l - location)    ; pile ?p attached to location ?l
+    (belong     ?k - crane ?l - location)   ; crane ?k belongs to location ?l
+
+    (at     ?r - robot ?l - location)   ; robot ?r is at location ?l
+    (occupied   ?l - location)          ; there is a robot at location ?l
+    (loaded     ?r - robot ?c - container ) ; robot ?r is loaded with container ?c
+    (unloaded   ?r - robot)         ; robot ?r has no cargo
+
+    (holding    ?k - crane ?c - container)  ; crane ?k is holding container ?c
+    (empty      ?k - crane)         ; crane ?k is not holding anything
+
+    (in     ?c - container ?p - pile)   ; container ?c is somewhere in pile ?p
+    (top        ?c - container ?p - pile)   ; container ?c is on top of pile ?p
+    (on     ?k1 ?k2 - container )       ; container ?k1 is on container ?k2
+   )
+</code></pre></div> <h3 id=_3>动作定义<a class=headerlink href=#_3 title="Permanent link">&para;</a></h3> <p>如上所示，通常将操作指定如下：</p> <div class=highlight><pre><span></span><code>(:action ACTION_1_NAME
+    [:parameters (?P1 ?P2 ... ?PN)]
+    [:precondition PRECOND_FORMULA]
+    [:effect EFFECT_FORMULA]
+)
+</code></pre></div> <p>根据规范，除了名称之外，动作定义的所有部分都是可选的（尽管如此，没有效果的动作几乎没有用）。但是，对于没有先决条件的操作，某些计划人员可能需要使用<code>：precondition（）</code>形式的“空”前提<code>条件</code>（某些计划人员对于不带参数的操作可能也需要空的<code>：parameter</code>列表）。**注意：**一些solver要求操作的参数都不同，*即*同一对象不能实例化两个参数。如果一个人不知道，可能会造成一些困难（*例如，*问题变得无法解决）。例子：</p> <div class=highlight><pre><span></span><code>(define (domain dock-worker-robots)
+    ...
+    (:action move                                
+        :parameters (?r - robot    ?from ?to - location)
+
+        :precondition (and (adjacent ?from ?to)
+                         (at ?r ?from)
+                         (not (occupied ?to)))
+
+        :effect (and (at ?r ?to) (not (occupied ?from))
+                        (occupied ?to) (not (at ?r ?from))
+    )
+)
+</code></pre></div> <p>参数类型的声明方式与谓词规范中的声明方式相同。这样可以确保计划人员不要尝试使用意外的对象类型来执行操作。例如，在Dock Worker机器人中，我们不希望起重机能够举起机器人并将其放在一堆容器的顶部。起重机只能起吊集装箱。</p> <p>**注意：**有些计划人员仅尝试在所有参数都不同的情况下应用操作，*即*不能将同一对象用作同一动作的两个不同参数的值。这样的计划者可能会使用诸如move（A，B）和move（B，A）之类的动作，但不会将move（A，A）或move（B，B）视为有效动作。在此特定示例中，禁止从一个位置移动到相同位置似乎是很合理的，但是对于其他动作，可能会带来一些困难。例如考虑动作moveto（？piece，？destcolumn，？destrow）。如果我们用常数A / B / C / D / E / F / G / H表示列和行，则这里讨论的类型的计划器将永远不会使用诸如moveto（bishop1，A，A）之类的动作。或moveto（pawn2，C，C），使其无法移动到对角线上的某个位置，并使某些问题无法解决。请参阅<a href=https://www.ida.liu.se/~TDDC17/info/labs/planning/strips/slidetile.pddl>SlideTile域定义</a>以及两个问题的定义<a href=https://www.ida.liu.se/~TDDC17/info/labs/planning/strips/eight01.pddl><code>eight01.pddl</code></a> 和<a href=https://www.ida.liu.se/~TDDC17/info/labs/planning/strips/eight01x.pddl><code>eight01x.pddl</code></a>，以作为此问题及其解决方案的示例。</p> <h3 id=_4>前提条件公式<a class=headerlink href=#_4 title="Permanent link">&para;</a></h3> <p>在**STRIPS**域中，前提条件公式可以是以下条件之一（另请参见上面的示例）：</p> <ul> <li>原子公式： <code>（PREDICATE_NAME ARG1 ... ARG_N）</code> predicate arguments必须是操作的参数（或域中声明的 constants，如果域具有 constants）。</li> <li>原子公式的结合： <code>(and ATOM1 ... ATOM_N）</code></li> </ul> <p>如果域使用<code>：adl</code> 或<code>：negated-precondition</code>，则原子公式也可以采用以下形式<code>（不是（PREDICATE_NAME ARG1 ... ARG_N））</code>，表示给定的事实必须为false。</p> <p>如果域使用<code>：equality</code>，则原子公式也可以采用<code>（= ARG1 ARG2）</code>的形式 。许多支持equality的solvers也允许使用否定的相等性，即书面形式<code>（not（= ARG1 ARG2））</code>，即使他们不允许在definition的任何其他部分中进行negation也是如此。</p> <p>在用<code>：adl</code>指定的**ADL**域中，前提还可以是：</p> <ul> <li>一般的否定，合取，析取或逻辑蕴含A general negation, conjunction, disjunction, or implication: <code>(not CONDITION_FORMULA）</code> <code>（and CONDITION_FORMULA1 ... CONDITION_FORMULA_N）</code> <code>（or CONDITION_FORMULA1 ... CONDITION_FORMULA_N）</code></li> </ul> <p><code>(imply CONDITION_FORMULA1 CONDITION_FORMULA_2）</code></p> <ul> <li>量化公式quantified formula： <code>（forall（？V1？V2 ...）CONDITION_FORMULA）</code> <code>（exists（？V1？V2 ...）CONDITION_FORMULA）</code></li> </ul> <h3 id=_5>效果公式<a class=headerlink href=#_5 title="Permanent link">&para;</a></h3> <p>在PDDL中，不像其他某些计划语言那样将操作的效果明确地分为“adds添加”和“deletes删除”。取而代之的是，使用否定运算符negation operator指定负面影响（删除）negative effects (deletes)。</p> <p>在**STRIPS**域中，效果公式可能包含以下内容（另请参见上面的示例）：</p> <ul> <li>An added atom： <code>（PREDICATE_NAME ARG1 ... ARG_N）</code> 谓词参数必须是操作的参数（或域中声明的常量，如果域具有常量）。</li> <li>A deleted atom：（ <code>不是（PREDICATE_NAME ARG1 ... ARG_N））</code></li> <li>A conjunction of effects效果的合取：（ <code>和ATOM1 ... ATOM_N）</code></li> </ul> <p>当然，等式谓词（<code>=</code>）不能出现在效果公式中；任何动作都不能使两个相同的事物变得不相同，反之亦然！</p> <p>在**ADL**域中，效果公式还可以包含：</p> <ul> <li>条件效果： <code>(when CONDITION_FORMULA EFFECT_FORMULA）</code> 解释为，只有在执行动作的状态下指定的条件公式为true时，才会发生指定的效果。条件效应通常但并非总是置于量词之内。</li> <li>通用量化公式： <code>（forall（？V1？V2 ...）EFFECT_FORMULA）</code></li> </ul> <h2 id=problem>problem<a class=headerlink href=#problem title="Permanent link">&para;</a></h2> <p>问题定义首先指定其名称和所属的域。然后，它指定问题实例中存在的对象，世界的初始状态和目标。</p> <p>（简单的）问题定义的格式为：</p> <div class=highlight><pre><span></span><code>(define (problem PROBLEM_NAME)
+  (:domain DOMAIN_NAME)
+  (:objects OBJ1 OBJ2 ... OBJ_N)
+  (:init ATOM1 ATOM2 ... ATOM_N)
+  (:goal CONDITION_FORMULA)
+  )
+</code></pre></div> <p>The object list can be typed or untyped. Dock Worker机器人的一个示例：</p> <div class=highlight><pre><span></span><code>(define (problem dwr-problem-1)
+    (:domain dock-worker-robots)
+    (:objects
+        r1      - robot
+        loc1 loc2   - location
+        k1      - crane
+        p1 p2       - pile
+        c1 c2 c3 pallet - container)
+    ...
+)
+</code></pre></div> <p>初始状态描述（<code>：init</code>部分）只是所有在初始状态下为true的 a list of all the ground (variable-free) atoms 。 All other没写出来的 atoms are by definition false.例如：</p> <div class=highlight><pre><span></span><code>(define (problem dwr-problem-1)
+    (:domain dock-worker-robots)
+    (:objects ...)
+    (:init
+        (attached p1 loc1) (in c1 p1) (on c1 pallet) (in c3 p1) (on c3 c1) (top c3 p1) 
+        (attached p2 loc1) (in c2 p2) (on c2 pallet) (top c2 p2) 
+        (belong crane1 loc1) (empty crane1) 
+        (at r1 loc2) (unloaded r1) (occupied loc2) 
+        (adjacent loc1 loc2) (adjacent loc2 loc1)
+    )
+)
+</code></pre></div> <p>目标描述不是状态或文字列表，而是表示为 a formula of the same form as an action precondition。例子：</p> <div class=highlight><pre><span></span><code>(define (problem dwr-problem-1)
+    (:domain dock-worker-robots)
+    (:objects ...)
+    (:init ...)
+    (:goal (and (in c1 p2) (in c3 p2))))
+</code></pre></div> <h2 id=plan-quality-criterion>Plan Quality Criterion<a class=headerlink href=#plan-quality-criterion title="Permanent link">&para;</a></h2> <p>就像是我要用planning学习一段程序，怎么评价很多种规划解中我找到的程序写法是好是坏？递归总是很短，但是时间效率不一定高。Linked list Domain链表类似于声明临时指针数量不是越多越好的，因为时序关系经常迭代用同一个寄存器指针暂时缓存pre cur next的对象位置，进而实现迭代器的作用，比如for(int i =0;i&lt;n;i++)就能看做i是数组的迭代器指针类似物，临时缓存寄存器指针。</p> <p>PDDL的最新版本具有一种机制，用于表达计划者应尝试优化的计划质量度量。但是，大多数计划者只会优化一个特定的度量标准，而许多计划者根本不会尝试进行任何优化（只是尽可能快地找到任何计划）。</p> <h3 id=sum-of-action-costs>Sum of Action Costs<a class=headerlink href=#sum-of-action-costs title="Permanent link">&para;</a></h3> <p>为了指定行动成本，有必要添加一个“fluent”来跟踪成本。A fluent就像state variable/predicate，但其值为number而不是true/false。同样，请注意，PDDL‘s fluent syntax 非常有表现力，并且most planners will only accept a limited use.</p> <p>To declare fluents, add the following section to the domain specification:</p> <div class=highlight><pre><span></span><code>(:functions  (total-cost) ) 
+</code></pre></div> <p>Specifying that the cost of an action is<code>C</code> is done by stating that the action has the effect of increasing the <code>total-cost</code> fluent.</p> <div class=highlight><pre><span></span><code>  :effect (and 
+      ... 
+      (increase (total-cost) C)
+  ) 
+</code></pre></div> <p>The fluent <em>must</em> be initialised必须初始化. </p> <p>In the <code>:init</code> section of the problem.pddl definition, add</p> <div class=highlight><pre><span></span><code>  (= (total-cost) 0) 
+</code></pre></div> <p>Finally, 如果想最小化行动成本总和为目标, a <code>:metric</code> section is added to the problem definition:</p> <div class=highlight><pre><span></span><code>(define (problem ..)  
+    .  .  .  
+    (:metric minimize (total-cost))
+) 
+</code></pre></div> <p>比如我们LLdomain代码自动规划的时候如果不想有多少链表节点就声明多少个链表临时缓存，那就在每个声明新临时缓存指针的动作后续effect加一个消耗，最后最小化这个动作的执行次数。</p> <p><strong>注意：</strong> PDDL计划验证器（VAL）要求，只要在域中使用fluents，就在域的<code>：requirements</code>部分中存在关键字 <code>：fluents</code>。相反，一些计划人员将要求它包含<code>：action-costs</code>，而一些计划者将不承认其中任何一个。</p> <p>有时候为了让cost取决于其arguments, 可以声明static functions，并use those static functions in the <code>increase</code> effect. </p> <p>比如:</p> <div class=highlight><pre><span></span><code>(define (domain travel)
+  .
+  .
+
+  (:functions
+    (distance ?from ?to)
+    (total-cost)
+   )
+
+ (:action go
+   :parameters (?from ?to)
+   :precondition (and (in ?from) (road ?from ?to))
+   :effect (and (not (in ?from)) (in ?to)
+                (increase (total-cost) (distance ?from ?to)))
+  )
+ )
+</code></pre></div> <p>常见地图搜索最短路径在problem.pddl中:init里声明地图上节点之间的距离,AB距离10，AC距离35等问题规范的初始状态部分列出了static functions的值（就像static predicates的值一样):</p> <div class=highlight><pre><span></span><code>(define (problem ..)
+  .
+  .
+
+  (:init ...
+         (= (distance A B) 10)
+         (= (distance A C) 35)
+         ...
+   )
+
+  .
+  .
+ )
+</code></pre></div> <p>理论上原则上，PDDL允许函数，常量和算术运算（<code>+</code>，<code>-</code>，<code>*</code>，<code>/</code>）的任意组合在<code>increase</code>效果的left-hand side以及problem的 <code>：metric</code>部分中使用。However, many planners require that the metric fluent is called <code>total-cost</code>, and accept only constants, and perhaps static functions, in <code>increase</code> effects.也就是说大部分solvers在实践中其实只实现了上述介绍的功能。</p> <h2 id=issues>issues<a class=headerlink href=#issues title="Permanent link">&para;</a></h2> <ul> <li>如果您的域中存在错误或问题定义，某些计划者可能会默默地接受它们，但会带来不可预测的结果。如果您在查找计划时遇到问题，请尝试对定义运行“快速向下” –它可能指出其他计划者遗漏的常见错误。</li> </ul> <div class=highlight><pre><span></span><code>    /courses/TDDC17/sw/fdlog/fast-downward.py DOMAIN PROBLEM CONFIGURATION [FLAGS] 
+</code></pre></div> <ul> <li>注意不要混淆(<em>类型谓词</em> 和*类型* )<em>type predicates</em> and <em>types</em>。类型谓词和类型是不应该一起使用的两个不同的解决方案，并且没有从一个流到另一个的信息流。这可能导致无法找到计划的情况，因为您已声明对象为<code>block</code><em>类型</em> 而未声明其满足*谓词类型*<code>（block？b）</code>，反之亦然。</li> </ul> <p>总结来说就是如果你想表示A BC都**是**积木block,</p> <blockquote> <p>可以使用type 类型在(:types block - object)定义定义积木类型，然后problem.pddl中声明ABC-block</p> <p>也可以在声明类型谓词属性(:predicate （block？b）)，然后problem.pddl中声明`（block A）（block B）（block C)。</p> </blockquote> <p>如上所述，许多计划人员都支持实际类型，它们的工作方式与编程语言中的类型非常相似：将参数变量声明为特定类型，将对象定义为属于特定类型，依此类推。如果使用实际类型，并且将对象列表声明为（例如）<code>B1 B2 B3-block</code>，那么这将*不会*导致您可以将其用作<code>（block？b）</code>的类型谓词。</p> <p>并且如果确实使用类型谓词，则通过声明一个称为<code>block</code>的谓词，则必须在普通的初始状态下通过诸如<code>（block B1）（block B2）（block B3）</code>的声明来初始化该谓词。</p></div> <footer> <div class=footer-buttons> <div class=previous><a href=../PDDL%E8%AF%AD%E8%A8%80/ title=HelloPDDL><span>Previous</span></a></div> <div class=next><a href=../ADL/ title=ADL><span>Next</span></a></div> </div> <div class=footer-note> <p> Built with <a href=http://www.mkdocs.org>MkDocs</a> using <a href=https://github.com/daizutabi/mkdocs-ivory>Ivory theme</a>. </p> </div> </footer> </div> </main> </div> <script>var base_url = '../..';</script> <script src=../../js/theme.js></script> <script src=../../js/umlconvert.js></script> <script src=../../js/sequence-loader.js></script> <script src=https://unpkg.com/mermaid/dist/mermaid.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js></script> <script src=../../search/main.js></script> </body> </html>
