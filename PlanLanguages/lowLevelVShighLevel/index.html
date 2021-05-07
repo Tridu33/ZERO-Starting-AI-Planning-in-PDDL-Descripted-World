@@ -1,0 +1,138 @@
+<!DOCTYPE html><html> <head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=author content=tridu33><link rel="shortcut icon" href=../../img/favicon.ico><title>相同问题不同表示手法对比 &mdash; AI Planning in PDDL-Descripted World</title><link rel=stylesheet href="//fonts.googleapis.com/css?family=Lato:400,700"><link rel=stylesheet href=//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/all.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//code.jquery.com/jquery-2.1.1.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js></script><script>
+        hljs.initHighlightingOnLoad();
+    </script></head> <body ontouchstart> <div id=container> <aside> <div class=home> <div class=title> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div class=search> <div role=search> <form id=rtd-search-form class=wy-form action=../../search.html method=get> <input type=text name=q placeholder="Search docs" title="Type search term here"> </form> </div> </div> </div> <nav class=nav> <ul class=root> <li class=toctree-l1><a class=nav-item href=../..>Home</a></li> <li class=toctree-l1><button class="section nav-item">规划界黑话</button> <ul class=subnav> <li class="toctree-l2 current"><button class="section nav-item">PDDL进化史</button> <ul class=subnav> <li class=toctree-l3><a href=../PDDL%E8%AF%AD%E8%A8%80/ class=nav-item>HelloPDDL</a></li> <li class=toctree-l3><a href=../PDDL_basic/ class=nav-item>PDDL-Basic</a></li> <li class=toctree-l3><a href=../ADL/ class=nav-item>ADL</a></li> <li class=toctree-l3><a href=../STRIPS%E8%AF%AD%E8%A8%80/ class=nav-item>STRIPS</a></li> <li class=toctree-l3><button class="section nav-item hide">PDDL</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../Extension%20to%20PDDL/ class=nav-item>PDDL扩展</a></li> <li class=toctree-l4><a href=../FOND-QNP%28SAS%2B%29/ class=nav-item>FOND-QNP(SAS+)</a></li> </ul></li> <li class="toctree-l3 current"><a href=./ class="nav-item current">相同问题不同表示手法对比</a><a href=./ class="nav-item current">相同问题不同表示手法对比</a> <ul class=subnav> <li class=toctree-l4><a class="nav-item toc" href=#block-clear>block clear</a></li> <li class=toctree-l4><a class="nav-item toc" href=#block-x-on-y>block X on Y</a></li> <li class=toctree-l4><a class="nav-item toc" href=#build-a-tower>build a tower</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">机器人世界</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../Golog/Golog_ROS/ class=nav-item>Golog</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL使用</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Usage/LocalSolvers/ class=nav-item>本地环境使用</a></li> <li class=toctree-l2> <a href=../../Usage/OnlineSolver/ class=nav-item>线上求解器使用</a></li> <li class=toctree-l2> <a href=../../Usage/VSCode/ class=nav-item>Visual Studio Code使用</a></li> <li class=toctree-l2><a href=../../Usage/FFPlanner_demo/ class=nav-item>ffPlanner_demo</a></li> <li class=toctree-l2><button class="section nav-item hide">经典demos</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/%E5%88%8A%E7%89%A9%E4%B8%8A%E7%BB%8F%E5%85%B8demos/ class=nav-item>刊物上经典demos</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PDDL%20Benchmark%20Instances/ class=nav-item>BenchMark</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL语法</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Syntax/PDDL%20axioms/ class=nav-item>语法总览</a></li> <li class=toctree-l2><a href=../../Syntax/PDDLParser/ class=nav-item>Parser</a></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL-Descripted AI Planning World</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Papers</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Papers/A%20review%20of%20generalized%20planning/ class=nav-item>reviewOfGP</a></li> <li class=toctree-l3><a href=../../Papers/GP_summary/ class=nav-item>GP_summary</a></li> <li class=toctree-l3><a href=../../Papers/A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/ class=nav-item>ReviewOfMLforAP</a></li> <li class=toctree-l3><a href=../../Papers/Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/ class=nav-item>GPwithDeep-RL</a></li> <li class=toctree-l3><a href=../../Papers/Survey%20of%20research%20literature/ class=nav-item>researchSurvey</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">SolversBaseOnPDDL</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PyperPlan_STRIPS/ class=nav-item>PyperPlan_STRIPS</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/Solvers/ class=nav-item>Solvers</a></li> <li class=toctree-l3><button class="section nav-item hide">CP</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/ffPlaner/ class=nav-item>FF</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/fast-downward/ class=nav-item>FD</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/LAPKT%E8%BD%BB%E9%87%8F%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92%E5%B7%A5%E5%85%B7%E5%8C%85/ class=nav-item>LAPKT轻量自动规划工具包</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">GP_Numerical</button> <ul class="subnav hide"> <li class=toctree-l4> <a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem/ class=nav-item>QNP_ReduceTo_GraphProblem</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/%E5%9B%BE%E6%B3%95QNP/ class=nav-item>图法QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/ class=nav-item>LPG</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/grahPlan/ class=nav-item>grahPlan</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/SGPlan6/ class=nav-item>SGPlan6</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/PRP/ class=nav-item>PRP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/myND/ class=nav-item>myND</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">QNP_FONS_SAT</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py/ class=nav-item>CNF_py</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND/ class=nav-item>FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND/ class=nav-item>QA_FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/ class=nav-item>例解FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP/ class=nav-item>QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond/ class=nav-item>qnp2fond</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT/ class=nav-item>QNP2SAT</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-plan-validators</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/PDDL-plan-validator/ class=nav-item>validators</a></li> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator/ class=nav-item>INVAL</a></li> <li class=toctree-l3><a href=../../Extensions/PDDL-plan-validator/VScode-PDDL%E6%8F%92%E4%BB%B6VAL/ class=nav-item>VAL</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-Auto Planning</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Extensions/AP/PDDL4j_Java%20for%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92/ class=nav-item>PDDL4j</a></li> <li class=toctree-l3><a href=../../Extensions/AP/Tarski%20-%20An%20AI%20Planning%20Modeling%20Framework/ class=nav-item>Tarski</a></li> <li class=toctree-l3><a href=../../Extensions/AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/ class=nav-item>QNP2AP</a></li> <li class=toctree-l3><a href=../../Extensions/RL/PDDLGYM/ class=nav-item>PDDLGYM</a></li> <li class=toctree-l3><a href=../../Extensions/RL/RLPlanPapers/ class=nav-item>PDDL+RL强化学习</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">进击的PDDL</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Curry-Howard correspondence</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/ class=nav-item>CFG语义网络</a></li> <li class=toctree-l3><a href=../../FurtherMore/PDDL-Solver2AST/ class=nav-item>PDDL-Solver2AST</a></li> <li class=toctree-l3><a href=../../FurtherMore/TransitionSystemModelCheck/ class=nav-item>CFG=TransitionSystemModelCheck.md</a></li> <li class=toctree-l3><a href=../../FurtherMore/qnp2ast2program/ class=nav-item>qnp2ast2program</a></li> </ul></li> </ul></li> <li class=toctree-l1> <a class=nav-item href=https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues>Issue跟踪讨论</a></li> </ul> </nav> <div class=repo> <div class=link> </div> <div class=previous><a href=../FOND-QNP%28SAS%2B%29/ >&laquo; Previous</a></div> <div class=next><a href=../Golog/Golog_ROS/ >Next &raquo;</a></div> </div> </aside> <div id=spacer><button class=arrow></button></div> <main> <div class=home-top> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div id=main> <nav class=breadcrumbs> <ul> <li>规划界黑话 &raquo; </li><li>PDDL进化史</li> </ul> </nav> <div id=content><h1 id=2>低阶语言2高阶语言<a class=headerlink href=#2 title="Permanent link">&para;</a></h1> <p>低阶语言STRPIPS/ADL/SituationCalculus存在任意量化​的逻辑符号公式表示： a STRIPS instance is a quadruple<span class=arithmatex>\(&lt;P,O,I,G&gt;\)</span>,P is a set of <em>conditions</em> (i.e., propositional variables;I 初始状态，以初始为真的条件集合（所有其他条件均假定为假）给出；G 目标状态的规范是一对<span class=arithmatex>\(&lt;N,M&gt;\)</span>，它们分别指定哪些条件为真和为假，以便将一个状态视为目标状态。O是运算符集，本身就是一个四元组<span class=arithmatex>\((\alpha,\beta ,\gamma ,\delta)\)</span>：状态之间的转换由转换函数建模，转换函数是一种将状态映射到由于执行动作而导致的新状态的函数。由于状态由条件集表示，因此相对于STRIPS实例的转移函数。</p> <p>高阶语言可判定的抽象如QNP看作DFA，FOND看作NFA，本质都是相同的状态迁移图。</p> <p>总结两者最主要的区别是：高阶语言QNP/FOND巧妙设计量化值解决实例数量/参数未定CP问题更简单的描述，不需要像递阶语言STRPIPS逻辑公式中层层嵌套forall/exists等效表示临界状态(异或后继状态展开一阶逻辑公式不唯一已经很要命了)。</p> <ul> <li> <p>低阶语言们，一阶逻辑剩最后一个临界状态用量词(forall<span class=arithmatex>\(\forall\)</span> condition effect)和(exists<span class=arithmatex>\(\exist\)</span> condition effect)实现**临界**值更新后继状态的变化。</p> </li> <li> <p>高阶抽象如，QNP看作DFA量化循环判断值X 临界剩最后一个变成两个后继状态&gt;0或=0，FOND看作NFA直接两条边假设都能走且公平性假设保证最后一步一定能跳出循环。这里一般看作FOND，用<code>(oneof 几个候选后继状态)</code>表示*互斥或*(**xor**每次只有一个后继状态满足<code>a⊕b = (¬a ∧ b) ∨ (a ∧¬b)=(a ∧ b) ∨ (¬a ∧¬b)=(a ∧ b) ∨ ¬(a ∨ b)</code> <code>a⊕b =(a ∨ b) ∧ (¬a ∨ ¬b)=(a ∨ b) ∧ ¬ (a ^ b)</code>但是不会出现两者都假的后续状态，xor二元运算符经过柯里化就能实现任意元switch case选择后继状态语句功能)，而不是逻辑中**or**的*相容或*不可以cnt既大于零又等于零。</p> </li> </ul> <p>所以我们关心给定batches of CP经典规划实例（用递阶语言描述） 能不能 可靠完备转换 设计给定的QNP类程序设计语言输入输出的高阶语言抽象，CP_STRIPS和GP_QNP是n:1关系，同时想输入高低阶抽象描述pddl文件之后计算机自动证明给定两者是可靠抽象转换。</p> <h2 id=block-clear>block clear<a class=headerlink href=#block-clear title="Permanent link">&para;</a></h2> <p>问题描述：清空桌面上的积木数量，cnt&gt;0变成cnt=0</p> <ul> <li>低阶表示形式化<span class=arithmatex>\(&lt;P,O,I,G&gt;\)</span></li> </ul> <p>预定义对象实例 <code>A B C D E F earth − physob</code></p> <p>Init: <code>(clear A) (on A B) (on B C) (ontable C) (ontable D) (ontable F) (on E D) (clear E) (clear F)</code></p> <p>Goal：<code>(onearth A) (onearth B)(onearth C) (onearth D) (onearth E) (onearth F)</code></p> <p>表征全局状态snapshot的谓词集</p> <div class=highlight><pre><span></span><code> (:predicates; 
+​    (ontable ?x ); − physob)
+​    (clear ?x );− physob)
+​    (on ?x ?y );− physob)
+​    (onearth ?x) )
+</code></pre></div> <p>O动作集</p> <div class=highlight><pre><span></span><code>    (:action move
+        :parameters (?x ?y );− physob)
+        :precondition (and( clear ?x) ( clear ?y) )
+        :effect (and(on ?x ?y) (not( clear ?y) )
+                (when( ontable ?x) 
+                    (not( ontable ?x) ) )
+                (forall (?z − );physob) 
+                    (when(on ?x ?z) 
+                        (and(not(on ?x ?z) ) (clear ?z) ) ))))
+
+    (:action moveToTable
+        :parameters (?x );− physob)
+        :precondition (and( clear ?x) (not( ontable ?x) ) )
+        :effect (and(not( clear ?x) ) ( ontable ?x)
+        ( forall (?z );− physob) 
+                (when(on ?x ?z) 
+                    (and(not(on ?x ?z) ) (clear ?z) ) ) )))
+
+    (:action pickUpandputaside ;move to earth
+        :parameters (?x );− physob)
+        :precondition (and( clear ?x) (not( onearth ?x) ) )
+        :effect (and(not( clear ?x) ) ( onearth ?x)
+        ( forall (?z );− physob) 
+                (when(on ?x ?z) 
+                    (and(not(on ?x ?z) ) (clear ?z) ) ) )))
+</code></pre></div> <ul> <li>高阶表示形式化</li> </ul> <p>state presentation with Predicates vector<f_i,v_i> </p> <p>Init: <span class=arithmatex>\(\{!BlockOnHand \wedge cnt&gt;0\}\)</span></p> <p>Goal: <span class=arithmatex>\(\{cnt=0\}\)</span>补完缺省谓词表示0/1均有可能成立但不关心这个谓词真假,即<span class=arithmatex>\(\{--缺省,cnt&gt;0\}\)</span>表示两个目标状态都能满足题目要求。</p> <p>Opearators：</p> <ol> <li>pick-up:从桌上捡起积木</li> </ol> <p>[pre]:<span class=arithmatex>\(\{!BlockOnHand\}\)</span></p> <p>[eff]:<span class=arithmatex>\(\{ oneof( ((! BlockOnHand) \wedge (cnt = 0)) ((! BlockOnHand) \wedge (cnt &gt; 0)) ) \}\)</span></p> <ol> <li>put-away:积木扔开一边</li> </ol> <p>[pre]: <span class=arithmatex>\(\{BlockOnHand\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{!BlockOnHand\}\)</span></p> <h2 id=block-x-on-y>block X on Y<a class=headerlink href=#block-x-on-y title="Permanent link">&para;</a></h2> <p>问题描述：X上方n块，y上方m块，积木世界把X放在Y上(隐含先清空X/Y上方积木)</p> <ul> <li>低阶表示形式化<span class=arithmatex>\(&lt;P,O,I,G&gt;\)</span></li> </ul> <p>预定义对象实例 <code>A B C D X Y − physob</code></p> <p>Init: <code>(clear X) (on X B) (on B C) (ontable C) (ontable Y) (ontable D) (on A Y) (clear A) (clear D)</code></p> <p>Goal：<code>(and(clear D) (on D X) (on X C) (ontable C) (clear A)(on A B) (on B Y) (ontable Y))</code></p> <p>表征全局状态snapshot的谓词集</p> <div class=highlight><pre><span></span><code>    (:predicates;
+        (ontable ?x )
+        (clear ?x )
+        (on ?x ?y ))
+</code></pre></div> <p>O动作集</p> <div class=highlight><pre><span></span><code>    (:action move
+        :parameters (?x ?y );− physob)
+        :precondition (and( clear ?x) ( clear ?y) )
+        :effect (and(on ?x ?y) (not( clear ?y) )
+                (when( ontable ?x) 
+                    (not( ontable ?x) ) )
+                (forall (?z − );physob) 
+                    (when(on ?x ?z) 
+                        (and(not(on ?x ?z) ) (clear ?z) ) ))))
+
+    (:action moveToTable
+        :parameters (?x );− physob)
+        :precondition (and( clear ?x) (not( ontable ?x) ) )
+        :effect (and(not( clear ?x) ) ( ontable ?x)
+        ( forall (?z );− physob) 
+                (when(on ?x ?z) 
+                    (and(not(on ?x ?z) ) (clear ?z))))))
+</code></pre></div> <ul> <li>高阶表示形式化<span class=arithmatex>\(Q=〈F, V, I, O, G〉\)</span></li> </ul> <p>state presentation with Predicates vector<span class=arithmatex>\(&lt;F_i,V_i&gt;\)</span> </p> <p><span class=arithmatex>\(F = \{ E空手,X手持积木'x',D 达成目标积木'x'放在积木'y'上方\}\)</span></p> <p><span class=arithmatex>\(V = {积木'x'上方有n块积木,积木'y'上方有非负整数m块积木}\)</span></p> <p>Init: <span class=arithmatex>\(\{E,!X,!D,n&gt;0,m&gt;0\}\)</span></p> <p>Goal: <span class=arithmatex>\(\{E,!X,D,n=0,m&gt;0\}\)</span></p> <p>Opearators：</p> <ol> <li>Pick-above-x:捡起来x上方积木:</li> </ol> <p>[pre]:<span class=arithmatex>\(\{E,!X,!D,n&gt;0,m&gt;0\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{!E,n\darr\},\)</span>考虑不变的谓词和pre值相同就不写在eff加上就能保证问题是Fully Observable，其后继n=0/n&gt;0都有可能<span class=arithmatex>\(\{!E,!X,!D,--,m&gt;0\}\)</span>。</p> <ol> <li>Pick-above-y:捡起来y上方积木:</li> </ol> <p>[pre]:<span class=arithmatex>\(\{E,!X,!D,n=0,m&gt;0 \}\)</span>这里原则上建模qnp的时候还要考虑n&gt;0也有一种情况，这里简单起见建模时不考虑先清空y上m块积木再清空x上n酷爱，这动作已经要求学出来的结果必然是先清空x上n快再清空y上m块积木。</p> <p>[eff ]:<span class=arithmatex>\(\{ !E,m\darr\}\)</span> </p> <ol> <li>put-aside-1:已经拿起x上方积木放一边到桌面Table</li> </ol> <p>[pre]:<span class=arithmatex>\(\{!E,!X,!D,n=0 \}\)</span></p> <p>[eff ]:<span class=arithmatex>\(\{ E\}\)</span> </p> <ol> <li>put-aside-2 :已经拿起y上方积木放一边到桌面Table</li> </ol> <p>[pre]:<span class=arithmatex>\(\{!E,!X,!D,n&gt;0,m&gt;0 \}\)</span></p> <p>[eff ]:<span class=arithmatex>\(\{ E\}\)</span> </p> <ol> <li>pick-x：拿起来x石头</li> </ol> <p>[pre]:<span class=arithmatex>\(\{E,!X,!D,n=0,m=0 \}\)</span></p> <p>[eff ]:<span class=arithmatex>\(\{ !E,X\}\)</span> </p> <ol> <li>put-x-aside,</li> </ol> <p>[pre]:<span class=arithmatex>\(\{!E,X,!D,n=0,m&gt;0 \}\)</span></p> <p>[eff ]:<span class=arithmatex>\(\{ E,!X\}\)</span> </p> <ol> <li>put-x-on-y,把手中的x放在y上方</li> </ol> <p>[pre]:<span class=arithmatex>\(\{!E,X,!D,n=0,m=0 \}\)</span></p> <p>[eff ]:<span class=arithmatex>\(\{E,!X,D,m\uarr\}\)</span> </p> <h2 id=build-a-tower>build a tower<a class=headerlink href=#build-a-tower title="Permanent link">&para;</a></h2> <p>问题描述：把所有的积木堆成一座高塔the task is building a tower with all the blocks</p> <ul> <li>低阶表示形式化<span class=arithmatex>\(&lt;P,O,I,G&gt;\)</span>，</li> </ul> <p>ADL语言版本</p> <p>预定义对象实例 <code>(:objects a b c - block table)</code></p> <p>Init: </p> <div class=highlight><pre><span></span><code>  (:init
+     (on b table) (on a table) (on c a)
+     (clear b) (clear c) (clear table)
+  )
+</code></pre></div> <p>Goal：</p> <div class=highlight><pre><span></span><code>  (:goal
+     (and (on a b) (on b c) (on c table)))
+</code></pre></div> <p>表征全局状态snapshot的谓词集</p> <div class=highlight><pre><span></span><code> (:predicates (on ?x ?y) (clear ?x))
+</code></pre></div> <p>O动作集</p> <div class=highlight><pre><span></span><code>  (:action move
+     :parameters (?b - block ?x ?y)
+     :precondition (and
+                (clear ?b) (on ?b ?x) (clear ?y))
+     :effect (and (on ?b ?y)
+                  (not (on ?b ?x))
+          (clear ?x)
+          (when (not (= ?y table))
+            (not (clear ?y))))
+  )
+</code></pre></div> <p>STRIPS语言版本</p> <p>预定义对象实例 <code>(:objects a b c table)</code></p> <p>Init: </p> <div class=highlight><pre><span></span><code>  (:init
+     (on b table) (on a table) (on c a)
+     (clear b) (clear c) (clear table)
+     (block a) (block b) (block c))
+</code></pre></div> <p>Goal：</p> <div class=highlight><pre><span></span><code>  (:goal
+     (and (on a b) (on b c) (on c table)))
+</code></pre></div> <p>表征全局状态snapshot的谓词集</p> <div class=highlight><pre><span></span><code> (:predicates
+    (on ?x ?y) (clear ?x) (block ?x))
+</code></pre></div> <p>O动作集</p> <div class=highlight><pre><span></span><code>  (:action move
+    :parameters (?b ?x ?y)
+    :precondition (and (block ?b) (clear ?b) (on ?b ?x) (block ?y) (clear ?y))
+    :effect (and (not (on ?b ?x)) (clear ?x)
+           (not (clear ?y)) (on ?b ?y)))
+
+  (:action move-to-table
+    :parameters (?b ?x)
+    :precondition (and (block ?b) (on ?b ?x) (clear ?b))
+    :effect (and (not (on ?b ?x)) (clear ?x) (on ?b table)))
+</code></pre></div> <ul> <li>高阶表示形式化<span class=arithmatex>\(Q=〈F, V, I, O, G〉\)</span></li> </ul> <p>state presentation with Predicates vector<span class=arithmatex>\(&lt;F_i,V_i&gt;\)</span> </p> <p><span class=arithmatex>\(F = \{ X, H,Z\}\)</span>，H应该是手持物品 <strong>? X Z 未知</strong></p> <p><span class=arithmatex>\(V = \{n(X)&gt;0,m(X)&gt;0\}\)</span>,m应该是不在X上方堆塔的其他积木数量，n可能是X上方积木数量</p> <p>Init: <span class=arithmatex>\(\{!X ,!H,Z,n(X)&gt;0,m(X)&gt;0\}\)</span></p> <p>Goal: <span class=arithmatex>\(\{!X,!H,m(X) = 0\}\)</span></p> <p>Opearators：</p> <ol> <li>Pick-other:</li> </ol> <p>[pre]:<span class=arithmatex>\(\{!X,!H,m&gt;0\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{!X,H,m&gt;0\}\)</span></p> <ol> <li>Pick-above-x:放到x上方积木:</li> </ol> <p>[pre]:<span class=arithmatex>\(\{!X,H,m&gt;0\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{!X,!H,m&gt;0\}\)</span></p> <h1 id=gripper>gripper<a class=headerlink href=#gripper title="Permanent link">&para;</a></h1> <p>问题描述：一个带有夹子的机器人将若干个球从某个房间移动到目标房间.</p> <ul> <li>低阶形式化<span class=arithmatex>\(&lt;P,O,I,G&gt;\)</span></li> </ul> <p>预定义对象实例 <code>rooma roomb ball1 ball2 left right</code></p> <p>Init: <div class=highlight><pre><span></span><code>    (:init (room rooma)
+           (room roomb)
+           (ball ball1)
+           (ball ball2)
+           (gripper left)
+           (gripper right)
+           (at-robby rooma)
+           (free left)
+           (free right)
+           (at ball1 rooma)
+           (at ball2 rooma))
+</code></pre></div></p> <p>Goal： <div class=highlight><pre><span></span><code>(:goal (and (at ball1 roomb)(at ball2 rooma)))
+</code></pre></div></p> <p>表征全局状态snapshot的谓词集</p> <div class=highlight><pre><span></span><code>(:predicates (room ?r) 
+             (ball ?b) 
+             (gripper ?g)
+             (at-robby ?r)
+             (at ?b ?r) 
+             (free ?g)
+             (carry ?o ?g))
+</code></pre></div> <p>O动作集</p> <div class=highlight><pre><span></span><code>  (:action move
+   :parameters (?from ?to)
+   :precondition (and (room ?from)
+                      (room ?to)
+                      (at-robby ?from))
+   :effect (and (at-robby ?to)
+                (not (at-robby ?from))))
+
+  (:action pick
+   :parameters (?obj ?room ?gripper)
+   :precondition (and (ball ?obj)
+                      (room ?room)
+                      (gripper ?gripper)
+                      (at ?obj ?room)
+                      (at-robby ?room)
+                      (free ?gripper))
+   :effect (and (carry ?obj ?gripper)
+                (not (at ?obj ?room))
+                (not (free ?gripper))))
+
+  (:action drop
+   :parameters (?obj ?room ?gripper)
+   :precondition (and (ball ?obj)
+                      (room ?room)
+                      (gripper ?gripper)
+                      (carry ?obj ?gripper)
+                      (at-robby ?room))
+   :effect (and (at ?obj ?room)
+                (free ?gripper)
+                (not (carry ?obj ?gripper))))
+</code></pre></div> <ul> <li>高阶形式化QNP/FOND等</li> </ul> <p>QNP的形式化<span class=arithmatex>\(Q=〈F, V, I, O, G〉\)</span>.state presentation Predicates with vector$<f_i,v_i> $ </p> <p>X:机器人是否在目标房间; B:不在目标房间的球的数量C:机器人夹住球的数量G:空的夹子的数量</p> <p>Init:<span class=arithmatex>\(\{ !T,b&gt;0,c=0,g&gt;0\}\)</span></p> <p>Goal:<span class=arithmatex>\(\{ b=0,c=0\}\)</span></p> <p>Opearators： 1. drop-ball-at-x:把夹住的球放到目标房间</p> <p>[pre]:<span class=arithmatex>\(\{ T,c&gt;0\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{ c\darr,g\uarr\}\)</span></p> <ol> <li>move-to-x-half-loaded:如果剩下的球数量小于空夹子数量，则夹起剩下的所有球，并移动到目标房间</li> </ol> <p>[pre]:<span class=arithmatex>\(\{ !T,b=0,c&gt;0,g&gt;0\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{ T\}\)</span></p> <ol> <li>move-to-x-fully-loaded:如果剩下的球数量大于空夹子数量，则用所有夹子夹起对应数量的球，并移动到目标房间</li> </ol> <p>[pre]:<span class=arithmatex>\(\{ !T,c&gt;0,g=0\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{ T\}\)</span></p> <ol> <li>pick-ball-not-in-x:把不位于目标房间的球捡起来</li> </ol> <p>[pre]:<span class=arithmatex>\(\{!T,b&gt;0,g&gt;0\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{ b \darr c\darr,g\uarr \}\)</span></p> <ol> <li>leave-x:离开目标房间</li> </ol> <p>[pre]:<span class=arithmatex>\(\{ T,c=0,g&gt;0\}\)</span></p> <p>[eff ]: <span class=arithmatex>\(\{ !T\}\)</span></p></div> <footer> <div class=footer-buttons> <div class=previous><a href=../FOND-QNP%28SAS%2B%29/ title=FOND-QNP(SAS+)><span>Previous</span></a></div> <div class=next><a href=../Golog/Golog_ROS/ title=Golog><span>Next</span></a></div> </div> <div class=footer-note> <p> Built with <a href=http://www.mkdocs.org>MkDocs</a> using <a href=https://github.com/daizutabi/mkdocs-ivory>Ivory theme</a>. </p> </div> </footer> </div> </main> </div> <script>var base_url = '../..';</script> <script src=../../js/theme.js></script> <script src=../../js/umlconvert.js></script> <script src=../../js/sequence-loader.js></script> <script src=https://unpkg.com/mermaid/dist/mermaid.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js></script> <script src=../../search/main.js></script> </body> </html>
