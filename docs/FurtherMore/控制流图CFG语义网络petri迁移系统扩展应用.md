@@ -18,5 +18,19 @@ https://bibbase.org/network/publication/segovia-jimenez-jonsson-generalizedplann
 
 
 
+# 用来生成代码决策图
+
+https://jsego.github.io/
+
+# 游戏智能体规划寻址等
+StarPlanner 关于GOAP的设计_翻译
+https://zhuanlan.zhihu.com/p/578323828
+
+
+
+
+
+
+
 
 
