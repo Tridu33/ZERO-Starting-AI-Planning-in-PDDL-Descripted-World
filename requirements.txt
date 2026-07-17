@@ -1,0 +1,6 @@
+mkdocs>=1.1.2
+mkdocs-ivory
+mkdocs-material
+mkdocs-minify-plugin
+mkdocs-mermaid2-plugin
+pymdown-extensions
