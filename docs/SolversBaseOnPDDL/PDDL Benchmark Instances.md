@@ -2,8 +2,7 @@
 
 http://fai.cs.uni-saarland.de/hoffmann/ff-domains.html
 
-该页面是由Joerg Hoffmann创建的，它是想要在规划中进行大规模实证研究的人们的起点。FF域集合为20个STRIPS和ADL规划基准域提供（可能的话）生成器，包括两个竞赛中使用的示例。下面，我们为每个域提供有关起源，进行的调整（如果有），生成器的参数以及随机化策略的信息。可以下载域文件和生成器的C源代码。单击[此处](http://fai.cs.uni-saarland.de/hoffmann/ff-domains.tgz) 下载整个软件包。关于如何生成它们（包括makefile）以及如何运行它们，生成器应该是不言自明的。在不太明显的情况下，我们还包括了README文件。
-
+该页面由 Joerg Hoffmann 创建，是从事规划领域大规模实证研究的学者们的关键起点。FF 域集合为 20 个 STRIPS 与 ADL 规划基准域提供了生成器（在可行条件下），其中涵盖了两次竞赛所使用的示例。下文针对每个域分别说明其来源、所进行的调整（若有）、生成器参数以及随机化策略。域文件与生成器的 C 语言源代码均可下载。单击[此处](http://fai.cs.uni-saarland.de/hoffmann/ff-domains.tgz) 可获取完整软件包。关于生成方式（包括 makefile）及运行方法，生成器应具备自明性；在不易直接理解的情况下，另附有 README 文件以供参考。
 
 
 

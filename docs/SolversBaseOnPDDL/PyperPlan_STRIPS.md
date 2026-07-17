@@ -2,34 +2,85 @@
 
 
 
+	
 
 
+
+	
+
+
+
+	
+
+
+
+	
 
 
 
 https://github.com/aibasel/pyperplan
 
 
-Pyperplan是用Python编写的轻量级STRIPS计划器。
+Pyperplan 是一款基于 Python 编程语言实现的轻量级 STRIPS 规划器。
+
+	
 
 
 
+	
 
 
 
+	
 
 
 
+	
 
 
 
+	
 
 
 
+	
 
 
 
+	
 
 
 
+	
 
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+	
+
+
+
+	

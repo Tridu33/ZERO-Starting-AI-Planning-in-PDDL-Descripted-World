@@ -1,4 +1,4 @@
-# 1. LAPKT轻量自动规划工具包
+# 1. LAPKT 轻量级自动规划工具包
 
 
 
@@ -11,24 +11,7 @@
 https://lapkt-dev.github.io/docs/gettingStarted/
 
 
-轻量自动规划工具包0（默认情况下，计划人员使用FD分析器。每个计划程序的版本都使用FF解析器。）
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+轻量级自动规划工具包（Lightweight Automated Planning Toolkit, LAPKT）。默认情况下，各规划器均使用 FD 分析器（FD Parser），且每个规划程序的版本均采用 FF 解析器（FF Parser）。
 
 
 

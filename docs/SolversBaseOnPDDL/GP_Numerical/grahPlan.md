@@ -1,34 +1,15 @@
-# grahPlan
+# GraphPlan
 
-http://www.ai.mit.edu/courses/16.412J/Graphplan.html 
+http://www.ai.mit.edu/courses/16.412J/Graphplan.html
 
-Graphplan是一种基于计划图概念的计划算法。计划图表示基于当前级别的可行算子的应用在将来级别中可以实现的事实。第一级代表初始状态，最后一级包含出现在目标状态中的所有事实（以及可能的许多其他事实）。事实和操作员之间的互斥关系在计划图的每个级别上都得到维护。生成计划图后，Graphplan从目标（最后）级别向后搜索以生成可行的计划。
+Graphplan 是一种基于规划图（planning graph）概念的规划算法。规划图刻画了在当前层级可行操作符作用下，于后续层级中可实现的事实集合。第一级表示初始状态，最后一级则包含目标状态中出现的全部事实（以及可能附带的其他诸多事实）。事实与操作符之间的互斥关系在规划图的每个层级上均加以维护。生成规划图后，Graphplan 从目标层级（即最后一级）开始反向搜索，以生成可行的规划方案。
 
-此处提供了源代码以及有关构建和运行可执行文件的说明。源代码在C中，并提供了一个Makefile。构建和运行可执行文件应该在任何使用C的Unix系统上都可以使用。示例问题（事实和操作员文件）也包括在内。
+上述链接提供了源代码及相关说明，涵盖构建与运行可执行文件的详细指引。源代码采用 C 语言编写，并附有 Makefile。在任何支持 C 语言的 Unix 系统上均可完成构建与运行。示例问题（包含事实文件与操作符文件）亦一并提供。
 
-可以在[Graphplan主页](http://www-2.cs.cmu.edu/~avrim/graphplan.html)上找到有关Graphplan的更多详细信息 。出色的参考论文是：
-[A. Blum，M. Furst，“通过规划图分析进行快速规划”](http://www.ai.mit.edu/courses/16.412J/graphplan.ps)，《*人工智能*[》 ](http://www.ai.mit.edu/courses/16.412J/graphplan.ps)，90：281--300（1997）。这是描述算法及其实现的原始论文。
+有关 Graphplan 的更多详细信息，可参阅 [Graphplan 主页](http://www-2.cs.cmu.edu/~avrim/graphplan.html)。权威参考文献如下：
 
-
-
+[A. Blum, M. Furst, "Fast Planning Through Planning Graph Analysis"](http://www.ai.mit.edu/courses/16.412J/graphplan.ps), *Artificial Intelligence*, 90: 281–300 (1997). 该文为描述算法及其实现的原始论文。
 
 (PDF) NGP: Numerical Graph Planning.
 
 https://fai.cs.uni-saarland.de/hoffmann/metric-ff.html#:~:text=Extending%20FF%20to%20Numerical%20State%20Variables%2C%20in%3A%20Proceedings,as%20used%20in%20the%203rd%20International%20Planning%20Competition.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

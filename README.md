@@ -1,43 +1,31 @@
 # ZERO-Starting-AI-Planning-in-PDDL-Descripted-World
 
-
-
-点击看[电子书](https://tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/),如果想本地运行mkdocs修改查看源码的话,需要安装：
+欢迎查阅本项目的[电子书](https://tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/)。若需在本地运行 MkDocs 以修改或审阅源码，请执行以下安装步骤：
 
 ```
 pip install mkdocs mkdocs-minify-plugin  mkdocs-ivory mkdocs-material-extensions
-#version error
+# 版本兼容性处理
 pip install mkdocs-mermaid2-plugin 
 ```
 
-
-
-## install 
+## 环境配置
 
 ```
 pip install 
 ```
 
-
-因为有依赖，会默认安装一些包：
+鉴于存在依赖关系，系统将默认安装若干必需软件包：
 
 ```python
- pip install pddlpy#pddl parser
- #读取pddl文件进入内存，变成python可以访问的结构化数据格式
- #pddl2json则是输出转换为json结构的文本文件，这种结构化文件网络编程java script唯一选择
+pip install pddlpy  # PDDL解析器
+# 将PDDL文件读取至内存，转化为Python可访问的结构化数据格式
+# pddl2json 则将输出转换为JSON格式的结构化文本文件，
+# 此类结构化文件是网络编程中JavaScript生态系统的首选方案
 ```
 
+项目持续建设中...
 
-
-
-佛系施工中...
-
-- [x] 起因
-
-- [x] 经过
-
+- [x] 缘起
+- [x] 发展
 - [ ] 高潮
-
-- [ ] 结果
-
-  
+- [ ] 终章

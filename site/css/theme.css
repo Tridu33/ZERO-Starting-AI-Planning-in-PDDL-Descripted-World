@@ -17,8 +17,8 @@ body {
 code {
   font-family: "Fira Code", "Courier New", Consolas, monospace;
   font-size: 0.83rem;
-  color: #7700FF;
-  border: 1px solid #E0E0E0;
+  color: #c2185b;
+  border: 1px solid #f8bbd0;
   padding: 1px 3px;
   margin: 0px 1px;
   background: white;
@@ -48,7 +48,7 @@ pre {
 }
 
 a {
-  color: #39f;
+  color: #d63384;
   text-decoration: none;
 }
 
@@ -81,7 +81,7 @@ img {
 
 .site-name {
   display: inline-block;
-  color: #ddd;
+  color: #fce4ec;
   font-weight: bold;
 }
 
@@ -101,28 +101,28 @@ img {
 }
 
 .nav-item.section {
-  color: #ddd;
+  color: #fce4ec;
   width: 100%;
   text-align: left;
 }
 
 .nav-item.section:hover {
-  background: #999;
-  color: #333;
+  background: #c2185b;
+  color: #fff;
 }
 
 a.nav-item {
-  color: #999;
+  color: #bbb;
 }
 
 a.nav-item.current {
-  color: #333;
-  background: #eee;
+  color: #880e4f;
+  background: #fce4ec;
 }
 
 a.nav-item.current:hover {
-  color: #333;
-  background: #bbb;
+  color: #880e4f;
+  background: #f8bbd0;
 }
 
 a.nav-item:hover {
@@ -303,7 +303,7 @@ a.nav-item:hover {
 }
 
 .footer-note a {
-  color: #88d;
+  color: #d63384;
 }
 
 /**************************************/
@@ -317,7 +317,7 @@ aside {
   flex: 0 0 300px;
   width: 300px;
   order: 1;
-  background: #333;
+  background: #3e1022;
   z-index: 999;
 }
 
@@ -327,7 +327,7 @@ aside>* {
 
 .home, .home-top {
   display: flex;
-  background: #48c;
+  background: #c2185b;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -350,12 +350,12 @@ aside>* {
 .nav {
   position: fixed;
   overflow-y: auto;
-  background: #333;
+  background: #3e1022;
 }
 
 .repo {
   display: flex;
-  background: #222;
+  background: #2a0a16;
   position: fixed;
   bottom: 0;
   height: 40px;
@@ -518,9 +518,9 @@ main {
   }
 
   .arrow:hover {
-    background: #555;
-    color: #ddd;
-    border-color: #555;
+    background: #c2185b;
+    color: #fce4ec;
+    border-color: #c2185b;
     margin-left: 0px;
   }
 
@@ -568,9 +568,9 @@ th, td {
 }
 
 th {
-  color: darkblue;
-  background: #eee;
-  border: 1px solid #333;
+  color: #880e4f;
+  background: #fce4ec;
+  border: 1px solid #880e4f;
 }
 
 td {
@@ -579,19 +579,19 @@ td {
 }
 
 tr th:first-child, tr td:first-child {
-  border-left: 1px solid #333366;
+  border-left: 1px solid #880e4f;
 }
 
 tr th:last-child, tr td:last-child {
-  border-right: 1px solid #333366;
+  border-right: 1px solid #880e4f;
 }
 
 tr:first-child td, tr:first-child th {
-  border-top: 1px solid #333366;
+  border-top: 1px solid #880e4f;
 }
 
 tr:last-child td, tr:last-child th {
-  border-bottom: 1px solid #333366;
+  border-bottom: 1px solid #880e4f;
 }
 
 tbody tr:nth-child(2n+1) td {
@@ -605,12 +605,12 @@ tbody tr:nth-child(2n+1) td {
 }
 
 .admonition.note {
-  background: #F0F0FF;
+  background: #fce4ec;
 }
 
 .note p.admonition-title {
   color: white;
-  background: #555599;
+  background: #c2185b;
   margin: 0px;
   padding: 4px 8px;
 }

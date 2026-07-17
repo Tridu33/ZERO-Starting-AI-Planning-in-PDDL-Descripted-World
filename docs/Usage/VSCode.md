@@ -1,3 +1,3 @@
 ![vscode_pddl_extension](..\imgs\vscode_pddl_extension.png)
 
-Every time you run Visual studio code you can see this 
+每次启动 Visual Studio Code 时，您均可观察到如下界面 

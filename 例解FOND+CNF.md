@@ -1,6 +1,6 @@
 [TOC]
 
-# stupid
+# 简单示例（Stupid Example）
 ## domain.pddl
 
 ```
@@ -971,7 +971,7 @@ ___________________
 
 
 
-## 最终结果：
+## 最终输出结果如下：
 
 ```
 ==================================[MINISAT]===================================
@@ -1031,7 +1031,7 @@ Fair actions: True
 ```
 
 
-## 我的stupid road demo run in Ipython/Jupyter
+## 在 IPython/Jupyter 中运行本示例（Stupid Road Demo）
 
 ## main.py
 
@@ -1059,7 +1059,7 @@ def generateControllerStates(i):
  
 ```
 
-## 替换args输入参数字典，直接输入我想要的字典，包括传进去的数值参数
+## 替换 args 输入参数字典，直接传入所需的字典参数，包括传递的数值参数：
 
 ```
 # my stuppid example:
@@ -1113,7 +1113,7 @@ name_sas_file = 'outputtrans-' + params['name_temp'] + '.sas' #name_sas_file   o
 p.generate_file(name_sas_file)
 ```
 
-相当于命令行执行：
+相当于在命令行中执行以下命令：
 
 ```
 command = 'python translate/translate.py ' + str(time_limit) + ' ' + self.domain + ' ' + self.problem + ' ' + sas_file_name + ' | grep "noprint"'
@@ -1190,7 +1190,7 @@ Setting compatible actions
 0.00387597084045
 ```
 
-## 在Parser类的方法中翻译成，保存成mytask类的数据：
+## 在 Parser 类的方法中完成翻译并保存为 MyTask 类的数据结构：
 parser.py中p.translate_to_atomic
 
 ```
@@ -1217,7 +1217,7 @@ parser.py中p.translate_to_atomic
     return task
 ```
 
-而查看my_task类中的局部变量
+而查看 MyTask 类中的成员变量：
 
 ```
 class MyTask():
@@ -1261,13 +1261,13 @@ if params['strong'] == 0:
 show_gen_info = True
 if params['gen_info'] == 0:
 	show_gen_info = False
-#根据输入参数决定显示结果
+#根据输入参数决定是否显示详细结果。
 
 cnf = CNF(name_formula_file, name_formula_file_extra, fair, strong)
-#重点，根据公式文件formula-temp.txt这时候是空白的，formula-extra-temp此时空白，使用fair，strong取值决定策略
+#核心步骤：此时 formula-temp.txt（公式文件）和 formula-extra-temp.txt 均为空白，根据 fair 和 strong 参数的取值决定策略类型。
 ```
 
-## 接下来这个大循环就是高潮部分：注意留意重点：
+## 接下来的主循环是整个求解过程的核心所在：
 
 ```
 solver_time = []
@@ -1284,7 +1284,7 @@ for i in range(1000):
     ......
 ```
 
-因为大循环对打断，所以我在大循环区域上下加分割线
+由于大循环可能被中断，故在其前后添加分割线以便识别。
 
 -------------------------------------------------------------
 
@@ -1451,11 +1451,11 @@ Solved with 3 states
 
 ```
 
-核心循环到此结束
+核心循环至此结束。
 
 -------------------------------------------------------------------------------
 
-main.py快结束了
+main.py 的执行即将结束：
 
 ```
 print('Elapsed total time (s): %f' % (timer() - time_start))

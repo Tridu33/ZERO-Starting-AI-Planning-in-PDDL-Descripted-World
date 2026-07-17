@@ -2,7 +2,7 @@
 
 ## ModelCheckingQNP
 
-寻找一种能描述验证包括branch，while循环loop这类程序/controllor控制流图的“Logic”,先看IC3_Modelchecking
+本研究致力于寻找到一种能够描述并验证包含分支（branch）和循环（while loop）等控制结构的程序/控制器控制流图（Control Flow Graph）的”逻辑体系”，首先考察IC3模型检测（IC3 Model Checking）的相关理论与方法。
 
 
 
@@ -12,11 +12,11 @@
 
 3. Understanding IC3
 
-4. Eﬃcient implementation of property directed reachability
+4. Efficient Implementation of Property Directed Reachability
 
 
 
-[软工方法论之形式化方法NuSMV学习笔记 ](https://zhuanlan.zhihu.com/p/343685908)
+[软工方法论之形式化方法NuSMV学习笔记](https://zhuanlan.zhihu.com/p/343685908)
 
 
 

@@ -1,43 +1,43 @@
-#  solver汇总
+# 求解器综述
 
-## IPC比赛---故事开始的地方
+## IPC 赛事：问题起源与发展脉络
 
-https://www.icaps-conference.org/competitions/  汇总每一届比赛链接
-
-
-An Overview of theInternational Planning Competition   chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/https://www.nms.kcl.ac.uk/andrew.coles/PlanningCompetitionAAAISlides.pdf
+https://www.icaps-conference.org/competitions/  该链接汇总了历届比赛的完整信息
 
 
-https://helios.hud.ac.uk/scommv/IPC-14/selection.html 2014
+An Overview of the International Planning Competition   chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/https://www.nms.kcl.ac.uk/andrew.coles/PlanningCompetitionAAAISlides.pdf
+
+
+https://helios.hud.ac.uk/scommv/IPC-14/selection.html 2014年
 
 
 International Planning Competition
 
-https://ipc2018-classical.bitbucket.io/ 2018
+https://ipc2018-classical.bitbucket.io/ 2018年
 
 
-eecs.oregonstate.edu/ipc-learn/ 6
+eecs.oregonstate.edu/ipc-learn/ 第六届
 
 cs.cmu.edu/afs/cs/project/jair/pub/volume20/long03a-html/node2.html
   国际规划大赛系列
 
 
 
-主要分：
+依据问题特性，主要可划分为如下两类：
 
-古典规划：一个实例一个解；
+经典规划（Classical Planning, CP）：每个实例对应于一个独立的解；
 
-通用规划：多个实例共用一个解子图算法Control Flow Graph，常见的有QNP,FOND
+通用规划（General Planning, GP）：多个实例共享同一个解子图算法（即控制流图 Control Flow Graph），常见形式化范式包括 QNP 与 FOND。
 
-## CP古典规划
+## CP：经典规划
 
 FF
 
 FD
 
-LPKT
+LAPKT
 
-## GP通用规划
+## GP：通用规划
 
 
 
@@ -51,33 +51,29 @@ LPKT
 
 
 
-宏观来看，一般两条路：
+从宏观视角审视，学界通常沿两条技术路径展开探索：
 
-Top-Down(与或树{或者也可以理解为ControlFlowGraph}在图中搜索-->algorithm-like 的policy，在我看来，这就是符号化goto语句的底层汇编算法等价描述) 
+自顶向下（Top-Down）方法：在与或树（亦可理解为控制流图 Control Flow Graph）中进行搜索，从而得到类算法（algorithm-like）的策略（policy）。就其本质而言，这乃是符号化 goto 语句所对应的底层汇编算法的等价表述。
 
+以及
 
+自底向上（Bottom-Up）方法：在经典规划中生成实例，据此完善并补全抽象图，并以响应式方式持续打补丁。FOND-SAT 可被视为一种文法自动机，通过符号 SAT 可满足性求解实现规划。据本文作者理解，其本质归属于自顶向下（Top-Down）的"求解"范式。
 
-&& 
+诸如 Merging Example Plans into Generalized Plans for Non-deterministic Environments 以及 Directed Search for Generalized Plans Using Classical Planners 等研究工作即属于此类范畴。
 
-
-
-Bottom-Up(生成实例经典规划中完善补全抽象图，不断响应式打补丁)，FONS-SAT可以看作文法自动机，用符号SAT可满足性求解，就我的理解来说，其实属于Top-Down“求解”。
-
-如：Merging Example Plans into Generalized Plans forNon-deterministic Environments和Directed Search for Generalized Plans Using Classical Planners
-
-> 正如Dijkstra在他书中说到意思，编程是严谨思考推理得到的算法，而不应该是意大利苗条代码中盲目debug函试错，疯狂为特殊情况打补丁。
+> 正如 Dijkstra 在其经典著作中所阐述的，编程应当是经由严谨思考与推理所得的算法产物，而不应是在意大利面条式代码中盲目调试、反复试错，以及为各种特殊情况仓促打补丁的结果。
 >
-> 图灵开启的自动编程故事，相信plan会是一个美丽的解法。
+> 图灵所开创的自动编程篇章，令人坚信规划（plan）将是一种优雅的解法。
 
-QNP其实就是在模拟有while循环的Linked list reverse受到的启发，才提出来的，这类问题的解子图policy其实就是**包含while循环的algorithm**。
+QNP 的提出，实际上是受模拟包含 while 循环的链表反转（Linked List Reverse）过程的启发。此类问题的解子图策略（policy），本质上便是**包含 while 循环的算法（algorithm）**。
 
-实例中学习，就比可避免要考虑**覆盖率**(计划问题总数中已解决问题的数目)，我们设想如果有一个比较完善的GP良定义，这个结果应该是完善的自顶向下的精巧设计，而不是草草上线不断打补丁的缝合怪(尽管多数时间是这么做的)
+从实例中学习时，不可避免地需要考量**覆盖率**（即已解决问题数目占规划问题总数的比例）。我们设想，倘若存在一个较为完善的通用规划（GP）的良性定义，其结果应当是经过精心设计的自顶向下结构的产物，而非仓促上线、不断打补丁的拼合体——尽管在多数实践场景中，后者往往成为常态。
 
-一个比较合适的算法例子是三数之和：
+一个较为合适的算法示例是三数之和问题：
 
-> 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
+> 给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c，使得 a + b + c = 0？请找出所有满足和为 0 且不重复的三元组。
 >
-> 注意：答案中不可以包含重复的三元组。
+> 注意：答案中不得包含重复的三元组。
 >
 
 ```cpp
@@ -127,27 +123,27 @@ public:
 };
 ```
 
-注意上述这个例子：
+审视上述示例，需着重关注以下要点：
 
-> 错误去重方法将会漏掉-1,-1,2 这种情况；去重复逻辑放置位置，0，0，0 的情况 。
+> 错误的去重方法将会遗漏诸如 -1, -1, 2 这类情形；去重逻辑的放置位置亦会对最终结果产生显著影响，例如 0, 0, 0 的案例所示。
 
-给我们的启发是正如dijkstra在他的著作中写到的，top-down精巧的设计才能做出不是玩具可用性鲁棒性强的算法解。
+由此可得出的启示，正如 Dijkstra 在其著作中所阐述的：唯有自顶向下（Top-Down）的精巧设计，方能产生兼具实用价值与强鲁棒性的算法解，而非仅止于玩具级别的实现。
 
-而这，恰恰是实例CP中学习GP抽象图不断打补丁的bottom-up方法中学不到的东西，这样实例CP中学习的GP抽象控制流图只会千疮百孔打满补丁，甚至还不能AC满足足够的测例覆盖率。
+而这一点，恰恰是从实例经典规划（CP）中学习通用规划（GP）抽象图、不断打补丁的自底向上（Bottom-Up）方法所无法习得的。经由后者所习得的 GP 抽象控制流图往往千疮百孔、遍布补丁，甚至无法通过足够的测试用例以满足所需的测例覆盖率。
 
-##  为什么我认为CFG控制图是最佳中间intermediate representation表示方法
+## 为何 CFG 控制流图是最佳中间表示（Intermediate Representation, IR）方法
 
-## Planning Graph Analysis
+## Planning Graph Analysis：规划图分析
 
 Fast planning through planning graph analysis 1997
 
 https://dblp.uni-trier.de/pid/b/AvrimBlum.html 作者主页
 
-2003 SAT-Based Model-Checking of Security Protocols Using Planning Graph Analysis. 
+2003 SAT-Based Model-Checking of Security Protocols Using Planning Graph Analysis.
 
 2006
 
-2017 
+2017
 
 link.springer.com/chapter/10.1007%2F3-540-46238-4_31
 
@@ -157,128 +153,114 @@ A Planning Heuristic Based on Causal Graph Analysis 2004
 
 aaai.org/Library/ICAPS/2004/icaps04-021.php
 
-这些问题对于基于计划图（例如IPP，Graphplan和Blackbox）的当前计划者
+上述问题对于基于规划图（如 IPP、Graphplan 和 Blackbox）的现行规划器而言，具有重要的理论意义与实践价值。
 
-## 图最新路径查找算法
+## 面向动态图的最新路径查找算法
 
-用于更改图形（D *，D * -Lite，LPA *等）的最新路径查找算法有何不同？
+面向动态图（D*、D* Lite、LPA* 等）的最新路径查找算法之间存在何种本质差异？
 
 https://qastack.cn/cstheory/11855/how-do-the-state-of-the-art-pathfinding-algorithms-for-changing-graphs-d-d-l
 
-我到目前为止能够找到的：
+截至目前所整理的相关算法清单如下：
 
 \```
 
-D *（1994）
+D*（1994年）
 
-专注D *（1995）
+Focused D*（1995年）
 
-动态SWSF-FP（1996）
+Dynamic SWSF-FP（1996年）
 
-LPA（1997）
+LPA（1997年）
 
-LPA * /增量A *（2001）
+LPA* / Incremental A*（2001年）
 
-D * Lite（2002）
+D* Lite（2002年）
 
-SetA *（2002年）
+SetA*（2002年）
 
-HPA *（2004）
+HPA*（2004年）
 
-随时D *（2005）
+Anytime D*（2005年）
 
-PRA *（2005年）
+PRA*（2005年）
 
-领域D *（2007）
+Field D*（2007年）
 
-Theta *（2007）
+Theta*（2007年）
 
-HAA *（2008）
+HAA*（2008年）
 
-GAA *（2008）
+GAA*（2008年）
 
-LEARCH（2009）
+LEARCH（2009年）
 
-BDDD *（2009年-我无法访问本文：|）
+BDDD*（2009年——笔者无法获取该论文）
 
-增量披披*（2009）
+Incremental Phi*（2009年）
 
-GFRA *（2010）
+GFRA*（2010年）
 
-MTD * -Lite（2010）
+MTD*-Lite（2010年）
 
-树AA *（2011）
-
-\```
-
-
-
-
-
-
-
-
-
-可以在上方的问题栏中找到每篇论文的链接。
-
-
-
-简单的重新计算
-
-
+Tree-AA*（2011年）
 
 \```
 
-D * （又名Dynamic A *）（1994年）：在最初的运行中，D *的运行与A *非常相似，因此可以非常迅速地找到从头到尾的最佳路径。但是，随着单元从头到尾移动，如果图形发生变化，D *能够非常快速地重新计算从该单元位置到终点的最佳路径，这比再次从该单元位置简单地运行A *快得多。但是，D *以极其复杂而著称，而更简单的D * -Lite已完全淘汰了D *。
+可以在上述问题栏中找到每篇论文的对应链接。
 
-聚焦D *（1995年）：对D *的改进，使其更快/“更实时”。我找不到与D * -Lite的任何比较，但是鉴于它比较老，并且D * -Lite的讨论更多，我认为D * -Lite更好。
+简单重计算
 
-DynamicSWSF-FP（1996）：存储从每个节点到完成节点的距离。具有较大的初始设置以计算所有距离。更改图形后，它只能更新距离已更改的节点。与A *和D *无关。当您要查找每次更改后从多个节点到终点的距离时很有用；否则，LPA *或D * -Lite通常更有用。
+\```
 
-LPA * / Incremental A *（2001）：LPA * （终身计划A *），也称为Incremental A * （有时令人困惑，也称为“ LPA”，尽管它与其他名为LPA的算法无关）是DynamicSWSF-FP和A *的组合。在第一次运行时，它与A *完全相同。但是，在对图形进行较小的更改后，与A *相比，从同一开始/完成对中进行后续搜索就可以使用先前运行中的信息来大大减少需要检查的节点数量。这正是我的问题，所以听起来LPA *将是我的最佳选择。LPA *与D *的不同之处在于，它总是找到从同一起点到同一终点的最佳路径。起点移动时不使用（例如沿初始最佳路径移动的单位）。然而...
+D*（亦称 Dynamic A*，1994年）：在初次运行时，D* 的行为与 A* 高度相似，能够迅速找到从起点至终点的最优路径。然而，当单元沿路径移动且图结构发生变化时，D* 能够极为高效地重新计算从当前单元位置至终点的最优路径，其速度远超重新运行 A* 的方案。然而，D* 以其实现复杂性而著称，更为简洁的 D* Lite 已完全取代了 D*。
 
-D * -Lite（2002）：此算法使用LPA *模仿D *；也就是说，当它沿着初始最佳路径移动并且图形发生变化时，它会使用LPA *查找该单元的新最佳路径。D * -Lite被认为比D *简单得多，并且由于它始终至少与D *一样快地运行，因此它已经完全废弃了D *。因此，从没有任何理由使用D *。改用D * -Lite。
+Focused D*（1995年）：对 D* 的改进，旨在提升运算速度以实现"更接近实时"的性能表现。笔者未能找到其与 D* Lite 的直接对比资料，但鉴于其提出年代较早且 D* Lite 的讨论更为广泛，可以合理推断 D* Lite 更具优势。
 
-任何角度的运动
+Dynamic SWSF-FP（1996年）：存储从每个节点至目标节点的距离估算值。初始设置阶段需计算所有距离，计算开销较大。当图结构发生变化后，该算法仅更新距离发生变化的节点。该算法与 A* 及 D* 无直接关联。适用于每次变更后需计算从多个节点至目标距离的场景；否则，LPA* 或 D* Lite 通常是更为实用的选择。
 
-字段D *（2007年）：D * -Lite的一种变体，不限制移动到网格；也就是说，最佳路径可以使单位沿任意角度移动，而不仅仅是网格点之间的45度（或90度）。被美国国家航空航天局（NASA）用来寻找火星探测器。
+LPA* / Incremental A*（2001年）：LPA*（Lifelong Planning A*，亦称 Incremental A*，有时被混淆地简称为"LPA"，但其与另一同名算法并无关联）是 Dynamic SWSF-FP 与 A* 的结合体。初次运行时，其行为与 A* 完全一致。然而，在图结构发生小幅变更后，相比于重新运行 A* 进行同一起讫点对的搜索，LPA* 能够利用先前运行中积累的信息，大幅减少需要检查的节点数量。这恰好契合了笔者的需求，因此 LPA* 被认为是最佳选择。LPA* 与 D* 的不同之处在于，它始终寻求从同一固定起点到同一固定终点的最优路径，不适用于起点发生移动的场景（例如沿初始最优路径移动的单元）。然而……
 
-Theta *（2007）：A *的一种变体，比Field D *提供更好（更短）的路径。但是，由于它基于A *而不是D * -Lite，因此它没有Field D *所具有的快速重新计划功能。 另请参阅。
+D* Lite（2002年）：该算法利用 LPA* 来模拟 D* 的行为。换言之，当单元沿初始最优路径移动且图结构发生变化时，D* Lite 调用 LPA* 来计算该单元的新最优路径。D* Lite 被公认在实现上远比 D* 简洁，并且其运行速度始终不逊于 D*，因此已完全淘汰了 D*。从任何角度来看，都没有继续使用 D* 的充分理由，建议改用 D* Lite。
 
-Incremental Phi *（2009）：两全其美。Theta *的一个增量版本（又名允许快速重新计划）
+任意角度运动
+
+Field D*（2007年）：D* Lite 的一种变体，不再将运动限制于网格约束之内。换言之，最优路径可使单元沿任意角度移动，而不仅限于网格点之间的 45 度（或 90 度）方向。该技术已被美国国家航空航天局（NASA）应用于火星探测车的路径规划。
+
+Theta*（2007年）：A* 的一种变体，能够提供比 Field D* 更优（更短）的路径。然而，由于其基于 A* 而非 D* Lite，因此不具备 Field D* 所具有的快速重规划能力。另请参阅相关文献。
+
+Incremental Phi*（2009年）：兼具两者之长。Theta* 的增量版本（即支持快速重规划）。
 
 移动目标点
 
-GAA *（2008年）：GAA * （广义自适应A *）是A *的一种变体，用于处理运动目标点。这是甚至更早的算法“运动目标自适应A *”的概括
+GAA*（2008年）：GAA*（Generalized Adaptive A*）是 A* 的一种变体，专门用于处理运动目标点场景。这是更早的算法"Moving Target Adaptive A*"的泛化推广。
 
-GRFA *（2010）：GFRA * （广义边缘检索A *）似乎是（GA）* ，它是使用另一种称为FRA *的算法将GAA *概括为任意图形（即，不限于2D）的图。
+GFRA*（2010年）：GFRA*（Generalized Edge Retrieval A*）似乎是 GAA* 的进一步泛化，通过使用另一种称为 FRA* 的算法，将其适用范围拓展至任意图结构（即不限于二维网格）。
 
-MTD * -Lite（2010）：MTD * -Lite （移动目标D * -Lite）是“ D * Lite的扩展，它使用广义边缘检索A *背后的原理”来进行快速重新计划的移动目标搜索。
+MTD*-Lite（2010年）：MTD*-Lite（Moving Target D* Lite）是"D* Lite 的扩展，它使用 Generalized Edge Retrieval A* 背后的原理"来实现面向移动目标的高效重规划搜索。
 
-Tree-AA *（2011）：（???）似乎是一种用于搜索未知地形的算法，但与本节中的所有其他算法一样，它也是基于Adaptive A *的，因此在此将其放在此处。不确定与本节中的其他内容相比。
+Tree-AA*（2011年）：（待考证）似乎是一种用于未知地形搜索的算法，但与本小节中的所有其他算法一样，它同样基于 Adaptive A*，因此在此一并列出。与本节中其他算法的对比尚不明确。
 
 快速/次优
 
-随时D *（2005）：这是D * -Lite 的“随时”变体，通过将D * -Lite与称为Anytime Repairing A *的算法结合使用来完成。“随时”算法是一种可以在任何时间限制下运行的算法-它会非常快地找到一条非常不理想的路径作为起点，然后在给出更多时间的情况下对该路径进行改进。
+Anytime D*（2005年）：这是 D* Lite 的"随时"变体，通过将 D* Lite 与称为 Anytime Repairing A* 的算法相结合而实现。随时算法是一种可在任意时间约束下运行的算法——它能够迅速找到一条初始的次优路径作为起点，然后在给定更多时间的情况下，对该路径进行持续改进。
 
-HPA *（2004年）：HPA * （分级路径查找A *）用于在大型图形上查找大量单位，例如RTS （实时策略）视频游戏。它们都将具有不同的开始位置，并且可能具有不同的结束位置。HPA *将图分成层次结构，以便快速找到所有这些单元的“接近最佳”路径，比在每个单元上单独运行A *要快得多。 也可以看看
+HPA*（2004年）：HPA*（Hierarchical Pathfinding A*）专为在大型图上为大量单元（例如 RTS 实时策略视频游戏中的单位）寻找路径而设计。这些单元各自具有不同的起始位置，且可能具有不同的目标位置。HPA* 将图分解为层次结构，从而能够快速找到所有这些单元的"接近最优"路径，其速度远胜于在每个单元上单独运行 A* 的方案。另请参阅相关文献。
 
-PRA *（2005年）：据我了解，PRA * （部分优化A *）解决了与HPA *相同的问题，但是方式不同。它们都具有“相似的性能特征”。
+PRA*（2005年）：据笔者理解，PRA*（Partial Refinement A*）解决了与 HPA* 相同的问题，但采用了不同的实现方式。两者具有"相似的性能特征"。
 
-HAA *（2008）：HAA * （分层注释A *）是HPA *的概括，它允许在某些地形上限制某些单元的穿越（例如，某些单元可以穿过而较小的通道则无法通过；或只有飞行单位可以穿过的孔；等等）
+HAA*（2008年）：HAA*（Hierarchical Annotated A*）是 HPA* 的泛化推广，允许限制某些单元在某些地形上的通行能力（例如，某些通道大型单位无法通过而小型单位则可以；或仅飞行单位能够穿过的孔洞等）。
 
 其他/未知
 
-LPA（1997）：LPA （无环路路径查找算法）似乎是一种路由算法，仅与此处其他算法解决的问题略相关。我之所以仅提及它，是因为该论文在介绍LPA *的论文中在Internet上的多个地方被混淆（并且错误地）引用，而并非如此。
+LPA（1997年）：LPA（Loop-free Pathfinding Algorithm）似乎是一种路由算法，与本节中其他算法所解决的问题仅存在轻微关联。笔者在此提及它，仅因为该论文在互联网上多处被混淆地（且错误地）引用为介绍 LPA* 的文献，实则并非如此。
 
-LEARCH（2009）：LEARCH是机器学习算法的组合，用于教机器人如何自行寻找接近最佳的路径。作者建议将LEARCH与Field D *结合使用以获得更好的结果。
+LEARCH（2009年）：LEARCH 是一组机器学习算法的组合，用于教导机器人如何自主寻找接近最优的路径。作者建议将 LEARCH 与 Field D* 结合使用以获得更优效果。
 
-BDDD *（2009）：??? 我无法获取论文。
+BDDD*（2009年）：（待考证）笔者无法获取该论文。
 
-SetA *（2002）：??? 显然，这是A *的一种变体，可以搜索图的“二进制决策图”（BDD）模型？他们声称它在某些情况下的运行“比A *快几个数量级”。但是，如果我理解正确，那么这些情况是图上的每个节点都有很多边吗？
+SetA*（2002年）：（待考证）这显然是 A* 的一种变体，用于搜索图的"二元决策图"（BDD）模型。据称在某些情况下，其运行速度"比 A* 快数个数量级"。然而，若笔者的理解正确，这些情况是指图中每个节点均具有大量边的场景。
 
-考虑到所有这些，LPA *似乎最适合我的问题。
-
-
+综合上述分析，LPA* 似乎最适合笔者所面临的问题。
 
 \```

@@ -1,10 +1,10 @@
 [TOC]
 
-# 已经发表刊物上的经典问题们
+# 已发表文献中的经典问题
 
 
 
-这里还有很多例子：但这里使用ff求解STRIP
+以下列举更多示例，此处使用 ff 求解器处理 STRIPS 领域问题。
 
 fai.cs.uni-saarland.de/hoffmann/ff-domains.html
 
@@ -20,11 +20,8 @@ en.wikipedia.org/wiki/Blocks_world
 
 
 
-
-
 --------------------------
 acrobatics  
-
 
 
 
@@ -51,9 +48,16 @@ faults-ipc08
 
 
 
+
+
+
+
+
+
 ------------------------------------------------------------------------
 
 zenotravel
+
 
 
 
@@ -75,11 +79,11 @@ elevators
 
 
 
-
 ------------------------------------------------------------------------
 first-responders-ipc08  
 
  
+
 
 
 
@@ -94,11 +98,12 @@ triangle-tireworld
 
 
 
+
 ## Tireword Spiky: 
 A modification of triangle tireworld.
 
 ## Tireworld Truck:
-A modification ofTireworld Spiky where there are a few spiky segments.
+A modification of Tireworld Spiky where there are a few spiky segments.
 
 ## Islands. 
 Two grid-like islands of size n × n each are connected by a bridge.
@@ -119,92 +124,12 @@ Two grid-like islands of size n × n each are connected by a bridge.
 
 
 
-
-
-
-
-
-
-
-
 ## Doors: 
-Arow of n rooms one after the other connected through doors.
+A row of n rooms one after the other connected through doors.
 
 ## Miner. 
 
 An agent has to retrieve a number of items that can be found in two regions.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

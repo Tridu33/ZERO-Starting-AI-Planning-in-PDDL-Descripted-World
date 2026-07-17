@@ -3,38 +3,37 @@
 
 
 # QA_FONDSAT
-第一个strong cyclic planning,
-
-挑出来一些算strong planning.
-
+首先进行强循环规划（Strong Cyclic Planning），
+然后从中筛选出属于强规划（Strong Planning）的部分。
 
 
-嗯呐，这个k好像是步长为1，从1开始，前向为负（回溯步长-1），后向为正
+
+参数 k 的初始值为 1，步长为 1，前向传播为负（回溯步长为 -1），后向传播为正。
 
 
 k =|S|
 
 ```
-CNF不是a1 Λ a2 Λ ...... Λ an这种格式吗，它的算法不是要从S里面选若干个状态去填充这个CNF表达式，然后调用minisat去看是不是satisfiable吗？对于一个FOND问题，它的状态最多只有|S|个，所以当C(P，k)里面的k等于|S|+1的时候，意味着该问题不能解
+CNF 的形式不正是 a1 AND a2 AND ... AND an 吗？其算法的核心在于从 S 中选取若干个状态来填充这个 CNF 表达式，然后调用 MiniSAT 判定其是否可满足（Satisfiable）。对于一个 FOND 问题，其状态数量最多为 |S| 个，因此当 C(P, k) 中的参数 k 等于 |S| + 1 时，意味着该问题无解。
 ```
 
 
 
 
-how each high-level fluent can be translated into a low-level formula，论文中也出现过几次fluent是啥意思？
+如何将每个高层流利（High-level Fluent）翻译为低层公式（Low-level Formula）？论文中多次出现的 Fluent 究竟是何含义？
 
 Let Q = <F, V, I, O, G> be a QNP. The number of boolean states for Q is exponential in the number of fluents and variables
 
 
 ```
-《knowledge in action》作者Raymond Reiter ，书里应该有这个概念
-记起来了，fluent你就当成是对一个原子变量的赋值。
-在状态s下，变量F为真，那你就认为F是一个fluent叭
+《Knowledge in Action》作者 Raymond Reiter，该书应该包含此概念。
+Fluent 可以理解为对原子变量的一种赋值。
+在状态 s 下，若变量 F 为真，则可认为 F 是一个 Fluent。
 ```
 
-石头世界：
+Blocks World（积木世界）示例：
 
-$Q_{clear} =$ <**F**,V,I,O,G>
+$Q_{clear} =$ <**F**, V, I, O, G>
 
 
 F,{H}
@@ -85,7 +84,7 @@ result = cnf.parseOutput(name_output_satsolver, controllerStates, p, print_polic
 ......
 ```
 
-这个cnf类，输入“`formula-temp.txt写有cnf的文件`、`formula-extra-temp.txt空可能要有打开条件`， fair, strong”可以实现转换成为`CNF`
+该 CNF 类构造函数接收参数：“`formula-temp.txt写有cnf的文件`、`formula-extra-temp.txt空可能要有打开条件`， fair, strong”可以实现转换成为`CNF`
 
 
 ```
@@ -133,7 +132,7 @@ for i in range(1000):
 ```
 python main.py ../F-domains/islands/domain.pddl ../F-domains/islands/p03.pddl -policy 1
 ```
-参数字典：
+参数（params）字典如下：
 
 ```
 # params字典
@@ -147,7 +146,7 @@ python main.py ../F-domains/islands/domain.pddl ../F-domains/islands/p03.pddl -p
 'name_temp': 'temp'
 }
 ```
-所以取代命令行去参数的运行方法是：
+因此，替代命令行传参的运行方式如下：
 ```
 params={'time_limit': 3600, 'inc': 1, 'path_domain': '../F-domains/islands/domain.pddl', 'gen_info': 0, 'policy': 1, 'mem_limit': 4096, 'strong': 0, 'path_instance': '../F-domains/islands/p03.pddl', 'name_temp': 'temp'}
 ```
@@ -156,7 +155,7 @@ params={'time_limit': 3600, 'inc': 1, 'path_domain': '../F-domains/islands/domai
 ```
 python main.py ../F-domains/islands/domain.pddl ../F-domains/islands/p03.pddl -strong 1 -inc 2 -policy 1
 ```
-最后成功运行的例程：
+成功运行的例程输出如下：
 
 ```
 restarts              : 0
@@ -288,13 +287,13 @@ for i in range(1000):
 
 **./minisat %s %s' % (name_formula_file, name_output_satsolver）**
 
-根据minisat用法：
+根据 MiniSAT 的用法说明：
 
 ```
 USAGE: ./minisat <input-file> <result-output-file>
   where the input may be either in plain/gzipped DIMACS format or in BCNF.
 ```
-也就是说在命令行输入：
+即在命令行中执行：
 
 ```
 ./minisat formula-temp.txt outsat-temp.txt
@@ -321,7 +320,7 @@ CPU time              : 0.015625 s
 SATISFIABLE
 ```
 
-对应的是main.py运行过程中最最最开始的运行结果，先运行minisat再出现结果，因为Demo需要找4过程才能出结果，所以调用3次minisat开头出现3次这段使用情况，以及前两次test-outsat-temp.txt用python读取为result==None为空说明./minisat找不到可满足的，于是UNSATISFIABLE，知道第三次找到之后就是SATISFIABLE可满足有解。
+这对应于 main.py 运行过程中最初阶段的输出结果。求解器 MiniSAT 先于结果输出被调用，由于示例问题需要经过 4 次尝试才能得到解，因此 MiniSAT 共被调用了 3 次，每次调用时均会出现上述使用情况信息。前两次调用中，Python 读取 test-outsat-temp.txt 的结果为 result == None（即空），表明 ./minisat 未找到可满足的赋值，因此输出 UNSATISFIABLE。直到第三次调用才找到可满足的解，此时输出 SATISFIABLE。
 
 对应整体命令行的输出下面的：
 
@@ -514,22 +513,22 @@ Done
 ```
 
 
-## bugs
+## 常见错误与调试
 
 ```
 from parser import Parser
 ```
 
-无法导入自己定义的类，观察__pycache__没有对应.pyc导入不成功也发现
+无法导入自定义的类，检查 __pycache__ 目录发现没有对应的 .pyc 缓存文件，导入未成功。
 
-暂时low炸天的解决方法是复制parser.py代码到main.py文件,成功。
-
-
+暂时的解决方案是将 parser.py 中的代码直接复制到 main.py 文件中，此方法经测试可行。
 
 
 
 
-###  bug2
+
+
+### Bug 2：文件未找到错误
 
 ```
 Traceback (most recent call last):
@@ -539,8 +538,7 @@ Traceback (most recent call last):
     fres = open(nameFile, 'r')
 FileNotFoundError: [Errno 2] No such file or directory: 'outsat-temp.txt'
 ```
-观察源码
-暂时g 430
+源码分析如下（第 430 行附近）：
 
 ```
 	print('Cumulated solver time: %f' % sum(solver_time))
@@ -966,8 +964,8 @@ class Parser:
 
 群友问：
 
->如何理解语义和语法呢
-语义是语言的特性吗
+>如何理解语义（Semantics）与语法（Syntax）的概念？
+语义究竟是语言本身的内在特性吗？
 
 
 

@@ -2,5 +2,4 @@
 
 https://github.com/pellierd/pddl4j
 
-
-PDDL4J的目的是促进基于PDDL语言（规划域描述语言）的Java for自动规划工具的开发。
+PDDL4J旨在促进基于规划域描述语言（PDDL）的Java自动化规划工具之开发与研究。

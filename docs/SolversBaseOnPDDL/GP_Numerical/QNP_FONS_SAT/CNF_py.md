@@ -55,7 +55,7 @@ problem 3 grid move right
 
 
 
-观察传入my_task的数据结构都有什么输入：
+下面分析传入 my_task 的数据结构所包含的输入信息：
 
 ```
 p.generate_task(name_sas_file) #读取sas文件，保存数据
@@ -77,7 +77,7 @@ Setting compatible actions
 0.00387597084045
 ```
 
-查看my_task类中的局部变量
+查看 MyTask 类中的成员变量：
 
 ```
 class MyTask():
@@ -106,7 +106,7 @@ class MyTask():
 ```
 
 
-在Parser类的方法中翻译成，保存成mytask类的数据，可以根据myTask.py定义的方法
+在 Parser 类的方法中完成翻译并保存为 MyTask 类的数据结构，可依据 myTask.py 中定义的方法进行访问：
 
 ```
 	def print_task(self):
@@ -125,7 +125,7 @@ class MyTask():
 			print(a, self.actions[a])
 ```
 
-打印出来看
+通过打印输出查看：
 
 ```
 >>> my_task.print_task()
@@ -170,34 +170,34 @@ set(['move-right'])
 >>> print(my_task.action_name_to_actions)
 {'move-right': ['move-right(l2,l3)', 'move-right(l2,l1)', 'move-right(l1,l2)', 'move-right(l3,l2)']}
 ```
-parser.py中p.translate_to_atomic函数就是生成上述my_task数据结构对象的元凶
+parser.py 中的 p.translate_to_atomic() 函数正是生成上述 my_task 数据结构对象的核心机制。
 
 ```
     task = MyTask()
-    debug = False#这个应该是开发的时候方便调试可以设置True
-    print('Setting atoms')#原子命题
+    debug = False  # 此变量在开发阶段可设为 True 以便调试
+    print('Setting atoms')  # 设定原子命题
     task.set_atoms(self.get_atoms(), debug)
-    print('Setting initial')#初态
+    print('Setting initial')  # 设定初始状态
     task.set_initial(self.get_initial_atomic(), debug)
-    print('Setting goal')#终态
+    print('Setting goal')  # 设定目标状态
     task.set_goal(self.get_goal_atomic(), debug)
-    print('Setting actions')#设定动作
+    print('Setting actions')  # 设定动作
     task.set_actions_atomic(self.get_actions_atomic(), debug)
-    print('Setting mutexes')#设定互斥量？
+    print('Setting mutexes')  # 设定互斥约束
     task.set_mutex_groups(self.get_mutex_groups_atomic(), debug)
-    print('Setting relevant actions')#设置相关动作
+    print('Setting relevant actions')  # 设置相关动作
     task.set_relevant_actions(debug)
-    print('Setting splitting')#分裂
+    print('Setting splitting')  # 状态分裂
     task.initialize_splitting(debug)
     start = timer()
-    print('Setting compatible actions')#设置相容可以并存的动作
+    print('Setting compatible actions')  # 设置可兼容并存的动作
     task.create_compatible_actions(debug)
     print(timer() - start)
     return task
 ```
 
 
-然后就是main.py大循环就是高潮部分：留意重点：
+接下来分析 main.py 中的主循环部分，此乃整个求解过程的核心所在：
 
 ```
 solver_time = []
@@ -213,7 +213,7 @@ for i in range(1000):
 >>> len(controllerStates)
 3
 >>> print(show_gen_info)
-False懒得显示这部分，因为和我要关心的重点没关系
+False  # 无需显示此部分，因其与当前关注重点无关
 这里的p是Parser实例，可能用里面的方法，因为基本看着都是私有变量
     ......
     command = './minisat %s %s' % (name_formula_file, name_output_satsolver)#调用minisat
@@ -226,7 +226,7 @@ False懒得显示这部分，因为和我要关心的重点没关系
 ## CNF
 
 
-重要的是再来一遍，main.py大循环就是高潮部分：留意重点：
+值得再次强调的是，main.py 中的主循环部分（即核心求解逻辑）如下所示：
 
 ```
 solver_time = []
@@ -245,10 +245,10 @@ for i in range(1000):
     ......
 ```
 
-运行结果是`>>> print(result)
+运行结果为 `>>> print(result)
 True`
 
-然后是cnf对象的数据结构和变量，函数，类和方法
+接下来考察 CNF 对象的数据结构、成员变量、成员函数及类方法：
 
 ```
 class CNF:
@@ -298,7 +298,7 @@ class CNF:
 ```
 
 
-然后看看运行完结果，其实加断点可以看第一次循环的结果，
+下面展示运行完成后的结果。通过设置断点可以观察第一次循环后的状态：
 
 结果就是第二遍循环之后的这些量是多少：
 
@@ -327,7 +327,7 @@ True
 True
 ```
 
-上面这个数据整理一下格式：
+上述数据整理为以下格式便于查看：
 
 ```
 >>> print(cnf.mapVariableNumber)
@@ -539,7 +539,7 @@ True
 ```
 
 
-最终找到的SAT解答
+最终求得的 SAT 解：
 
 ```
 SAT
@@ -547,7 +547,7 @@ SAT
 -1 -2 3 4 5 -6 -7 -8 -9 -10 -11 12 13 -14 -15 -16 -17 -18 -19 -20 -21 22 23 -24 -25 26 -27 -28 -29 30 -31 -32 -33 -34 35 -36 -37 -38 39 -40 -41 -42 43 44 45 46 47 48 49 50 -51 -52 -53 54 55 -56 57 58 59 60 61 62 63 64 65 66 0
 ```
 
-对应的命题：
+对应的命题映射：
 
 ```
 
@@ -593,7 +593,7 @@ SAT
 
 <table width="100%" border="0" cellspacing="0" cellpadding="2" summary="section"><tbody><tr><td width="100%"><p><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="section"><tbody><tr bgcolor="#ffc8d8"><td valign="bottom" colspan="3"><font color="#000000" face="helvetica, arial"><a name="CNF">class <strong>CNF</strong></a>(<a href="http://localhost:8080/builtins.html#object">builtins.object</a>)</font></td></tr><tr bgcolor="#ffc8d8"><td rowspan="2"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td colspan="2"><tt><a href="http://localhost:8080/CNF.html#CNF">CNF</a>(n_file,&nbsp;n_file_extra,&nbsp;fair,&nbsp;strong)<br>&nbsp;<br><br>&nbsp;</tt></td></tr><tr><td>&nbsp;</td><td width="100%">Methods defined here:<br><dl><dt><a name="CNF-__init__"><strong>__init__</strong></a>(self, n_file, n_file_extra, fair, strong)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl><dl><dt><a name="CNF-addClause"><strong>addClause</strong></a>(self, clause)</dt></dl><dl><dt><a name="CNF-addClauseExtra"><strong>addClauseExtra</strong></a>(self, clause)</dt></dl><dl><dt><a name="CNF-alreadyUsed"><strong>alreadyUsed</strong></a>(self, var)</dt></dl><dl><dt><a name="CNF-assignKey"><strong>assignKey</strong></a>(self, var, typeVar=-1)</dt></dl><dl><dt><a name="CNF-generateAfterG"><strong>generateAfterG</strong></a>(self, n)</dt></dl><dl><dt><a name="CNF-generateAtLeastOneAction"><strong>generateAtLeastOneAction</strong></a>(self, task, controllerStates, debug)</dt></dl><dl><dt><a name="CNF-generateAtomControllerState"><strong>generateAtomControllerState</strong></a>(self, atom, controllerState)</dt></dl><dl><dt><a name="CNF-generateCompletionReachabilityG"><strong>generateCompletionReachabilityG</strong></a>(self, task, controllerStates, k, debug=False)</dt></dl><dl><dt><a name="CNF-generateConn"><strong>generateConn</strong></a>(self, CStates)</dt></dl><dl><dt><a name="CNF-generateFirstG"><strong>generateFirstG</strong></a>(self, n)</dt></dl><dl><dt><a name="CNF-generateGeneralizeConnection"><strong>generateGeneralizeConnection</strong></a>(self, task, controllerStates, debug=False)</dt></dl><dl><dt><a name="CNF-generateGoal"><strong>generateGoal</strong></a>(self, task, goalCState, debug=False)</dt></dl><dl><dt><a name="CNF-generateInequalityN"><strong>generateInequalityN</strong></a>(self, n1, n2)</dt></dl><dl><dt><a name="CNF-generateInitial"><strong>generateInitial</strong></a>(self, task, initialCState, debug=False)</dt></dl><dl><dt><a name="CNF-generateInputSat"><strong>generateInputSat</strong></a>(self, nameFile)</dt></dl><dl><dt><a name="CNF-generateLowerPredecessor"><strong>generateLowerPredecessor</strong></a>(self, n1, n2)</dt></dl><dl><dt><a name="CNF-generateMutexGroupsClauses"><strong>generateMutexGroupsClauses</strong></a>(self, task, controllerStates, debug=False)</dt></dl><dl><dt><a name="CNF-generateNegativeForwardPropagation"><strong>generateNegativeForwardPropagation</strong></a>(self, task, controllerStates, debug)</dt></dl><dl><dt><a name="CNF-generateOneSuccessor"><strong>generateOneSuccessor</strong></a>(self, task, controllerStates, debug=False)</dt></dl><dl><dt><a name="CNF-generatePairActionControllerState"><strong>generatePairActionControllerState</strong></a>(self, action, controllerState)</dt></dl><dl><dt><a name="CNF-generatePairCSCS"><strong>generatePairCSCS</strong></a>(self, n1, n2)</dt></dl><dl><dt><a name="CNF-generatePairFairCS"><strong>generatePairFairCS</strong></a>(self, n)</dt></dl><dl><dt><a name="CNF-generatePairUnfairCS"><strong>generatePairUnfairCS</strong></a>(self, n)</dt></dl><dl><dt><a name="CNF-generatePossibleNonDet"><strong>generatePossibleNonDet</strong></a>(self, task, controllerStates, debug=False)</dt></dl><dl><dt><a name="CNF-generatePreconditions"><strong>generatePreconditions</strong></a>(self, task, controllerStates, debug=False)</dt></dl><dl><dt><a name="CNF-generatePropagationIG"><strong>generatePropagationIG</strong></a>(self, task, controllerStates, k, debug=False)</dt></dl><dl><dt><a name="CNF-generatePropagationReachableGCyclic"><strong>generatePropagationReachableGCyclic</strong></a>(self, task, controllerStates, k, debug=False)</dt></dl><dl><dt><a name="CNF-generatePropagationReachableGStrong"><strong>generatePropagationReachableGStrong</strong></a>(self, task, controllerStates, k, debug=False)</dt></dl><dl><dt><a name="CNF-generatePropagationReachableGUnfair"><strong>generatePropagationReachableGUnfair</strong></a>(self, task, controllerStates, k, debug=False)</dt></dl><dl><dt><a name="CNF-generatePropagationReachableI"><strong>generatePropagationReachableI</strong></a>(self, task, controllerStates, debug=False)</dt></dl><dl><dt><a name="CNF-generateReachableG"><strong>generateReachableG</strong></a>(self, controllerState, j)</dt></dl><dl><dt><a name="CNF-generateReachableGClauses"><strong>generateReachableGClauses</strong></a>(self, task, controllerStates, goalCState, k, debug=False)</dt></dl><dl><dt><a name="CNF-generateReachableGInitial"><strong>generateReachableGInitial</strong></a>(self, task, goalCState, controllerStates, numberControllerStates, debug=False)</dt></dl><dl><dt><a name="CNF-generateReachableI"><strong>generateReachableI</strong></a>(self, controllerState)</dt></dl><dl><dt><a name="CNF-generateReachableI2"><strong>generateReachableI2</strong></a>(self, controllerState, j)</dt></dl><dl><dt><a name="CNF-generateReachableIClauses"><strong>generateReachableIClauses</strong></a>(self, task, initialCState, controllerStates, k, debug=False)</dt></dl><dl><dt><a name="CNF-generateReachableIinitial"><strong>generateReachableIinitial</strong></a>(self, initialCState, debug=False)</dt></dl><dl><dt><a name="CNF-generateReplacementEquality"><strong>generateReplacementEquality</strong></a>(self, n1, n2, atom)</dt></dl><dl><dt><a name="CNF-generateReplacementGoalPropagation"><strong>generateReplacementGoalPropagation</strong></a>(self, controllerState1, controllerState2, i)</dt></dl><dl><dt><a name="CNF-generateReplacementGoalPropagation3"><strong>generateReplacementGoalPropagation3</strong></a>(self, controllerState1, controllerState2, i)</dt></dl><dl><dt><a name="CNF-generateReplacementIPropagation"><strong>generateReplacementIPropagation</strong></a>(self, controllerState1, controllerState2, i)</dt></dl><dl><dt><a name="CNF-generateSymmetryBreaking"><strong>generateSymmetryBreaking</strong></a>(self, task, controllerStates, initialCState, goalCState, debug=False)</dt></dl><dl><dt><a name="CNF-generateTripletCSACS"><strong>generateTripletCSACS</strong></a>(self, initialState, action, finalState)</dt></dl><dl><dt><a name="CNF-generateTripletForcesBin"><strong>generateTripletForcesBin</strong></a>(self, task, controllerStates, debug=False)</dt></dl><dl><dt><a name="CNF-generate_clauses"><strong>generate_clauses</strong></a>(self, task, initialCState, goalCState, controllerStates, k, parser=None, debug=False)</dt></dl><dl><dt><a name="CNF-getNumberClauses"><strong>getNumberClauses</strong></a>(self)</dt></dl><dl><dt><a name="CNF-getNumberVariables"><strong>getNumberVariables</strong></a>(self)</dt></dl><dl><dt><a name="CNF-get_num_cl_vars"><strong>get_num_cl_vars</strong></a>(self)</dt></dl><dl><dt><a name="CNF-parseOutput"><strong>parseOutput</strong></a>(self, nameFile, controllerStates, parser, print_policy=False)</dt></dl><dl><dt><a name="CNF-printClausesSizes"><strong>printClausesSizes</strong></a>(self, n)</dt></dl><dl><dt><a name="CNF-printMapVarNumber"><strong>printMapVarNumber</strong></a>(self)</dt></dl><dl><dt><a name="CNF-printVariables"><strong>printVariables</strong></a>(self)</dt></dl><dl><dt><a name="CNF-reset"><strong>reset</strong></a>(self)</dt></dl><dl><dt><a name="CNF-setFairUnfairActions"><strong>setFairUnfairActions</strong></a>(self, task, controllerStates)</dt></dl><dl><dt><a name="CNF-writeDisjunctions"><strong>writeDisjunctions</strong></a>(self, file)</dt></dl><hr>Data descriptors defined here:<br><dl><dt><strong>__dict__</strong></dt><dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd></dl><dl><dt><strong>__weakref__</strong></dt><dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd></dl><hr>Data and other attributes defined here:<br><dl><dt><strong>num_types</strong> = 18</dt></dl><dl><dt><strong>print_types</strong> = [1, 2, 3, 7]</dt></dl><dl><dt><strong>type1</strong> = 'Atom-Controller'</dt></dl><dl><dt><strong>type10</strong> = 'Replacement-Goal'</dt></dl><dl><dt><strong>type2</strong> = 'Action-Controller'</dt></dl><dl><dt><strong>type3</strong> = 'Triplet'</dt></dl><dl><dt><strong>type4</strong> = 'Reachable-I'</dt></dl><dl><dt><strong>type5</strong> = 'Reachable-G'</dt></dl><dl><dt><strong>type6</strong> = 'Replacement-Goal'</dt></dl><dl><dt><strong>type7</strong> = 'Controller-Controller'</dt></dl><dl><dt><strong>type8</strong> = 'Replacement-Equality'</dt></dl><dl><dt><strong>type9</strong> = 'Inequality-CSCS'</dt></dl></td></tr></tbody></table></p></td></tr></tbody></table>
 
-入口函数
+入口函数（Entry Function）
 
 ```
     #唯一重点，一行代码
@@ -601,7 +601,7 @@ SAT
     #生成子句Clauses和写入cnf文件合取范式的核心代码!!!
 ```
 
-查看定义：
+查看函数定义如下：
 
 ```
 	def generate_clauses(self, task, initialCState, goalCState, controllerStates, k, parser = None, debug = False):
@@ -624,7 +624,7 @@ SAT
 
 
 
-## cnf源码加解析各自的类
+## CNF 源码及其各类方法的详细解析
 
 
 
@@ -686,9 +686,9 @@ class CNF:
 
 ```
 
-代码接上，标记方便跳转查看
+续接上文代码，添加标记以便跳转定位。
 
-## GENERAl通用功能性函数
+## 通用功能性函数（General Utility Functions）
 
 ```
 	###########################################
@@ -836,7 +836,7 @@ class CNF:
 			print(i)
 ```
 
-## parseOutput输出解决policy
+## parseOutput：策略输出与解析
 
 ```
 	def parseOutput(self, nameFile, controllerStates, parser, print_policy = False):
@@ -961,15 +961,15 @@ class CNF:
 		print('>=', i, ':', sum_greater)
 ```
 
-代码接上，标记方便跳转查看
+续接上文代码，添加标记以便跳转定位。
 
 
 
-## generate_clauses核心入口类
+## generate_clauses：核心入口函数
 
 
 main.py
-高潮部分：注意留意重点：
+核心循环部分，请留意以下关键要点：
 
 ```
 solver_time = []
@@ -1012,7 +1012,7 @@ cnf.py
 ```
 
 
-代码接上，标记方便跳转查看
+续接上文代码，添加标记以便跳转定位。
 
 ##  generate_clauses调用的生成子句的类
 

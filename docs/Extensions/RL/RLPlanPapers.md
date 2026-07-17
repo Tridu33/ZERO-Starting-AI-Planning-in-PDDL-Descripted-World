@@ -1,5 +1,6 @@
-# 2. Survey of research literature 
-several recent research papers in that area：
+# 2. Survey of Research Literature
+
+本部分综述该领域内的若干近期研究文献：
 
 
 合集

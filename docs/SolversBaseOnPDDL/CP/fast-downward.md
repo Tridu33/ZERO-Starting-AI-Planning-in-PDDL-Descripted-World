@@ -1,13 +1,13 @@
 # fast-downward
 
-https://stackoverflow.com/questions/18945035/fast-forward-and-pddl-is-the-computed-solution-the-best fd优于ff
+https://stackoverflow.com/questions/18945035/fast-forward-and-pddl-is-the-computed-solution-the-best FD 优于 FF
 
 http://www.fast-downward.org/
 
 
 https://github.com/aibasel/downward
 
-https://hackage.haskell.org/package/fast-downward 比如这里有个gripper例子
+https://hackage.haskell.org/package/fast-downward 此处包含一个 gripper 示例
 
 
 
@@ -23,17 +23,17 @@ https://icaps20subpages.icaps-conference.org/tutorials/evaluating-planners-with-
 
 
 
-## Lab and Downward Lab
+## Lab 与 Downward Lab
 
 https://github.com/aibasel/lab
 
 
-Lab是一个Python软件包，用于评估基准集上的求解器。实验可以在单台计算机或计算机集群上运行。该软件包还包含用于解析结果和创建报告的代码。
+Lab 是一个基于 Python 的软件包，专门用于在基准测试集上评估求解器的性能。实验既可在单台计算机上执行，亦可在计算机集群上运行。该软件包还集成了用于解析实验结果和生成分析报告的相关代码。
 
-该向下实验室Python包方便的运行实验快速向下规划体系。它使用通用实验软件包Lab。当前，实验室和向下实验室一起分发。
+Downward Lab 这一 Python 软件包为 Fast Downward 规划系统的实验运行提供了便捷支持。它基于通用的实验软件包 Lab 构建。目前，Lab 与 Downward Lab 采取统一发布的方式。
 
-代码：https : //github.com/aibasel/lab
+代码：https://github.com/aibasel/lab
 
-文档：https : //lab.readthedocs.io
+文档：https://lab.readthedocs.io
 
-引用：请使用引用向下实验室
+引用方式：请参照 Downward Lab 的引用说明。

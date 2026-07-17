@@ -6,7 +6,7 @@ https://icaps16.icaps-conference.org/proceedings/summer-school/Rintanen.pdf
 
 Computational Complexity in AutomatedPlanning and Scheduling
 
-PDDL时间上看不是图灵完备，因为不是无限长的纸带
+从计算理论的时间维度审视，PDDL并非图灵完备语言，其根本原因在于缺乏无限长度的纸带模型，因而无法实现通用计算能力。
 
 [In defense of PDDL axioms](https://www.sciencedirect.com/science/article/pii/S0004370205000810
 
