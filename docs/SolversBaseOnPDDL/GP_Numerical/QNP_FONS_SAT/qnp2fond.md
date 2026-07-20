@@ -1,10 +1,10 @@
 [TOC]
 
 # qnp2fond
+
 ```
 ./qnp2fond [--force-direct] [--disable-optimizations] <qnp-file> <num-bits-per-counter> <max-stack-depth> <prefix>
 ```
-
 
 例子
 
@@ -33,15 +33,13 @@ fond: #features=22, #actions=16
 >         with open("output.sas", "w") as output_file:
 ```
 
-
-
 命令行执行：
 
 ```
 command = 'python translate/translate.py ' + str(time_limit) + ' ' + self.domain + ' ' + self.problem + ' ' + sas_file_name + ' | grep "noprint"'
 ```
-利用领域定义文件（domain.pddl）和问题描述文件（problem.pddl），通过 translate.py 脚本生成翻译后的中间表示文件（SAS 格式）
 
+利用领域定义文件（domain.pddl）和问题描述文件（problem.pddl），通过 translate.py 脚本生成翻译后的中间表示文件（SAS 格式）
 
 ```
 begin_version
@@ -87,7 +85,6 @@ move-right l2 l1
 0
 end_operator
 0 此行为固定格式结尾标记
-
 ```
 
 接着
@@ -96,47 +93,3 @@ end_operator
 p.generate_task(name_sas_file) # 读取 SAS 文件，解析并保存结构化的规划数据
 >>> my_task = p.translate_to_atomic() # 将解析后的数据存储至 MyTask 类的实例对象 my_task 中
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

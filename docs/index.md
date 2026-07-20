@@ -1,213 +1,147 @@
-[TOC]
+# 从零起步：PDDL 描述世界中的 AI 规划
 
-# ZERO-Starting AI Planning in PDDL-Descripted World
+> 凡事预则立，不预则废。本文档系统梳理 PDDL（规划领域定义语言）的核心概念、工具生态与前沿研究，为 AI 规划学习者提供一站式知识导航。
 
-从零起步，于 PDDL-Descripted 世界之中，开启 AI 规划之探索征程。正所谓"凡事预则立，不预则废"，此之谓也。
+## 规划知识 Wiki
 
-## plan-wiki
+规划领域的主要在线知识库 [Planning.wiki](https://planning.wiki/) —— AI 规划与 PDDL 的权威 Wiki，涵盖从入门到精通的系统教程与参考资料。其源代码开源于 [planning-wiki](https://github.com/nergmada/planning-wiki)。
 
-https://github.com/nergmada/planning-wiki
+经典综述文献 [Everything You Always Wanted to Know About Planning (But Were Afraid to Ask)](https://fai.cs.uni-saarland.de/hoffmann/papers/ki11.pdf) 由 Jörg Hoffmann 撰写，系统回答了规划领域的核心问题。
 
-https://fai.cs.uni-saarland.de/hoffmann/papers/ki11.pdf Everything You Always Wanted to Know About Planning (But Were Afraid to Ask)
+来自 Universidad Simón Bolívar 的优质课程资料：[PF 3335 Artificial Intelligence Planning](https://yawgmoth.github.io/PF-3335/)，配套[课程项目](https://yawgmoth.github.io/PF-3335/project/)与[在线幻灯片](https://yawgmoth.github.io/PF-3335/slides/)。
 
-人工智能规划领域之优质课程资料：https://yawgmoth.github.io/PF-3335/ PF 3335 Artificial Intelligence Planning 课程实践项目：https://yawgmoth.github.io/PF-3335/project/ 在线版教学幻灯片：https://yawgmoth.github.io/PF-3335/slides/
+## 学习资源
 
-## Resources
+### 入门教程
 
-**Tutorials**
+- [Getting Started with PDDL](https://fareskalaboud.github.io/LearnPDDL/) —— 面向初学者的 PDDL 入门指南，系统讲解 PDDL 的基本语法与建模方法。源代码见 [LearnPDDL](https://github.com/fareskalaboud/LearnPDDL)。
+- [PDDL Reference Guide](https://github.com/jan-dolejsi/pddl-reference) —— Jan Dolejsi 等人维护的 PDDL 语法参考手册，涵盖各版本规范的详细说明。
+- [planning.wiki/extras](https://planning.wiki/extras) —— 规划工具与学习资源的精选合集。
+- [PDDL 维基百科词条](https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language#De_facto_official_versions_of_PDDL) —— 综述 PDDL 各版本语言特征与历史沿革。
 
-Getting Started with PDDL：https://fareskalaboud.github.io/LearnPDDL/ 源码：https://github.com/fareskalaboud/LearnPDDL
+### 视频教程
 
-https://github.com/jan-dolejsi/pddl-reference
+- [Learn PDDL by Fares K. Alaboud](https://fareskalaboud.github.io/LearnPDDL/)
+- [Introduction to AI Planning. Part I. (video)](https://www.youtube.com/watch?v=EeQcCs9SnhU)
+- [Introduction to AI Planning. Part II. (video)](https://www.youtube.com/watch?v=FS95UjrICy0)
+- [VS Code PDDL 插件演示](https://www.youtube.com/watch?v=XW0z8Oik6G8)
 
-https://planning.wiki/extras
+### 中文社区资源
 
-https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language#De_facto_official_versions_of_PDDL
+- [PDDL 知乎专栏](https://www.zhihu.com/column/pddl-basicnote) —— 中文世界系统介绍 PDDL 的学习专栏。
+- [PDDL-editor——基于 VS Code 的简易规划器](https://zhuanlan.zhihu.com/p/113874556) —— 寻风者风寻撰写的 VS Code PDDL 入门文章。
 
-start-process-stop model.
+### 规划社区
 
-marketplace.visualstudio.com/items?itemName=jan-dolejsi.pddl 相关教程资源
+规划领域爱好者在 Slack 平台上设有 [The Planning Community](https://app.slack.com/plans/TK9TZPZD3?entry_point=team_messages_limit_meter&feature=unlimited_messages)，汇集了丰富的学术讨论与技术交流资源。
 
-PDDL-editor（基于 VS Code 的简易规划器）——寻风者风寻所撰文章 - 知乎
-https://zhuanlan.zhihu.com/p/113874556
+## Planning.Domains 生态系统
 
-https://www.zhihu.com/column/pddl-basicnote PDDL 知乎专栏
+[Planning.Domains](http://planning.domains/) 是一个面向 AI 规划研究者的在线服务生态系统，由澳大利亚、西班牙、英国等多国研究机构联合构建。其核心组件包括：
 
-youtube.com/watch?v=XW0z8Oik6G8
+### API 服务
 
-相关网站资源
+[api.planning.domains](http://api.planning.domains/) 提供对 PDDL 基准领域及问题文件的编程访问接口。该 API 管理三类对象：
 
-https://planning.wiki/（GitHub 上提供完整源代码）https://github.com/nergmada/planning-wiki
+- **Problem（问题）**：涵盖每个问题的文件路径、对应领域、统计信息等。
+- **Domain（领域）**：涵盖各领域的描述文档及统计指标。
+- **Collection（集合）**：涵盖历届 IPC（国际规划大赛）的领域集合及特定规划器的集合。
 
-https://github.com/jan-dolejsi/pddl-reference/tree/master/docs 关于 PDDL 语言、规划方法、历史沿革、具体用法及研究进展之详尽阐述，敬请参阅该指南。
+经典规划领域的 PDDL 文件集合托管于 [classical-domains](https://github.com/AI-Planning/classical-domains)，研究者可通过克隆仓库或 API 命令行工具获取副本。目前接受经典 PDDL 基准（涵盖各版本与表现力层级），未来拟扩展至 POND、FOND、RDDL 等形式化体系。
 
-视频教程资源：
+### 在线求解器
 
-  - [Learn PDDL by Fares K. Alaboud](https://fareskalaboud.github.io/LearnPDDL/)
-  - [Introduction to AI Planning. Part I. (video)](https://www.youtube.com/watch?v=EeQcCs9SnhU)
-  - [Introduction to AI Planning. Part II. (video)](https://www.youtube.com/watch?v=FS95UjrICy0)
+[solver.planning.domains](http://solver.planning.domains/) 提供在线 PDDL 求解服务，支持通过 URL 链接或 JSON 格式提交原始 PDDL 内容，从而检索或验证规划方案。配套提供 JavaScript/Python 远程调用的示例代码。
 
-http://planning.domains/
+### 在线编辑器
 
-api.planning.domains
+[editor.planning.domains](http://editor.planning.domains/) 集成 PDDL 编辑、求解与验证功能于一体，是基于 Web 的规划开发环境。
 
-solver.planning.domains
+### 教育资源
 
-开源项目源代码
-github.com/jan-dolejsi/vscode-pddl
+[education.planning.domains](http://education.planning.domains/) 汇集自动化规划与建模的教学幻灯片、源代码及视频教程，是系统学习 AI 规划的优质起点。
 
-github.com/jan-dolejsi/vscode-pddl-samples
+## VS Code PDDL 扩展
 
-## VS Code PDDL 扩展插件
+VS Code 的 PDDL 扩展插件（[pddl](https://marketplace.visualstudio.com/items?itemName=jan-dolejsi.pddl)）是目前最成熟的 PDDL 开发环境，提供语法高亮、代码补全、规划器集成与验证等一站式功能。其源代码开源于 [vscode-pddl](https://github.com/jan-dolejsi/vscode-pddl)，示例工程见 [vscode-pddl-samples](https://github.com/jan-dolejsi/vscode-pddl-samples)。
 
-VS Code 的 PDDL 扩展插件汇聚了众多相关研究资源与学术链接。
+插件集成了丰富的规划工具与资源：
 
-VS Code 插件 PDDL：AI Planning and PDDL support in VS Code
+- [VAL——规划验证器](https://nms.kcl.ac.uk/planning/software/val.html)：由 KCL 开发，依据原始领域与问题文件验证规划方案的正确性，在执行操作时确保全部前提条件得以满足，同时检验规划是否真正实现既定目标。
+- [Eviscerator——规划器测试工具](https://www.github.com/nergmada/eviscerator)：自动测试并识别规划器所支持的 PDDL 需求特性，面向 Linux 提供预编译二进制文件。
+- [ROSPlan——ROS 中的规划框架](https://github.com/KCL-Planning/ROSPlan/)：将 AI 规划集成至机器人操作系统（ROS），支持对机器人环境进行建模与任务规划执行。
+- [Plansys2——ROS2 中的规划系统](https://github.com/IntelligentRoboticsLabs/ros2_planning_system)：面向 ROS2 的规划集成框架，采用[行为树](https://github.com/BehaviorTree/BehaviorTree.CPP)实现动作执行，提供丰富[示例](https://github.com/IntelligentRoboticsLabs/ros2_planning_system_examples/)。
+- [通用规划验证器（开发中）](https://github.com/aig-upf/universal-planning-validator)：由西班牙 UPF 研究团队主导开发，旨在支持经典、时序与多智能体规划的验证。
 
-youtube.com/watch?v=XW0z8Oik6G8&feature=youtu.be
+### 编辑器插件生态
 
-Below you can find a collection of resources for writing, learning and using PDDL and planning. For more information on what these tools and resources are and how they can help, please visit the [additional resources](https://github.com/nergmada/planning-wiki/blob/master/extras) page.
+除 VS Code 外，PDDL 还支持其他主流编辑器：
 
-- [Planning.Domains](http://planning.domains/)
-- Planner Tools
-  - [VAL - The Plan Validator](https://nms.kcl.ac.uk/planning/software/val.html)
-  - [ROSPlan - Planning in ROS](https://github.com/KCL-Planning/ROSPlan/)
-  - [PlanSys2 - Planning in ROS2](https://github.com/IntelligentRoboticsLabs/ros2_planning_system)
-  - [Eviscerator - The Planner tester](https://www.github.com/nergmada/eviscerator)
-  - [Universal Planning Validator (Under Development)](https://github.com/aig-upf/universal-planning-validator)
+| 编辑器 | 插件 | 说明 |
+|--------|------|------|
+| Visual Studio Code | [PDDL Plugin for VSCode](https://marketplace.visualstudio.com/items?itemName=jan-dolejsi.pddl) | 功能最全面 |
+| Sublime Text | [MyPDDL Plugin for Sublime](https://packagecontrol.io/packages/myPDDL) | 轻量级支持 |
+| Atom | [MyPDDL Plugin for Atom](https://atom.io/packages/mypddl) | 已停止维护 |
+| Web | [Planning.Domains PDDL Editor](http://editor.planning.domains/) | 在线编辑求解一体化 |
 
-https://planning.wiki/extras 详细介绍
+## 规划器工具集
 
-## solver.planning.domains：在线规划解决方案
+### 经典规划器
 
-http://solver.planning.domains/
+- **Fast Downward** ([fast-downward.org](http://www.fast-downward.org/))：基于启发式搜索的经典规划系统，源代码见 [downward](https://github.com/aibasel/downward)。配套的 [Downward Lab](https://github.com/aibasel/lab) 提供实验评估框架，文档见 [lab.readthedocs.io](https://lab.readthedocs.io)。[planning.wiki 上的 Fast Downward 词条](https://planning.wiki/ref/planners/fd) 提供详细使用指南。
+- **FF Planner** ([FF 官网](https://fai.cs.uni-saarland.de/hoffmann/ff.html))：由 Jörg Hoffmann 开发的经典前向启发式搜索规划器，曾获 IPC-2 杰出性能奖。
+- **LAPKT** ([Lightweight Automated Planning Toolkit](https://lapkt-dev.github.io/docs/gettingStarted/))：轻量级自动规划工具包，集成多种启发式搜索算法。
 
-http://planning.domains/
+### 通用规划器
 
-包括：
+- **MyND** ([GitHub](https://github.com/robertmattmueller/myND))：基于 Java 的启发式 AND/OR 搜索规划器。
+- **PRP** ([planner-for-relevant-policies](https://github.com/QuMuLab/planner-for-relevant-policies))：基于经典重规划的 FOND 求解器。
+- **FOND-SAT**：将 FOND 规划归约为 SAT 可满足性问题的求解方法。
 
-- api
-  http://api.planning.domains/ API 查询
+### 领域实例集合
 
-https://github.com/AI-Planning/classical-domains PDDL 文件的系统化集合，当前仅涵盖经典规划问题。
+公开可用的 PDDL 领域实例：[IPC PDDL Domains](https://github.com/potassco/pddl-instances) —— 历届国际规划大赛使用的标准基准集。
 
-planning.domains API 提供了对广泛 PDDL 基准领域及问题文件的编程访问能力。所有底层物理文件均可于 GitHub 的域存储库中找到。研究者既可通过克隆存储库获取副本，亦可借助下文所述之命令行实用工具自行获取。
+推荐参考书籍：[An Introduction to the Planning Domain Definition Language](http://www.morganclaypoolpublishers.com/catalog_Orig/product_info.php?products_id=1384)，系统讲解 PDDL 的形式语义与建模实践。
 
-如在 PDDL 文件中发现任何错误（如集合不完整、定义不当等），请克隆存储库，并将修订内容以 Pull Request 形式提交。在合理范围内，本团队亦接受包含全新基准测试集的 Pull Request（例如于新一届 IPC 竞赛之后，或作为特定领域套件之发布）。目前仅接受经典 PDDL 基准（涵盖任意 PDDL 级别与表现力），然未来我们企望将其扩展至更丰富的其他形式化体系（如 POND、FOND、RDDL 等）。
+## 课程与学术资源
 
-文件集合仅是 api.planning.domains 的首个组件。该服务的核心功能在于提供查询、浏览及审视现有领域的交互式界面。我们持续存储并更新每一领域及问题之各类属性，诸如规划成本之上界与下界、领域中的需求约束、问题的经典宽度等。在此页面上，您可查阅 api.planning.domains 接口之描述，以及用于简化 API 交互的相关工具与程序库之详细信息。
+### 教学幻灯片与课程
 
-该 API 包含三种类型的对象：
+| 机构 | 课程内容 | 资源链接 |
+|------|----------|----------|
+| [UniBasel AI Group](https://ai.dmi.unibas.ch/) | AI 与规划课程 | [Lecture Slides](https://ai.dmi.unibas.ch/forstudents.html) |
+| [FAI Group, Saarland University](http://fai.cs.uni-saarland.de/index.html) | AI 基础与规划课程 | [Lecture Slides](http://fai.cs.uni-saarland.de/teaching/), [Planning Source](http://education.planning.domains/lecturer_area/fai-planning.zip), [AI Source](http://education.planning.domains/lecturer_area/fai-ai.zip) |
 
-- Problem（问题）：涵盖每个问题的信息，包括其文件、对应的领域文件、问题统计信息等。
-- Domain（领域）：涵盖每一单独领域之信息，包括其描述及该领域的各项统计指标。
-- Collection（集合）：涵盖领域集合，包括历届 IPC 的集合、单个规划程序集合等。
+### 教学实验与作业
 
-免责声明：目前，该 API 尚处于高度 Alpha 阶段。期望最终能有一种精确引用评估软件所用基准之方法，但目前我们仍在修复领域、替换问题集并纠正各项统计数据之错误。在移除本免责声明之前，建议您勿将 API 用于正式事务（涵盖学术界及其他领域）。
+| 课程/项目 | 负责人 | 说明 | 资源 |
+|-----------|--------|------|------|
+| [AI (CS) at PUCRS](https://github.com/pucrs-ai-cs) | Felipe Meneguzzi 等 | 基于启发式搜索的规划实验 | [Source Code](https://github.com/pucrs-automated-planning/heuristic-planning) |
+| [Pacman Capture the Flag](https://ieeexplore.ieee.org/document/8468047) | Nir Lipovetzky, Sebastian Sardina | 基于 Berkeley AI Pacman 框架的竞赛 | [Competition](https://sites.google.com/view/pacman-capture-hall-fame), [Code](https://bitbucket.org/ssardina-teaching/pacman-contest/src/master/) |
+| [ICAPS 2020 Summer School](https://icaps20subpages.icaps-conference.org/students/summer-school/icaps-online-summer-school-lab-plan-synthesis/) | Michael Cashmore | 使用 PDDL 进行规划建模的入门实验 | [Lab Details](http://education.planning.domains/lecturer_area/icaps20-ss-lab1.zip) |
 
-- solver
+## 关于本文档
 
-http://solver.planning.domains/
+### 构建方式
 
-在线 PDDL 文件求解器之使用示例教程：
+本文档使用 [MkDocs](https://www.mkdocs.org) 构建，可便捷地将 Markdown 笔记转化为美观的在线文档。
 
-可通过发送指向 PDDL 文件的链接，或直接以 JSON 格式提交原始 PDDL 内容来调用该求解器，从而检索或验证规划方案。
+常用命令：
+- `mkdocs new [dir-name]` —— 创建新项目
+- `mkdocs serve` —— 启动实时重载的文档服务器
+- `mkdocs build` —— 构建静态文档站点
+- `mkdocs -h` —— 打印帮助信息
 
-Javascript/Python 远程调用之使用范例与代码
+### 项目布局
 
-- editor
+```
+mkdocs.yml    # 配置文件
+docs/
+    index.md  # 文档主页
+    ...       # 其他 Markdown 页面、图片及其他文件
+```
 
-http://editor.planning.domains/ 在线 PDDL 编辑器、求解器与验证器
+---
 
-- education
-
-http://education.planning.domains/
-
-学习自动化规划与建模技术的优质资源
-
-教学幻灯片、源代码及视频教程
-
-## 规划工具集锦
-
- [VAL——规划验证器](https://nms.kcl.ac.uk/planning/software/val.html)
-
-[VAL](https://nms.kcl.ac.uk/planning/software/val.html)（亦称验证器）是一种用于依据原始领域与问题文件验证规划器所生成解决方案的工具。VAL 可在执行操作时确保规划所需之全部前提条件得以满足，同时检验规划是否真正实现了既定目标。
-
- [Eviscerator——规划器测试工具](https://www.github.com/nergmada/eviscerator)
-
-[Eviscerator](https://www.github.com/nergmada/eviscerator) 是为本 PDDL 参考指南而开发的工具，其能够自动测试并识别规划器所支持的 PDDL 需求。作为一款开源工具，它随附面向 Linux 的持续部署预构建二进制文件，研究者可直接下载并测试规划器，无需操心编译流程。
-
- [ROSPlan——ROS 中的规划框架](https://github.com/KCL-Planning/ROSPlan/)
-
-[ROSPlan](https://github.com/KCL-Planning/ROSPlan/) 是机器人操作系统（ROS）的一个模块，旨在将 AI 规划集成至基于 ROS 的机器人系统之中。ROSPlan 支持对机器人环境进行建模，以规划和执行各类任务。
-
-[Plansys2——ROS2 中的规划系统](https://github.com/IntelligentRoboticsLabs/ros2_planning_system)
-
-[Plansys2](https://github.com/IntelligentRoboticsLabs/ros2_planning_system) 是机器人操作系统新版本——**ROS2** 中的重要项目，致力于整合规划与机器人技术。其目标在于构建一个框架，使得不同的规划器能够轻松集成，从而驱动机器人执行各项任务。系统采用[行为树](https://github.com/BehaviorTree/BehaviorTree.CPP)实现[动作](https://github.com/BehaviorTree/BehaviorTree.CPP)，仓库中亦提供了丰富的[示例](https://github.com/IntelligentRoboticsLabs/ros2_planning_system_examples/)。
-
- [通用规划验证器（开发中）](https://github.com/aig-upf/universal-planning-validator)
-
-[通用规划验证器（开发中）](https://github.com/aig-upf/universal-planning-validator) 是一种用于验证规划领域与问题的工具。目前，它仅支持经典规划问题与领域，但该工具的设计目标在于未来扩展至时间域与多主体域。如需支持比传统规划更丰富的 PDDL 高级功能之验证器，建议使用 VAL（规划验证器）替代。
-
-- PDDL Tools
-  - Visual Studio Code
-    - [PDDL Plugin for VSCode](https://marketplace.visualstudio.com/items?itemName=jan-dolejsi.pddl)
-  - Sublime Text Editor
-    - [MyPDDL Plugin for Sublime](https://packagecontrol.io/packages/myPDDL)
-  - Atom Text Editor
-    - [MyPDDL Plugin for Atom](https://atom.io/packages/mypddl)
-  - [Planning.Domains PDDL Editor](http://editor.planning.domains/)
-- Learning Resources
-  - [Learn PDDL by Fares K. Alaboud](https://fareskalaboud.github.io/LearnPDDL/)
-  - [Introduction to AI Planning. Part I. (video)](https://www.youtube.com/watch?v=EeQcCs9SnhU)
-  - [Introduction to AI Planning. Part II. (video)](https://www.youtube.com/watch?v=FS95UjrICy0)
-
-http://education.planning.domains/
-
-##  Course Materials
-
-Compiled and source course materials (please [contact teacher in this url](mailto:christian.muise@gmail.com) for access to source materials).
-
- Lecture Slides
-
-| [UniBasel AI Group](https://ai.dmi.unibas.ch/)               | Misc AI and Planning Courses | [Lecture Slides](https://ai.dmi.unibas.ch/forstudents.html) |                                                              |
-| ------------------------------------------------------------ | ---------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| [Foundations of Artificial Intelligence (FAI) Group](http://fai.cs.uni-saarland.de/index.html) | Misc AI and Planning Courses | [Lecture Slides](http://fai.cs.uni-saarland.de/teaching/)   | [Planning Source](http://education.planning.domains/lecturer_area/fai-planning.zip) [AI Source](http://education.planning.domains/lecturer_area/fai-ai.zip) |
-
- Example Assignments
-
-| [Artificial Intelligence (CS) at PUCRS](https://github.com/pucrs-ai-cs) | Felipe Meneguzzi, Mauricio Magnaguagno, Leonardo Rosa Amado | Planning using Heuristic Search assignment focused on implementing the core functions of an automated planner. | [Source Code](https://github.com/pucrs-automated-planning/heuristic-planning) |
-| ------------------------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Pacman Capture the Flag in AI Courses](https://ieeexplore.ieee.org/document/8468047) | Nir Lipovetzky, Sebastian Sardina                           | Competition using the Berkley AI Pacman framework. Students use search algorithms, PDDL, classical replanning, minimax, etc. for their agents. | [Competition](https://sites.google.com/view/pacman-capture-hall-fame) [Code](https://bitbucket.org/ssardina-teaching/pacman-contest/src/master/) |
-| [ICAPS 2020 Summer School Plan Synthesis](https://icaps20subpages.icaps-conference.org/students/summer-school/icaps-online-summer-school-lab-plan-synthesis/) | Michael Cashmore                                            | This training lab is an introduction to modelling planning problems using the Planning Domain Definition Language (PDDL). | [Lab Details](http://education.planning.domains/lecturer_area/icaps20-ss-lab1.zip) |
-
-
-
-- Publicly Available PDDL Domains
-  - [IPC PDDL Domains](https://github.com/potassco/pddl-instances)
-- Book: [An Introduction to the Planning Domain Definition Language](http://www.morganclaypoolpublishers.com/catalog_Orig/product_info.php?products_id=1384)
-
-## ThePlanningCommunity
-
-https://app.slack.com/plans/TK9TZPZD3?entry_point=team_messages_limit_meter&feature=unlimited_messages
-
-Stack 平台上设有一个 Planning Community，其中汇集了丰富的学术资源与讨论资料。
-
-
-## Why MkDocs?
-
-I like take notes with markdown opened by **Typora & Vnote** on my local PC notes system.
-
-This document made by [mkdocs.org](https://www.mkdocs.org), because it can directly change my notes into wonderful help documents shown online.
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+*本文档以 Typora 与 Vnote 在本地 PC 笔记系统中撰写，通过 MkDocs 转化为在线帮助文档。*

@@ -1,18 +1,18 @@
- Fluent
+# STRIPS 语言
 
-https://en.wikipedia.org/wiki/Fluent_(artificial_intelligence)
+## Fluent（流利性）
 
-fluent
-
-  STRIPS语言
+[Fluent（人工智能中的流利性概念）](https://en.wikipedia.org/wiki/Fluent_(artificial_intelligence))
 
 您可借助在线应用程序 [Strips-Fiddle](https://stripsfiddle.herokuapp.com/) 探索并实验多种 STRIPS PDDL 领域及问题实例。您既可直接运行内置的示例领域，亦可注册账户以自行设计人工智能规划领域与相应问题。
 
-若需将基于 STRIPS 的 AI 规划功能集成至您的应用程序或游戏之中，可使用 Node.js [strips](https://www.npmjs.com/package/strips) 库。该库支持广度优先搜索、深度优先搜索以及 A* 搜索等经典图搜索算法。[Strips 库的 GitHub 主页](https://github.com/primaryobjects/strips/) 对该库进行了更高层次的系统性概述，并包含[星际争霸（StarCraft）](https://github.com/primaryobjects/strips/#starcraft)领域的示例。
+若需将基于 STRIPS 的 AI 规划功能集成至您的应用程序或游戏之中，可使用 Node.js [strips](https://www.npmjs.com/package/strips) 库。该库支持广度优先搜索、深度优先搜索以及 A\* 搜索等经典图搜索算法。[Strips 库的 GitHub 主页](https://github.com/primaryobjects/strips/) 对该库进行了更高层次的系统性概述，并包含[星际争霸（StarCraft）](https://github.com/primaryobjects/strips/#starcraft)领域的示例。
 
-https://en.wikipedia.org/wiki/Stanford_Research_Institute_Problem_Solver 关于入门指导，可参阅：http://www.primaryobjects.com/2015/11/06/artificial-intelligence-planning-with-strips-a-gentle-introduction/
+[斯坦福研究院问题解决器（STRIPS）](https://en.wikipedia.org/wiki/Stanford_Research_Institute_Problem_Solver)关于入门指导，可参阅：[人工智能规划与 STRIPS 入门指南](http://www.primaryobjects.com/2015/11/06/artificial-intelligence-planning-with-strips-a-gentle-introduction/)
 
 [机器之心曾对此进行过简要介绍](https://www.jiqizhixin.com/graph/technologies/9ad9b15f-b57d-4a18-b4fa-6d1728c35b63)
+
+## STRIPS 表示范式
 
 STRIPS 表达式是一种以行动为中心的表示范式，其对每个动作（action）均要求明确指定该动作所引发的效果（effect）。此类表示范式被称为 **STRIPS 表示（STRIPS representation）**。STRIPS 系"斯坦福研究院问题解决器"（Stanford Research Institute Problem Solver）之缩写。
 
@@ -38,6 +38,8 @@ effect
 [rhc]
 ```
 
+## STRIPS 发展历程
+
 | 年份 | 事件                                                         | 相关论文/Reference                                            |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1971 | Fikes, R. E., & Nilsson, N. J. 提出 STRIPS 形式化框架        | Fikes, R. E., & Nilsson, N. J. (1971). STRIPS: A new approach to the application of theorem proving to problem solving. Artificial intelligence, 2(3-4), 189-208. |
@@ -46,13 +48,13 @@ effect
 | 1997 | Blum, A. L., & Furst, M. L. 提出一种快速的图规划算法         | Blum, A. L., & Furst, M. L. (1997). Fast planning through planning graph analysis. Artificial intelligence, 90(1-2), 281-300. |
 | 2010 | Galuszka, A., & Swierniak, A. 提出基于 STRIPS 与非合作博弈的多智能体规划方法 | Galuszka, A., & Swierniak, A. (2010). Planning in multi-agent environment using strips representation and non-cooperative equilibrium strategy. Journal of Intelligent and Robotic Systems, 58(3-4), 239-251. |
 
-# JS-STRIP
+## JS-STRIPS 实现
 
-https://github.com/primaryobjects/strips
+[GitHub: primaryobjects/strips](https://github.com/primaryobjects/strips)
 
 AI Automated Planning with STRIPS and PDDL in Node.js
 
-https://www.npmjs.com/package/strips
+[npm: strips 包](https://www.npmjs.com/package/strips)
 
 ```
 npm install strips

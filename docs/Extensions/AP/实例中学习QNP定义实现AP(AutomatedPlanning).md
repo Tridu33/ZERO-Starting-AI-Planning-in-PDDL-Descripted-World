@@ -1,11 +1,24 @@
+# 从实例规划中学习 QNP 形式化定义以实现自动化规划
 
+## 问题概述
 
-# Learn QNP formal definition from examples plans for Automated Planning
+定性数值规划问题（Qualitative Numeric Planning Problem, QNP）本质上类似于一种广义规划（Generalized Plan），其中规划过程中的对象数量可能是未知且无界的。在自动化规划（Automated Planning）领域中，存在两个核心的知识获取问题：
 
-As we all know, a Qualitative numeric Planning Problem is similar to a generalized plan where the numbers of objects may be unknown and unbounded during planning. There are two knowledge acquisition problems in Automated Planning: a)Learning planning action models automatically, define this problem with formal language;b)make a solver this problem(the method Top-Down or Bottom-Up).
+1. **自动学习规划动作模型**：即使用形式化语言对该问题进行定义；
+2. **求解该问题的方法**：包括自顶向下（Top-Down）与自底向上（Bottom-Up）两种途径。
 
-What we interesting in here is the first step. How can we learn planning action models automatically? Equivalently, learning the abstract structure which describes the same problem in the real world. Traditionally, we use a tuple **QNP = <F,V,I,G,O>** to express such an abstract Structure(an AOE network).Each node is a global state  $s=F+V$( fluents and variables),  and every action is edge linking **pre-state** with **effect-state**. Non-deterministic action can link one **pre-state** with so many **effect-states.**
+本文重点关注第一个问题：如何自动学习规划动作模型？换言之，即如何学习描述现实世界中同一问题的抽象结构。
 
-Along with intuition, the input is so many concrete structures $S_n^\#$(example problems) and the corresponding policies solved in a classical planner like FF planner. With the fancy work by Srivastava(2011a), we can learn an abstract structure S, which can describe concrete structure $S_n^\#$ above.
+## QNP 的形式化定义
 
-For such an abstract structure S, we can enumerate nodes differently in their fluents and variables, and then we get the definition of **F** and **V.** Then states can be distinguished by **F** and **V.** **I** and **G** are just two S specific nodes. Similarly, enumerate edges as all possible actions, then we get **O. **For now, we already have found a definition of this problem with formal language using a tuple QNP = $<F,V,I,G,O>$.
+传统上，我们使用一个元组 **QNP = \<F, V, I, G, O\>** 来表达这样的抽象结构（可类比于 AOE 网络）。其中：
+
+- 每个节点表示一个全局状态 $s = F + V$（其中 F 表示流利（fluents），V 表示数值变量）；
+- 每条边表示一个动作，连接**前状态（pre-state）**与**效果状态（effect-state）**；
+- 非确定性动作（Non-deterministic action）可将一个**前状态**连接至多个**效果状态**。
+
+## 从实例中学习抽象结构
+
+直观而言，输入数据是多个具体结构 $S_n^\#$（即示例问题实例）及其对应的策略（由经典规划器如 FF Planner 求解得到）。借助 Srivastava（2011a）的杰出工作，我们可以学习到一个抽象结构 S，该结构能够描述上述的具体结构 $S_n^\#$。
+
+对于这样一个抽象结构 S，我们可以通过枚举节点在流利（fluents）与变量（variables）上的差异，进而获得 **F** 与 **V** 的定义。由此，状态可以通过 **F** 与 **V** 进行区分。**I**（初始状态）与 **G**（目标状态）则是 S 中两个特定的节点。类似地，通过枚举所有可能的动作边，即可获得 **O**（操作符集合）。至此，我们便完成了使用形式化语言对该问题的定义，即 QNP 元组 $<F, V, I, G, O>$。

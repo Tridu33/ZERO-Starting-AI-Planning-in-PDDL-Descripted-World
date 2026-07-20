@@ -1,6 +1,7 @@
 [TOC]
 
-# stupid
+# FOND-SAT 求解示例与 CNF 编码详解
+
 ## domain.pddl
 
 ```
@@ -32,7 +33,7 @@ problem 2 grid move right
                (road ?from - location ?to - location)
   )            
   (:action move
-  ;move动作命名为move才合理。一开始例子没写好，反正后续“move”都理解为move就好。前提约束好像也有点小问题，但是不影响后续理解，就懒得改动了。
+  ;move动作命名为move才合理。一开始例子没写好，反正后续"move"都理解为move就好。前提约束好像也有点小问题，但是不影响后续理解，就懒得改动了。
     :parameters (?from - location ?to - location)
     :precondition (and (person-at ?from) (road ?from ?to))
     :effect (and (person-at ?to) (not (person-at ?from)))
@@ -43,9 +44,10 @@ problem 2 grid move right
 ```
 /src$ python  main.py ../mystupidroad/domain.pddl  ../mystupidroad/stupid.pddl -strong 1 -policy 1
 ```
+
 中间文件：
 
-## 先生成sas文件
+## 先生成 sas 文件
 
 ```
 begin_version
@@ -93,7 +95,7 @@ end_operator
 0
 ```
 
-## 然后p=Parser()读取sas文件生成my_task()对象my_task数据对象存储结构：
+## 然后 p=Parser() 读取 sas 文件生成 my_task() 对象 my_task 数据对象存储结构：
 
 ```
 >>> my_task.print_task()
@@ -141,11 +143,9 @@ SAT formula generation time = 0.000351
 # Variables = 26
 ```
 
+然后在 cnf=CNF 类的对象输入 my_task 数据，
 
-然后在cnf=CNF类的对象输入my_task数据,
-
-
-main.py主循环——即核心求解逻辑，请留意以下关键要点：
+main.py 主循环——即核心求解逻辑，请留意以下关键要点：
 
 ```
 solver_time = []
@@ -170,12 +170,9 @@ False  # 无需显示此部分，因其与当前关注重点无关
     ......
 ```
 
+生成 Fomula-temp.txt，和 formula-temp.txt header 唯一区别第一行，cnf 1,1。里面保存着所有 Clause 的 cnf 格式合取范式公式编号，符号正负应该代表对应子式 Clauses 正负文字，
 
-
-生成Fomula-temp.txt，和formula-temp.txtheader唯一区别第一行，cnf 1,1。里面保存着所有Clause的cnf格式合取范式公式编号，符号正负应该代表对应子式Clauses正负文字，
-
-26Variables生成70Clauses的cnf文件
-
+26 Variables 生成 70 Clauses 的 cnf 文件
 
 Variables 26
 
@@ -281,13 +278,9 @@ p cnf 1 1
 21	-25	-26	0
 -4	-1	0
 -7	-2	0
-
 ```
 
-
-
-对应命题cnf就是Clauses 70
-
+对应命题 cnf 就是 Clauses 70
 
 ```
 p cnf 1 1
@@ -363,7 +356,6 @@ p cnf 1 1
 负'(var0=0)(ng)'	负'(var0=1)(ng)'	0
 ```
 
-
 cnf.py
 
 ```
@@ -388,8 +380,7 @@ cnf.py
 		self.generateMutexGroupsClauses(task, controllerStates, debug)
 ```
 
-
- ###  cnf.26Variables --> 70Clauses
+### cnf.26Variables --> 70Clauses
 
 对应的子句生成如下所示：
 
@@ -418,7 +409,6 @@ self.generateInitial(task, initialCState, debug)
 Generation: Initial              v 1             c : 1           0.000241
 ```
 
-
 ```
 self.generateGoal(task, goalCState, debug)
 # p(ng) for all p in goal state
@@ -432,7 +422,6 @@ self.generateGoal(task, goalCState, debug)
 '(var0=1)(ng)'  0
 Generation: Goal                 v 1             c : 1           0.000200
 ```
-
 
 ```
 self.generatePreconditions(task, controllerStates, debug)
@@ -453,7 +442,6 @@ self.generatePreconditions(task, controllerStates, debug)
 负'(ng,move(l2,l1))'	'(var0=1)(ng)' 	0
 ```
 
-
 ```
 self.generatePossibleNonDet(task, controllerStates, debug)
 # 1. (n, act) --> (n, act') // act, act' are non det act of equal det action (action names)
@@ -461,15 +449,13 @@ self.generatePossibleNonDet(task, controllerStates, debug)
 # 3. (n, b) --> (n, b') // b, b' are siblings
 # 4. (n, b) --> -(n, b'') // b, b'' belong to same act
 ```
+
 结果
 
 ```
 >>> cnf.generatePossibleNonDet(task, controllerStates, debug)
 Generation: Non Det              v 2             c : 0           0.000035
-
 ```
-
-
 
 ```
 self.generateOneSuccessor(task, controllerStates, debug)
@@ -478,7 +464,6 @@ self.generateOneSuccessor(task, controllerStates, debug)
 # 3. -(n, act, n') \lor -(n, act, n'')
 # 4. (n, b) --> (n, act)
 ```
-
 
 结果
 
@@ -509,7 +494,6 @@ self.generateOneSuccessor(task, controllerStates, debug)
 负'(ng,move)' 	'(ng,move,n0)'	'(ng,move,ng)'	0
 负'(ng,move)' 	'(ng,move(l1,l2))'	'(ng,move(l2,l1))'	0
 Generation: One succ             v 4             c : 12                  0.085124
-
 ```
 
 ```
@@ -530,9 +514,7 @@ self.generateTripletForcesBin(task, controllerStates, debug)
 负'(ng,move,n0)'	'(ng,move)' 	0
 负'(ng,move,ng)'	'(ng,move)' 	0
 Generation: Trip bin             v 0             c : 4           0.030731
-
 ```
-
 
 ```
 self.generateAtLeastOneAction(task, controllerStates, debug)
@@ -546,10 +528,7 @@ self.generateAtLeastOneAction(task, controllerStates, debug)
 9	0
 '(n0,move)'	0
 Generation: One act              v 0             c : 1           0.005008
-
 ```
-
-
 
 ```
 self.generateNegativeForwardPropagation(task, controllerStates, debug)
@@ -562,7 +541,8 @@ self.generateNegativeForwardPropagation(task, controllerStates, debug)
 #	print(a, task.get_add_list(a))
 ```
 
-2.(n, n') $\land$  -p(n)  -->  -p(n') $\lor$ $\lor_{b: p \in add(b)}$ （n,b）
+2.(n, n') $\land$ -p(n) --> -p(n') $\lor$ $\lor_{b: p \in add(b)}$ (n,b)
+
 结果
 
 ```
@@ -600,9 +580,7 @@ self.generateNegativeForwardPropagation(task, controllerStates, debug)
 负'(ng,move,ng)'	负'(ng,move(l1,l2))'	负'(var0=0)(ng)'	0
 负'(ng,ng)'	'(var0=0)(ng)'	负'(var0=0)(ng)'	'(ng,move(l2,l1))'	0
 Generation: Neg Prop             v 4             c : 16                  0.135173
-
 ```
-
 
 ```
 self.generateGeneralizeConnection(task, controllerStates, debug)
@@ -630,13 +608,12 @@ self.generateGeneralizeConnection(task, controllerStates, debug)
 负'(ng,move,ng)'	'(ng,ng)'	0
 负'(ng,ng)'	'(ng,move,ng)'	0
 Generation: Gen conn             v 0             c : 8           0.048381
-
 ```
-
 
 ```
 self.generateReachableIClauses(task, initialCState, controllerStates, k, debug)
 ```
+
 结果
 
 ```
@@ -658,55 +635,51 @@ Generation: RI prop              v 1             c : 4           0.030447
 负'reachableI(n0)'	'reachableG(n0,1)'	0
 负'reachableI(ng)'	'reachableG(ng,1)' 	0
 Generation: IG prop              v 2             c : 2           0.007711
-
 ```
-
-
 
 ```
 
 self.generateReachableGClauses(task, controllerStates, goalCState, k, debug)
 		def generateReachableGClauses(self, task, controllerStates, goalCState, k, debug = True):
-    		self.generateReachableGInitial(task, goalCState, controllerStates, k - 1, debug)
-    		# ReachG(ng,0), ReachG(ng,1), ...
-            # -ReachG(n, 0) for n != ng
-            # set the initial values for goal state
-            # set the negation for non goal states
-    		self.generateCompletionReachabilityG(task, controllerStates, k - 1, debug)
-    		# ReachG(n,j) --> ReachG(n, j+1)
-    		if self.strong:
-    			self.generatePropagationReachableGStrong(task, controllerStates, k - 1, debug)
-    			# ReachG(n, j+1) <--> \AND_{n'} [(n,n') --> ReachG(n', j)]
-    			# Force the equivalences
-    			# Right arrow
-    			# Left arrow
-    		else:
-    			if not self.fair:
-    				self.generatePropagationReachableGUnfair(task, controllerStates, k - 1, debug)
-    				# ReachG(n, j+1) <--> [1] 
-        		# [1] = [2] \lor [3]
-        		# [2] = (n, unfair) \land \AND_{n'} [(n,n') --> RG(n',j)]
-        		# [3] = \OR_{n'} [(n, fair) \land (n,n') \land RG(n',j)]
-        		c1, v1 = self.get_num_cl_vars()
-        		start = timer()
-        		# Set variables (n, fair) and (n, unfair)
-        		self.setFairUnfairActions(task, controllerStates)
-        		# Force the equivalences for [2]
-        		# [(n,n') --> RG(n',j)] <-> Repl(n,n',j)
-        		# Force the equivalences for [3]
-                # [(n, fair) \land (n,n') \land RG(n',j)] <-> Repl3(n,n',j)
-                # Right arrow
-                # Left arrow
-    			else:
-    				self.generatePropagationReachableGCyclic(task, controllerStates, k - 1, debug)
-    				# ReachG(n, j+1) <--> \OR_{n'} [(n,n') \land ReachG(n', j)]
-        		c1, v1 = self.get_num_cl_vars()
-        		start = timer()
-        		# Force the equivalences
-        		# Right arrow
-        		# Left arrow
+	    		self.generateReachableGInitial(task, goalCState, controllerStates, k - 1, debug)
+	    		# ReachG(ng,0), ReachG(ng,1), ...
+	            # -ReachG(n, 0) for n != ng
+	            # set the initial values for goal state
+	            # set the negation for non goal states
+	    		self.generateCompletionReachabilityG(task, controllerStates, k - 1, debug)
+	    		# ReachG(n,j) --> ReachG(n, j+1)
+	    		if self.strong:
+	    			self.generatePropagationReachableGStrong(task, controllerStates, k - 1, debug)
+	    			# ReachG(n, j+1) <--> \AND_{n'} [(n,n') --> ReachG(n', j)]
+	    			# Force the equivalences
+	    			# Right arrow
+	    			# Left arrow
+	    		else:
+	    			if not self.fair:
+	    				self.generatePropagationReachableGUnfair(task, controllerStates, k - 1, debug)
+	    				# ReachG(n, j+1) <--> [1] 
+	        		# [1] = [2] \lor [3]
+	        		# [2] = (n, unfair) \land \AND_{n'} [(n,n') --> RG(n',j)]
+	        		# [3] = \OR_{n'} [(n, fair) \land (n,n') \land RG(n',j)]
+	        		c1, v1 = self.get_num_cl_vars()
+	        		start = timer()
+	        		# Set variables (n, fair) and (n, unfair)
+	        		self.setFairUnfairActions(task, controllerStates)
+	        		# Force the equivalences for [2]
+	        		# [(n,n') --> RG(n',j)] <-> Repl(n,n',j)
+	        		# Force the equivalences for [3]
+	                # [(n, fair) \land (n,n') \land RG(n',j)] <-> Repl3(n,n',j)
+	                # Right arrow
+	                # Left arrow
+	    			else:
+	    				self.generatePropagationReachableGCyclic(task, controllerStates, k - 1, debug)
+	    				# ReachG(n, j+1) <--> \OR_{n'} [(n,n') \land ReachG(n', j)]
+	        		c1, v1 = self.get_num_cl_vars()
+	        		start = timer()
+	        		# Force the equivalences
+	        		# Right arrow
+	        		# Left arrow
 ```
-
 
 结果
 
@@ -743,10 +716,7 @@ Generation: RG compl             v 0             c : 2           0.012321
 负'reachableG(n0,1)'	'YR1-n0-ng-0'	0
 'reachableG(n0,1)'	负'YR1-n0-n0-0'	负'YR1-n0-ng-0'	0
 Generation: RG prop              v 2             c : 9           0.059131
-
 ```
-
-
 
 ```
 self.generateSymmetryBreaking(task, controllerStates, initialCState, goalCState, debug)
@@ -758,9 +728,7 @@ self.generateSymmetryBreaking(task, controllerStates, initialCState, goalCState,
 ```
 >>> cnf.generateSymmetryBreaking(task, controllerStates, initialCState, goalCState, debug)
 Generation: Sym brk              v 0             c : 0           0.000004
-
 ```
-
 
 ```
 self.generateMutexGroupsClauses(task, controllerStates, debug)
@@ -777,13 +745,11 @@ self.generateMutexGroupsClauses(task, controllerStates, debug)
 Generation: Mutex                v 0             c : 2           0.010046
 ```
 
+## 通过调用 minisat 根据上 cnf 文件生成的 outsat-temp.txt
 
+land : $\land$
 
-## 通过调用minisat根据上cnf文件生成的outsat-temp.tx
-
-land :$\land$
-
-lor: $lor$
+lor : $\lor$
 
 也就是说在命令行输入：
 
@@ -806,20 +772,16 @@ CPU time              : 0 s
 SATISFIABLE
 ```
 
-根据上cnf文件生成的outsat-temp.txt
+根据上 cnf 文件生成的 outsat-temp.txt
 
 ```
 SAT
 -1 2 3 4 -5 -6 -7 -8 9 -10 -11 12 -13 -14 -15 16 -17 -18 19 20 21 22 23 -24 25 26 0
 ```
 
-也就是sat对应的公式结论
-然后python读取这个满足cnf合取范式问题的可满足sat解，找到对应编号的公式翻译出来变成方案。
-
-
+也就是 sat 对应的公式结论，然后 python 读取这个满足 cnf 合取范式问题的可满足 sat 解，找到对应编号的公式翻译出来变成方案。
 
 根据下面的
-
 
 ### 公式映射
 
@@ -914,7 +876,7 @@ SAT
 -1 2 3 4 -5 -6 -7 -8 9 -10 -11 12 -13 -14 -15 16 -17 -18 19 20 21 22 23 -24 25 26 0
 ```
 
-是这些cnf合取范式起来得到的结果
+是这些 cnf 合取范式起来得到的结果
 
 ```
 2: '(var0=1)(ng)', 
@@ -929,10 +891,8 @@ SAT
 22: 'reachableG(ng,1)', 
 23: 'reachableG(ng,0)', 
 25: 'YR1-n0-n0-0', 
-26: 'YR1-n0-ng-0'}
+26: 'YR1-n0-ng-0'
 ```
-
-
 
 ```
 ===================
@@ -963,13 +923,6 @@ ___________________
 (n0,ng)
 ===================
 ```
-
-
-
-
-
-
-
 
 ## 最终结果：
 
@@ -1027,11 +980,9 @@ Elapsed solver time (s): 0.015620
 Elapsed solver time (s): [0.015619993209838867]
 Looking for strong plans: True
 Fair actions: True
-
 ```
 
-
-## 我的stupid road demo run in Ipython/Jupyter
+## 我的 stupi d road demo run in Ipython/Jupyter
 
 ## main.py
 
@@ -1056,10 +1007,10 @@ def generateControllerStates(i):
 		controllerStates.append('n' + str(j + 1))
 	controllerStates.append('ng')
 	return controllerStates
- 
+
 ```
 
-## 替换args输入参数字典，直接输入我想要的字典，包括传进去的数值参数
+## 替换 args 输入参数字典，直接输入我想要的字典，包括传进去的数值参数
 
 ```
 # my stuppid example:
@@ -1074,7 +1025,6 @@ params={'time_limit': 3600, 'inc': 1, 'path_domain': '../mystupidroad/domain.pdd
 # my stuppid example:
 #params={'time_limit': 3600, 'inc': 1, 'path_domain': '../mystupidroad/domain.pddl', 'gen_info': 0, 'policy': 1, 'mem_limit': 4096, 'strong': 1, 'path_instance': '../mystupidroad/stupid.pddl', 'name_temp': 'temp'}
 ```
-
 
 ```
 time_start = timer()
@@ -1102,13 +1052,11 @@ name_sas_file = 'outputtrans-' + params['name_temp'] + '.sas' #name_sas_file   o
 # my stuppid example:
 #params={'time_limit': 3600, 'inc': 1, 'path_domain': '../mystupidroad/domain.pddl', 'gen_info': 0, 'policy': 1, 'mem_limit': 4096, 'strong': 0, 'path_instance': '../mystupidroad/stupid.pddl', 'name_temp': 'temp'}
 
-
 # middle Files to be clean and exit
 #name_formula_file :formula-temp.txt   formula-temp.txtheader       cnf  diff in ---> p cnf 656 7458 --- > p cnf 1 1
 #name_formula_file_extra :formula-extra-temp.txt      blank
 #name_output_satsolver : outsat-temp.txt
 #name_sas_file ;outputtrans-temp.sas
-
 
 p.generate_file(name_sas_file)
 ```
@@ -1118,8 +1066,8 @@ p.generate_file(name_sas_file)
 ```
 command = 'python translate/translate.py ' + str(time_limit) + ' ' + self.domain + ' ' + self.problem + ' ' + sas_file_name + ' | grep "noprint"'
 ```
-## 使用domain文件和问题描述文件pddl通过translate.py生成翻译后的sas文件
 
+## 使用 domain 文件和问题描述文件 pddl 通过 translate.py 生成翻译后的 sas 文件
 
 ```
 begin_version
@@ -1165,7 +1113,6 @@ move l2 l1
 0
 end_operator
 0这行固定的
-
 ```
 
 接着
@@ -1190,8 +1137,9 @@ Setting compatible actions
 0.00387597084045
 ```
 
-## 在Parser类的方法中翻译成，保存成mytask类的数据：
-parser.py中p.translate_to_atomic
+## 在 Parser 类的方法中翻译成，保存成 mytask 类的数据：
+
+parser.py 中 p.translate_to_atomic
 
 ```
     task = MyTask()
@@ -1217,7 +1165,7 @@ parser.py中p.translate_to_atomic
     return task
 ```
 
-而查看my_task类中的局部变量
+而查看 my_task 类中的局部变量
 
 ```
 class MyTask():
@@ -1245,7 +1193,7 @@ class MyTask():
 		......
 ```
 
-回到main.py
+回到 main.py
 
 ```
 fair = my_task.is_fair()#判断True/False,demo p03 is True,本题设置为True
@@ -1455,7 +1403,7 @@ Solved with 3 states
 
 -------------------------------------------------------------------------------
 
-main.py快结束了
+main.py 快结束了
 
 ```
 print('Elapsed total time (s): %f' % (timer() - time_start))
@@ -1465,19 +1413,3 @@ print('Looking for strong plans: %s' % str(strong))
 print('Fair actions: %s' % str(fair))
 clean_and_exit(name_formula_file, name_output_satsolver, name_sas_file, name_formula_file_extra, name_final, 'Done')#清理中间文件
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

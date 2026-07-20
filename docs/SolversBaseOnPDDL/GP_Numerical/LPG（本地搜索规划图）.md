@@ -1,6 +1,6 @@
-# 1. LPG（本地搜索规划图）
+# LPG：基于规划图的局部搜索规划器
 
-https://lpg.unibs.it/lpg/
+[LPG 官方网站](https://lpg.unibs.it/lpg/)
 
 LPG（Local Search for Planning Graphs，即基于规划图的局部搜索）是一种结合局部搜索机制与规划图结构的规划器，专用于处理涉及数值量及持续时间的 PDDL 2.1 领域。该系统能够同时应对计划生成与计划调整两大问题。LPG 的基本搜索策略受到 Walksat（一种高效的 SAT 求解程序）的启发。LPG 的搜索空间由"动作图"构成，动作图是规划图的特定子图，用于表征部分规划方案。搜索过程实质上是将当前动作图转换为另一动作图的一系列图修改操作。
 
@@ -8,4 +8,4 @@ LPG（Local Search for Planning Graphs，即基于规划图的局部搜索）是
 
 系统可根据单一或多个质量标准生成高质量的计划方案。这一过程通过随时生成一系列计划的方式实现，其中每个计划在质量上均较前一个计划有所改进。LPG 集成了类似于 FF 所使用的最佳优先搜索算法。在完成一定数量的搜索步骤并执行"重启"操作后，系统可自动切换至最佳优先搜索模式。此外，LPG 还可作为预处理器使用，用于生成拟解，随后由 ADJ（一种用于快速计划自适应的规划图分析技术）进行修复。
 
-VS Code PDDL 推荐使用：https://github.com/jan-dolejsi/vscode-pddl/wiki/Configuring-the-PDDL-planner
+VS Code PDDL 推荐配置：[配置 PDDL 规划器](https://github.com/jan-dolejsi/vscode-pddl/wiki/Configuring-the-PDDL-planner)

@@ -1,3 +1,2943 @@
-<!DOCTYPE html><html> <head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=author content=tridu33><link rel="shortcut icon" href=../../img/favicon.ico><title>GPwithDeep-RL &mdash; AI Planning in PDDL-Descripted World</title><link rel=stylesheet href="//fonts.googleapis.com/css?family=Lato:400,700"><link rel=stylesheet href=//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/all.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//code.jquery.com/jquery-2.1.1.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js></script><script>
-        hljs.initHighlightingOnLoad();
-    </script></head> <body ontouchstart> <div id=container> <aside> <div class=home> <div class=title> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div class=search> <div role=search> <form id=rtd-search-form class=wy-form action=../../search.html method=get> <input type=text name=q placeholder="Search docs" title="Type search term here"> </form> </div> </div> </div> <nav class=nav> <ul class=root> <li class=toctree-l1><a class=nav-item href=../..>Home</a></li> <li class=toctree-l1><button class="section nav-item">规划界黑话</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">PDDL进化史</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../PlanLanguages/ADL/ class=nav-item>ADL</a></li> <li class=toctree-l3><a href=../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/ class=nav-item>STRIPS</a></li> <li class=toctree-l3><button class="section nav-item hide">PDDL</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/ class=nav-item>HelloPDDL</a></li> <li class=toctree-l4> <a href=../../PlanLanguages/version/ class=nav-item>版本迭代</a></li> <li class=toctree-l4><a href=../../PlanLanguages/Extension%20to%20PDDL%28SAS%29/ class=nav-item>PDDL扩展</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">机器人世界</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../PlanLanguages/Golog/Golog_ROS/ class=nav-item>Golog</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL使用</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Usage/LocalSolvers/ class=nav-item>本地环境使用</a></li> <li class=toctree-l2> <a href=../../Usage/OnlineSolver/ class=nav-item>线上求解器使用</a></li> <li class=toctree-l2> <a href=../../Usage/VSCode/ class=nav-item>Visual Studio Code使用</a></li> <li class=toctree-l2><button class="section nav-item hide">经典demos</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/%E5%88%8A%E7%89%A9%E4%B8%8A%E7%BB%8F%E5%85%B8demos/ class=nav-item>刊物上经典demos</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PDDL%20Benchmark%20Instances/ class=nav-item>BenchMark</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL语法</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Syntax/PDDL%20axioms/ class=nav-item>语法总览</a></li> <li class=toctree-l2> <a href=../../Syntax/PDDLParser/ class=nav-item>Parser</a></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL-Descripted AI Planning World</button> <ul class=subnav> <li class="toctree-l2 current"><button class="section nav-item">Papers</button> <ul class=subnav> <li class=toctree-l3><a href=../A%20review%20of%20generalized%20planning/ class=nav-item>reviewOfGP</a></li> <li class=toctree-l3><a href=../GP_summary/ class=nav-item>GP_summary</a></li> <li class=toctree-l3><a href=../A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/ class=nav-item>ReviewOfMLforAP</a></li> <li class="toctree-l3 current"><a href=./ class="nav-item current">GPwithDeep-RL</a> <ul class=subnav> <li class=toctree-l4><a class="nav-item toc" href=#11>1.1. 相关工作</a></li> </ul></li> <li class=toctree-l3><a href=../Survey%20of%20research%20literature/ class=nav-item>researchSurvey</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">SolversBaseOnPDDL</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PyperPlan_STRIPS/ class=nav-item>PyperPlan_STRIPS</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/Solvers/ class=nav-item>Solvers</a></li> <li class=toctree-l3><button class="section nav-item hide">CP</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/ffPlaner/ class=nav-item>FF</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/fast-downward/ class=nav-item>FD</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/LAPKT%E8%BD%BB%E9%87%8F%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92%E5%B7%A5%E5%85%B7%E5%8C%85/ class=nav-item>LAPKT轻量自动规划工具包</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">GP_Numerical</button> <ul class="subnav hide"> <li class=toctree-l4> <a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem/ class=nav-item>QNP_ReduceTo_GraphProblem</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/%E5%9B%BE%E6%B3%95QNP/ class=nav-item>图法QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/ class=nav-item>LPG</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/grahPlan/ class=nav-item>grahPlan</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/SGPlan6/ class=nav-item>SGPlan6</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/PRP/ class=nav-item>PRP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/myND/ class=nav-item>myND</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">QNP_FONS_SAT</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py/ class=nav-item>CNF_py</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND/ class=nav-item>FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND/ class=nav-item>QA_FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/ class=nav-item>例解FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP/ class=nav-item>QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond/ class=nav-item>qnp2fond</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT/ class=nav-item>QNP2SAT</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-plan-validators</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/PDDL-plan-validator.md>validators</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator.md>INVAL</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/VScode-PDDL插件VAL.md>VAL</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-Auto Planning</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href="../../Extensions/AP/PDDL4j_Java for自动规划.md">PDDL4j</a></li> <li class=toctree-l3> <a class=nav-item href="../../Extensions/AP/Tarski - An AI Planning Modeling Framework.md">Tarski</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/AP/实例中学习QNP定义实现AP(AutomatedPlanning).md>QNP2AP</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/RL/PDDLGYM.md>PDDLGYM</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/RL/RLPlanPapers.md>PDDL+RL强化学习</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">进击的PDDL</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Curry-Howard correspondence</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/控制流图CFG语义网络petri迁移系统扩展应用.md>CFG语义网络</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/PDDL-Solver2AST.md>PDDL-Solver2AST</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/TransitionSystemModelCheck.md>CFG=TransitionSystemModelCheck.md</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/qnp2ast2program.md>qnp2ast2program</a></li> </ul></li> </ul></li> <li class=toctree-l1> <a class=nav-item href=https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues>Issue跟踪讨论</a></li> </ul> </nav> <div class=repo> <div class=link> </div> <div class=previous><a href=../A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/ >&laquo; Previous</a></div> <div class=next><a href=../Survey%20of%20research%20literature/ >Next &raquo;</a></div> </div> </aside> <div id=spacer><button class=arrow></button></div> <main> <div class=home-top> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div id=main> <nav class=breadcrumbs> <ul> <li>PDDL-Descripted AI Planning World &raquo; </li><li>Papers</li> </ul> </nav> <div id=content><div class=toc> <ul> <li><a href=#1-generalized-planning-with-deep-reinforcement-learning>1. Generalized Planning With Deep Reinforcement Learning</a><ul> <li><a href=#11>1.1. 相关工作</a><ul> <li><a href=#111>1.1.1. 背景</a><ul> <li><a href=#1111>1.1.1.1. 经典规划</a></li> <li><a href=#1112>1.1.1.2. 强化学习</a></li> </ul> </li> <li><a href=#112>1.1.2. 学习广义策略</a><ul> <li><a href=#1121>1.1.2.1. 状态表示</a></li> <li><a href=#1122>1.1.2.2. 图嵌入</a></li> <li><a href=#1123>1.1.2.3. 策略表示</a></li> <li><a href=#1124>1.1.2.4. 程序训练</a></li> <li><a href=#1125>1.1.2.5. 推理过程中的规划</a></li> </ul> </li> <li><a href=#113>1.1.3. 实验</a><ul> <li><a href=#1131>1.1.3.1. 实验领域</a></li> <li><a href=#1132>1.1.3.2. 实验设置</a></li> <li><a href=#1133>1.1.3.3. 基准</a></li> <li><a href=#1134>1.1.3.4. 评估指标</a></li> <li><a href=#1135>1.1.3.5. 实验结果</a></li> </ul> </li> <li><a href=#114>1.1.4. 结论与未来工作</a></li> </ul> </li> </ul> </li> </ul> </div> <h1 id=1-generalized-planning-with-deep-reinforcement-learning>1. Generalized Planning With Deep Reinforcement Learning<a class=headerlink href=#1-generalized-planning-with-deep-reinforcement-learning title="Permanent link">&para;</a></h1> <p>深度强化学习与图神经网络被用于学习此类广义策略，研究结果表明，这些策略能够泛化至比训练实例大数个数量级的未见实例。</p> <p>经典规划关注于寻找规划方案或动作序列，当将这些规划方案或动作序列应用于由一组逻辑谓词所描述的初始条件时，能够将环境状态引导至满足一组目标谓词的状态。这一过程通常通过某种启发式搜索机制执行，所生成的规划方案仅适用于已解决的特定实例。然而，更为理想的目标在于发现某种更高层次的规划方案，它能够解决属于同一领域的众多实例——这些实例共享某种基础结构。这类能够发现高层次规划方案的研究方法被称为**广义规划（Generalized Planning）**。广义规划并非适用于所有经典规划领域，但在仅需寻找令人满意的目标解的情形下，针对可能的领域找到此类解可以避免执行计算密集型搜索的需求。为了阐述广义规划的基本概念，我们考察一个简化的Blocksworld领域。在该领域中，存在若干独特的积木，它们可相互堆叠或散落于桌面，目标是从初始配置出发，通过堆叠和拆除积木达到目标配置。寻找能够以最优步骤实现目标的规划方案通常极为困难 <a href=#bookmark5>[10]</a>，但以下方法可在多项式时间内找到一个能够满足目标且不计成本的规划方案：</p> <ol> <li>拆开所有积木，使其散落于桌面；</li> <li>根据目标配置，从底部积木开始逐层堆叠。</li> </ol> <p>上述策略并非最优方案，因为根据目标规范，已处于适当位置的积木可能被不必要地拆解。然而，对于简化后Blocksworld领域中的每个实例，该策略均能生成满足目标的规划方案。这种广义策略亦可被视为一种策略，这为通过强化学习对其进行学习提供了可能性。</p> <p>在机器学习理论中，通常假定训练数据的分布能够代表测试数据的分布，从而期望模型能够良好地泛化至测试数据。在广义规划中，情况并非如此，因为测试实例规模可能远大于训练实例，从而极大超出训练分布的范围。在本研究中，我们表明，以神经网络架构形式引入**正确的**归纳偏置能够使模型有效学习类似广义原理的策略，并解决比训练过程中所见问题大数个数量级的问题。</p> <h2 id=11>1.1. 相关工作<a class=headerlink href=#11 title="Permanent link">&para;</a></h2> <p>学习规划多年来一直是研究的热点话题，研究者采用不同方法尝试学习完整求解器的不同方面。若干工作尝试使用由领域无关启发式方法生成的特征来学习特定领域状态的启发式值，例如 <a href=#bookmark39>[28]</a> 通过回归学习启发式值的方法。<a href=#bookmark40>[7]</a> 等最新研究通过使用 RankSVM <a href=#bookmark41>[13]</a> 学习后继状态的排序。此类方法并未明确利用问题描述中的状态或目标信息，而是依赖人工设计的特征；此外，它们也未针对可用操作学习明确的规划策略。与之相对，我们的方法学习针对明确状态和目标的规划策略，这些策略直接选择待执行的动作。</p> <p>其他研究，如 <a href=#bookmark42>[23]</a>、<a href=#bookmark43>[8]</a> 和 <a href=#bookmark44>[9]</a>，将问题的实际状态作为输入，借助深度卷积神经网络学习明确的动作规划策略，但这些方法依赖对问题的视觉表示。这将其适用范围限制在可采用视觉表征的领域。另一个局限性在于，<a href=#bookmark42>[23]</a> 和 <a href=#bookmark43>[8]</a> 额外依赖由规划算法生成的成功规划，并使用模仿学习来学习策略，而 <a href=#bookmark44>[9]</a> 则为此目的采用强化学习。我们的研究既不依赖视觉表示，也不依赖经由规划算法生成的成功规划，而是**通过深度强化学习，以试错方式直接从PDDL表示中学习求解问题**。</p> <p>若干研究已开始探索状态图表示以及不同类型的图神经网络在学习策略或启发式方法方面的应用。在 <a href=#bookmark45>[24]</a> 中，作者提出了一种名为动作模式网络（ASNet）的独特神经网络架构，该网络由交替的动作层和命题层构成，用于学习规划策略。他们将状态表示为图，其中对象和动作相互连接，并通过信息的双向传播最终输出动作的概率分布。他们通过模仿其他规划器生成的规划来训练ASNet，并使用领域无关的启发式值增强输入以提高性能。在他们的实验中，主要关注随机规划问题，并证明训练后的策略能够泛化至比训练实例更大的实例。ASNet的局限性在于其固定的感受野，这限制了其处理长距离推理链的能力，而我们的方法则不存在这一限制。</p> <p>在最近的工作中，<a href=#bookmark46>[20]</a> 将 <a href=#bookmark17>[4]</a> 的方法扩展到超图，并利用其学习超图的启发式方法，该超图表示规划问题的删除松弛状态。他们使用由规划算法生成的最优启发式值进行监督学习，然后将所得神经网络用作搜索算法中的启发式函数。与此相反，我们的方法侧重于学习策略，因为在神经网络上只需一次前向传播即可在每个状态下做出决策，从而在评估过程中能够大幅节省时间。使用启发式估计则需要评估状态的所有后继状态以选择最优动作，这可能导致运行时间显著增加。另一个区别在于，我们的方法直接在完整状态上进行操作，而非使用删除松弛——删除松弛可能因省略部分信息而限制启发式方法的表现力。更多相关讨论可参见 <a href=#bookmark47>[15]</a>、<a href=#bookmark48>[29]</a> 和 <a href=#bookmark49>[5]</a>。</p> <h3 id=111>1.1.1. 背景<a class=headerlink href=#111 title="Permanent link">&para;</a></h3> <h4 id=1111>1.1.1.1. 经典规划<a class=headerlink href=#1111 title="Permanent link">&para;</a></h4> <p>经典规划使用从STRIPS建模语言 <a href=#bookmark9>[6]</a> 派生而来的形式化描述语言——规划领域定义语言（PDDL）<a href=#bookmark8>[14]</a> 来定义问题领域及其相应的状态和目标。我们关注的是可满足的规划任务，此类任务可由元组 (<em>F</em>, <em>O</em>, <em>I</em>, <em>G</em>) 定义，其中 <em>F</em> 是一组命题（或谓词），描述任务实例中存在的对象属性及其相互关系；<em>O</em> 是一组算子（或动作类型）；<em>I</em> ⊆ <em>F</em> 是初始状态；<em>G</em> ⊆ <em>F</em> 是目标状态的集合。每个动作类型 <em>o</em> ∈ <em>O</em> 由三元组 (<em>Pre(o)</em>, <em>Add(o)</em>, <em>Del(o)</em>) 定义，其中 <em>Pre(o)</em> 是一组前提条件谓词，这些谓词必须具有真值才能应用该动作；<em>Add(o)</em> 是在应用动作后成为真值的一组谓词；<em>Del(o)</em> 则是应用动作后变为假值的一组谓词。我们试图寻找一个规划方案或动作序列，使其一经应用即可在规定的时间步数内导致状态满足 <em>G</em> ⊆ <em>F</em>。查找规划任务的规划方案通常通过启发式搜索方法完成；然而，在本研究中，我们专注于学习反应式规划策略，这些策略可在特定领域的实例上进行训练，随后推广至同一领域中未见的新实例。</p> <h4 id=1112>1.1.1.2. 强化学习<a class=headerlink href=#1112 title="Permanent link">&para;</a></h4> <blockquote> <p>不同于常见的 <span class=arithmatex>\(&lt;S, A, R, P, \gamma \text{折扣率}&gt;\)</span></p> </blockquote> <p>强化学习（RL）是机器学习的一个重要分支，致力于研究序列决策问题中的策略学习。RL算法最常见的假设是将问题建模为马尔可夫决策过程（MDP），在有限时域情况下由元组 (<em>S</em>, <em>A</em>, <em>R</em>, <em>P</em>, <em>T</em>, <em>p</em>) 定义，其中 <em>S</em> 是状态集合，<em>A</em> 是动作集合，<em>R</em> 是将状态或状态-动作对映射到标量奖励的奖励函数，<em>P</em> 是转移概率函数（满足 <span class=arithmatex>\(p(s' | s, a) = P(s', s, a)\)</span>，<strong>确定性策略对应 P = 1</strong>），<em>T</em> 是任务的时间范围，<em>p</em> 是初始状态的分布。</p> <p>在状态和动作空间较大的情况下，我们无法期望将策略表示为表格形式（<strong>Q表格</strong>），因此必须采用函数逼近器（<strong>Deep Q Network 的 target network</strong>）来表示带有参数 <em>θ</em> 的策略 <em>π</em>。我们专注于随机策略，该策略将状态映射到动作的概率分布，例如 <span class=arithmatex>\(p(a | s) = π(a | s)\)</span>，并使用基于策略梯度的方法进行优化 <a href=#bookmark11>[27]</a>。策略梯度方法通过蒙特卡洛采样估计目标函数相对于策略参数的梯度。在实施策略梯度方法时，我们可以利用由样本轨迹计算所得的“伪损失”的梯度来近似策略梯度。</p> <p>近端策略优化（PPO）<a href=#bookmark13>[19]</a> 是一种基于策略梯度的算法，旨在通过在学习过程中对收集到的数据进行多次梯度更新（随后丢弃数据并收集更多数据）来更充分地利用所收集的数据。为避免因较大的策略更新而引发的稳定性问题，PPO采用特殊的裁剪目标来限制当前策略与数据收集策略之间的差异，从而定义优化问题。</p> <h3 id=112>1.1.2. 学习广义策略<a class=headerlink href=#112 title="Permanent link">&para;</a></h3> <h4 id=1121>1.1.2.1. 状态表示<a class=headerlink href=#1121 title="Permanent link">&para;</a></h4> <p>我们选择将状态表示为图结构，并使用特征编码给定状态中对象之间的属性与关系。我们的框架基于PDDL建模语言指定的问题领域运行，在该框架中，问题实例由对象列表和谓词列表定义，这些谓词描述各对象的属性以及当前状态下它们之间的相互关系。我们将自身限制在谓词元数不超过2的领域内，这并非一个实质性限制，因为在许多情况下，高元数谓词可被分解为若干低元数谓词。我们的图由全局特征、节点特征和边缘特征构成，如 <a href=#bookmark17>[4]</a> 所述。全局特征 <em>U</em> 表示问题实例或实体的属性，这些属性对该领域而言具有唯一性（例如Blocksworld领域中的指针），并由该领域的0元谓词确定。节点特征表示领域中对象的属性（例如它们的类型），并由1元谓词确定。最后，边缘特征代表对象之间的关系，并由2元谓词确定。</p> <p>在生成PDDL实例状态的图表示时，将为状态中的每个对象生成一个包含节点的完整图。对于状态中的每个谓词，将对应的特征分配为二进制值1，并假定所有其他特征均为假，其值为0。为了将目标配置纳入神经网络的输入，目标谓词几乎被视为另一个状态图，并将这两个图拼接在一起，形成状态-目标的统一表示。状态图与目标图之间的区别在于：在目标图中，值为0的特征表示未能贡献目标；在状态图中，值为0的特征则意味着该谓词被赋予假值。</p> <p>本研究使用的经典规划领域是确定性的且具有马尔可夫性质，这意味着当前状态包含解决问题所需的全部信息。尽管具备这一特性，我们发现除当前状态外，历史状态也有助于学习过程，并提升对较大实例的泛化能力。尽管这不是严格必要的，但我们的实验表明，这一步骤能够在某种程度上帮助策略缓解“来回振荡”的行为——这在策略更容易犯错而后尝试纠正的较大实例中尤为明显。添加历史信息十分简便：我们只需将K个先前状态与当前状态的图进行拼接，再如前所述与目标图进行拼接。我们测试了若干种历史视野长度，发现仅添加最后一个状态能够在整体性能和泛化能力之间取得最佳平衡。图 <a href=#bookmark18>1</a> 和图 <a href=#bookmark19>2</a> 展示了来自Blocksworld领域的状态-目标图示例，显示了一个具有3个块的实例。</p> <p><img alt=RL+GP1 src=../_v_images/RL%2BGP1.png></p> <p><img alt=RL+GP2 src=../_v_images/RL%2BGP2.png></p> <h4 id=1122>1.1.2.2. 图嵌入<a class=headerlink href=#1122 title="Permanent link">&para;</a></h4> <p>为了利用状态-目标的图表示学习有效的策略，我们首先使用图神经网络（GNN）将图的节点、边缘和全局特征嵌入到各自的潜在空间中。GNN在图的不同组件之间执行消息传递，从而促进有用信息的流动。我们采用两种不同类型的GNN模块，每种模块在图内实施不同风格的信息流机制，因此相较于另一种类型，更适用于某些特定问题领域。在这两种类型中，更新顺序相似，并采用以下通用形式：</p> <ol> <li>使用先前的边缘特征以及这些边缘的“原始”节点特征来更新边缘；</li> <li>使用先前的节点特征、传入的更新边缘特征以及全局特征来更新节点；</li> <li>使用先前的全局特征以及更新后节点的聚合信息来更新全局特征。</li> </ol> <p>我们使用的第一种模块类型类似于 <a href=#bookmark17>[4]</a> 中描述的模块类型，故将其命名为**图网络模块（Graph Network Block, GN Block）**。数学上，该模块执行以下操作：</p> <p><img alt=RL+GP3 src=../_v_images/RL%2BGP3.png></p> <p>在上述表示中，σ 表示非线性激活函数（例如整流线性单元 ReLU），⊕ 表示节点级最大池化操作，而 <em>W</em> 和 <em>b</em> 分别为权重矩阵和偏置项。在GN模块中，节点不加区分地接收来自其相邻节点的消息，这有利于在整个图上传播一般性信息，但在需要传递特定信息位时则较为困难。</p> <p>第二种模块类型旨在弥补GN模块的上述缺陷，并为此目的引入了一种注意力机制。我们将第二种模块命名为**图网络注意力模块（Graph Network Attention Block, GNAT Block）**。与 <a href=#bookmark23>[26]</a> 的图注意力网络（Graph Attention Network）不同，该模块采用的注意力机制类似于 <a href=#bookmark24>[25]</a> 的Transformer模型。该模块执行以下操作：</p> <p>在上述表示中，⊕ 表示按节点求和的操作，⊙ 表示Hadamard乘积，<em>W</em> 和 <em>b</em> 分别为权重矩阵和偏置项。如上所述，通过赋予节点以聚焦于特定消息的能力，此类模块允许某些信息位以更具目的性的方式在图内传播。在构建GNN模型时，我们可以堆叠若干此类模块（或其组合），以获得更深的图嵌入能力。在大多数实验中，我们使用了两个模块——两个连续的GN模块，或者一个GNAT模块后接一个GN模块。正如实验部分所示，每种配置在解决不同类型的问题时各有所长。</p> <h4 id=1123>1.1.2.3. 策略表示<a class=headerlink href=#1123 title="Permanent link">&para;</a></h4> <p>与常规的强化学习基准（其中动作集合是固定的，可通过标准神经网络架构便捷地处理）不同，在经典规划问题中，动作集合依赖于状态，且在不同状态之间规模各异。在PDDL中，每个领域描述定义了一组动作类型，这些动作类型可通过在状态基础上进行实例化获得。每种动作类型接收一组参数，并且为满足适用性条件，动作的参数必须符合一组前提条件。例如，Blocksworld领域包含一种名为“拾取”（pickup）的动作类型，该动作类型以单个积木对象作为参数。该积木必须同时满足“clear”、“on-table”且“arm-empty”属性为真，此动作方可适用。所有符合这些前提条件的积木均可被拾取，且每个积木代表一个唯一的动作。除前提条件外，每种动作类型还包含在应用动作时引起状态变化的效果。其中部分效果可能是正面的（状态中的某些谓词将采用真值），部分效果可能是负面的（状态中的某些谓词将采用假值）。</p> <p>在规划的每个步骤中，后继状态生成器提供当前状态和适用动作的列表。为了以有意义的方式表示动作，使其能够被策略学习所利用，我们选择依据动作的效果来描述动作——因为效果是决策过程中不可或缺的要素。由于后继状态生成器在每个步骤都向智能体提供所有合法的动作，我们省略了前提条件（所有合法动作均已满足前提条件）。每个动作由若干效果组成，每种效果涉及状态的不同方面，可以是正面效果或负面效果。根据效果的类型（全局效果、节点效果或边缘效果），将效果聚合在一起，并将其表示为各个组成部分的嵌入向量与一个描述谓词变化及其正负方向的一维向量的拼接。此一维向量在相应输入分量的维度上（例如节点效应的维度 <em>dv</em>）包含1（表示正面效果）或-1（表示负面效果），置于适当谓词对应的位置。每种效果根据其类型由多层感知器（MLP）进行转换，然后将转换后的效果分散回其原始动作。将每个动作的效果聚合在一起，形成该动作的单一向量表示，最终馈入策略神经网络。图 [4]](#bookmark26) 展示了动作表示的过程。</p> <p>最终的策略是一个多层感知器（MLP），它为每个动作输出一个标量值，然后通过softmax操作对这些标量进行归一化，以获得动作的离散概率分布。此外，另一个MLP提取图的最终全局特征嵌入，并输出状态的预测值，用于RL算法中的优势估计。</p> <h4 id=1124>1.1.2.4. 程序训练<a class=headerlink href=#1124 title="Permanent link">&para;</a></h4> <p>由于本研究聚焦于寻找可行的规划方案，我们选择将问题建模为具有二元奖励的稀疏奖励问题。若智能体在预定时间范围内满足所有目标，则获得奖励1；否则不获得任何奖励。为确定适当的时限，我们采用常用的 <strong>hff</strong> 启发式方法 <a href=#bookmark28>[12]</a>，该方法在线性时间内求解问题的松弛形式（松弛问题不包含负面效果）。我们采用松弛规划的长度，并将其乘以常数5以获得规划时域的长度。</p> <p>为训练策略，我们选择使用近端策略优化（PPO）<a href=#bookmark13>[19]</a>，因其简洁性、易用性及良好的性能表现。为解决稀疏奖励问题，我们最初尝试使用Hindsight Experience Replay DQN <a href=#bookmark29>[2]</a>，因其在解决稀疏目标达成问题方面具有潜力，但发现该方法引入了大量偏置，导致性能欠佳。为使策略能够从稀疏的二元奖励中学习，我们采用了一种更</p> <p><img alt=RL-GP4 src=../_v_images/RL-GP4.png></p> <p>为简洁的方法：我们根据实例大小的分布生成每个训练情节，实例大小的分布范围小到足以被随机初始化的策略解决。通过这一设计，策略得以逐步发展并最终解决分布中的所有实例规模，而无需手动调整课程安排。尽管设置此分布需要一定的手动操作，但我们发现通过使用随机未训练的神经网络进行简单的试错即可十分轻松快捷地完成此任务。</p> <p>我们对标准PPO算法进行了若干微调，从而提升了本场景下的性能。许多RL算法的实现会在更新模型参数之前以固定步数推出策略，通常在此过程完成之前终止情节，并使用诸如广义优势估计 <a href=#bookmark30>[18]</a> 和自举值估计 <a href=#bookmark31>[16]</a> 等方法估计收益。我们发现这些元素可能给学习过程引入不必要的偏置，因此我们采用经验回报而非自举值估计来计算优势，从而使每个情节一直推广至终止。我们还发现，使用大量推广和大批量生产有助于稳定学习过程并获得更优的最终性能。因此，我们每轮进行100个情节的推广，并使用结果数据在每次学习迭代时更新模型参数。</p> <h4 id=1125>1.1.2.5. 推理过程中的规划<a class=headerlink href=#1125 title="Permanent link">&para;</a></h4> <p>为了提升广义策略在测试期间利用额外时间的能力，我们在搜索算法中采用了这些策略，这与此领域的诸多其他研究（如 <a href=#bookmark33>[21]</a>、<a href=#bookmark34>[3]</a>）一脉相承。此类合成方法在诸如围棋和国际象棋 <a href=#bookmark35>[22]</a> 等零和游戏中取得了巨大成功，其中深度神经网络策略与蒙特卡洛树搜索算法相结合，这促使其他作者将其应用于非游戏问题 <a href=#bookmark36>[1]</a>。我们采用了一种不同的方法，专门针对具有强反应式策略的确定性规划问题设计了搜索算法。我们的算法以经典的贪婪最佳优先搜索（GBFS）为基础，但在若干关键方面进行了扩展。在标准GBFS中，从根节点构建搜索树；在每次迭代中，从开放列表中提取启发式估计最优的节点，进行扩展并将其子节点添加到开放列表中，重复此过程直至找到目标节点或超时。我们的算法——称为GBFS-GNN——执行类似的过程，但使用策略网络和值函数为每个节点计算启发式值，并为每个扩展节点执行完整的部署（rollout）。扩展节点的子节点被添加到开放列表中，但部署过程中遇到的其余节点则不被添加，以避免在大规模问题中内存消耗的快速增长。搜索树中的每个节点代表一个状态-动作对，我们对每个节点使用以下启发式估计：</p> <p><img alt=RL+GP5 src=../_v_images/RL%2BGP5.png></p> <h3 id=113>1.1.3. 实验<a class=headerlink href=#113 title="Permanent link">&para;</a></h3> <h4 id=1131>1.1.3.1. 实验领域<a class=headerlink href=#1131 title="Permanent link">&para;</a></h4> <p>我们评估了五个常见的经典规划领域，这些领域选自IPC规划竞赛集合，且其领域谓词的元数不超过2：</p> <p>• Blocksworld（4个操作）：机械臂必须根据目标配置，将积木从初始配置移动至目标配置。</p> <p>• 卫星（Satellite）：一组卫星必须拍摄所需位置的图像，每颗卫星配备指定类型的传感器。</p> <p>• 物流（Logistics）：必须将包裹运送至目标位置，使用飞机和卡车在城市与地点之间运输包裹。</p> <p>• 夹爪（Gripper）：双臂机器人必须将球从A室运送至B室。</p> <p>• 渡轮（Ferry）：渡轮必须将汽车从初始位置运输至指定的目标位置。</p> <p>这五个领域的共同特征在于，可以为它们制定简洁的广义规划方案，从而能够解决任意大的实例。我们希望证明，我们的方法能够生成解决远比训练实例大的实例的策略，从而自动发现此类广义规划方案。某些领域相对简单，在广义规划方案易于描述的情况下，我们经常观察到策略能够极为成功地进行推广。例如，Gripper领域具有非常简单的策略（每次前往B室抓住2个球），实际上我们的神经网络学会了最优策略，即使对于包含数百个球的实例，通常仍能保持最优表现。为证明策略确实能够良好地推广，我们设置了以下实验条件：</p> <p>• 对于Blocksworld领域，我们在4个块的实例上训练策略，并在5至100个块的实例上进行评估。</p> <p>• 对于卫星领域，我们对使用1至3颗卫星、每颗卫星1至3台仪器、1至3种仪器类型、2至3个目标的实例进行策略训练，并针对使用1至14颗卫星、每颗卫星2至11台仪器、1至6种仪器类型、2至42个目标的实例进行评估。</p> <p>• 对于物流领域，我们对使用2至3架飞机、2至3个城市、每个城市2至3个地点、1至2个包裹的实例进行策略训练，并针对使用4至12架飞机、4至15个城市、每个城市1至6个地点、8至40个包裹的实例进行评估。</p> <p>• 对于Gripper领域，我们在3个球的实例上训练策略，并在5至200个球的实例上进行评估。</p> <p>• 对于渡轮领域，我们对具有3至4个位置、2至3辆汽车的实例进行策略训练，并针对具有4至40个位置、2至120辆汽车的实例进行评估。</p> <h4 id=1132>1.1.3.2. 实验设置<a class=headerlink href=#1132 title="Permanent link">&para;</a></h4> <p>为训练策略，我们依赖实例生成器产生随机的训练实例，因为我们的方法需要大量的训练数据。所有策略均经过1000次迭代训练，每次迭代包含100个训练情节和至多20个梯度更新步骤。实验在一台配备i7-8700K处理器和NVIDIA GTX 1070 GPU的计算机上进行。我们对所有五个领域使用了相同的训练超参数，但神经网络模型略有差异。我们使用了256维的隐藏表示和ReLU激活函数，学习率为0.0001，折扣因子为0.99，熵奖励为0.01，裁剪比率为0.2，KL散度目标参数为0.01。对于Blocksworld和Gripper领域，我们使用了两层GNN，均为GN模块类型；对于卫星、渡轮和物流领域，我们使用了两层GNN，包含一个GNAT模块和一个GN模块。我们的代码使用Python实现，神经网络和学习算法基于PyTorch <a href=#bookmark53>[17]</a>。</p> <h4 id=1133>1.1.3.3. 基准<a class=headerlink href=#1133 title="Permanent link">&para;</a></h4> <p>我们的评估聚焦于解决广义规划领域中的大规模实例，并将方法与经典规划器进行比较。其他基于学习的方法在本研究撰写之时，或无可用的公开代码（如 <a href=#bookmark46>[20]</a>），或在大规模问题扩展方面具有固有限制（如 <a href=#bookmark45>[24]</a>），因此我们选择了更为通用的基准——经典规划器，其在具备足够时间和内存的条件下可扩展至大规模问题。我们与 <strong>Fast-Downward</strong> <a href=#bookmark55>[11]</a> 进行了比较，这是一个最先进的规划框架。我们的方法使用Pyperplan（一个基于Python的框架）作为模型和后继状态生成器。我们采用LAMA优先配置作为快速向下的设置，因为它是性能最优的竞争性可满足规划算法。</p> <p><img alt=RL-GP6 src=../_v_images/RL-GP6.png></p> <p><img alt=RL-GP7 src=../_v_images/RL-GP7.png></p> <h4 id=1134>1.1.3.4. 评估指标<a class=headerlink href=#1134 title="Permanent link">&para;</a></h4> <p>由于本研究聚焦于可满足的规划方案，我们将成功率作为主要评估指标。对于每个领域，我们在一组50个预留的评估实例上运行GBFS-GNN和快速向下规划器，并针对每个实例设置600秒的固定时间限制。随后，我们针对时间限制和扩展状态数量分别绘制每种方法的成功率曲线，以观察在给定计算资源下各种方法的扩展行为。评估实例根据广泛的分布生成，以对大范围规模的实例进行采样。</p> <h4 id=1135>1.1.3.5. 实验结果<a class=headerlink href=#1135 title="Permanent link">&para;</a></h4> <p>以下呈现我们的实验结果。图 <a href=#bookmark58>6</a> 展示了我们的方法与快速向下规划器在五个实验领域中的性能比较。这些图表显示了成功率随扩展状态数量的变化关系，表明在五个领域中的四个领域内，我们的方法与经典规划器相比确实具有更有利的扩展特性。实际上，在策略能够有效推广的四个领域中，GBFS-GNN几乎不需要任何搜索。在这些领域中，除最困难的情况外，仅需贪婪地跟随策略即可找到解决方案。我们的搜索算法在此基础上进一步发挥了泛化能力的优势，在搜索过程中只使用了少量的完整策略部署。</p> <p>在图 <a href=#bookmark59>7</a> 中，我们针对给定的运行时间比较了我们的方法与快速向下规划器的成功率。可以看到，尽管快速向下规划器具备高度优化的C++实现，并采用复杂的建模工具来高效解决规划问题，我们的方法仍在一个领域（Blocksworld）中超越了它，并在另外三个领域中与其表现紧密相当。尽管GBFS-GNN所使用的后继状态和合法动作生成器的运行速度比快速向下慢数个数量级，但方法的泛化能力使其能够与经典规划器的最新实现展开竞争。</p> <p>我们的方法在泛化性能方面的一个明显例外是物流领域。策略在训练实例上成功取得了良好的性能，但未能推广至更大规模的实例，因此在该领域中，快速向下规划器远远优于我们的方法。在物流领域中，每个实例的不同对象之间包含了更为紧密的耦合关系。例如，在卫星领域中，校准仪器或对目标成像不会干扰其他卫星，策略可以有多个“半满足”的目标并在它们之间切换而不会受到干扰。在物流领域中，这是不可行的，因为所有包裹共享卡车和飞机，移动特定卡车以拾取包裹可能干扰原本打算在另一地点拾取的另一包裹。不同的图神经网络架构可能促使策略在单个目标上保持“专注”直到满足为止，然后再转向下一个目标，从而有望解决物流领域及其他类似类型的问题。</p> <h3 id=114>1.1.4. 结论与未来工作<a class=headerlink href=#114 title="Permanent link">&para;</a></h3> <p>在本研究中，我们探讨了图神经网络与深度强化学习算法学习广义规划策略的能力——这些策略能够解决比训练过程中遇到的实例大数个数量级的实例，从而有效地将原理性知识进行泛化。与某些其他方法不同，我们的方法**不依赖**现有规划器提供的最优解决方案，也**不依赖**启发式方法来提升性能。此外，我们介绍了GBFS-GNN——一种搜索算法，该算法利用高性能反应式策略的可用性，快速寻找超大规模实例的解决方案。</p> <p>我们的策略通过强化学习从头开始学习，并与GBFS-GNN相结合，在扩展状态方面超越了最先进规划器的高度优化实现，在运行时间方面亦能与之媲美。</p> <p>相关<sup id=fnref:LOGIC><a class=footnote-ref href=#fn:LOGIC>1</a></sup>与文献<sup id=fnref:POMC><a class=footnote-ref href=#fn:POMC>2</a></sup>。</p> <p><strong>参考</strong></p> <div class=footnote> <hr> <ol> <li id=fn:LOGIC> <p>GICystems&#160;<a class=footnote-backref href=#fnref:LOGIC title="Jump back to footnote 1 in the text">&#8617;</a></p> </li> <li id=fn:POMC> <p>Checking&#160;<a class=footnote-backref href=#fnref:POMC title="Jump back to footnote 2 in the text">&#8617;</a></p> </li> </ol> </div></div> <footer> <div class=footer-buttons> <div class=previous><a href=../A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/ title=ReviewOfMLforAP><span>Previous</span></a></div> <div class=next><a href=../Survey%20of%20research%20literature/ title=researchSurvey><span>Next</span></a></div> </div> <div class=footer-note> <p> Built with <a href=http://www.mkdocs.org>MkDocs</a> using <a href=https://github.com/daizutabi/mkdocs-ivory>Ivory theme</a>. </p> </div> </footer> </div> </main> </div> <script>var base_url = '../..';</script> <script src=../../js/theme.js></script> <script src=../../js/umlconvert.js></script> <script src=../../js/sequence-loader.js></script> <script src=https://unpkg.com/mermaid/dist/mermaid.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js></script> <script src=../../search/main.js></script> </body> </html>
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ZERO-Starting AI Planning in PDDL-Descripted World">
+      
+      
+        <meta name="author" content="tridu33">
+      
+      
+      
+        <link rel="prev" href="../A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/">
+      
+      
+        <link rel="next" href="../Survey%20of%20research%20literature/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../imgs/logo.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>GPwithDeep-RL - AI Planning in PDDL-Descripted World</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-header__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Planning in PDDL-Descripted World
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GPwithDeep-RL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-nav__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    AI Planning in PDDL-Descripted World
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    规划界黑话
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    规划界黑话
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL进化史
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL进化史
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/ADL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HelloPDDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本迭代
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/Extension%20to%20PDDL%28SAS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL扩展
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器人世界
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    机器人世界
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/Golog/Golog_ROS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Golog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL使用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL使用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Usage/VSCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Studio Code使用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL语法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL语法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Syntax/PDDL%20axioms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    语法总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Syntax/PDDLParser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Descripted AI Planning World
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Descripted AI Planning World
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A%20review%20of%20generalized%20planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    reviewOfGP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ReviewOfMLforAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPwithDeep-RL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPwithDeep-RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关工作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="相关工作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经典规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        强化学习
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习广义策略
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="学习广义策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        状态表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图嵌入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        策略表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序训练
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推理过程中的规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验领域
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基准
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评估指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验结果
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结论与未来工作
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Survey%20of%20research%20literature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    researchSurvey
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolversBaseOnPDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SolversBaseOnPDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/Solvers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solvers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_2" id="__nav_5_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/CP/ffPlaner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/CP/fast-downward/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_3" id="__nav_5_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_Numerical
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GP_Numerical
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_ReduceTo_GraphProblem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/%E5%9B%BE%E6%B3%95QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图法QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LPG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/grahPlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    grahPlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/SGPlan6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SGPlan6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/myND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    myND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_4" id="__nav_5_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_FONS_SAT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QNP_FONS_SAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CNF_py
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA_FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例解FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2fond
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2SAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-plan-validators
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-plan-validators
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/PDDL-plan-validator/PDDL-plan-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    validators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INVAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Auto Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Auto Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2AP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/RL/PDDLGYM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDLGYM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进击的PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进击的PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Curry-Howard correspondence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Curry-Howard correspondence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG语义网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/TransitionSystemModelCheck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG=TransitionSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/qnp2ast2program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2ast2program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issue跟踪讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关工作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="相关工作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="背景">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经典规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        强化学习
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习广义策略
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="学习广义策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        状态表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        图嵌入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        策略表示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序训练
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推理过程中的规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验领域
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基准
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评估指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验结果
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结论与未来工作
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<div class="toc">
+<ul>
+<li><a href="#_1">基于深度强化学习的广义规划</a><ul>
+<li><a href="#_2">相关工作</a><ul>
+<li><a href="#_3">背景</a><ul>
+<li><a href="#_4">经典规划</a></li>
+<li><a href="#_5">强化学习</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_6">学习广义策略</a><ul>
+<li><a href="#_7">状态表示</a></li>
+<li><a href="#_8">图嵌入</a></li>
+<li><a href="#_9">策略表示</a></li>
+<li><a href="#_10">程序训练</a></li>
+<li><a href="#_11">推理过程中的规划</a></li>
+</ul>
+</li>
+<li><a href="#_12">实验</a><ul>
+<li><a href="#_13">实验领域</a></li>
+<li><a href="#_14">实验设置</a></li>
+<li><a href="#_15">基准</a></li>
+<li><a href="#_16">评估指标</a></li>
+<li><a href="#_17">实验结果</a></li>
+</ul>
+</li>
+<li><a href="#_18">结论与未来工作</a></li>
+<li><a href="#_19">参考</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="_1">基于深度强化学习的广义规划<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>深度强化学习与图神经网络被用于学习此类广义策略，研究结果表明，这些策略能够泛化至比训练实例大数个数量级的未见实例。</p>
+<p>经典规划关注于寻找规划方案或动作序列，当将这些规划方案或动作序列应用于由一组逻辑谓词所描述的初始条件时，能够将环境状态引导至满足一组目标谓词的状态。这一过程通常通过某种启发式搜索机制执行，所生成的规划方案仅适用于已解决的特定实例。然而，更为理想的目标在于发现某种更高层次的规划方案，它能够解决属于同一领域的众多实例——这些实例共享某种基础结构。这类能够发现高层次规划方案的研究方法被称为**广义规划（Generalized Planning）**。广义规划并非适用于所有经典规划领域，但在仅需寻找令人满意的目标解的情形下，针对可能的领域找到此类解可以避免执行计算密集型搜索的需求。为了阐述广义规划的基本概念，我们考察一个简化的Blocksworld领域。在该领域中，存在若干独特的积木，它们可相互堆叠或散落于桌面，目标是从初始配置出发，通过堆叠和拆除积木达到目标配置。寻找能够以最优步骤实现目标的规划方案通常极为困难，但以下方法可在多项式时间内找到一个能够满足目标且不计成本的规划方案：</p>
+<ol>
+<li>拆开所有积木，使其散落于桌面；</li>
+<li>根据目标配置，从底部积木开始逐层堆叠。</li>
+</ol>
+<p>上述策略并非最优方案，因为根据目标规范，已处于适当位置的积木可能被不必要地拆解。然而，对于简化后Blocksworld领域中的每个实例，该策略均能生成满足目标的规划方案。这种广义策略亦可被视为一种策略，这为通过强化学习对其进行学习提供了可能性。</p>
+<p>在机器学习理论中，通常假定训练数据的分布能够代表测试数据的分布，从而期望模型能够良好地泛化至测试数据。在广义规划中，情况并非如此，因为测试实例规模可能远大于训练实例，从而极大超出训练分布的范围。在本研究中，我们表明，以神经网络架构形式引入**正确的**归纳偏置能够使模型有效学习类似广义原理的策略，并解决比训练过程中所见问题大数个数量级的问题。</p>
+<h2 id="_2">相关工作<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>学习规划多年来一直是研究的热点话题，研究者采用不同方法尝试学习完整求解器的不同方面。若干工作尝试使用由领域无关启发式方法生成的特征来学习特定领域状态的启发式值，例如通过回归学习启发式值的方法。最新研究通过使用RankSVM学习后继状态的排序。此类方法并未明确利用问题描述中的状态或目标信息，而是依赖人工设计的特征；此外，它们也未针对可用操作学习明确的规划策略。与之相对，我们的方法学习针对明确状态和目标的规划策略，这些策略直接选择待执行的动作。</p>
+<p>其他研究将问题的实际状态作为输入，借助深度卷积神经网络学习明确的动作规划策略，但这些方法依赖对问题的视觉表示。这将其适用范围限制在可采用视觉表征的领域。另一个局限性在于，这些工作额外依赖由规划算法生成的成功规划，并使用模仿学习来学习策略，而另一些研究则为此目的采用强化学习。我们的研究既不依赖视觉表示，也不依赖经由规划算法生成的成功规划，而是**通过深度强化学习，以试错方式直接从PDDL表示中学习求解问题**。</p>
+<p>若干研究已开始探索状态图表示以及不同类型的图神经网络在学习策略或启发式方法方面的应用。作者提出了一种名为动作模式网络（ASNet）的独特神经网络架构，该网络由交替的动作层和命题层构成，用于学习规划策略。他们将状态表示为图，其中对象和动作相互连接，并通过信息的双向传播最终输出动作的概率分布。他们通过模仿其他规划器生成的规划来训练ASNet，并使用领域无关的启发式值增强输入以提高性能。在他们的实验中，主要关注随机规划问题，并证明训练后的策略能够泛化至比训练实例更大的实例。ASNet的局限性在于其固定的感受野，这限制了其处理长距离推理链的能力，而我们的方法则不存在这一限制。</p>
+<p>在最近的工作中，研究者将方法扩展到超图，并利用其学习超图的启发式方法，该超图表示规划问题的删除松弛状态。他们使用由规划算法生成的最优启发式值进行监督学习，然后将所得神经网络用作搜索算法中的启发式函数。与此相反，我们的方法侧重于学习策略，因为在神经网络上只需一次前向传播即可在每个状态下做出决策，从而在评估过程中能够大幅节省时间。使用启发式估计则需要评估状态的所有后继状态以选择最优动作，这可能导致运行时间显著增加。另一个区别在于，我们的方法直接在完整状态上进行操作，而非使用删除松弛——删除松弛可能因省略部分信息而限制启发式方法的表现力。</p>
+<h3 id="_3">背景<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="_4">经典规划<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>经典规划使用从STRIPS建模语言派生而来的形式化描述语言——规划领域定义语言（PDDL）来定义问题领域及其相应的状态和目标。我们关注的是可满足的规划任务，此类任务可由元组 (<em>F</em>, <em>O</em>, <em>I</em>, <em>G</em>) 定义，其中 <em>F</em> 是一组命题（或谓词），描述任务实例中存在的对象属性及其相互关系；<em>O</em> 是一组算子（或动作类型）；<em>I</em> ⊆ <em>F</em> 是初始状态；<em>G</em> ⊆ <em>F</em> 是目标状态的集合。每个动作类型 <em>o</em> ∈ <em>O</em> 由三元组 (<em>Pre(o)</em>, <em>Add(o)</em>, <em>Del(o)</em>) 定义，其中 <em>Pre(o)</em> 是一组前提条件谓词，这些谓词必须具有真值才能应用该动作；<em>Add(o)</em> 是在应用动作后成为真值的一组谓词；<em>Del(o)</em> 则是应用动作后变为假值的一组谓词。我们试图寻找一个规划方案或动作序列，使其一经应用即可在规定的时间步数内导致状态满足 <em>G</em> ⊆ <em>F</em>。查找规划任务的规划方案通常通过启发式搜索方法完成；然而，在本研究中，我们专注于学习反应式规划策略，这些策略可在特定领域的实例上进行训练，随后推广至同一领域中未见的新实例。</p>
+<h4 id="_5">强化学习<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>不同于常见的 <span class="arithmatex">\(&lt;S, A, R, P, \gamma \text{折扣率}&gt;\)</span></p>
+</blockquote>
+<p>强化学习（RL）是机器学习的一个重要分支，致力于研究序列决策问题中的策略学习。RL算法最常见的假设是将问题建模为马尔可夫决策过程（MDP），在有限时域情况下由元组 (<em>S</em>, <em>A</em>, <em>R</em>, <em>P</em>, <em>T</em>, <em>p</em>) 定义，其中 <em>S</em> 是状态集合，<em>A</em> 是动作集合，<em>R</em> 是将状态或状态-动作对映射到标量奖励的奖励函数，<em>P</em> 是转移概率函数（满足 <span class="arithmatex">\(p(s' | s, a) = P(s', s, a)\)</span>，<strong>确定性策略对应 P = 1</strong>），<em>T</em> 是任务的时间范围，<em>p</em> 是初始状态的分布。</p>
+<p>在状态和动作空间较大的情况下，我们无法期望将策略表示为表格形式（<strong>Q表格</strong>），因此必须采用函数逼近器（<strong>Deep Q Network 的 target network</strong>）来表示带有参数 <em>θ</em> 的策略 <em>π</em>。我们专注于随机策略，该策略将状态映射到动作的概率分布，例如 <span class="arithmatex">\(p(a | s) = π(a | s)\)</span>，并使用基于策略梯度的方法进行优化。策略梯度方法通过蒙特卡洛采样估计目标函数相对于策略参数的梯度。在实施策略梯度方法时，我们可以利用由样本轨迹计算所得的"伪损失"的梯度来近似策略梯度。</p>
+<p>近端策略优化（PPO）是一种基于策略梯度的算法，旨在通过在学习过程中对收集到的数据进行多次梯度更新（随后丢弃数据并收集更多数据）来更充分地利用所收集的数据。为避免因较大的策略更新而引发的稳定性问题，PPO采用特殊的裁剪目标来限制当前策略与数据收集策略之间的差异，从而定义优化问题。</p>
+<h2 id="_6">学习广义策略<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">状态表示<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>我们选择将状态表示为图结构，并使用特征编码给定状态中对象之间的属性与关系。我们的框架基于PDDL建模语言指定的问题领域运行，在该框架中，问题实例由对象列表和谓词列表定义，这些谓词描述各对象的属性以及当前状态下它们之间的相互关系。我们将自身限制在谓词元数不超过2的领域内，这并非一个实质性限制，因为在许多情况下，高元数谓词可被分解为若干低元数谓词。我们的图由全局特征、节点特征和边缘特征构成。全局特征 <em>U</em> 表示问题实例或实体的属性，这些属性对该领域而言具有唯一性（例如Blocksworld领域中的指针），并由该领域的0元谓词确定。节点特征表示领域中对象的属性（例如它们的类型），并由1元谓词确定。最后，边缘特征代表对象之间的关系，并由2元谓词确定。</p>
+<p>在生成PDDL实例状态的图表示时，将为状态中的每个对象生成一个包含节点的完整图。对于状态中的每个谓词，将对应的特征分配为二进制值1，并假定所有其他特征均为假，其值为0。为了将目标配置纳入神经网络的输入，目标谓词几乎被视为另一个状态图，并将这两个图拼接在一起，形成状态-目标的统一表示。状态图与目标图之间的区别在于：在目标图中，值为0的特征表示未能贡献目标；在状态图中，值为0的特征则意味着该谓词被赋予假值。</p>
+<p>本研究使用的经典规划领域是确定性的且具有马尔可夫性质，这意味着当前状态包含解决问题所需的全部信息。尽管具备这一特性，我们发现除当前状态外，历史状态也有助于学习过程，并提升对较大实例的泛化能力。尽管这不是严格必要的，但我们的实验表明，这一步骤能够在某种程度上帮助策略缓解"来回振荡"的行为——这在策略更容易犯错而后尝试纠正的较大实例中尤为明显。添加历史信息十分简便：我们只需将K个先前状态与当前状态的图进行拼接，再如前所述与目标图进行拼接。我们测试了若干种历史视野长度，发现仅添加最后一个状态能够在整体性能和泛化能力之间取得最佳平衡。下图展示了来自Blocksworld领域的状态-目标图示例，显示了一个具有3个块的实例。</p>
+<p><img alt="RL+GP1" src="../_v_images/RL%2BGP1.png" /></p>
+<p><img alt="RL+GP2" src="../_v_images/RL%2BGP2.png" /></p>
+<h3 id="_8">图嵌入<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>为了利用状态-目标的图表示学习有效的策略，我们首先使用图神经网络（GNN）将图的节点、边缘和全局特征嵌入到各自的潜在空间中。GNN在图的不同组件之间执行消息传递，从而促进有用信息的流动。我们采用两种不同类型的GNN模块，每种模块在图内实施不同风格的信息流机制，因此相较于另一种类型，更适用于某些特定问题领域。在这两种类型中，更新顺序相似，并采用以下通用形式：</p>
+<ol>
+<li>使用先前的边缘特征以及这些边缘的"原始"节点特征来更新边缘；</li>
+<li>使用先前的节点特征、传入的更新边缘特征以及全局特征来更新节点；</li>
+<li>使用先前的全局特征以及更新后节点的聚合信息来更新全局特征。</li>
+</ol>
+<p>我们使用的第一种模块类型类似于图网络模块（Graph Network Block, GN Block）。数学上，该模块执行以下操作：</p>
+<p><img alt="RL+GP3" src="../_v_images/RL%2BGP3.png" /></p>
+<p>在上述表示中，σ 表示非线性激活函数（例如整流线性单元 ReLU），⊕ 表示节点级最大池化操作，而 <em>W</em> 和 <em>b</em> 分别为权重矩阵和偏置项。在GN模块中，节点不加区分地接收来自其相邻节点的消息，这有利于在整个图上传播一般性信息，但在需要传递特定信息位时则较为困难。</p>
+<p>第二种模块类型旨在弥补GN模块的上述缺陷，并为此目的引入了一种注意力机制。我们将第二种模块命名为**图网络注意力模块（Graph Network Attention Block, GNAT Block）**。与图注意力网络不同，该模块采用的注意力机制类似于Transformer模型。该模块执行的操作赋予节点以聚焦于特定消息的能力，从而允许某些信息位以更具目的性的方式在图内传播。在构建GNN模型时，我们可以堆叠若干此类模块（或其组合），以获得更深的图嵌入能力。在大多数实验中，我们使用了两个模块——两个连续的GN模块，或者一个GNAT模块后接一个GN模块。正如实验部分所示，每种配置在解决不同类型的问题时各有所长。</p>
+<h3 id="_9">策略表示<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>与常规的强化学习基准（其中动作集合是固定的，可通过标准神经网络架构便捷地处理）不同，在经典规划问题中，动作集合依赖于状态，且在不同状态之间规模各异。在PDDL中，每个领域描述定义了一组动作类型，这些动作类型可通过在状态基础上进行实例化获得。每种动作类型接收一组参数，并且为满足适用性条件，动作的参数必须符合一组前提条件。例如，Blocksworld领域包含一种名为"拾取"（pickup）的动作类型，该动作类型以单个积木对象作为参数。该积木必须同时满足"clear"、"on-table"且"arm-empty"属性为真，此动作方可适用。所有符合这些前提条件的积木均可被拾取，且每个积木代表一个唯一的动作。除前提条件外，每种动作类型还包含在应用动作时引起状态变化的效果。其中部分效果可能是正面的（状态中的某些谓词将采用真值），部分效果可能是负面的（状态中的某些谓词将采用假值）。</p>
+<p>在规划的每个步骤中，后继状态生成器提供当前状态和适用动作的列表。为了以有意义的方式表示动作，使其能够被策略学习所利用，我们选择依据动作的效果来描述动作——因为效果是决策过程中不可或缺的要素。由于后继状态生成器在每个步骤都向智能体提供所有合法的动作，我们省略了前提条件（所有合法动作均已满足前提条件）。每个动作由若干效果组成，每种效果涉及状态的不同方面，可以是正面效果或负面效果。根据效果的类型（全局效果、节点效果或边缘效果），将效果聚合在一起，并将其表示为各个组成部分的嵌入向量与一个描述谓词变化及其正负方向的一维向量的拼接。此一维向量在相应输入分量的维度上（例如节点效应的维度 <em>dv</em>）包含1（表示正面效果）或-1（表示负面效果），置于适当谓词对应的位置。每种效果根据其类型由多层感知器（MLP）进行转换，然后将转换后的效果分散回其原始动作。将每个动作的效果聚合在一起，形成该动作的单一向量表示，最终馈入策略神经网络。下图展示了动作表示的过程。</p>
+<p><img alt="RL-GP4" src="../_v_images/RL-GP4.png" /></p>
+<p>最终的策略是一个多层感知器（MLP），它为每个动作输出一个标量值，然后通过softmax操作对这些标量进行归一化，以获得动作的离散概率分布。此外，另一个MLP提取图的最终全局特征嵌入，并输出状态的预测值，用于RL算法中的优势估计。</p>
+<h3 id="_10">程序训练<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>由于本研究聚焦于寻找可行的规划方案，我们选择将问题建模为具有二元奖励的稀疏奖励问题。若智能体在预定时间范围内满足所有目标，则获得奖励1；否则不获得任何奖励。为确定适当的时限，我们采用常用的 <strong>hff</strong> 启发式方法，该方法在线性时间内求解问题的松弛形式（松弛问题不包含负面效果）。我们采用松弛规划的长度，并将其乘以常数5以获得规划时域的长度。</p>
+<p>为训练策略，我们选择使用近端策略优化（PPO），因其简洁性、易用性及良好的性能表现。为解决稀疏奖励问题，我们最初尝试使用Hindsight Experience Replay DQN，因其在解决稀疏目标达成问题方面具有潜力，但发现该方法引入了大量偏置，导致性能欠佳。为使策略能够从稀疏的二元奖励中学习，我们采用了一种更为简洁的方法：我们根据实例大小的分布生成每个训练情节，实例大小的分布范围小到足以被随机初始化的策略解决。通过这一设计，策略得以逐步发展并最终解决分布中的所有实例规模，而无需手动调整课程安排。尽管设置此分布需要一定的手动操作，但我们发现通过使用随机未训练的神经网络进行简单的试错即可十分轻松快捷地完成此任务。</p>
+<p>我们对标准PPO算法进行了若干微调，从而提升了本场景下的性能。许多RL算法的实现会在更新模型参数之前以固定步数推出策略，通常在此过程完成之前终止情节，并使用诸如广义优势估计和自举值估计等方法估计收益。我们发现这些元素可能给学习过程引入不必要的偏置，因此我们采用经验回报而非自举值估计来计算优势，从而使每个情节一直推广至终止。我们还发现，使用大量推广和大批量生产有助于稳定学习过程并获得更优的最终性能。因此，我们每轮进行100个情节的推广，并使用结果数据在每次学习迭代时更新模型参数。</p>
+<h3 id="_11">推理过程中的规划<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>为了提升广义策略在测试期间利用额外时间的能力，我们在搜索算法中采用了这些策略，这与此领域的诸多其他研究一脉相承。此类合成方法在诸如围棋和国际象棋等零和游戏中取得了巨大成功，其中深度神经网络策略与蒙特卡洛树搜索算法相结合，这促使其他作者将其应用于非游戏问题。我们采用了一种不同的方法，专门针对具有强反应式策略的确定性规划问题设计了搜索算法。我们的算法以经典的贪婪最佳优先搜索（GBFS）为基础，但在若干关键方面进行了扩展。在标准GBFS中，从根节点构建搜索树；在每次迭代中，从开放列表中提取启发式估计最优的节点，进行扩展并将其子节点添加到开放列表中，重复此过程直至找到目标节点或超时。我们的算法——称为GBFS-GNN——执行类似的过程，但使用策略网络和值函数为每个节点计算启发式值，并为每个扩展节点执行完整的部署（rollout）。扩展节点的子节点被添加到开放列表中，但部署过程中遇到的其余节点则不被添加，以避免在大规模问题中内存消耗的快速增长。搜索树中的每个节点代表一个状态-动作对，我们对每个节点使用以下启发式估计：</p>
+<p><img alt="RL+GP5" src="../_v_images/RL%2BGP5.png" /></p>
+<h2 id="_12">实验<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="_13">实验领域<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>我们评估了五个常见的经典规划领域，这些领域选自IPC规划竞赛集合，且其领域谓词的元数不超过2：</p>
+<ul>
+<li><strong>Blocksworld（4个操作）：</strong> 机械臂必须根据目标配置，将积木从初始配置移动至目标配置。</li>
+<li><strong>卫星（Satellite）：</strong> 一组卫星必须拍摄所需位置的图像，每颗卫星配备指定类型的传感器。</li>
+<li><strong>物流（Logistics）：</strong> 必须将包裹运送至目标位置，使用飞机和卡车在城市与地点之间运输包裹。</li>
+<li><strong>夹爪（Gripper）：</strong> 双臂机器人必须将球从A室运送至B室。</li>
+<li><strong>渡轮（Ferry）：</strong> 渡轮必须将汽车从初始位置运输至指定的目标位置。</li>
+</ul>
+<p>这五个领域的共同特征在于，可以为它们制定简洁的广义规划方案，从而能够解决任意大的实例。我们希望证明，我们的方法能够生成解决远比训练实例大的实例的策略，从而自动发现此类广义规划方案。某些领域相对简单，在广义规划方案易于描述的情况下，我们经常观察到策略能够极为成功地进行推广。例如，Gripper领域具有非常简单的策略（每次前往B室抓住2个球），实际上我们的神经网络学会了最优策略，即使对于包含数百个球的实例，通常仍能保持最优表现。为证明策略确实能够良好地推广，我们设置了以下实验条件：</p>
+<ul>
+<li>对于Blocksworld领域，我们在4个块的实例上训练策略，并在5至100个块的实例上进行评估。</li>
+<li>对于卫星领域，我们对使用1至3颗卫星、每颗卫星1至3台仪器、1至3种仪器类型、2至3个目标的实例进行策略训练，并针对使用1至14颗卫星、每颗卫星2至11台仪器、1至6种仪器类型、2至42个目标的实例进行评估。</li>
+<li>对于物流领域，我们对使用2至3架飞机、2至3个城市、每个城市2至3个地点、1至2个包裹的实例进行策略训练，并针对使用4至12架飞机、4至15个城市、每个城市1至6个地点、8至40个包裹的实例进行评估。</li>
+<li>对于Gripper领域，我们在3个球的实例上训练策略，并在5至200个球的实例上进行评估。</li>
+<li>对于渡轮领域，我们对具有3至4个位置、2至3辆汽车的实例进行策略训练，并针对具有4至40个位置、2至120辆汽车的实例进行评估。</li>
+</ul>
+<h3 id="_14">实验设置<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>为训练策略，我们依赖实例生成器产生随机的训练实例，因为我们的方法需要大量的训练数据。所有策略均经过1000次迭代训练，每次迭代包含100个训练情节和至多20个梯度更新步骤。实验在一台配备i7-8700K处理器和NVIDIA GTX 1070 GPU的计算机上进行。我们对所有五个领域使用了相同的训练超参数，但神经网络模型略有差异。我们使用了256维的隐藏表示和ReLU激活函数，学习率为0.0001，折扣因子为0.99，熵奖励为0.01，裁剪比率为0.2，KL散度目标参数为0.01。对于Blocksworld和Gripper领域，我们使用了两层GNN，均为GN模块类型；对于卫星、渡轮和物流领域，我们使用了两层GNN，包含一个GNAT模块和一个GN模块。我们的代码使用Python实现，神经网络和学习算法基于PyTorch。</p>
+<h3 id="_15">基准<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>我们的评估聚焦于解决广义规划领域中的大规模实例，并将方法与经典规划器进行比较。其他基于学习的方法在本研究撰写之时，或无可用的公开代码，或在大规模问题扩展方面具有固有限制，因此我们选择了更为通用的基准——经典规划器，其在具备足够时间和内存的条件下可扩展至大规模问题。我们与 <strong>Fast-Downward</strong> 进行了比较，这是一个最先进的规划框架。我们的方法使用Pyperplan（一个基于Python的框架）作为模型和后继状态生成器。我们采用LAMA优先配置作为快速向下的设置，因为它是性能最优的竞争性可满足规划算法。</p>
+<p><img alt="RL-GP6" src="../_v_images/RL-GP6.png" /></p>
+<p><img alt="RL-GP7" src="../_v_images/RL-GP7.png" /></p>
+<h3 id="_16">评估指标<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>由于本研究聚焦于可满足的规划方案，我们将成功率作为主要评估指标。对于每个领域，我们在一组50个预留的评估实例上运行GBFS-GNN和快速向下规划器，并针对每个实例设置600秒的固定时间限制。随后，我们针对时间限制和扩展状态数量分别绘制每种方法的成功率曲线，以观察在给定计算资源下各种方法的扩展行为。评估实例根据广泛的分布生成，以对大范围规模的实例进行采样。</p>
+<h3 id="_17">实验结果<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>以下呈现我们的实验结果。下图展示了我们的方法与快速向下规划器在五个实验领域中的性能比较。这些图表显示了成功率随扩展状态数量的变化关系，表明在五个领域中的四个领域内，我们的方法与经典规划器相比确实具有更有利的扩展特性。实际上，在策略能够有效推广的四个领域中，GBFS-GNN几乎不需要任何搜索。在这些领域中，除最困难的情况外，仅需贪婪地跟随策略即可找到解决方案。我们的搜索算法在此基础上进一步发挥了泛化能力的优势，在搜索过程中只使用了少量的完整策略部署。</p>
+<p>在另一张图中，我们针对给定的运行时间比较了我们的方法与快速向下规划器的成功率。可以看到，尽管快速向下规划器具备高度优化的C++实现，并采用复杂的建模工具来高效解决规划问题，我们的方法仍在一个领域（Blocksworld）中超越了它，并在另外三个领域中与其表现紧密相当。尽管GBFS-GNN所使用的后继状态和合法动作生成器的运行速度比快速向下慢数个数量级，但方法的泛化能力使其能够与经典规划器的最新实现展开竞争。</p>
+<p>我们的方法在泛化性能方面的一个明显例外是物流领域。策略在训练实例上成功取得了良好的性能，但未能推广至更大规模的实例，因此在该领域中，快速向下规划器远远优于我们的方法。在物流领域中，每个实例的不同对象之间包含了更为紧密的耦合关系。例如，在卫星领域中，校准仪器或对目标成像不会干扰其他卫星，策略可以有多个"半满足"的目标并在它们之间切换而不会受到干扰。在物流领域中，这是不可行的，因为所有包裹共享卡车和飞机，移动特定卡车以拾取包裹可能干扰原本打算在另一地点拾取的另一包裹。不同的图神经网络架构可能促使策略在单个目标上保持"专注"直到满足为止，然后再转向下一个目标，从而有望解决物流领域及其他类似类型的问题。</p>
+<h2 id="_18">结论与未来工作<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>在本研究中，我们探讨了图神经网络与深度强化学习算法学习广义规划策略的能力——这些策略能够解决比训练过程中遇到的实例大数个数量级的实例，从而有效地将原理性知识进行泛化。与某些其他方法不同，我们的方法**不依赖**现有规划器提供的最优解决方案，也**不依赖**启发式方法来提升性能。此外，我们介绍了GBFS-GNN——一种搜索算法，该算法利用高性能反应式策略的可用性，快速寻找超大规模实例的解决方案。</p>
+<p>我们的策略通过强化学习从头开始学习，并与GBFS-GNN相结合，在扩展状态方面超越了最先进规划器的高度优化实现，在运行时间方面亦能与之媲美。</p>
+<h2 id="_19">参考<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Groshev, E., Goldstein, M., Tamar, A., Srivastava, S., &amp; Abbeel, P. (2018). Learning generalized reactive policies using deep neural networks. In <em>Proc. ICAPS</em>.</li>
+<li>Silver, T., &amp; Chitnis, R. (2020). PDDLGym: Gym Environments from PDDL Problems. <em>arXiv preprint arXiv:2002.06432</em>.</li>
+<li>Dzeroski, S., De Raedt, L., &amp; Driessens, K. (2001). Relational reinforcement learning. <em>Machine Learning, 43</em>(1), 7-52.</li>
+<li>Schulman, J., Wolski, F., Dhariwal, P., Radford, A., &amp; Klimov, O. (2017). Proximal Policy Optimization Algorithms. <em>arXiv preprint arXiv:1707.06347</em>.</li>
+<li>Watkins, C. J. C. H. (1989). Learning from Delayed Rewards. <em>PhD Thesis, Cambridge University</em>.</li>
+<li>Sutton, R. S., &amp; Barto, A. G. (1998). <em>Reinforcement Learning: An Introduction</em>. MIT Press.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 tridu33
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/umlconvert.js"></script>
+      
+        <script src="../../js/sequence-loader.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
+      
+    
+  </body>
+</html>

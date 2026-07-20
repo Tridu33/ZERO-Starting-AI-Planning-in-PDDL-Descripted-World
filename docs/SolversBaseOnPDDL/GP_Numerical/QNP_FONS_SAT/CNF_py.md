@@ -1,7 +1,6 @@
 [TOC]
+
 # CNF_py
-
-
 
 ## L3
 
@@ -49,11 +48,6 @@ problem 3 grid move right
 ```
 /src$ python  main.py ../mystupidroad/domain.pddl  ../mystupidroad/stupid.pddl -strong 1 -policy 1
 ```
-
-
-
-
-
 
 下面分析传入 my_task 的数据结构所包含的输入信息：
 
@@ -104,7 +98,6 @@ class MyTask():
 		return True
 		......
 ```
-
 
 在 Parser 类的方法中完成翻译并保存为 MyTask 类的数据结构，可依据 myTask.py 中定义的方法进行访问：
 
@@ -170,6 +163,7 @@ set(['move-right'])
 >>> print(my_task.action_name_to_actions)
 {'move-right': ['move-right(l2,l3)', 'move-right(l2,l1)', 'move-right(l1,l2)', 'move-right(l3,l2)']}
 ```
+
 parser.py 中的 p.translate_to_atomic() 函数正是生成上述 my_task 数据结构对象的核心机制。
 
 ```
@@ -196,7 +190,6 @@ parser.py 中的 p.translate_to_atomic() 函数正是生成上述 my_task 数据
     return task
 ```
 
-
 接下来分析 main.py 中的主循环部分，此乃整个求解过程的核心所在：
 
 ```
@@ -222,9 +215,7 @@ False  # 无需显示此部分，因其与当前关注重点无关
     ......
 ```
 
-
 ## CNF
-
 
 值得再次强调的是，main.py 中的主循环部分（即核心求解逻辑）如下所示：
 
@@ -245,8 +236,7 @@ for i in range(1000):
     ......
 ```
 
-运行结果为 `>>> print(result)
-True`
+运行结果为 `>>> print(result) True`
 
 接下来考察 CNF 对象的数据结构、成员变量、成员函数及类方法：
 
@@ -296,7 +286,6 @@ class CNF:
 		self.number_clauses = 0
 	......
 ```
-
 
 下面展示运行完成后的结果。通过设置断点可以观察第一次循环后的状态：
 
@@ -398,7 +387,6 @@ True
  '(var0=2)(n0)': 2,
  '(n0,n1)': 35}
 
-
 >>> print(cnf.mapNumberVariable)
 {
 1: '(var0=1)(n0)', 
@@ -467,7 +455,6 @@ True
 64: 'YR1-n1-n0-1', 
 65: 'YR1-n1-n1-1', 
 66: 'YR1-n1-ng-1'}
-
 
 >>> print(cnf.mapVariableType)
 {'reachableG(ng,0)': 5,
@@ -538,7 +525,6 @@ True
  '(n0,n1)': 7}
 ```
 
-
 最终求得的 SAT 解：
 
 ```
@@ -550,7 +536,6 @@ SAT
 对应的命题映射：
 
 ```
-
 >>> print(cnf.mapNumberVariable)
 {
 3: '(var0=2)(ng)', 
@@ -584,10 +569,7 @@ SAT
 64: 'YR1-n1-n0-1', 
 65: 'YR1-n1-n1-1', 
 66: 'YR1-n1-ng-1'}
-
 ```
-
-
 
 ## cnf.py
 
@@ -618,15 +600,9 @@ SAT
 		self.generateReachableGClauses(task, controllerStates, goalCState, k, debug)
 		self.generateSymmetryBreaking(task, controllerStates, initialCState, goalCState, debug)
 		self.generateMutexGroupsClauses(task, controllerStates, debug)
-
 ```
 
-
-
-
 ## CNF 源码及其各类方法的详细解析
-
-
 
 ```
 import sys
@@ -683,10 +659,7 @@ class CNF:
 		self.file_formula_extra = open(self.name_file_formula_extra, 'a')
 		# File formula extra is not used, can be ignored
 		self.number_clauses = 0
-
 ```
-
-续接上文代码，添加标记以便跳转定位。
 
 ## 通用功能性函数（General Utility Functions）
 
@@ -811,25 +784,6 @@ class CNF:
 				else:
 					file.write(str(self.mapVariableNumber[j]) + '\t')
 			file.write('0\n')
-
-	# def printDisjunctions(self):
-	# 	for i in self.disjunctions:
-	# 		for j in i:
-	# 			print j + ' ',
-	# 		print '\n',
-
-	# def printDisjunctionsNumbers(self, printExpanded):
-	# 	for i in self.disjunctions:
-	# 		if printExpanded:
-	# 			for j in i:
-	# 				print j + '\t',
-	# 			print ''
-	# 		for j in i:
-	# 			if j[0] == '-':
-	# 				print '-' + str(self.mapVariableNumber[j[1:]]), '\t',
-	# 			else:
-	# 				print self.mapVariableNumber[j], '\t',
-	# 		print ' 0'
 
 	def printVariables(self):
 		for i in self.mapVariableNumber:
@@ -961,15 +915,9 @@ class CNF:
 		print('>=', i, ':', sum_greater)
 ```
 
-续接上文代码，添加标记以便跳转定位。
-
-
-
 ## generate_clauses：核心入口函数
 
-
-main.py
-核心循环部分，请留意以下关键要点：
+main.py 核心循环部分，请留意以下关键要点：
 
 ```
 solver_time = []
@@ -985,8 +933,6 @@ for i in range(1000):
     result = cnf.parseOutput(name_output_satsolver, controllerStates, p, print_policy)#读取文件name_output_satsolver : outsat-temp.txt输出结果
     ......
 ```
-
-
 
 cnf.py
 
@@ -1011,10 +957,7 @@ cnf.py
 		self.generateMutexGroupsClauses(task, controllerStates, debug)
 ```
 
-
-续接上文代码，添加标记以便跳转定位。
-
-##  generate_clauses调用的生成子句的类
+## generate_clauses 调用的生成子句的类
 
 ```
 	###########################################
@@ -1078,7 +1021,6 @@ cnf.py
 		c2, v2 = self.get_num_cl_vars()
 		if debug:
 			print('Generation: Precs\t\t v %i \t\t c : %i \t\t %f' % (v2 - v1, c2 - c1, timer() - start))
-
 
 	###########################################
 	############## NON-DET ####################
@@ -1235,10 +1177,6 @@ cnf.py
 		start = timer()
 		atoms = task.get_atoms()
 		actions = task.get_actions()
-
-		#for a in actions:
-		#	print(a, task.get_del_list(a))
-		#	print(a, task.get_add_list(a))
 
 		for n1 in controllerStates:
 			for n2 in controllerStates:
@@ -1594,7 +1532,6 @@ cnf.py
 		if debug:
 			print('Generation: Sym brk\t\t v %i \t\t c : %i \t\t %f' % (v2 - v1, c2 - c1, timer() - start))
 
-
 	###########################################
 	############## MUTEX GROUPS ###############
 	###########################################
@@ -1618,30 +1555,3 @@ cnf.py
 	def __get_all_pairs(self, els):
 		return [(e1, e2) for (i1, e1) in enumerate(els) for (i2, e2) in enumerate(els) if i2 > i1]
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

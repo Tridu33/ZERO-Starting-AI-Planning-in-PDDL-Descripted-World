@@ -1,29 +1,20 @@
-
 [TOC]
 
-
 # QA_FONDSAT
-首先进行强循环规划（Strong Cyclic Planning），
-然后从中筛选出属于强规划（Strong Planning）的部分。
 
-
+首先进行强循环规划（Strong Cyclic Planning），然后从中筛选出属于强规划（Strong Planning）的部分。
 
 参数 k 的初始值为 1，步长为 1，前向传播为负（回溯步长为 -1），后向传播为正。
 
-
-k =|S|
+k = |S|
 
 ```
 CNF 的形式不正是 a1 AND a2 AND ... AND an 吗？其算法的核心在于从 S 中选取若干个状态来填充这个 CNF 表达式，然后调用 MiniSAT 判定其是否可满足（Satisfiable）。对于一个 FOND 问题，其状态数量最多为 |S| 个，因此当 C(P, k) 中的参数 k 等于 |S| + 1 时，意味着该问题无解。
 ```
 
-
-
-
 如何将每个高层流利（High-level Fluent）翻译为低层公式（Low-level Formula）？论文中多次出现的 Fluent 究竟是何含义？
 
-Let Q = <F, V, I, O, G> be a QNP. The number of boolean states for Q is exponential in the number of fluents and variables
-
+Let Q = ⟨F, V, I, O, G⟩ be a QNP. The number of boolean states for Q is exponential in the number of fluents and variables
 
 ```
 《Knowledge in Action》作者 Raymond Reiter，该书应该包含此概念。
@@ -33,28 +24,19 @@ Fluent 可以理解为对原子变量的一种赋值。
 
 Blocks World（积木世界）示例：
 
-$Q_{clear} =$ <**F**, V, I, O, G>
+Q_clear = ⟨**F**, V, I, O, G⟩
 
+F, {H}
 
-F,{H}
+V, {n(x)}
 
-V,{n(x)}
+I, {¬H, n(x)>0}
 
-I,{$\neg H$,n(x)>0}
+O, {a, b},
+a = ⟨¬H, n(x)>0; H, n(x)↓⟩,
+b = ⟨H; ¬H⟩
 
-O,{a,b},
-a=< $\neg H$,n(x)>0;H,n(x)$\downarrow$>,
-b=<H;$\neg H$>
-
-G={n(x)=0}
-
-
-
-
-
-
-
-
+G = {n(x)=0}
 
 ## minisat
 
@@ -62,12 +44,6 @@ G={n(x)=0}
 USAGE: ./minisat <input-file> <result-output-file>
   where the input may be either in plain/gzipped DIMACS format or in BCNF.
 ```
-
-
-
-
-
-
 
 ## FOND-SAT
 
@@ -84,8 +60,7 @@ result = cnf.parseOutput(name_output_satsolver, controllerStates, p, print_polic
 ......
 ```
 
-该 CNF 类构造函数接收参数：“`formula-temp.txt写有cnf的文件`、`formula-extra-temp.txt空可能要有打开条件`， fair, strong”可以实现转换成为`CNF`
-
+该 CNF 类构造函数接收参数："`formula-temp.txt 写有 cnf 的文件`、`formula-extra-temp.txt 空可能要有打开条件`，fair, strong" 可以实现转换成为 `CNF`
 
 ```
 cnf = CNF(name_formula_file, name_formula_file_extra, fair, strong)
@@ -128,10 +103,10 @@ for i in range(1000):
 
 然后就是调用求解了。
 
-
 ```
 python main.py ../F-domains/islands/domain.pddl ../F-domains/islands/p03.pddl -policy 1
 ```
+
 参数（params）字典如下：
 
 ```
@@ -146,15 +121,17 @@ python main.py ../F-domains/islands/domain.pddl ../F-domains/islands/p03.pddl -p
 'name_temp': 'temp'
 }
 ```
+
 因此，替代命令行传参的运行方式如下：
+
 ```
 params={'time_limit': 3600, 'inc': 1, 'path_domain': '../F-domains/islands/domain.pddl', 'gen_info': 0, 'policy': 1, 'mem_limit': 4096, 'strong': 0, 'path_instance': '../F-domains/islands/p03.pddl', 'name_temp': 'temp'}
 ```
 
-
 ```
 python main.py ../F-domains/islands/domain.pddl ../F-domains/islands/p03.pddl -strong 1 -inc 2 -policy 1
 ```
+
 成功运行的例程输出如下：
 
 ```
@@ -200,7 +177,7 @@ SATISFIABLE
 ('WARNING: variable not Atom nor NegatedAtom;', '<none of those>')
 ```
 
-main.py这行：
+main.py 这行：
 
 ```
 >>> my_task = p.translate_to_atomic()
@@ -224,10 +201,9 @@ Setting splitting
 Setting compatible actions
 (0, '/', 80)
 0.00220704078674
-
 ```
 
-main.py 92 
+main.py 92
 
 ```
 cnf = CNF(name_formula_file, name_formula_file_extra, fair, strong)
@@ -282,10 +258,9 @@ for i in range(1000):
 	if result:
 		break
 	print('UNSATISFIABLE')
-	
 ```
 
-**./minisat %s %s' % (name_formula_file, name_output_satsolver）**
+**./minisat %s %s' % (name_formula_file, name_output_satsolver)**
 
 根据 MiniSAT 的用法说明：
 
@@ -293,13 +268,14 @@ for i in range(1000):
 USAGE: ./minisat <input-file> <result-output-file>
   where the input may be either in plain/gzipped DIMACS format or in BCNF.
 ```
+
 即在命令行中执行：
 
 ```
 ./minisat formula-temp.txt outsat-temp.txt
 ```
 
-如果在命令行输入单独运行cnf生成sat求解的过程是：
+如果在命令行输入单独运行 cnf 生成 sat 求解的过程是：
 
 ```
 $ ./minisat test-formula-temp.txt test-outsat-temp.txt
@@ -369,10 +345,9 @@ Done creating formula. Calling solver...
 SAT solver called with 4096 MB and 3599 seconds
 Done solver. Round time: 0.022768
 Cumulated solver time: 0.096427
-
 ```
 
-CNF.py中的parserOutput方法
+CNF.py 中的 parserOutput 方法
 
 ```
 def parseOutput(self, nameFile, controllerStates, parser, print_policy = False):
@@ -440,7 +415,6 @@ def parseOutput(self, nameFile, controllerStates, parser, print_policy = False):
 		return True
 ```
 
-
 ```
 ===================
 ===================
@@ -489,9 +463,7 @@ ___________________
 Solved with 4 states
 ```
 
-
 main.py 137
-
 
 ```
 print('Elapsed total time (s): %f' % (timer() - time_start))
@@ -509,9 +481,7 @@ Elapsed solver time (s): [0.05086803436279297, 0.022791147232055664, 0.022768020
 Looking for strong plans: False
 Fair actions: True
 Done
-
 ```
-
 
 ## 常见错误与调试
 
@@ -519,14 +489,7 @@ Done
 from parser import Parser
 ```
 
-无法导入自定义的类，检查 __pycache__ 目录发现没有对应的 .pyc 缓存文件，导入未成功。
-
-暂时的解决方案是将 parser.py 中的代码直接复制到 main.py 文件中，此方法经测试可行。
-
-
-
-
-
+无法导入自定义的类，检查 __pycache__ 目录发现没有对应的 .pyc 缓存文件，导入未成功。暂时的解决方案是将 parser.py 中的代码直接复制到 main.py 文件中，此方法经测试可行。
 
 ### Bug 2：文件未找到错误
 
@@ -538,6 +501,7 @@ Traceback (most recent call last):
     fres = open(nameFile, 'r')
 FileNotFoundError: [Errno 2] No such file or directory: 'outsat-temp.txt'
 ```
+
 源码分析如下（第 430 行附近）：
 
 ```
@@ -563,14 +527,7 @@ FileNotFoundError: [Errno 2] No such file or directory: 'outsat-temp.txt'
 
 FileNotFoundError: [Errno 2] No such file or directory: 'outsat-temp.txt'
 
-
 ### debug
-
-
-
-
-
-
 
 ```
 Traceback (most recent call last):
@@ -600,10 +557,7 @@ Traceback (most recent call last):
   File "main.py", line 94, in generate_task
     raise MyError('Error opening sas file!')
 __main__.MyError: 'Error opening sas file!'
-
 ```
-
-
 
 The error occurs because in python 2, there is `time.clock()`, but in python 3, it has been replaced with `time.perf_counter()`.
 
@@ -611,45 +565,17 @@ The error occurs because in python 2, there is `time.clock()`, but in python 3, 
 ➜  src grep -r time.clock ./
 ./translate/invariant_finder.py:    start_time = time.clock()
 ./translate/invariant_finder.py:        if time.clock() - start_time > task.INVARIANT_TIME_LIMIT:
-
 ```
 
-
-Linux下
+Linux 下
 
 ```
  ./minisat:cannot execute binary file: Exec format error
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### from parser import Parser 
-
-
+### from parser import Parser
 
 ```
-
 #-------------------------------------
 #from parser import Parser
 #'''
@@ -953,39 +879,16 @@ class Parser:
 #from parser import Parser 
 # End
 #------------------------------------
-
-
 ```
-
-
 
 ## Q&A
 
-
 群友问：
 
->如何理解语义（Semantics）与语法（Syntax）的概念？
-语义究竟是语言本身的内在特性吗？
-
-
+> 如何理解语义（Semantics）与语法（Syntax）的概念？
+> 语义究竟是语言本身的内在特性吗？
 
 zz 回答：
 
-
-
->一个语言只有语义而没有语法，你就无法进行证明，而一个语言只有语法而没有语义，你就无法判断对错。  
-从语法的可推出，到语义的有效，是谓可靠性。从语义的有效到到语法的可推出，是谓完全性也。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+> 一个语言只有语义而没有语法，你就无法进行证明，而一个语言只有语法而没有语义，你就无法判断对错。
+> 从语法的可推出，到语义的有效，是谓可靠性。从语义的有效到到语法的可推出，是谓完全性也。

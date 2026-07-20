@@ -1,4 +1,6 @@
-[QN_GraphPlanner本地文件](file:///D:/tridu33/Py/jupyternotebook/QN_GraphPlanner)
+# QNP 归约为图问题
+
+> 本地文件：[QN_GraphPlanner](file:///D:/tridu33/Py/jupyternotebook/QN_GraphPlanner)
 
 Qualitative Number Problem 输入文本文件格式：$Q = \langle F, V, I, O, G \rangle$
 
@@ -19,9 +21,7 @@ Qualitative Number Problem 输入文本文件格式：$Q = \langle F, V, I, O, G
   | 0         | 0    | 0         | 1         | 1    | 1         |
 
 - $I$ 为起始状态
-
 - $G$ 为目标状态，同样仅为一个状态编码。
-
 - $O$ 为动作集 $\{a_1, a_2, a_3, a_4, \ldots\}$，定义为状态间的映射关系，并允许通过缺省值自动枚举状态。例如，"放下石头"动作的唯一直观形式化表示为 $\langle \neg E, E \rangle$，即描述动作所对应的状态变迁。
 
 注：在 QNP 问题中，原始问题通常使用 $V = \{v_1, v_2, v_3, \ldots\}$ 作为非确定性动作 $a_x$ 的 if-condition 条件判断依据，用以决定当前状态采取动作 $a_x$ 后的后继影响 effects。以积木世界为例，确定性动作 Pick-above-x（捡起 $x$ 上方积木）：若条件 if $(x \text{上方积木数量} n - 1 \neq 0)$ 成立，则执行动作 Pick-above-x 的后继状态为 $\neg \text{clear}(x)$（非空）；若条件 if $(x \text{上方积木数量} n - 1 \neq 0)$ 不成立，则执行动作 Pick-above-x 的后继状态为 $\text{clear}(x)$（空）。
@@ -44,4 +44,4 @@ QNP 中的动作集 $O$ 则归约为图 $G$ 中节点之间的有向边 Edges。
 - **算法第四步**：对通路图 $G_{\text{HalfSolution}}$ 应用第二步的可逆合并操作，解除 SCC 的合并（第二步需记录入度节点和出度节点，以便 SCC 还原时使用），从而得到**有向有环通路图** $G_{\text{Solution}}$。
 - 随后，从松弛约束（relaxed problem）收紧为前文所述的"含 if-condition 的确定性动作"，应用数值变量 $V$ 的 if-condition 条件判断功能，从图 $G_{\text{Solution}}$ 生成唯一可执行的策略（Policy）：$S_{F,V} \rightarrow O_{\text{actions}}$，从而得到对应的动作序列 $\{a_1, a_1, a_1, a_2, a_3, \ldots\}$ 解。
 
-![qnp图法设计_1598498581_30912](_v_images\qnp图法设计_1598498581_30912.png)
+![qnp图法设计_1598498581_30912](_v_images/qnp图法设计_1598498581_30912.png)

@@ -1,7 +1,3121 @@
-<!DOCTYPE html><html> <head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=author content=tridu33><link rel="shortcut icon" href=../../img/favicon.ico><title>reviewOfGP &mdash; AI Planning in PDDL-Descripted World</title><link rel=stylesheet href="//fonts.googleapis.com/css?family=Lato:400,700"><link rel=stylesheet href=//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/all.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//code.jquery.com/jquery-2.1.1.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js></script><script>
-        hljs.initHighlightingOnLoad();
-    </script></head> <body ontouchstart> <div id=container> <aside> <div class=home> <div class=title> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div class=search> <div role=search> <form id=rtd-search-form class=wy-form action=../../search.html method=get> <input type=text name=q placeholder="Search docs" title="Type search term here"> </form> </div> </div> </div> <nav class=nav> <ul class=root> <li class=toctree-l1><a class=nav-item href=../..>Home</a></li> <li class=toctree-l1><button class="section nav-item">规划界黑话</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">PDDL进化史</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../PlanLanguages/ADL/ class=nav-item>ADL</a></li> <li class=toctree-l3><a href=../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/ class=nav-item>STRIPS</a></li> <li class=toctree-l3><button class="section nav-item hide">PDDL</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/ class=nav-item>HelloPDDL</a></li> <li class=toctree-l4> <a href=../../PlanLanguages/version/ class=nav-item>版本迭代</a></li> <li class=toctree-l4><a href=../../PlanLanguages/Extension%20to%20PDDL%28SAS%29/ class=nav-item>PDDL扩展</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">机器人世界</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../PlanLanguages/Golog/Golog_ROS/ class=nav-item>Golog</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL使用</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Usage/LocalSolvers/ class=nav-item>本地环境使用</a></li> <li class=toctree-l2> <a href=../../Usage/OnlineSolver/ class=nav-item>线上求解器使用</a></li> <li class=toctree-l2> <a href=../../Usage/VSCode/ class=nav-item>Visual Studio Code使用</a></li> <li class=toctree-l2><button class="section nav-item hide">经典demos</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/%E5%88%8A%E7%89%A9%E4%B8%8A%E7%BB%8F%E5%85%B8demos/ class=nav-item>刊物上经典demos</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PDDL%20Benchmark%20Instances/ class=nav-item>BenchMark</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL语法</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Syntax/PDDL%20axioms/ class=nav-item>语法总览</a></li> <li class=toctree-l2> <a href=../../Syntax/PDDLParser/ class=nav-item>Parser</a></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL-Descripted AI Planning World</button> <ul class=subnav> <li class="toctree-l2 current"><button class="section nav-item">Papers</button> <ul class=subnav> <li class="toctree-l3 current"><a href=./ class="nav-item current">reviewOfGP</a> <ul class=subnav> <li class=toctree-l4><a class="nav-item toc" href=#_1>表示和推理</a></li> </ul></li> <li class=toctree-l3><a href=../GP_summary/ class=nav-item>GP_summary</a></li> <li class=toctree-l3><a href=../A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/ class=nav-item>ReviewOfMLforAP</a></li> <li class=toctree-l3><a href=../Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/ class=nav-item>GPwithDeep-RL</a></li> <li class=toctree-l3><a href=../Survey%20of%20research%20literature/ class=nav-item>researchSurvey</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">SolversBaseOnPDDL</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/PyperPlan_STRIPS/ class=nav-item>PyperPlan_STRIPS</a></li> <li class=toctree-l3><a href=../../SolversBaseOnPDDL/Solvers/ class=nav-item>Solvers</a></li> <li class=toctree-l3><button class="section nav-item hide">CP</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/ffPlaner/ class=nav-item>FF</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/fast-downward/ class=nav-item>FD</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/CP/LAPKT%E8%BD%BB%E9%87%8F%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92%E5%B7%A5%E5%85%B7%E5%8C%85/ class=nav-item>LAPKT轻量自动规划工具包</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">GP_Numerical</button> <ul class="subnav hide"> <li class=toctree-l4> <a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem/ class=nav-item>QNP_ReduceTo_GraphProblem</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/%E5%9B%BE%E6%B3%95QNP/ class=nav-item>图法QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/ class=nav-item>LPG</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/grahPlan/ class=nav-item>grahPlan</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/SGPlan6/ class=nav-item>SGPlan6</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/PRP/ class=nav-item>PRP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/myND/ class=nav-item>myND</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">QNP_FONS_SAT</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py/ class=nav-item>CNF_py</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND/ class=nav-item>FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND/ class=nav-item>QA_FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/ class=nav-item>例解FOND</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP/ class=nav-item>QNP</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond/ class=nav-item>qnp2fond</a></li> <li class=toctree-l4><a href=../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT/ class=nav-item>QNP2SAT</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-plan-validators</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/PDDL-plan-validator.md>validators</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator.md>INVAL</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/VScode-PDDL插件VAL.md>VAL</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-Auto Planning</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href="../../Extensions/AP/PDDL4j_Java for自动规划.md">PDDL4j</a></li> <li class=toctree-l3> <a class=nav-item href="../../Extensions/AP/Tarski - An AI Planning Modeling Framework.md">Tarski</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/AP/实例中学习QNP定义实现AP(AutomatedPlanning).md>QNP2AP</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/RL/PDDLGYM.md>PDDLGYM</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/RL/RLPlanPapers.md>PDDL+RL强化学习</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">进击的PDDL</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Curry-Howard correspondence</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/控制流图CFG语义网络petri迁移系统扩展应用.md>CFG语义网络</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/PDDL-Solver2AST.md>PDDL-Solver2AST</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/TransitionSystemModelCheck.md>CFG=TransitionSystemModelCheck.md</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/qnp2ast2program.md>qnp2ast2program</a></li> </ul></li> </ul></li> <li class=toctree-l1> <a class=nav-item href=https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues>Issue跟踪讨论</a></li> </ul> </nav> <div class=repo> <div class=link> </div> <div class=previous><a href=../../Syntax/PDDLParser/ >&laquo; Previous</a></div> <div class=next><a href=../GP_summary/ >Next &raquo;</a></div> </div> </aside> <div id=spacer><button class=arrow></button></div> <main> <div class=home-top> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div id=main> <nav class=breadcrumbs> <ul> <li>PDDL-Descripted AI Planning World &raquo; </li><li>Papers</li> </ul> </nav> <div id=content><div class=toc> <ul> <li><a href=#a-review-of-generalized-planning>A review of generalized planning</a><ul> <li><a href=#_1>表示和推理</a><ul> <li><a href=#representing-sets-of-planning-tasks>Representing Sets of Planning Tasks</a></li> <li><a href=#_2>执行和验证</a></li> <li><a href=#_3>实验等评价指标</a><ul> <li><a href=#_4>评估</a></li> </ul> </li> <li><a href=#solver>Solver</a><ul> <li><a href=#srivastava>重用广义规划 Srivastava 的方法</a><ul> <li><a href=#_5>计算宏动作</a></li> </ul> </li> </ul> </li> <li><a href=#_6>计算广义策略</a><ul> <li><a href=#_7>计算有限状态控制器</a></li> <li><a href=#_8>计算程序</a></li> </ul> </li> <li><a href=#diverse-approaches-for-generalized-planning>diverse approaches for generalized planning</a></li> <li><a href=#pomdp>部分可观察性下的规划：一致、或然和 POMDP 规划</a></li> <li><a href=#62>6.2 具有控制知识的规划</a></li> <li><a href=#golog>GOLOG</a></li> <li><a href=#64>6.4 程序综合</a></li> <li><a href=#_9>总结</a></li> </ul> </li> </ul> </li> </ul> </div> <h1 id=a-review-of-generalized-planning>A review of generalized planning<a class=headerlink href=#a-review-of-generalized-planning title="Permanent link">&para;</a></h1> <p>自动化规划（Automated Planning, AP）能够借助智能体（agent）及其环境的模型，在高度结构化的环境中解决复杂的推理性任务。然而，传统上由自动规划器生成的解决方案往往局限于特定的规划实例，因而缺乏泛化能力，此即**经典规划**（classical planning）的固有局限。</p> <blockquote> <p><strong>广义规划</strong>（generalized plan）是一种类算法的解决方案，其有效性涵盖给定的一组规划实例。</p> </blockquote> <p>近年来，由于规划表示方面的新颖形式主义以及计算此类解决方案的新型算法相继涌现，这些学术进展揭示了广义规划技术的巨大潜力，并推动规划方法在计算机科学诸领域中的应用，例如*程序合成（program synthesis）、自主控制（autonomous control）、数据整理（data wrangling）以及形式识别（form recognition）*<sup id="fnref:Syntax-guided synthesis"><a class=footnote-ref href="#fn:Syntax-guided synthesis">33</a></sup>[^Inductive programming]。</p> <p>本文梳理了广义规划领域的最新进展，并将其与现有的形式主义相关联，聚焦于自动化规划中的通用性问题，例如*结合领域控制知识的规划*以及*不确定性条件下的规划*等不同方法。</p> <p>首先，本文提供自动化规划的背景知识，形式化地定义广义规划任务，并介绍本文对广义规划工作进行评估的标准。</p> <p>其次，本文探讨用于表示规划任务的不同知识表示与推理方法。</p> <p>第三，本文调查多种代表性形式主义，分析其各自的优势与不足。</p> <p>第四，本文研究当前用于计算广义规划的算法。</p> <p>最后，在讨论不同实现方法的基础上，本文指出有待深入探索的开放性研究问题，以激励未来的研究工作。</p> <h2 id=_1>表示和推理<a class=headerlink href=#_1 title="Permanent link">&para;</a></h2> <p>classical planning(the vanilla model in AP),</p> <p>在*经典规划模型*——自动规划中最常见的模型——中，其基本假设如下：</p> <ol> <li> <p>待求解的规划任务具有有限且完全可观察的状态空间。</p> </li> <li> <p>动作具有确定性，并导致瞬时状态转换。</p> </li> </ol> <p>经典规划实例的解决方案是一系列可应用的动作，这些动作将给定的初始状态转换为目标状态，即满足先前指定的目标条件集合的状态。</p> <p>A classical planning frame is a tuple Φ =〈F,A〉, where F is a set of fluents and A is a set of actions. </p> <p>Given a frame Φ =〈F,A〉, a <strong>classical planning</strong> instance is a tuple P=〈F,A,I,G〉, where I∈ L(F) is an initial state (i.e.|I|=|F|) andG∈ L(F)is a goal condition. </p> <p>规划领域定义语言**（PDDL）**[59] 是国际规划竞赛（IPC）[95] 的输入语言，也是表示经典规划实例的标准格式。除经典规划外，PDDL 还能够表示更具表达力的规划模型，例如*时序规划以及带有路径约束和偏好的规划*[27, 33]。</p> <p>广义规划是生成式模型（generative model），其形式多种多样。每种形式均具有自身的表达能力以及计算与验证复杂性。</p> <p>广义规划的范围涵盖程序 [97, 83]、广义策略 [57]、有限状态控制器（FSCs）[10, 84]、AND/OR 图、形式文法 [77] 以及 HTN [66] 等多种形式。</p> <p>可以根据广义规划对*下一步要执行的动作*的规范程度对其分类：</p> <ul> <li><strong>完全指定的解决方案</strong>（Fully specified solutions），能够明确捕获接下来要执行的动作，以解决给定的广义规划任务中的每个实例。程序、广义策略或确定性 FSC 均属于此类。若我们将一致的（conformant）、或有的（contingent）或 POMDP 规划也归入此类，则可能的初始状态代表不同的经典规划实例，它们共享相同的状态变量、动作和目标 [42]。<strong>我认为非确定的图的解图 policy=确定性=可以写成 program</strong></li> <li><strong>未指定的解决方案</strong>（Non specified，我认为是每个实例都没规律需要 classical planner 额外规划）。带有领域模型的经典规划器是广义规划的一种形式。此类规划极为通用（涵盖了能用经典规划器输入语言表示的任何实例），但执行机制效率低下（需要针对广义规划任务中的每个实例运行经典规划器以生成完全指定的解决方案）。</li> <li><strong>部分指定的解决方案</strong>（Partially specified）。共享上述两类要素的广义规划。使用*特定于领域的控制知识*进行*规划*的不同方法属于此类，因为仍需要规划人员针对特定实例生成完全指定的解决方案，但可利用约束可能解决方案的常识。此类包括部分指定的程序、非确定性 FSC、形式文法、AND/OR 图或 HTN。<strong>认为这就是 QNP/FOND 可以搜索 "policy&rarr;解子图"</strong></li> </ul> <p>The execution of a generalized plan <span class=arithmatex>\(\Pi\)</span> in a classical planning instance P=〈F,A,I,G〉is a classical plan,</p> <p><img alt src=../_v_images/APframework.png></p> <p>The <em>problem generator</em> box refers to a generative model of the instances inthe generalized planning task. 广义规划任务包含一组待求解的独立规划任务。这组规划任务可以是有限的或无限的，并且可以用不同的方式加以描述，例如对经典规划实例进行显式枚举，或通过使用逻辑公式、概率分布、问题生成程序等方式进行隐式指定。当提供规划任务的显式说明时，可跳过问题生成步骤。</p> <p>The <strong>generalized planner</strong> box refers to an algorithm d with aninput-outputspecification of the instances to solve and that generates a solutionto these instances. 其中包含待求解实例的*输入-输出*规范，并为这些实例生成解决方案。</p> <p>广义规划算法涵盖从纯粹的**自上而下**（top-down，我理解为 MyND 启发式图搜索子图，或 FOND-SAT 全空间搜索）方法——即在广义规划空间中搜索涵盖所有输入实例的解决方案——</p> <p>到**自下而上**（bottom-up，我理解为 PRP、FF planner，开创者从实例中学习的方法）的方法——即为单个实例计算解决方案，然后通过概括和合并先前找到的解决方案逐步扩大广义规划的覆盖范围。最终，*广义规划*可被视为广义规划任务中规划实例的过程性表示。</p> <p>通用 GP 规划类似于经典规划，传统求解方法包括：</p> <ol> <li>在经典规划中，规划器仅接收单个且具象的规划实例作为输入。</li> <li>经典规划的最新算法是在状态空间中进行启发式搜索 [37, 30]，或将其编译为其他形式的问题求解方法（例如 SAT [78]）。</li> <li>经典规划是一系列动作，其执行和验证在规划长度上呈线性复杂度。然而，具有条件效应、变量和控制流结构的动作可用于更紧凑地表示经典规划任务的解决方案 [52, 81]。</li> </ol> <h3 id=representing-sets-of-planning-tasks>Representing Sets of Planning Tasks<a class=headerlink href=#representing-sets-of-planning-tasks title="Permanent link">&para;</a></h3> <p>different formalisms for representing sets of planning taskswithin generalized planning.</p> <ul> <li>Representing Actions</li> </ul> <p>（RL 强化学习结合）一个示例是在 <strong>ATARI</strong> 视频游戏中使用的以智能体为中心的行为模型 [62]，其中 18 种可能的行为根据视频游戏的当前状态具有不同效果。在此，我们回顾了经典规划行为模型的扩展，这些扩展旨在使规划任务和规划解决方案更加紧凑且更具通用性。</p> <ul> <li>Conditional effects=preconditions+conditional effects</li> </ul> <p>Conditional effects cannot be compiled away if plan size should grow only linearly [67]. </p> <p>PDDL supports the definition of conditional effects with the <strong>when</strong> keyword。In PDDL the condition of a given conditional effect has the same expressivenessas action preconditions and goals, so it can either be a negation, a conjunction,a disjunction or a quantified formula, as defined in the ADL formalism [71, 27].</p> <ul> <li>Update formulas and high-level state features</li> </ul> <p><strong>Srivastava</strong> 等人 [90] 在广义规划方面的一系列工作采用更新公式（update formulas）对动作效果进行编码。更新公式是任意的 FOL 公式，包含传递闭包（transitive closure），用于定义给定谓词在应用动作后的新值。</p> <p>等效地</p> <p>包含传递闭包的任意 FOL 公式可以在 PDDL 中使用**派生谓词**（derived predicates）来表示，这些派生谓词随后可纳入动作前提条件、条件效应以及目标之中。</p> <div class=highlight><pre><span></span><code>(:derived (above ?x ?y - block)
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ZERO-Starting AI Planning in PDDL-Descripted World">
+      
+      
+        <meta name="author" content="tridu33">
+      
+      
+      
+        <link rel="prev" href="../../Syntax/PDDLParser/">
+      
+      
+        <link rel="next" href="../GP_summary/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../imgs/logo.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>reviewOfGP - AI Planning in PDDL-Descripted World</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-header__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Planning in PDDL-Descripted World
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              reviewOfGP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-nav__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    AI Planning in PDDL-Descripted World
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    规划界黑话
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    规划界黑话
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL进化史
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL进化史
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/ADL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HelloPDDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本迭代
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/Extension%20to%20PDDL%28SAS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL扩展
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器人世界
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    机器人世界
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/Golog/Golog_ROS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Golog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL使用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL使用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Usage/VSCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Studio Code使用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL语法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL语法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Syntax/PDDL%20axioms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    语法总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Syntax/PDDLParser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Descripted AI Planning World
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Descripted AI Planning World
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    reviewOfGP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    reviewOfGP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        表示与推理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="表示与推理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        表示规划任务集合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        广义规划的紧凑性与通用性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="广义规划的紧凑性与通用性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        执行与验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评估指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        求解方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="求解方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#srivastava" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重用广义规划——Srivastava的方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算宏动作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算广义策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算有限状态控制器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不同广义规划方法总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pomdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部分可观察性下的规划：一致、或然和POMDP规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具有控制知识的规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GOLOG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序综合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ReviewOfMLforAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPwithDeep-RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Survey%20of%20research%20literature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    researchSurvey
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolversBaseOnPDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SolversBaseOnPDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/Solvers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solvers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_2" id="__nav_5_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/CP/ffPlaner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/CP/fast-downward/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_3" id="__nav_5_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_Numerical
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GP_Numerical
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_ReduceTo_GraphProblem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/%E5%9B%BE%E6%B3%95QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图法QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LPG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/grahPlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    grahPlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/SGPlan6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SGPlan6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/myND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    myND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_4" id="__nav_5_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_FONS_SAT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QNP_FONS_SAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CNF_py
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA_FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例解FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2fond
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2SAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-plan-validators
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-plan-validators
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/PDDL-plan-validator/PDDL-plan-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    validators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INVAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Auto Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Auto Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2AP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/RL/PDDLGYM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDLGYM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进击的PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进击的PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Curry-Howard correspondence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Curry-Howard correspondence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG语义网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/TransitionSystemModelCheck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG=TransitionSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/qnp2ast2program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2ast2program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issue跟踪讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        表示与推理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="表示与推理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        表示规划任务集合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        广义规划的紧凑性与通用性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="广义规划的紧凑性与通用性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        执行与验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评估指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        求解方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="求解方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#srivastava" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重用广义规划——Srivastava的方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算宏动作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算广义策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算有限状态控制器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        计算程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不同广义规划方法总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pomdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部分可观察性下的规划：一致、或然和POMDP规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具有控制知识的规划
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GOLOG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        程序综合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<div class="toc">
+<ul>
+<li><a href="#_1">广义规划综述</a><ul>
+<li><a href="#_2">表示与推理</a><ul>
+<li><a href="#_3">表示规划任务集合</a></li>
+</ul>
+</li>
+<li><a href="#_4">广义规划的紧凑性与通用性</a><ul>
+<li><a href="#_5">执行与验证</a></li>
+<li><a href="#_6">评估指标</a></li>
+</ul>
+</li>
+<li><a href="#_7">求解方法</a><ul>
+<li><a href="#srivastava">重用广义规划——Srivastava的方法</a></li>
+<li><a href="#_8">计算宏动作</a></li>
+<li><a href="#_9">计算广义策略</a></li>
+<li><a href="#_10">计算有限状态控制器</a></li>
+<li><a href="#_11">计算程序</a></li>
+<li><a href="#_12">不同广义规划方法总结</a></li>
+<li><a href="#pomdp">部分可观察性下的规划：一致、或然和POMDP规划</a></li>
+<li><a href="#_13">具有控制知识的规划</a></li>
+<li><a href="#golog">GOLOG</a></li>
+<li><a href="#_14">程序综合</a></li>
+</ul>
+</li>
+<li><a href="#_15">总结</a></li>
+<li><a href="#_16">参考</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="_1">广义规划综述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>自动化规划（Automated Planning, AP）能够借助智能体（agent）及其环境的模型，在高度结构化的环境中解决复杂的推理性任务。然而，传统上由自动规划器生成的解决方案往往局限于特定的规划实例，因而缺乏泛化能力，此即**经典规划**（classical planning）的固有局限。</p>
+<blockquote>
+<p><strong>广义规划</strong>（generalized plan）是一种类算法的解决方案，其有效性涵盖给定的一组规划实例。</p>
+</blockquote>
+<p>近年来，由于规划表示方面的新颖形式主义以及计算此类解决方案的新型算法相继涌现，这些学术进展揭示了广义规划技术的巨大潜力，并推动规划方法在计算机科学诸领域中的应用，例如<a href="https://en.wikipedia.org/wiki/Program_synthesis">程序合成（program synthesis）</a>、<a href="https://en.wikipedia.org/wiki/Autonomous_control">自主控制（autonomous control）</a>、<a href="https://en.wikipedia.org/wiki/Data_wrangling">数据整理（data wrangling）</a>以及<a href="https://en.wikipedia.org/wiki/Pattern_recognition">形式识别（form recognition）</a>等。</p>
+<p>本文梳理了广义规划领域的最新进展，并将其与现有的形式主义相关联，聚焦于自动化规划中的通用性问题，例如结合领域控制知识的规划以及不确定性条件下的规划等不同方法。</p>
+<p>首先，本文提供自动化规划的背景知识，形式化地定义广义规划任务，并介绍本文对广义规划工作进行评估的标准。其次，本文探讨用于表示规划任务的不同知识表示与推理方法。第三，本文调查多种代表性形式主义，分析其各自的优势与不足。第四，本文研究当前用于计算广义规划的算法。最后，在讨论不同实现方法的基础上，本文指出有待深入探索的开放性研究问题，以激励未来的研究工作。</p>
+<h2 id="_2">表示与推理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在*经典规划模型*——自动规划中最常见的模型——中，其基本假设如下：</p>
+<ol>
+<li>待求解的规划任务具有有限且完全可观察的状态空间。</li>
+<li>动作具有确定性，并导致瞬时状态转换。</li>
+</ol>
+<p>经典规划实例的解决方案是一系列可应用的动作，这些动作将给定的初始状态转换为目标状态，即满足先前指定的目标条件集合的状态。</p>
+<p>A classical planning frame is a tuple Φ = 〈F, A〉, where F is a set of fluents and A is a set of actions.</p>
+<p>Given a frame Φ = 〈F, A〉, a <strong>classical planning</strong> instance is a tuple P = 〈F, A, I, G〉, where I ∈ L(F) is an initial state (i.e. |I| = |F|) and G ∈ L(F) is a goal condition.</p>
+<p>规划领域定义语言**（PDDL）**是<a href="https://www.icaps-conference.org/competitions/">国际规划竞赛（IPC）</a>的输入语言，也是表示经典规划实例的标准格式。除经典规划外，PDDL还能够表示更具表达力的规划模型，例如时序规划以及带有路径约束和偏好的规划。</p>
+<p>广义规划是生成式模型（generative model），其形式多种多样。每种形式均具有自身的表达能力以及计算与验证复杂性。广义规划的范围涵盖程序、广义策略、有限状态控制器（FSCs）、AND/OR图、形式文法以及HTN等多种形式。</p>
+<p>可以根据广义规划对*下一步要执行的动作*的规范程度对其分类：</p>
+<ul>
+<li><strong>完全指定的解决方案</strong>（Fully specified solutions），能够明确捕获接下来要执行的动作，以解决给定的广义规划任务中的每个实例。程序、广义策略或确定性FSC均属于此类。若我们将一致的（conformant）、或有的（contingent）或POMDP规划也归入此类，则可能的初始状态代表不同的经典规划实例，它们共享相同的状态变量、动作和目标。<strong>笔者认为非确定的图的解图（policy）即具有确定性，可以写成program。</strong></li>
+<li><strong>未指定的解决方案</strong>（Non specified，笔者认为每个实例都没规律需要classical planner额外规划）。带有领域模型的经典规划器是广义规划的一种形式。此类规划极为通用（涵盖了能用经典规划器输入语言表示的任何实例），但执行机制效率低下（需要针对广义规划任务中的每个实例运行经典规划器以生成完全指定的解决方案）。</li>
+<li><strong>部分指定的解决方案</strong>（Partially specified）。共享上述两类要素的广义规划。使用特定于领域的控制知识进行规划的不同方法属于此类，因为仍需要规划人员针对特定实例生成完全指定的解决方案，但可利用约束可能解决方案的常识。此类包括部分指定的程序、非确定性FSC、形式文法、AND/OR图或HTN。<strong>认为这就是QNP/FOND可以搜索"policy——&gt;解子图"。</strong></li>
+</ul>
+<p>The execution of a generalized plan <span class="arithmatex">\(\Pi\)</span> in a classical planning instance P = 〈F, A, I, G〉 is a classical plan.</p>
+<p><img alt="" src="../_v_images/APframework.png" /></p>
+<p>The <em>problem generator</em> box refers to a generative model of the instances in the generalized planning task. 广义规划任务包含一组待求解的独立规划任务。这组规划任务可以是有限的或无限的，并且可以用不同的方式加以描述，例如对经典规划实例进行显式枚举，或通过使用逻辑公式、概率分布、问题生成程序等方式进行隐式指定。当提供规划任务的显式说明时，可跳过问题生成步骤。</p>
+<p>The <strong>generalized planner</strong> box refers to an algorithm with an input-output specification of the instances to solve and that generates a solution to these instances. 其中包含待求解实例的*输入-输出*规范，并为这些实例生成解决方案。</p>
+<p>广义规划算法涵盖从纯粹的**自上而下**（top-down，笔者理解为MyND启发式图搜索子图，或FOND-SAT全空间搜索）方法——即在广义规划空间中搜索涵盖所有输入实例的解决方案——到**自下而上**（bottom-up，笔者理解为PRP、FF planner，开创者从实例中学习的方法）的方法——即为单个实例计算解决方案，然后通过概括和合并先前找到的解决方案逐步扩大广义规划的覆盖范围。最终，*广义规划*可被视为广义规划任务中规划实例的过程性表示。</p>
+<p>通用GP规划类似于经典规划，传统求解方法包括：</p>
+<ol>
+<li>在经典规划中，规划器仅接收单个且具象的规划实例作为输入。</li>
+<li>经典规划的最新算法是在状态空间中进行启发式搜索，或将其编译为其他形式的问题求解方法（例如SAT）。</li>
+<li>经典规划是一系列动作，其执行和验证在规划长度上呈线性复杂度。然而，具有条件效应、变量和控制流结构的动作可用于更紧凑地表示经典规划任务的解决方案。</li>
+</ol>
+<h3 id="_3">表示规划任务集合<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>不同形式的用于表示广义规划中规划任务集合的形式主义。</p>
+<p><strong>表示动作。</strong>（RL强化学习结合）一个示例是在**ATARI**视频游戏中使用的以智能体为中心的行为模型，其中18种可能的行为根据视频游戏的当前状态具有不同效果。在此，我们回顾了经典规划行为模型的扩展，这些扩展旨在使规划任务和规划解决方案更加紧凑且更具通用性。</p>
+<p><strong>条件效应（Conditional effects）。**Conditional effects cannot be compiled away if plan size should grow only linearly. PDDL supports the definition of conditional effects with the **when</strong> keyword。In PDDL the condition of a given conditional effect has the same expressiveness as action preconditions and goals, so it can either be a negation, a conjunction, a disjunction or a quantified formula, as defined in the ADL formalism.</p>
+<p><strong>更新公式与高层状态特征（Update formulas and high-level state features）。**Srivastava等人在广义规划方面的一系列工作采用更新公式（update formulas）对动作效果进行编码。更新公式是任意的FOL公式，包含传递闭包（transitive closure），用于定义给定谓词在应用动作后的新值。等效地，包含传递闭包的任意FOL公式可以在PDDL中使用**派生谓词</strong>（derived predicates）来表示，这些派生谓词随后可纳入动作前提条件、条件效应以及目标之中。</p>
+<div class="highlight"><pre><span></span><code>(:derived (above ?x ?y - block)
         (or (on ?x ?y)
             (exists (?z - block)
                 (and (on ?x ?z) (above ?z ?y)))))
-</code></pre></div> <p>this is how PDDL defines theabovederived predicate that models whether a block?xisaboveanother block?yin ablocksworld tower*派生谓词*能够表示表达性的状态查询，涵盖状态变量和递归层次结构 [92]。事实证明，这对于紧凑地表示规划任务以及实现更高效的规划具有重要价值 [45]。</p> <p>除派生谓词外，多种形式主义已用于表示规划中的状态查询，其范围从一阶子句 [96] 到描述逻辑公式 [57]，乃至 LTL 公式 [20]，以定义关于状态序列的查询。</p> <ul> <li>Sensing and non-deterministic actions</li> </ul> <p>当状态在 <strong>FOND</strong> 下完全可观察（fully observable）时，考虑到任何状态信息均可通过状态查询获取，因此无需显式的感知动作。相应地，传感动作适用于 <strong>POMDP</strong> 部分可观察性下的规划，它们不模拟状态转换，而是对当前状态中*未知*的信息进行观测。当缺乏有关当前状态的信息导致规划器无法制定出确保实现目标的计划时，规划器便会采用感知动作。</p> <p>若我们假设关于当前状态的不确定性是单调递减的（即一旦*知道*状态变量的值，该值可以改变，但不会再次变得*未知*），则可将感测动作编码为非确定性动作 [65]。</p> <p>PPDDL（PDDL 的概率版本 [100]）可用概率效应进行编码，采用概率动作进行的规划成为*优化*任务，规划器的目标是最大化达到目标的可能性。非确定性和概率性动作也可以编码非确定性状态转换，例如在完全可观察的非确定性（FOND）或 MDP 规划中 [58, 32]。</p> <ul> <li>Representing Initial and Goal States</li> </ul> <p>可以显式定义一组状态——枚举该集合中的每个状态，或者隐式定义一个状态必须满足的约束（例如传递闭包）才能属于该集合。也可以明确指定广义规划任务中的实例集，枚举其中的各个经典规划实例。</p> <p>根据用于指定这些约束的语言，存在不同的形式主义来表示一组规划实例：</p> <ul> <li> <ul> <li><strong>Propositional logic.</strong> 在此情况下，可能的初始状态和目标状态的集合仅使用文字和三个基本的逻辑连接词表示（即表示文字的合取或表示文字的析取，而不包含否定）。用命题逻辑表示的规划实例集的示例包括一致的、或有的或 POMDP 的规划任务，这些任务将任务的不同可能初始状态定义为问题文字的析取（而目标为规划任务中所有可能的初始状态所共享）[10]。</li> </ul> </li> <li><strong>First-order logic.</strong> 一阶逻辑约束可以包含量化变量，包括传递闭包，并表示无限制的状态集。这些特性使一阶公式能够实现规划实例集的紧凑表示以及无限制规模的规划任务 [90]。对于给定的有限对象集，一阶表示形式可直接转换为命题逻辑表示形式。</li> <li><strong>Constraint Programming.</strong> 在此情况下，状态集由一组有限域变量 X={x1,...,xn}（其中每个变量 xi，1 &lt; i &lt; n 具有关联的有限域 D(xi)）以及一组约束 C 来定义，约束 C 决定状态何时属于该集合。除约束编程语言的表示灵活性外，在此情况下可以使用现成的 CSP 求解器来解决广义规划任务 [74]。</li> <li><strong>Three-valued logic.</strong> 在此逻辑语言中，存在三个真值：1（真）、0（假）或 1（未知）。Srivastava 等人使用三值逻辑进行状态抽象，以紧凑地表示无边界的具体状态集 [90]。三值逻辑对于表示和解决一致任务和或然任务也颇具价值 [72, 69, 1]。</li> </ul> <p>确定一组规划实例：除使用初始状态和目标状态集外，未来还可以利用其他信息，例如*领域不变量*[90] 甚至分类的执行历史记录，包括*正*例和*负*例 [43]，类似于归纳逻辑编程（ILP）[75] 中的做法。</p> <p>广义规划具有两大优势，即*紧凑性*（compactness）和*通用性*（generality）。</p> <ul> <li> <p>Control-flow structures augment the flexibility of generalized plans with respectto classical plans:</p> </li> <li> <ul> <li><strong>Branching（分支）:</strong> 计划的执行根据当前状态下给定表达式的求值结果进行分支。具有分支结构的规划解决方案的示例包括 AND/OR 树状*或有计划*<sup id=fnref:1><a class=footnote-ref href=#fn:1>1</a></sup> 或*K-Fault 容忍计划*<sup id=fnref:22><a class=footnote-ref href=#fn:22>2</a></sup>。</li> </ul> </li> <li><strong>Loops（循环）:</strong> 重复执行规划段，直到给定条件在当前状态下成立。具有循环的规划解决方案的示例包括用于表示 MDP 解决方案*的策略类*规划 [49]，以及 FOND 规划任务 <sup id=fnref:64><a class=footnote-ref href=#fn:64>3</a></sup>。</li> </ul> <p>仅包含分支构造的解决方案规划的大小在可能的状态观察次数中可能呈指数级增长。合并*分支*和*循环*通常有助于压缩广义规划。在某些解决方案表示中，例如 DSPlanners <sup id=fnref:97><a class=footnote-ref href=#fn:97>4</a></sup><sup id=fnref:98><a class=footnote-ref href=#fn:98>5</a></sup>，分支和循环对应于不同的控制流构造，但通常它们使用相同的构造（例如条件转移）实现，以保持解空间的可管理性。在*有限状态控制器*（FSC）[10]、<em>广义策略</em>[57] 或*规划程序*[83] 中使用的*条件 goto* 即属此类情况。</p> <ul> <li>Variables（循环控制变量、数值变量）</li> </ul> <p><strong>DSPlanners</strong> address this issue representing solutions with quantified variables<sup id=fnref2:97><a class=footnote-ref href=#fn:97>4</a></sup>. 解决了使用*量化变量*表示解决方案的问题 <sup id=fnref3:97><a class=footnote-ref href=#fn:97>4</a></sup>。</p> <p>A DSplanner is a domain-specific program that can contain **if-then-else &amp; while**constructs.也就是说，在包含分支循环的控制流图中进行与或树搜索，以搜索规划任务的解子图。</p> <p><strong>量化变量</strong>（Quantified variables）使得识别具有特定特征的对象并对其应用选择性操作成为可能。</p> <p><strong>存在变量</strong>（Existential variables）。通用变量（Universal variable）断言，给定的属性或关系对于所有可能的变量值均成立。除 DSPlanners 外，存在变量还出现在选择操作中 [90]，即在规划执行过程中实例化的操作以及在当前状态下评估 FOL 公式的结果。另一个示例是*广义策略*，其规则包含要与当前状态统一的变量 [48]。PDDL 可以表示具有派生谓词的策略 [45]。</p> <p><strong>通用变量</strong>（Universal variables）。通用变量断言，给定的属性或关系适用于所有可能的变量值。</p> <p>在定量变量上评估给定表达式的派生谓词的使用也适用于其他形式的广义规划，例如 FSC。</p> <p><strong>栈递归调用</strong>。尽管仅使用基本控制流和变量就可以显式地对调用栈进行编码，但通常可以通过调用栈获得更紧凑的解决方案（例如具有递归解决方案的任务 [84]）。用于访问二叉树所有节点的通用规划实现了具有一个过程参数的递归深度优先搜索（DFS）。指令 <strong>call（0，***node* **）</strong> 是递归调用，将参数 <em>node</em> 分配给程序的唯一参数，并从其第一行重新开始执行。</p> <p><strong>实现递归 DFS 以遍历任意大小的二叉树的通用规划</strong></p> <p><strong>hierarchical generalized plans [83]对任意大小的数字列表选择排序算法</strong></p> <h3 id=_2><strong>执行和验证</strong><a class=headerlink href=#_2 title="Permanent link">&para;</a></h3> <p>广义规划可以具有分支、循环以及变量，因此在特定经典规划实例上执行广义规划需要特定的机制，这不同于传统规划中传统使用的机制：</p> <p>• *分支。*具有多个可能执行分支的广义规划的执行需要一种机制，用于根据状态变量的当前值选择相应的执行分支。可以将具有分支结构的若干广义规划（例如 HTN、AND/OR 树状规划或策略）的执行编译为经典规划 [3, 1, 45]。如第 3 节所述，可以通过*条件效应*有效地建模根据状态变量不同值而执行的不同可能执行结果 [67]。</p> <p>• <em>循环。*执行显式表示循环的广义规划（例如程序或 FSC）需要跟踪当前程序行（或控制器状态）。通过将相应的自动机（其状态和可能的转换）编码为额外的状态变量，**可以将 FSC 和程序的执行编译为经典规划*</em>[^7, 83, 84]。</p> <p>• <em>变量。*如果广义规划包含量化变量，则规划执行需要统一机制，以将可能的值分配给这些变量。早期规划系统实现了变量绑定算法以匹配控制规则 [96]。如今，Fast-Downward 使用实现了*标记算法*的量化变量评估派生谓词 [37]。另一种不同的方法是利用外部求解器（例如*答案集编程</em>[45] 或 CSP [29] 求解器）来量化变量。同样存在编译方法，在*连接查询*中绑定存在变量 [55] 并使用传递闭包 [73] 来评估 FOL 状态查询。不幸的是，当前大多数现成的规划器仅有效地支持简单条件，因为命题原子的连接和汇编存在量化公式产生指数级代价 [28]。</p> <p>在给定规划实例上执行广义规划的最简单的期望属性是**终止性测试**或**验证**，在文献中也称为*停机问题*。在最坏情况下，广义规划执行的动作数上限由广义规划的可能状态总数决定。随后可以通过对规划执行期间的动作数进行计数，并检查该计数是否超过先前的上限来检测无限循环 [6]。</p> <p>执行广义规划的第二个属性是保证规划能够解决给定实例。检验此属性称为**验证**或**有效性验证**。证明验证包含终止证明，并且作为规划生成的一部分是隐式的。经典规划中的规划验证较为简单，因为可以通过从经典规划任务的初始状态开始*执行*规划来获得验证证明或失败证明。VAL [41] 在第三届国际规划竞赛（IPC）中引入，是用于经典规划的标准规划验证工具。在广义规划的情况下，规划可以具有分支、循环和变量，规划验证因而更为复杂。在给定规划实例中执行广义规划可能无法解决该实例，原因如下：</p> <ol> <li>规划*不健全*（unsound）：广义规划由于进入无限循环而无法满足*终止*条件。</li> <li>规划*不完整*（incomplete）：当前状态没有下一步要执行的动作（例如，在当前状态下没有适用规则的策略）。</li> </ol> <p>如果可以将广义规划的执行编译为经典规划任务 [7, 83, 84]，则可以使用现成的经典规划器来有效检查先前的验证条件。当动作具有不确定性影响时，规划验证变得更加复杂，因为它需要证明所有可能的规划执行均能达到目标 [14]。在此情况下，<em>模型检查</em>[16] 和*非确定性规划*是合适的方法 [38]。</p> <p>与经典规划不同——经典规划与特定规划实例相关联——广义规划也可以在一组不同的规划实例上执行。在广义规划任务上验证广义规划需要在任务包含的所有实例中执行规划，并验证该规划已解决所有问题。这意味着在给定实例中对给定的广义规划的验证应在规划大小的多项式时间内完成。可以通过两种不同的方法在规划实例集中实施广义规划的执行：</p> <p>• <em>顺序执行</em>，即在每个实例中逐一执行广义规划。这是使用经典规划器执行广义规划所遵循的方法，该规划器在给定的广义规划任务所包含的每个单独规划实例中依次执行规划 [83]。</p> <p>• <em>并行执行</em>。广义规划在广义规划任务的实例集中同时执行（例如按照一致、或然或 POMDP 规划，其中动作的执行会进展到一组状态 [32]）。</p> <p><em>顺序*方法的实现较为简单，但其实用性受限于实例数量。*并行*方法允许处理更大的实例集合（或对象数量不受限的实例），但它需要精细的状态进展技术，如信念跟踪 [8] 或动作在抽象状态上的应用 [90]。在并行执行中，评估表达目标或派生谓词变得更加复杂，因为这意味着对状态集进行公式评估 [32]。验证广义规划的第三种方法是展示执行前后的某些属性，例如在使用 ***Hoare 三元组**</em> 的*程序验证*中 [82]。</p> <h3 id=_3>实验等评价指标<a class=headerlink href=#_3 title="Permanent link">&para;</a></h3> <h4 id=_4><strong>评估</strong><a class=headerlink href=#_4 title="Permanent link">&para;</a></h4> <p>给定一组规划实例，不同的广义规划可以与其*保持一致*。例如，图 11、12 和 14 中所示的不同的广义规划可以将任意高度的积木塔堆叠起来。因此有必要定义一种方法，能够量化给定广义规划的能力，以阐明可能的解决方案之间的偏好。</p> <p>可以针对不同的指标评估广义规划的能力：</p> <p>• <em>覆盖范围</em>。可以将广义规划的*领域覆盖范围*评估为广义规划可以解决的大小为 <em>n</em> 的问题实例数量除以相同大小的可解决问题实例总数的比率 [90]。在实践中，获知这些数值意味着要解决大量规划任务，因而通常较为棘手。统计机器学习（ML）技术根据解决方案在领域实例的*代表性*样本（称为*测试集*）上的执行效果来估算解决方案的质量 [61]。在广义规划中，还可以定义一组测试实例，并计算解决方案涵盖了多少实例。如果将经典规划器视为广义规划的一种特殊形式，那么在国际规划竞赛（IPC）[95] 的顺序最优轨道上就是如此操作的，在该轨道中，规划器根据其解决的未见实例的数量获得奖励。</p> <p>• <em>复杂性</em>。由于广义规划是类算法的解决方案，可以从理论上评估其复杂性，例如，使用渐进分析来表征其运行时间和空间需求如何根据输入任务的大小而增长。实际上，可以通过在给定的输入实例上执行规划所产生的动作序列的长度来量化广义规划的复杂性。当给定实例的序列长度对该实例*最小*时，广义规划是*最优*的。这与 IPC [95] 的顺序满意度轨道有一定关联，在该轨道中，规划器的最终分值报告为测试集实例中解决方案的累积质量。</p> <p>• <em>简洁性</em>。可以根据规划行数、控制器状态、策略规则或量化变量来评估给定广义规划的大小。在 ILP 系统中已引入类似的度量标准，以量化解决方案的*紧凑性*和*可读性*，并且倾向于规则数量最少的模型和规模最小的规则 [63]。需要注意的是，在经典规划中，规划的执行复杂度直接与其规模相对应。</p> <h3 id=solver>Solver<a class=headerlink href=#solver title="Permanent link">&para;</a></h3> <p>计算广义规划的两种主要方法，并回顾了不同的*规划重用*技术，以避免从头开始计算广义规划。本节最后回顾了针对广义规划的不同方法的具体实现。</p> <p>在*自上而下的*广义规划搜索方法中，解决方案涵盖广义规划任务中的所有实例。另一方面，*自下而上的*方法为单个实例（或广义规划任务中的实例子集）计算解决方案，并扩大解决方案的覆盖范围，直至涵盖所有实例。就机器学习而言，自上而下的方法与*离线*机器学习算法有关，该类算法在一次迭代中计算模型以覆盖整个输入实例集，例如决策树的归纳 <sup id=fnref:61><a class=footnote-ref href=#fn:61>10</a></sup>。自下而上的方法与*在线*版本的 ML 算法相关，该类算法随着更多输入实例的出现，迭代地、增量地适应模型 <sup id=fnref:94><a class=footnote-ref href=#fn:94>11</a></sup>。</p> <p>用于广义规划的*自上而下*算法通常在可能的广义规划空间中搜索解决方案。此搜索的初始状态是*空*广义规划，搜索算子逐步在广义规划中建立步骤（例如，向程序添加指令、向 FSC 添加新状态或过渡、向策略添加新规则等）。搜索的目标状态集包括所构建的广义规划能够解决给定实例集的任何状态。</p> <p>此类方法的示例包括将广义规划编译为其他形式的问题求解方案，例如***经典规划***<sup id=fnref:46><a class=footnote-ref href=#fn:46>12</a></sup>、<strong><em>一致规划</em></strong><sup id=fnref:10><a class=footnote-ref href=#fn:10>13</a></sup>、<strong><em>CSP</em></strong><sup id=fnref:74><a class=footnote-ref href=#fn:74>14</a></sup> 或 <strong><em>Prolog 程序</em></strong><sup id=fnref:43><a class=footnote-ref href=#fn:43>15</a></sup>。这些编译实现了如上所述的搜索空间，并受益于现成求解器（具有高效的搜索算法和启发式方法）来完成对广义规划的搜索。编译方法的主要限制在于可扩展性。在实践中，通常为了限制搜索范围，会限制可能的广义规划的大小（例如，程序行、控制器状态、策略规则或量化变量的最大数量）。这类似于 SATPLAN 方法中所采用的做法，该方法确定最大规划长度 [78]，然后迭代增加直到找到解决方案为止。</p> <p>如果我们认为可能的初始状态代表不同的共享相同目标的规划实例，则针对意外情况 [1]、一致情况 [69] 和 POMDP 规划 [32] 的离线算法也可以理解为*自上而下*的广义规划算法。在此情况下，通常不是在可能的广义规划空间中搜索解决方案，而是在可到达的*信念状态*空间中进行搜索。在此，可扩展性限制源于以下事实：可到达的信念状态集合快速增长（因此，利用降低不确定性的技术以使可能的状态集合易于处理至为关键），同时难以定义有效的启发式方法以提供对信念状态的*有用*估计。</p> <p><em>自下而上的*广义规划是一种迭代且增量的方法，其中（1）选择单个规划实例（或广义规划任务中的实例子集），（2）计算其解决方案，（3）对解决方案进行泛化，最后（4）与先前找到的广义解决方案合并。重复此四步过程，直至涵盖广义规划任务中的所有实例。*自下而上的*方法与*规划修复</em>[26]、<em>基于案例的规划</em>[11] 和*迁移学习*[70] 相关，因为它也需要一些机制来确定为什么给定解决方案不涵盖给定实例（在此情况下，适用于广义规划的验证机制适合于查找给定计划中断言失败的原因 [97]），以及使给定解决方案适应新场景的机制（在不完善的控制知识下进行规划时也存在这种适应机制 [99]）。</p> <p>虽然*自上而下的*方法可以作为编译为其他形式的问题求解方案来实现，但*自下而上的*方法需要具体的技术来提升和合并计划。另一方面，*自下而上的*方法提供了随时可得的行为，并且可能能够自动构建小规模实例集以实现泛化 [91]。</p> <h4 id=srivastava>重用广义规划 Srivastava 的方法<a class=headerlink href=#srivastava title="Permanent link">&para;</a></h4> <p>从头计算广义规划的另一种方法是重用现有解决方案。即使某个广义规划不正确（从某种意义上说它无法解决给定实例）或不完整（它未定义要在给定实例上应用的动作），它也可能包含有用的知识。例如，规划可能能够解决给定广义规划任务的子问题或类似实例（即一个解决方案但针对不同类型的对象），或者在调整控制流结构中的条件后解决新实例。在这些情况下，采用先前存在的广义规划可以取得回报。</p> <p>在这方面，*自下而上的*广义规划方法配备了使规划适应未知案例并逐步增加其覆盖范围的机制 [91]。另一方面，*自上而下的*方法可以从部分指定的解决方案开始，而不是从*空*广义规划开始。这表明缩小搜索空间和/或集中搜索过程十分有用，从而有可能解决更具挑战性的广义规划任务 [83, 84]。</p> <p>接下来，我们回顾重用先前找到的规划的不同技术：</p> <p>• <em>编译</em>。当现有的广义规划具有广义策略的形式时，可以将其编译为一组 PDDL 派生谓词，策略中的每个规则都包含一个谓词，该谓词捕获应采取行动的不同情况 [45]。图 13 说明了此方法，该图显示了 PDDL 派生谓词的示例，该谓词表示用于堆叠积木塔的 2 规则策略。我们还解释说，通过**We also explained that existinggeneralized plans in the form of programs, FSCs or AND/OR graphs, canbe encoded into a classical PDDL planning task by computing the crossproduct between the corresponding automata and the original planningtask [^7, 83, 77]计算相应自动机与原始规划任务之间的叉积，可以将程序、FSC 或 AND/OR 图形式的现有广义规划编码为经典 PDDL 规划任务**。[7, 83, 77] 在此情况下，新的额外状态变量将添加到原始规划任务中，以表示与程序、FSC 或 AND/OR 图相对应的自动机的状态和转换。</p> <p>• <em>规划动作</em>。经典规划中的动作不仅代表原始动作，还可以代表广义规划本身。图 20 显示了一个经典规划动作，该动作对应于一个广义规划，该规划用于将一个积木世界中的任意积木堆叠起来，即解决任意积木世界实例的广义解决方案中的第一步。</p> <h6 id=_5><strong>计算宏动作</strong><a class=headerlink href=#_5 title="Permanent link">&para;</a></h6> <p><em>宏动作</em>（macro-actions）是计算有效解决不同规划任务的常识性知识的最早建议之一 [25]。文献中有多种方法可用于计算宏动作 [12, 18, 47, 13]，但最常见的方法是：</p> <p>（1）求解一组共享相同领域理论但使用现成经典规划器的经典规划实例训练集，以及</p> <p>（2）在解决方案规划中确定经常一起使用的动作的子序列。</p> <p>宏动作的优势在于它们具有标准经典规划动作的形式，因此可以直接添加到领域理论中，而无需额外的状态变量。这使得*宏动作*成为重用广义规划知识的实用而强大的方法：一方面，使用宏动作进行规划或执行和验证包含宏动作的规划都不需要特定的算法；另一方面，添加不完整或不正确的宏动作不会阻止规划器找到可解决问题的解决方案，因为规划器始终可以使用原始操作来构建解决方案。</p> <p>定义总体规划策略的宏动作的主要限制在于其顺序执行流程过于严格。即使将宏动作参数化，涉及宏的解决方案也可能不适用于其他问题。</p> <h3 id=_6><strong>计算广义策略</strong><a class=headerlink href=#_6 title="Permanent link">&para;</a></h3> <p>*广义策略*是一组规则，它定义了从状态和目标到*下一步要执行*的优选动作的映射。与宏动作类似，广义策略也允许参数化，并且可以从共享相同领域理论的经典规划实例的一组解决方案中推导得出 <sup id=fnref:57><a class=footnote-ref href=#fn:57>18</a></sup><sup id=fnref:99><a class=footnote-ref href=#fn:99>19</a></sup><sup id=fnref:21><a class=footnote-ref href=#fn:21>20</a></sup>。然而，广义策略比宏动作更具灵活性，因为它们可以定义带有分支和循环的执行流。</p> <h4 id=_7><strong>计算有限状态控制器</strong><a class=headerlink href=#_7 title="Permanent link">&para;</a></h4> <p><em>有限状态控制器</em>（FSC）可以使用有限的内存来泛化策略 <sup id=fnref:9><a class=footnote-ref href=#fn:9>21</a></sup>。具有单一状态的 FSC 表示策略，即无内存控制器。FSC 的附加控制器状态为其提供了内存，允许在相同观察情况下采取不同的动作。FSC 形式主义也可以通过*调用栈*进行扩展，以表示层次化和递归解决方案 <sup id=fnref:84><a class=footnote-ref href=#fn:84>9</a></sup>。</p> <p>现有的用于计算广义规划 FSC 的算法遵循*自上而下的*方法，该方法将对 FSC 的*编程*与验证相交替，因此它们紧密地集成了规划与归纳。为了使 FSC 的计算易于处理，它们限制了可能的解决方案空间，从而限制了 FSC 的最大大小。此外，它们要求实例不仅共享领域理论（动作和谓词方案），还共享流利集 <sup id=fnref:83><a class=footnote-ref href=#fn:83>8</a></sup> 或*可观察*流利的子集 <sup id=fnref2:10><a class=footnote-ref href=#fn:10>13</a></sup>。</p> <p>用于广义规划的 FSC 的计算包括将广义规划任务编译为其他形式的问题求解方案的工作，因此它们将从现成求解器的最新进展中受益（例如，<em>经典规划</em><sup id=fnref2:83><a class=footnote-ref href=#fn:83>8</a></sup>、<em>一致规划</em><sup id=fnref3:10><a class=footnote-ref href=#fn:10>13</a></sup>、<em>CSP</em> <sup id=fnref2:74><a class=footnote-ref href=#fn:74>14</a></sup> 或 <em>Prolog 程序</em><sup id=fnref2:43><a class=footnote-ref href=#fn:43>15</a></sup>）。最后一种情况需要 FSC 的行为规范，该规范包括分类的执行历史记录：（1）接受所有导致目标到达满意状态的合法执行历史记录；（2）拒绝包含重复配置的执行历史记录（表明无限循环），并且无法扩展（指示死锁）[43]。</p> <h4 id=_8><strong>计算程序</strong><a class=headerlink href=#_8 title="Permanent link">&para;</a></h4> <p>程序提高了 FSC 的可读性，它们将控制流结构与原始动作相分离。与 FSC 类似，程序也可以按照*自上而下的*方法进行计算，例如利用对状态和动作空间相同的实例进行编程并验证程序的编译 <sup id=fnref3:83><a class=footnote-ref href=#fn:83>8</a></sup>。</p> <p><em>DSPlanners</em> <sup id=fnref4:97><a class=footnote-ref href=#fn:97>4</a></sup><sup id=fnref2:98><a class=footnote-ref href=#fn:98>5</a></sup> 是将程序泛化为规划的最早尝试之一。<em>DSPlanner</em> 是可以包含 if-then-else 和 while 结构的领域特定规划方案。这些构造根据关于当前状态和/或规划任务目标的 FOL 查询来分支和循环程序的执行控制流。</p> <p>该算法计算 DSPlanners 被称为提炼（Distill）并实现了一种*自下而上的*方法，用于一组共享同一领域理论的经典规划实例。给定一个实例，提炼计算该实例的解决方案，并将其部分有序规划整合到现有 DSPlanner 中，具体如下：首先，Distill 提取部分有序的规划，选择与现有 DSPlanner 相匹配的参数。如果不存在这样的参数化，则 Distill 将变量名称随机分配给规划中的对象。然后 Distill 尝试确定*语句*和展开的*循环迭代*，在解决方案中将其替换为相应的控制流结构。</p> <p>Srivastava 等人在广义规划方面的工作在程序中引入了一种强大而紧凑的结构，称为*选择动作*，该结构将存在变量和控制流结合在一起 <sup id=fnref:90><a class=footnote-ref href=#fn:90>22</a></sup><sup id=fnref:91><a class=footnote-ref href=#fn:91>23</a></sup>。这项工作中的输入实例被表示为带有传递闭包的抽象 FOL 表示形式。这种形式主义允许用无限多个对象来表示规划任务，并保证此类任务的解决方案具有普遍性。</p> <p>Srivastava 等人的广义规划算法实施*自下而上的*策略。该算法从空的广义规划开始，然后通过识别其无法解决的实例，调用经典规划器来解决该实例，将获得的解决方案进行归纳并将其合并回广义规划中，从而逐步增加其覆盖范围。重复该过程，直到生成一个涵盖整个期望类实例的广义规划（或达到计算资源的预定义限制时为止）。</p> <p>程序和 FSC 都可以被编入平面领域理论 <sup id=fnref:7><a class=footnote-ref href=#fn:7>7</a></sup><sup id=fnref4:83><a class=footnote-ref href=#fn:83>8</a></sup><sup id=fnref2:84><a class=footnote-ref href=#fn:84>9</a></sup>。与策略类似，当给定程序（或 FSC）正确时，这种编译是*安全的*（不会将可解决的规划实例转化为不可解决的）。</p> <p>表 1 总结了广义规划的已审查方法。该表指示给定的解决方案表示形式是否允许使用 <strong>变量</strong>、**控制流的类型**以及解决方案的**执行**是否需要特定的机制。</p> <p>根据解的表示方法分类Summary of the </p> <h3 id=diverse-approaches-for-generalized-planning>diverse approaches for generalized planning<a class=headerlink href=#diverse-approaches-for-generalized-planning title="Permanent link">&para;</a></h3> <p>according to the solution representations：</p> <table> <thead> <tr> <th></th> <th>Variables</th> <th>Control-flow</th> <th>Execution</th> </tr> </thead> <tbody> <tr> <td>Classical plan</td> <td>------</td> <td>------</td> <td>Ground actions</td> </tr> <tr> <td>Macro-Actions</td> <td>Action parameters</td> <td>------</td> <td>Lifted actions</td> </tr> <tr> <td>Generalized Policy</td> <td>Rule parameters</td> <td>Branching and loops</td> <td>Lifted rules</td> </tr> <tr> <td>DSPlanners</td> <td>Existential</td> <td>Branching and loops</td> <td>Lifted predicatesand lifted actions</td> </tr> <tr> <td>FSCs</td> <td>Quantified</td> <td>Branching and loops</td> <td>Derived predicates</td> </tr> <tr> <td>Hierarchical FSCs</td> <td>Quantified and parameters</td> <td>Branching, loops and call stack</td> <td>Derived predicates and Parameter passing</td> </tr> <tr> <td>Programs</td> <td>Quantified and parameters</td> <td>Branching, loops and call stack</td> <td>Derived predicates and Parameter passing</td> </tr> </tbody> </table> <h3 id=pomdp><strong>部分可观察性下的规划：一致、或然和 POMDP 规划</strong><a class=headerlink href=#pomdp title="Permanent link">&para;</a></h3> <p><em>一致规划</em>（conformant planning）可计算一系列与不同初始状态一致的动作序列 [69]。其与经典规划模型的不同之处在于初始状态中的不确定性，这种不确定性通过子句来描述。*一致规划*是一系列动作，它能够解决由满足这些子句的一组可能初始状态所给出的全部经典规划任务。由于动作具有条件效应，执行相同的动作序列可以为不同的初始状态产生不同的结果。一致规划的主要方法包括：</p> <p>• <em>减少不确定性</em>。将一致规划编译为经典规划以进行计算：</p> <p>\1. 消除所有相关不确定性的规划*前缀*。换句话说，在前缀应用之后，只有一个状态（或与实现目标相关的状态变量子集的至少一个局部状态）是可能的 [69]。</p> <ol> <li>规划*后缀*，该*后缀*将状态（或已消除相关不确定性的部分状态）转换为实现一致规划任务目标的状态。</li> </ol> <p>• <em>信念传播</em>。在信念状态空间中进行搜索，其中：*根*信念状态表示可能的初始状态的集合，*目标*信念状态是指信念状态中的所有可能状态都满足规划任务的目标条件 [39, 15]。尽管前述方法利用了经典规划机制，但此方法需要（1）紧凑表示和更新信念状态的机制，以及（2）有效的启发式方法来指导在信念状态空间中的搜索。</p> <p><em>或然规划</em>（contingent planning）通过感知模型扩展了一致规划模型。该感知模型是一种函数，可以将状态-动作对（系统的真实状态和最后完成的操作）映射到一组非空的观测值中 [1, 2]。观测仅提供有关系统真实状态的部分信息，因为相同的观测可能对应不同的状态。*或然规划*必须满足：</p> <p>• 其执行以有限步骤达到目标信念状态（信念中的所有状态都满足规划任务的目标条件）。</p> <p>• 分支和循环的条件是指观测值（或可观察到的状态变量的子集）。</p> <p>与广义规划类似，或然规划可以具有不同的形式，例如策略、AND/OR 图、FSC 或程序 [10]。</p> <p>*POMDP 规划*扩展了或然规划模型，该模型允许通过概率分布对不确定性进行编码，而非使用可能的初始状态集和可能的观测值集 [32]。就此而言，*贝叶斯*规则用于在应用动作之后或观测当前状态之后更新信念状态。POMDP 解决方案的目标是最大化目标的期望收益，因此 POMDP 规划成为优化任务。</p> <p>最优的一致性/或然/POMDP 规划是在最坏情况下将实现目标的成本最小化的规划。广义规划可以看作是或然/POMDP 规划的一个特定示例，其中：（1）待求解的实例具有相同的目标，（2）实例的初始状态是一组可能的初始状态中的一个状态，（3）具有完全可观察性，因此分支和循环的条件可以引用任何状态变量的值。</p> <h3 id=62><strong>6.2 具有控制知识的规划</strong><a class=headerlink href=#62 title="Permanent link">&para;</a></h3> <p>自从规划研究开始以来，<em>控制知识*已显示出有效提升规划器可扩展性的能力 [5, 66]。IPC-2002 证明了这一点，在该竞赛中，利用**领域特定控制知识（DCK）*</em> 的规划器比当时的先进规划器快多个数量级 [54]。</p> <p>DCK [7] 的类算法表示形式与广义规划非常相似。实际上，DCK 和广义规划都代表了适用于解决不同规划实例的通用策略。尽管它们之间的区别很小，但可以认为广义规划是一种*完全指定的解决方案*，不需要在特定情况下应用规划器。另一方面，DCK 对应于*部分指定的解决方案*（包含非确定性构造以及规划器在生成规划时需要确定的缺失/未完成部分）。因此，DCK 要求规划器针对给定的经典规划实例提供**完全指定的**解决方案。</p> <p>定义 DCK 的另一种方法是使用已解决实例的数据库。</p> <p>实际上，广义规划的另一种观点是将其视为一个紧凑的规划库。<em>基于案例的规划</em>（CBP）是一种自动化规划方法，旨在通过重用以前找到的解决方案来节省计算量 [11]。</p> <p>CBP 系统实现了识别与待求解实例相似实例的*检索*机制，以及修复检索到的解决方案中的缺陷以使其适用于另一实例的*适应*机制。CBP 的检索和适应机制与*自下而上的*广义规划算法相关，因为它们可以识别给定的广义规划何时不覆盖某实例，并对其进行调整以覆盖该实例 [97, 90]。遵循领域无关的方法，为大型案例库开发此类机制仍然是一个开放挑战。</p> <p>表示和利用 DCK 的另一种形式主义是***层次规划***。与经典规划类似，层次规划处理确定性和完全可观察的规划任务，但使用不同的任务表示形式。在传统规划动作中，动作的前提条件和后置条件由规划器自动计算选择和排序，而*层次规划*则指定了解决方案的草图，其中包含关于（1）要追求的子目标 [87] 和/或（2）哪些动作可以实现给定子目标 [66] 的额外信息。</p> <p>在层次规划中，待求解任务的表示与解决方案之间的界限不如传统规划那样清晰。层次规划任务可以理解为部分指定的广义规划（或领域特定的规划器），其中通过运行层次规划器可以确定规划的缺失部分。经典规划器的目标是计算将给定初始状态转换为目标状态的一系列适用动作，而层次规划器则计算以下动作序列：（1）将给定初始状态转换为目标状态，并且（2）此转换符合给定的层次结构。</p> <h3 id=golog><strong>GOLOG</strong><a class=headerlink href=#golog title="Permanent link">&para;</a></h3> <p>Golog 系列动作语言已被证明是自主智能体 <sup id=fnref:53><a class=footnote-ref href=#fn:53>24</a></sup> 高级控制的有效工具。除条件、循环和递归过程外，Golog 程序的一个有趣特性是它们可以包含非确定性的部分。Golog 程序不一定表示完全指定的解决方案，而是一个草图，其中非确定性部分是需要由系统填补的空白。此功能使 Golog 程序员能够在以下两者之间灵活地选择合适的平衡点：</p> <p>• 预定义行为的确定性，这通常意味着较大的程序。</p> <p>• 通过搜索保留系统需要解决的某些部分，这通常意味着更长的计算时间。</p> <p>基本的 Golog 解释器使用 PROLOG 回溯机制来解决搜索。这种机制本质上相当于盲目搜索，因此，在解决规划任务时，除最小规模的实例外，它很快变得不可行。IndiGolog [80] 扩展了 Golog，使其包含多种内置规划机制。此外，可以利用 Golog 和 PDDL 之间的语义兼容性 <sup id=fnref:79><a class=footnote-ref href=#fn:79>26</a></sup>，并且可以嵌入 PDDL 规划器 <sup id=fnref:17><a class=footnote-ref href=#fn:17>27</a></sup> 来解决本质上属于组合性的子问题。</p> <h3 id=64><strong>6.4 程序综合</strong><a class=headerlink href=#64 title="Permanent link">&para;</a></h3> <p>程序综合是自动生成满足给定高级规范的程序的任务。该研究领域的许多理念与广义规划相关，但由于广义规划遵循领域无关的方法并针对其自身特定的状态、动作和目标表示形式，因此它们并非直接适用。在此，我们回顾了两种最成功的程序综合方法：</p> <p>• <strong>示例编程</strong>（PbE），计算与一组给定的输入输出示例一致的程序。输入输出示例对于非程序员来说直观易懂，可以用于创建程序；这种类型的规范使程序综合比基于抽象程序状态的推理更易于处理。PbE 技术已在现实世界中部署，并且是 Office 2013 中 Excel 的 Flash Fill 功能的一部分，该功能可生成用于字符串转换的程序 <sup id=fnref:35><a class=footnote-ref href=#fn:35>28</a></sup>。在此情况下，使用称为**版本空间代数**（version space algebras）<sup id=fnref:60><a class=footnote-ref href=#fn:60>29</a></sup> 的数据结构以受限的领域特定语言（DSL）简洁地表示一组合成程序。程序的计算采用实现分治策略的领域特定搜索方法。</p> <p>• <strong>通过草图编程</strong>（PbS），程序员提供部分指定的程序，即表示实现的高级结构但留下由合成器确定的未定义细节的程序 <sup id=fnref:89><a class=footnote-ref href=#fn:89>30</a></sup>。这种形式的程序综合依赖一种称为 <strong>SKETCH</strong> 的编程语言来绘制部分程序。PbS 在由两个通信的 SAT 求解器（归纳合成器和验证器）构建的合成验证循环上实现反例驱动的迭代，以自动生成测试输入并确保程序满足它们。尽管在最坏情况下，程序的合成比 NP 完全更困难，但这种反例驱动的搜索在仅解决少数 SAT 实例后就终止了许多实际问题 <sup id=fnref:50><a class=footnote-ref href=#fn:50>31</a></sup>。</p> <p>先前的工作包括*通过示例进行编程*从输入/输出示例中合成解析器的技术 <sup id=fnref:51><a class=footnote-ref href=#fn:51>32</a></sup>。</p> <h3 id=_9>总结<a class=headerlink href=#_9 title="Permanent link">&para;</a></h3> <p>广义规划能够解决经典规划范围之外的规划任务：它们可以解决包含多个实例或对象数量不受限制的规划任务，以及具有部分可观察性和不确定性动作的规划任务 [10, 44, 91, 43]。广义规划</p> <p>这是解决问题的一种有前景的范例，但仍需进一步研究以有效解决任意规划任务。</p> <p>• ***广义规划任务的表示**。隐式表示允许处理大量规划实例。但是，这些表示需要特定的状态演进机制以及测试目标和动作前提条件的机制，这与现成规划器中传统实现的机制不同。</p> <p>除了表示形式主义之外，广义规划任务中给定的实例集也会影响用于计算广义规划的不同方法的性能。有时，可以使用*极端情况*构建少量代表性实例。*极端情况*将状态变量推到其最小值或最大值，因此仅在那些特定状态下才考虑规划行为，而非考虑所有可能的输入实例。对于一般情况而言，自动识别少量代表性实例非常复杂，因此仍然需要手动完成对广义规划任务中代表性实例的选择。</p> <p>自动确定实例以计算通用解决方案的第一步是表征将策略泛化为其他问题的条件 [9]。这种方法为自动生成计算泛化解决方案所需的最简单实例集的方法开发打开了大门。</p> <p>• <em>广义规划的计算</em>。当前用于广义规划的算法只能解决相对较小的任务。进一步研究广义规划的特定启发式方法、自动识别相关状态变量（例如，查找可能出现在循环和分支条件下的状态变量的子集）或目标的自动序列化，有助于提升广义规划器的能力。</p> <p>特定领域的分解还可以解决更具挑战性的广义规划任务 [83]。不幸的是，这些分解目前需要手工完成，如何从广义规划任务的表示中自动计算它们仍然是一个悬而未决的问题。考虑到这一点，*规划地标*可能是一个有趣的研究方向 [40]。另一种提高广义规划器可扩展性的工作方向是探索将给定规划任务转换为更小任务的方法，该任务（1）可通过相同的广义规划解决，且（2）具有更易于处理的搜索空间 [9]。</p> <p>关于广义规划的重用，关键问题在于针对给定规划实例评估给定广义规划的适用性（例如*基于案例的规划中的相似性度量*），以及不完整或不正确的广义规划的重用。在此情况下，将现有的广义规划用作*领域特定的启发式方法*或*偏好*是一种更安全的方法，该方法强制在每个时刻遵循广义规划。</p> <p>• ***广义规划的表示**。与仅包含一系列具象动作的规划相比，包含变量和控制流的广义规划需要更复杂的执行机制，但它们可能能够代表更多任务。对于完全指定的解决方案，相同的主张也适用于部分指定的解决方案（其执行更为复杂，因为需要规划器）。对于一般的规划任务，确定更适合解决该问题的解决方案类型也是一个未解决的问题。</p> <p>广义规划的计算受广义规划任务中给定的实例约束，但也受给定的状态、动作和目标编码表示形式的约束。自动生成替代表示以允许更有效地计算广义规划是一个有前途的研究方向，与先前 AI 研究（例如 ILP <em>谓词发明</em>[19] 或 ML 中的*特征生成*）有多处关联。</p> <p>最后但同样重要的是，广义规划是生成式模型，可以解决规划之外的任务。例如，给定广义规划和执行轨迹，可以将*解析任务*定义为确定是否可以使用给定的广义规划生成该执行轨迹的任务。</p> <p>这种方法对于对象分类 [55] 有用，对目标识别 [76] 和任务分类 [86] 也颇具价值。此外，实现这些任务的解决方案可以使用与广义规划计算非常类似的技术。出于同样的考虑，先前的工作包括*通过示例进行编程*从输入/输出示例中合成解析器的技术 <sup id=fnref2:51><a class=footnote-ref href=#fn:51>32</a></sup>。对于小上下文无关文法的经典规划已经解决了该任务 [85]，但必须开展进一步研究以构建更具挑战性的解析器。</p> <p><strong>参考</strong></p> <div class=footnote> <hr> <ol> <li id=fn:1> <p>Alexandre Albore, H ́ector Palacios, and Hector Geffner. A translation-based approach to contingent planning. InIJCAI, 2009&#160;<a class=footnote-backref href=#fnref:1 title="Jump back to footnote 1 in the text">&#8617;</a></p> </li> <li id=fn:22> <p>Carmel Domshlak. Fault tolerant planning: Complexity and compilation.InICAPS, 2013.&#160;<a class=footnote-backref href=#fnref:22 title="Jump back to footnote 2 in the text">&#8617;</a></p> </li> <li id=fn:64> <p>Christian Muise, Sheila A. McIlraith, and Vaishak Belle.Non-deterministic planning with conditional effects. InICAPS, 2014&#160;<a class=footnote-backref href=#fnref:64 title="Jump back to footnote 3 in the text">&#8617;</a></p> </li> <li id=fn:97> <p>Elly Winner and Manuela Veloso. Distill: Learning domain-specific plan-ners by example. InICML, 2003.&#160;<a class=footnote-backref href=#fnref:97 title="Jump back to footnote 4 in the text">&#8617;</a><a class=footnote-backref href=#fnref2:97 title="Jump back to footnote 4 in the text">&#8617;</a><a class=footnote-backref href=#fnref3:97 title="Jump back to footnote 4 in the text">&#8617;</a><a class=footnote-backref href=#fnref4:97 title="Jump back to footnote 4 in the text">&#8617;</a></p> </li> <li id=fn:98> <p>Elly Winner and Manuela Veloso. Loopdistill: Learning looping domain-specific planners from example plans. InICAPS, Workshop on ArtificialIntelligence Planning and Learning, 2007.&#160;<a class=footnote-backref href=#fnref:98 title="Jump back to footnote 5 in the text">&#8617;</a><a class=footnote-backref href=#fnref2:98 title="Jump back to footnote 5 in the text">&#8617;</a></p> </li> <li id=fn:P> <p>C&#160;<a class=footnote-backref href=#fnref:P title="Jump back to footnote 6 in the text">&#8617;</a></p> </li> <li id=fn:7> <p>Jorge A Baier, Christian Fritz, and Sheila A McIlraith. Exploiting proce-dural domain control knowledge in state-of-the-art planners. InICAPS,2007.&#160;<a class=footnote-backref href=#fnref:7 title="Jump back to footnote 7 in the text">&#8617;</a></p> </li> <li id=fn:83> <p>Javier Segovia-Aguas, Sergio Jim ́enez, and Anders Jonsson. Generalizedplanning with procedural domain control knowledge. InICAPS, 2016&#160;<a class=footnote-backref href=#fnref:83 title="Jump back to footnote 8 in the text">&#8617;</a><a class=footnote-backref href=#fnref2:83 title="Jump back to footnote 8 in the text">&#8617;</a><a class=footnote-backref href=#fnref3:83 title="Jump back to footnote 8 in the text">&#8617;</a><a class=footnote-backref href=#fnref4:83 title="Jump back to footnote 8 in the text">&#8617;</a></p> </li> <li id=fn:84> <p>Javier Segovia-Aguas, Sergio Jim ́enez, and Anders Jonsson. Hierarchicalfinite state controllers for generalized planning. InIJCAI, 2016.&#160;<a class=footnote-backref href=#fnref:84 title="Jump back to footnote 9 in the text">&#8617;</a><a class=footnote-backref href=#fnref2:84 title="Jump back to footnote 9 in the text">&#8617;</a></p> </li> <li id=fn:61> <p>Thomas M Mitchell.Machine Learning. McGraw-Hill, Inc., New York,NY, USA, 1 edition, 1997.&#160;<a class=footnote-backref href=#fnref:61 title="Jump back to footnote 10 in the text">&#8617;</a></p> </li> <li id=fn:94> <p>Paul E Utgoff. Incremental induction of decision trees.Machine learning,4(2):161–186, 1989.&#160;<a class=footnote-backref href=#fnref:94 title="Jump back to footnote 11 in the text">&#8617;</a></p> </li> <li id=fn:46> <p>Sergio Jim ́enez and Anders Jonsson. Computing Plans with Control Flowand Procedures Using a Classical Planner. InSOCS, 2015.&#160;<a class=footnote-backref href=#fnref:46 title="Jump back to footnote 12 in the text">&#8617;</a></p> </li> <li id=fn:10> <p>Blai Bonet, H ́ector Palacios, and Hector Geffner. Automatic derivation offinite-state machines for behavior control. InAAAI, 2010.&#160;<a class=footnote-backref href=#fnref:10 title="Jump back to footnote 13 in the text">&#8617;</a><a class=footnote-backref href=#fnref2:10 title="Jump back to footnote 13 in the text">&#8617;</a><a class=footnote-backref href=#fnref3:10 title="Jump back to footnote 13 in the text">&#8617;</a></p> </li> <li id=fn:74> <p>C ́edric Pralet, G ́erard Verfaillie, Michel Lemaˆıtre, and Guillaume Infantes.Constraint-based controller synthesis in non-deterministic and partiallyobservable domains. InECAI, 2010.&#160;<a class=footnote-backref href=#fnref:74 title="Jump back to footnote 14 in the text">&#8617;</a><a class=footnote-backref href=#fnref2:74 title="Jump back to footnote 14 in the text">&#8617;</a></p> </li> <li id=fn:43> <p>Yuxiao Hu and Giuseppe De Giacomo. A generic technique for synthesiz-ing bounded finite-state controllers. InICAPS, 2013.&#160;<a class=footnote-backref href=#fnref:43 title="Jump back to footnote 15 in the text">&#8617;</a><a class=footnote-backref href=#fnref2:43 title="Jump back to footnote 15 in the text">&#8617;</a></p> </li> <li id=fn:></li> <li id=fn:77> <p>Miquel Ramirez and Hector Geffner. Heuristics for planning, plan recog-nition and parsing.arXiv preprint arXiv:1605.05807, 2016&#160;<a class=footnote-backref href=#fnref:77 title="Jump back to footnote 17 in the text">&#8617;</a></p> </li> <li id=fn:57> <p>Mario Mart ́ın and Hector Geffner. Learning generalized policies fromplanning examples using concept languages.Applied Intelligence, 20(1):9–19, 2004.&#160;<a class=footnote-backref href=#fnref:57 title="Jump back to footnote 18 in the text">&#8617;</a></p> </li> <li id=fn:99> <p>Sungwook Yoon, Alan Fern, and Robert Givan. Learning control knowl-edge for forward search planning.The Journal of Machine Learning Re-search, 9:683–718, 2008.&#160;<a class=footnote-backref href=#fnref:99 title="Jump back to footnote 19 in the text">&#8617;</a></p> </li> <li id=fn:21> <p>Tomas De la Rosa, Sergio Jim ́enez, Raquel Fuentetaja, and Daniel Bor-rajo. Scaling up heuristic planning with relational decision trees.Journalof Artificial Intelligence Research, 40:767–813, 2011.&#160;<a class=footnote-backref href=#fnref:21 title="Jump back to footnote 20 in the text">&#8617;</a></p> </li> <li id=fn:9> <p>Blai Bonet and Hector Geffner. Policies that generalize: Solving manyplanning problems with the same policy.IJCAI, 2015.&#160;<a class=footnote-backref href=#fnref:9 title="Jump back to footnote 21 in the text">&#8617;</a></p> </li> <li id=fn:90> <p>Siddharth Srivastava, Neil Immerman, and Shlomo Zilberstein. A newrepresentation and associated algorithms for generalized planning.Artifi-cial Intelligence, 175(2):615 – 647, 2011.&#160;<a class=footnote-backref href=#fnref:90 title="Jump back to footnote 22 in the text">&#8617;</a></p> </li> <li id=fn:91> <p>Siddharth Srivastava, Neil Immerman, Shlomo Zilberstein, and TianjiaoZhang. Directed search for generalized plans using classical planners. InICAPS, 2011.&#160;<a class=footnote-backref href=#fnref:91 title="Jump back to footnote 23 in the text">&#8617;</a></p> </li> <li id=fn:53> <p>Hector J Levesque, Raymond Reiter, Yves Lesp ́erance, Fangzhen Lin, andRichard B Scherl. Golog: A logic programming language for dynamicdomains.The Journal of Logic Programming, 31(1-3):59–83, 1997.&#160;<a class=footnote-backref href=#fnref:53 title="Jump back to footnote 24 in the text">&#8617;</a></p> </li> <li id=fn:80> <p>Sebastian Sardina, Giuseppe De Giacomo, Yves Lesp ́erance, and Hector JLevesque. On the semantics of deliberation in indigologfrom theory toimplementation.Annals of Mathematics and Artificial Intelligence, 41(2-4):259–299, 2004.&#160;<a class=footnote-backref href=#fnref:80 title="Jump back to footnote 25 in the text">&#8617;</a></p> </li> <li id=fn:79> <p>Gabriele R ̈oger, Malte Helmert, and Bernhard Nebel. On the relativeexpressiveness of adl and golog: The last piece in the puzzle. InKR, 2008&#160;<a class=footnote-backref href=#fnref:79 title="Jump back to footnote 26 in the text">&#8617;</a></p> </li> <li id=fn:17> <p>Jens Claßen, Viktor Engelmann, Gerhard Lakemeyer, and Gabriele R ̈oger.Integrating golog and planning: An empirical evaluation.InNon-Monotonic Reasoning Workshop, 2008&#160;<a class=footnote-backref href=#fnref:17 title="Jump back to footnote 27 in the text">&#8617;</a></p> </li> <li id=fn:35> <p>Sumit Gulwani. Automating string processing in spreadsheets using input-output examples. InACM SIGPLAN Notices, volume 46, pages 317–330.ACM, 201&#160;<a class=footnote-backref href=#fnref:35 title="Jump back to footnote 28 in the text">&#8617;</a></p> </li> <li id=fn:60> <p>Thomas M Mitchell. Generalization as search.Artificial intelligence,18:203–226, 1982.&#160;<a class=footnote-backref href=#fnref:60 title="Jump back to footnote 29 in the text">&#8617;</a></p> </li> <li id=fn:89> <p>Armando Solar-Lezama, Liviu Tancau, Rastislav Bodik, Sanjit Seshia,and Vijay Saraswat. Combinatorial sketching for finite programs.ACMSIGOPS Operating Systems Review, 40:404–415, 2006&#160;<a class=footnote-backref href=#fnref:89 title="Jump back to footnote 30 in the text">&#8617;</a></p> </li> <li id=fn:50> <p>Brenden M Lake, Ruslan Salakhutdinov, and Joshua B Tenenbaum.Human-level concept learning through probabilistic program induction.Science, 350(6266):1332–1338, 2015.&#160;<a class=footnote-backref href=#fnref:50 title="Jump back to footnote 31 in the text">&#8617;</a></p> </li> <li id=fn:51> <p>Alan Leung, John Sarracino, and Sorin Lerner. Interactive parser synthesisby example. InACM SIGPLAN Notices, volume 50, pages 565–574. ACM,2015&#160;<a class=footnote-backref href=#fnref:51 title="Jump back to footnote 32 in the text">&#8617;</a><a class=footnote-backref href=#fnref2:51 title="Jump back to footnote 32 in the text">&#8617;</a></p> </li> <li id="fn:Syntax-guided synthesis"> <p>Rajeev Alur, Rastislav Bodik, Garvit Juniwal, Milo MK Martin, MukundRaghothaman, Sanjit A Seshia, Rishabh Singh, Armando Solar-Lezama,Emina Torlak, and Ab hishek Udupa. Syntax-guided synthesis.Depend-able Software Systems Engineering, 40:1–25, 2015.&#160;<a class=footnote-backref href="#fnref:Syntax-guided synthesis" title="Jump back to footnote 33 in the text">&#8617;</a></p> </li> <li id="fn:Inductive  programming"> <p>Sumit Gulwani, Jose Hernandez-Orallo, Emanuel Kitzelmann, Stephen HMuggleton, Ute Schmid, and Benjamin Zorn. Inductive programming meets the real world.Communications of the ACM, 58:90–99, 2015.&#160;<a class=footnote-backref href="#fnref:Inductive  programming" title="Jump back to footnote 34 in the text">&#8617;</a></p> </li> <li id="fn:solver-aided languages"> <p>Emina Torlak and Rastislav Bodik. Growing solver-aided languages with rosette. InACM international symposium on New ideas, new paradigms,and reflections on programming &amp; software, pages 135–152. ACM, 2013.&#160;<a class=footnote-backref href="#fnref:solver-aided languages" title="Jump back to footnote 35 in the text">&#8617;</a></p> </li> </ol> </div></div> <footer> <div class=footer-buttons> <div class=previous><a href=../../Syntax/PDDLParser/ title=Parser><span>Previous</span></a></div> <div class=next><a href=../GP_summary/ title=GP_summary><span>Next</span></a></div> </div> <div class=footer-note> <p> Built with <a href=http://www.mkdocs.org>MkDocs</a> using <a href=https://github.com/daizutabi/mkdocs-ivory>Ivory theme</a>. </p> </div> </footer> </div> </main> </div> <script>var base_url = '../..';</script> <script src=../../js/theme.js></script> <script src=../../js/umlconvert.js></script> <script src=../../js/sequence-loader.js></script> <script src=https://unpkg.com/mermaid/dist/mermaid.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js></script> <script src=../../search/main.js></script> </body> </html>
+</code></pre></div>
+<p>上述代码展示了PDDL如何定义派生谓词*above*，用以建模积木世界中某块积木是否位于另一块积木之上。派生谓词能够表示表达性的状态查询，涵盖状态变量和递归层次结构，这对于紧凑地表示规划任务以及实现更高效的规划具有重要价值。</p>
+<p>除派生谓词外，多种形式主义已用于表示规划中的状态查询，其范围从一阶子句到描述逻辑公式，乃至LTL公式，以定义关于状态序列的查询。</p>
+<p>**感知与非确定性动作（Sensing and non-deterministic actions）。**当状态在**FOND**下完全可观察时，考虑到任何状态信息均可通过状态查询获取，因此无需显式的感知动作。相应地，传感动作适用于**POMDP**部分可观察性下的规划，它们不模拟状态转换，而是对当前状态中*未知*的信息进行观测。当缺乏有关当前状态的信息导致规划器无法制定出确保实现目标的计划时，规划器便会采用感知动作。</p>
+<p>若我们假设关于当前状态的不确定性是单调递减的（即一旦*知道*状态变量的值，该值可以改变，但不会再次变得*未知*），则可将感测动作编码为非确定性动作。</p>
+<p>PPDDL（PDDL的概率版本）可用概率效应进行编码，采用概率动作进行的规划成为*优化*任务，规划器的目标是最大化达到目标的可能性。非确定性和概率性动作也可以编码非确定性状态转换，例如在完全可观察的非确定性（FOND）或MDP规划中。</p>
+<p>**表示初始状态与目标状态。**可以显式定义一组状态——枚举该集合中的每个状态，或者隐式定义一个状态必须满足的约束（例如传递闭包）才能属于该集合。也可以明确指定广义规划任务中的实例集，枚举其中的各个经典规划实例。根据用于指定这些约束的语言，存在不同的形式主义来表示一组规划实例：</p>
+<ul>
+<li>**命题逻辑（Propositional logic）。**在此情况下，可能的初始状态和目标状态的集合仅使用文字和三个基本的逻辑连接词表示（即表示文字的合取或表示文字的析取，而不包含否定）。用命题逻辑表示的规划实例集的示例包括一致的、或有的或POMDP的规划任务。</li>
+<li>**一阶逻辑（First-order logic）。**一阶逻辑约束可以包含量化变量，包括传递闭包，并表示无限制的状态集。这些特性使一阶公式能够实现规划实例集的紧凑表示以及无限制规模的规划任务。对于给定的有限对象集，一阶表示形式可直接转换为命题逻辑表示形式。</li>
+<li>**约束规划（Constraint Programming）。**在此情况下，状态集由一组有限域变量以及一组约束C来定义。除约束编程语言的表示灵活性外，在此情况下可以使用现成的CSP求解器来解决广义规划任务。</li>
+<li>**三值逻辑（Three-valued logic）。**在此逻辑语言中，存在三个真值：1（真）、0（假）或U（未知）。Srivastava等人使用三值逻辑进行状态抽象，以紧凑地表示无边界的具体状态集。三值逻辑对于表示和解决一致任务和或然任务也颇具价值。</li>
+</ul>
+<p>**确定一组规划实例：**除使用初始状态和目标状态集外，未来还可以利用其他信息，例如领域不变量甚至分类的执行历史记录，包括正例和负例，类似于归纳逻辑编程（ILP）中的做法。</p>
+<h2 id="_4">广义规划的紧凑性与通用性<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>广义规划具有两大优势，即**紧凑性**（compactness）和**通用性**（generality）。</p>
+<ul>
+<li>**控制流结构**增强了广义规划相对于经典规划的灵活性：</li>
+<li>**分支（Branching）：**计划的执行根据当前状态下给定表达式的求值结果进行分支。具有分支结构的规划解决方案的示例包括AND/OR树状或有计划或K-Fault容忍计划。</li>
+<li>**循环（Loops）：**重复执行规划段，直到给定条件在当前状态下成立。具有循环的规划解决方案的示例包括用于表示MDP解决方案的策略类规划，以及FOND规划任务。</li>
+</ul>
+<p>仅包含分支构造的解决方案规划的大小在可能的状态观察次数中可能呈指数级增长。合并*分支*和*循环*通常有助于压缩广义规划。在某些解决方案表示中，例如DSPlanners，分支和循环对应于不同的控制流构造，但通常它们使用相同的构造（例如条件转移）实现，以保持解空间的可管理性。在*有限状态控制器*（FSC）、*广义策略*或*规划程序*中使用的*条件goto*即属此类情况。</p>
+<ul>
+<li><strong>变量（循环控制变量、数值变量）。**DSPlanners解决了使用*量化变量*表示解决方案的问题。A DSplanner is a domain-specific program that can contain **if-then-else &amp; while</strong> constructs. 也就是说，在包含分支循环的控制流图中进行与或树搜索，以搜索规划任务的解子图。</li>
+</ul>
+<p><strong>量化变量</strong>（Quantified variables）使得识别具有特定特征的对象并对其应用选择性操作成为可能。</p>
+<p><strong>存在变量</strong>（Existential variables）。通用变量（Universal variable）断言，给定的属性或关系对于所有可能的变量值均成立。除DSPlanners外，存在变量还出现在选择操作中，即在规划执行过程中实例化的操作以及在当前状态下评估FOL公式的结果。另一个示例是*广义策略*，其规则包含要与当前状态统一的变量。PDDL可以表示具有派生谓词的策略。</p>
+<p><strong>通用变量</strong>（Universal variables）。通用变量断言，给定的属性或关系适用于所有可能的变量值。在定量变量上评估给定表达式的派生谓词的使用也适用于其他形式的广义规划，例如FSC。</p>
+<p>**栈递归调用。**尽管仅使用基本控制流和变量就可以显式地对调用栈进行编码，但通常可以通过调用栈获得更紧凑的解决方案（例如具有递归解决方案的任务）。用于访问二叉树所有节点的通用规划实现了具有一个过程参数的递归深度优先搜索（DFS）。指令**call（0, node）**是递归调用，将参数*node*分配给程序的唯一参数，并从其第一行重新开始执行。</p>
+<h3 id="_5">执行与验证<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>广义规划可以具有分支、循环以及变量，因此在特定经典规划实例上执行广义规划需要特定的机制，这不同于传统规划中传统使用的机制：</p>
+<ul>
+<li>
+<p>**分支。**具有多个可能执行分支的广义规划的执行需要一种机制，用于根据状态变量的当前值选择相应的执行分支。可以将具有分支结构的若干广义规划（例如HTN、AND/OR树状规划或策略）的执行编译为经典规划。如第3节所述，可以通过*条件效应*有效地建模根据状态变量不同值而执行的不同可能执行结果。</p>
+</li>
+<li>
+<p><strong>循环。**执行显式表示循环的广义规划（例如程序或FSC）需要跟踪当前程序行（或控制器状态）。通过将相应的自动机（其状态和可能的转换）编码为额外的状态变量，**可以将FSC和程序的执行编译为经典规划</strong>。</p>
+</li>
+<li>
+<p>**变量。**如果广义规划包含量化变量，则规划执行需要统一机制，以将可能的值分配给这些变量。早期规划系统实现了变量绑定算法以匹配控制规则。如今，Fast-Downward使用实现了*标记算法*的量化变量评估派生谓词。另一种不同的方法是利用外部求解器（例如*答案集编程*或CSP求解器）来量化变量。同样存在编译方法，在*连接查询*中绑定存在变量并使用传递闭包来评估FOL状态查询。不幸的是，当前大多数现成的规划器仅有效地支持简单条件，因为命题原子的连接和汇编存在量化公式产生指数级代价。</p>
+</li>
+</ul>
+<p>在给定规划实例上执行广义规划的最简单的期望属性是**终止性测试**或**验证**，在文献中也称为*停机问题*。在最坏情况下，广义规划执行的动作数上限由广义规划的可能状态总数决定。随后可以通过对规划执行期间的动作数进行计数，并检查该计数是否超过先前的上限来检测无限循环。</p>
+<p>执行广义规划的第二个属性是保证规划能够解决给定实例。检验此属性称为**验证**或**有效性验证**。证明验证包含终止证明，并且作为规划生成的一部分是隐式的。经典规划中的规划验证较为简单，因为可以通过从经典规划任务的初始状态开始*执行*规划来获得验证证明或失败证明。VAL在第三届国际规划竞赛（IPC）中引入，是用于经典规划的标准规划验证工具。在广义规划的情况下，规划可以具有分支、循环和变量，规划验证因而更为复杂。在给定规划实例中执行广义规划可能无法解决该实例，原因如下：</p>
+<ol>
+<li>规划*不健全*（unsound）：广义规划由于进入无限循环而无法满足*终止*条件。</li>
+<li>规划*不完整*（incomplete）：当前状态没有下一步要执行的动作（例如，在当前状态下没有适用规则的策略）。</li>
+</ol>
+<p>如果可以将广义规划的执行编译为经典规划任务，则可以使用现成的经典规划器来有效检查先前的验证条件。当动作具有不确定性影响时，规划验证变得更加复杂，因为它需要证明所有可能的规划执行均能达到目标。在此情况下，*模型检查*和*非确定性规划*是合适的方法。</p>
+<p>与经典规划不同——经典规划与特定规划实例相关联——广义规划也可以在一组不同的规划实例上执行。在广义规划任务上验证广义规划需要在任务包含的所有实例中执行规划，并验证该规划已解决所有问题。这意味着在给定实例中对给定的广义规划的验证应在规划大小的多项式时间内完成。可以通过两种不同的方法在规划实例集中实施广义规划的执行：</p>
+<ul>
+<li><strong>顺序执行</strong>，即在每个实例中逐一执行广义规划。这是使用经典规划器执行广义规划所遵循的方法。</li>
+<li><strong>并行执行</strong>。广义规划在广义规划任务的实例集中同时执行（例如按照一致、或然或POMDP规划，其中动作的执行会进展到一组状态）。</li>
+</ul>
+<p>*顺序*方法的实现较为简单，但其实用性受限于实例数量。*并行*方法允许处理更大的实例集合（或对象数量不受限的实例），但它需要精细的状态进展技术，如信念跟踪或动作在抽象状态上的应用。在并行执行中，评估表达目标或派生谓词变得更加复杂，因为这意味着对状态集进行公式评估。验证广义规划的第三种方法是展示执行前后的某些属性，例如在使用***Hoare三元组***的*程序验证*中。</p>
+<h3 id="_6">评估指标<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>给定一组规划实例，不同的广义规划可以与其*保持一致*。因此有必要定义一种方法，能够量化给定广义规划的能力，以阐明可能的解决方案之间的偏好。</p>
+<p>可以针对不同的指标评估广义规划的能力：</p>
+<ul>
+<li>
+<p>**覆盖范围。**可以将广义规划的*领域覆盖范围*评估为广义规划可以解决的大小为*n*的问题实例数量除以相同大小的可解决问题实例总数的比率。在实践中，获知这些数值意味着要解决大量规划任务，因而通常较为棘手。统计机器学习（ML）技术根据解决方案在领域实例的*代表性*样本（称为*测试集*）上的执行效果来估算解决方案的质量。在广义规划中，还可以定义一组测试实例，并计算解决方案涵盖了多少实例。</p>
+</li>
+<li>
+<p>**复杂性。**由于广义规划是类算法的解决方案，可以从理论上评估其复杂性，例如，使用渐进分析来表征其运行时间和空间需求如何根据输入任务的大小而增长。实际上，可以通过在给定的输入实例上执行规划所产生的动作序列的长度来量化广义规划的复杂性。当给定实例的序列长度对该实例*最小*时，广义规划是*最优*的。</p>
+</li>
+<li>
+<p>**简洁性。**可以根据规划行数、控制器状态、策略规则或量化变量来评估给定广义规划的大小。在ILP系统中已引入类似的度量标准，以量化解决方案的*紧凑性*和*可读性*，并且倾向于规则数量最少的模型和规模最小的规则。需要注意的是，在经典规划中，规划的执行复杂度直接与其规模相对应。</p>
+</li>
+</ul>
+<h2 id="_7">求解方法<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>计算广义规划的两种主要方法，并回顾了不同的*规划重用*技术，以避免从头开始计算广义规划。本节最后回顾了针对广义规划的不同方法的具体实现。</p>
+<p>在*自上而下的*广义规划搜索方法中，解决方案涵盖广义规划任务中的所有实例。另一方面，*自下而上的*方法为单个实例（或广义规划任务中的实例子集）计算解决方案，并扩大解决方案的覆盖范围，直至涵盖所有实例。就机器学习而言，自上而下的方法与*离线*机器学习算法有关，该类算法在一次迭代中计算模型以覆盖整个输入实例集，例如决策树的归纳。自下而上的方法与*在线*版本的ML算法相关，该类算法随着更多输入实例的出现，迭代地、增量地适应模型。</p>
+<p>用于广义规划的*自上而下*算法通常在可能的广义规划空间中搜索解决方案。此搜索的初始状态是*空*广义规划，搜索算子逐步在广义规划中建立步骤（例如，向程序添加指令、向FSC添加新状态或过渡、向策略添加新规则等）。搜索的目标状态集包括所构建的广义规划能够解决给定实例集的任何状态。</p>
+<p>此类方法的示例包括将广义规划编译为其他形式的问题求解方案，例如***经典规划***、<strong><em>一致规划</em></strong>、<strong><em>CSP***或***Prolog程序</em></strong>。这些编译实现了如上所述的搜索空间，并受益于现成求解器（具有高效的搜索算法和启发式方法）来完成对广义规划的搜索。编译方法的主要限制在于可扩展性。在实践中，通常为了限制搜索范围，会限制可能的广义规划的大小（例如，程序行、控制器状态、策略规则或量化变量的最大数量）。这类似于SATPLAN方法中所采用的做法，该方法确定最大规划长度，然后迭代增加直到找到解决方案为止。</p>
+<p>如果我们认为可能的初始状态代表不同的共享相同目标的规划实例，则针对意外情况、一致情况和POMDP规划的离线算法也可以理解为*自上而下*的广义规划算法。在此情况下，通常不是在可能的广义规划空间中搜索解决方案，而是在可到达的*信念状态*空间中进行搜索。在此，可扩展性限制源于以下事实：可到达的信念状态集合快速增长，同时难以定义有效的启发式方法以提供对信念状态的*有用*估计。</p>
+<p><em>自下而上的*广义规划是一种迭代且增量的方法，其中（1）选择单个规划实例（或广义规划任务中的实例子集），（2）计算其解决方案，（3）对解决方案进行泛化，最后（4）与先前找到的广义解决方案合并。重复此四步过程，直至涵盖广义规划任务中的所有实例。*自下而上的*方法与*规划修复</em>、*基于案例的规划*和*迁移学习*相关，因为它也需要一些机制来确定为什么给定解决方案不涵盖给定实例，以及使给定解决方案适应新场景的机制。</p>
+<p>虽然*自上而下的*方法可以作为编译为其他形式的问题求解方案来实现，但*自下而上的*方法需要具体的技术来提升和合并计划。另一方面，*自下而上的*方法提供了随时可得的行为，并且可能能够自动构建小规模实例集以实现泛化。</p>
+<h3 id="srivastava">重用广义规划——Srivastava的方法<a class="headerlink" href="#srivastava" title="Permanent link">&para;</a></h3>
+<p>从头计算广义规划的另一种方法是重用现有解决方案。即使某个广义规划不正确（从某种意义上说它无法解决给定实例）或不完整（它未定义要在给定实例上应用的动作），它也可能包含有用的知识。例如，规划可能能够解决给定广义规划任务的子问题或类似实例，或者在调整控制流结构中的条件后解决新实例。在这些情况下，采用先前存在的广义规划可以取得回报。</p>
+<p>在这方面，*自下而上的*广义规划方法配备了使规划适应未知案例并逐步增加其覆盖范围的机制。另一方面，*自上而下的*方法可以从部分指定的解决方案开始，而不是从*空*广义规划开始。这表明缩小搜索空间和/或集中搜索过程十分有用，从而有可能解决更具挑战性的广义规划任务。</p>
+<p>接下来，我们回顾重用先前找到的规划的不同技术：</p>
+<ul>
+<li>
+<p><strong>编译。**当现有的广义规划具有广义策略的形式时，可以将其编译为一组PDDL派生谓词，策略中的每个规则都包含一个谓词，该谓词捕获应采取行动的不同情况。通过**计算相应自动机与原始规划任务之间的叉积（cross product），可以将程序、FSC或AND/OR图形式的现有广义规划编码为经典PDDL规划任务</strong>。在此情况下，新的额外状态变量将添加到原始规划任务中，以表示与程序、FSC或AND/OR图相对应的自动机的状态和转换。</p>
+</li>
+<li>
+<p>**规划动作。**经典规划中的动作不仅代表原始动作，还可以代表广义规划本身。</p>
+</li>
+</ul>
+<h3 id="_8">计算宏动作<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><em>宏动作</em>（macro-actions）是计算有效解决不同规划任务的常识性知识的最早建议之一。文献中有多种方法可用于计算宏动作，但最常见的方法是：（1）求解一组共享相同领域理论但使用现成经典规划器的经典规划实例训练集，以及（2）在解决方案规划中确定经常一起使用的动作的子序列。</p>
+<p>宏动作的优势在于它们具有标准经典规划动作的形式，因此可以直接添加到领域理论中，而无需额外的状态变量。这使得*宏动作*成为重用广义规划知识的实用而强大的方法：一方面，使用宏动作进行规划或执行和验证包含宏动作的规划都不需要特定的算法；另一方面，添加不完整或不正确的宏动作不会阻止规划器找到可解决问题的解决方案，因为规划器始终可以使用原始操作来构建解决方案。</p>
+<p>定义总体规划策略的宏动作的主要限制在于其顺序执行流程过于严格。即使将宏动作参数化，涉及宏的解决方案也可能不适用于其他问题。</p>
+<h3 id="_9">计算广义策略<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>*广义策略*是一组规则，它定义了从状态和目标到*下一步要执行*的优选动作的映射。与宏动作类似，广义策略也允许参数化，并且可以从共享相同领域理论的经典规划实例的一组解决方案中推导得出。然而，广义策略比宏动作更具灵活性，因为它们可以定义带有分支和循环的执行流。</p>
+<h3 id="_10">计算有限状态控制器<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><em>有限状态控制器</em>（FSC）可以使用有限的内存来泛化策略。具有单一状态的FSC表示策略，即无内存控制器。FSC的附加控制器状态为其提供了内存，允许在相同观察情况下采取不同的动作。FSC形式主义也可以通过*调用栈*进行扩展，以表示层次化和递归解决方案。</p>
+<p>现有的用于计算广义规划FSC的算法遵循*自上而下的*方法，该方法将对FSC的*编程*与验证相交替，因此它们紧密地集成了规划与归纳。为了使FSC的计算易于处理，它们限制了可能的解决方案空间，从而限制了FSC的最大大小。此外，它们要求实例不仅共享领域理论（动作和谓词方案），还共享流利集或*可观察*流利的子集。</p>
+<p>用于广义规划的FSC的计算包括将广义规划任务编译为其他形式的问题求解方案的工作，因此它们将从现成求解器的最新进展中受益（例如，<em>经典规划</em>、<em>一致规划</em>、<em>CSP*或*Prolog程序</em>）。最后一种情况需要FSC的行为规范，该规范包括分类的执行历史记录：（1）接受所有导致目标到达满意状态的合法执行历史记录；（2）拒绝包含重复配置的执行历史记录（表明无限循环），并且无法扩展（指示死锁）。</p>
+<h3 id="_11">计算程序<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>程序提高了FSC的可读性，它们将控制流结构与原始动作相分离。与FSC类似，程序也可以按照*自上而下的*方法进行计算，例如利用对状态和动作空间相同的实例进行编程并验证程序的编译。由于这些*自上而下的*方法在解决方案空间中进行搜索，因此限制不同的控制流指令集大有裨益。例如，仅使用既能实现分支又能实现循环的*条件goto*。</p>
+<p><em>DSPlanners*是将程序泛化为规划的最早尝试之一。*DSPlanner*是可以包含if-then-else和while结构的领域特定规划方案。这些构造根据关于当前状态和/或规划任务目标的FOL查询来分支和循环程序的执行控制流。该算法计算DSPlanners被称为提炼（Distill）并实现了一种*自下而上的*方法，用于一组共享同一领域理论的经典规划实例。给定一个实例，提炼计算该实例的解决方案，并将其部分有序规划整合到现有DSPlanner中，具体如下：首先，Distill提取部分有序的规划，选择与现有DSPlanner相匹配的参数。如果不存在这样的参数化，则Distill将变量名称随机分配给规划中的对象。然后Distill尝试确定*语句*和展开的*循环迭代</em>，在解决方案中将其替换为相应的控制流结构。</p>
+<p>Srivastava等人在广义规划方面的工作在程序中引入了一种强大而紧凑的结构，称为*选择动作*，该结构将存在变量和控制流结合在一起。这项工作中的输入实例被表示为带有传递闭包的抽象FOL表示形式。这种形式主义允许用无限多个对象来表示规划任务，并保证此类任务的解决方案具有普遍性。</p>
+<p>Srivastava等人的广义规划算法实施*自下而上的*策略。该算法从空的广义规划开始，然后通过识别其无法解决的实例，调用经典规划器来解决该实例，将获得的解决方案进行归纳并将其合并回广义规划中，从而逐步增加其覆盖范围。重复该过程，直到生成一个涵盖整个期望类实例的广义规划（或达到计算资源的预定义限制时为止）。</p>
+<p>程序和FSC都可以被编入平面领域理论。与策略类似，当给定程序（或FSC）正确时，这种编译是*安全的*（不会将可解决的规划实例转化为不可解决的）。</p>
+<p>下表总结了广义规划的已审查方法。该表指示给定的解决方案表示形式是否允许使用**变量**、**控制流的类型**以及解决方案的**执行**是否需要特定的机制。</p>
+<h3 id="_12">不同广义规划方法总结<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>根据解的表示方法分类：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Variables</th>
+<th>Control-flow</th>
+<th>Execution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classical plan</td>
+<td>------</td>
+<td>------</td>
+<td>Ground actions</td>
+</tr>
+<tr>
+<td>Macro-Actions</td>
+<td>Action parameters</td>
+<td>------</td>
+<td>Lifted actions</td>
+</tr>
+<tr>
+<td>Generalized Policy</td>
+<td>Rule parameters</td>
+<td>Branching and loops</td>
+<td>Lifted rules</td>
+</tr>
+<tr>
+<td>DSPlanners</td>
+<td>Existential</td>
+<td>Branching and loops</td>
+<td>Lifted predicates and lifted actions</td>
+</tr>
+<tr>
+<td>FSCs</td>
+<td>Quantified</td>
+<td>Branching and loops</td>
+<td>Derived predicates</td>
+</tr>
+<tr>
+<td>Hierarchical FSCs</td>
+<td>Quantified and parameters</td>
+<td>Branching, loops and call stack</td>
+<td>Derived predicates and Parameter passing</td>
+</tr>
+<tr>
+<td>Programs</td>
+<td>Quantified and parameters</td>
+<td>Branching, loops and call stack</td>
+<td>Derived predicates and Parameter passing</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pomdp">部分可观察性下的规划：一致、或然和POMDP规划<a class="headerlink" href="#pomdp" title="Permanent link">&para;</a></h3>
+<p><em>一致规划</em>（conformant planning）可计算一系列与不同初始状态一致的动作序列。其与经典规划模型的不同之处在于初始状态中的不确定性，这种不确定性通过子句来描述。*一致规划*是一系列动作，它能够解决由满足这些子句的一组可能初始状态所给出的全部经典规划任务。由于动作具有条件效应，执行相同的动作序列可以为不同的初始状态产生不同的结果。一致规划的主要方法包括：</p>
+<ul>
+<li>**减少不确定性。**将一致规划编译为经典规划以进行计算：（1）消除所有相关不确定性的规划*前缀*。换句话说，在前缀应用之后，只有一个状态（或与实现目标相关的状态变量子集的至少一个局部状态）是可能的。（2）规划*后缀*，该*后缀*将状态（或已消除相关不确定性的部分状态）转换为实现一致规划任务目标的状态。</li>
+<li>**信念传播。**在信念状态空间中进行搜索，其中：*根*信念状态表示可能的初始状态的集合，*目标*信念状态是指信念状态中的所有可能状态都满足规划任务的目标条件。尽管前述方法利用了经典规划机制，但此方法需要（1）紧凑表示和更新信念状态的机制，以及（2）有效的启发式方法来指导在信念状态空间中的搜索。</li>
+</ul>
+<p><em>或然规划</em>（contingent planning）通过感知模型扩展了一致规划模型。该感知模型是一种函数，可以将状态-动作对（系统的真实状态和最后完成的操作）映射到一组非空的观测值中。观测仅提供有关系统真实状态的部分信息，因为相同的观测可能对应不同的状态。*或然规划*必须满足：（1）其执行以有限步骤达到目标信念状态（信念中的所有状态都满足规划任务的目标条件）。（2）分支和循环的条件是指观测值（或可观察到的状态变量的子集）。与广义规划类似，或然规划可以具有不同的形式，例如策略、AND/OR图、FSC或程序。</p>
+<p>*POMDP规划*扩展了或然规划模型，该模型允许通过概率分布对不确定性进行编码，而非使用可能的初始状态集和可能的观测值集。就此而言，*贝叶斯*规则用于在应用动作之后或观测当前状态之后更新信念状态。POMDP解决方案的目标是最大化目标的期望收益，因此POMDP规划成为优化任务。</p>
+<p>最优的一致性/或然/POMDP规划是在最坏情况下将实现目标的成本最小化的规划。广义规划可以看作是或然/POMDP规划的一个特定示例，其中：（1）待求解的实例具有相同的目标，（2）实例的初始状态是一组可能的初始状态中的一个状态，（3）具有完全可观察性，因此分支和循环的条件可以引用任何状态变量的值。</p>
+<h3 id="_13">具有控制知识的规划<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>自从规划研究开始以来，*控制知识*已显示出有效提升规划器可扩展性的能力。IPC-2002证明了这一点，在该竞赛中，利用**领域特定控制知识（DCK）**的规划器比当时的先进规划器快多个数量级。</p>
+<p>DCK的类算法表示形式与广义规划非常相似。实际上，DCK和广义规划都代表了适用于解决不同规划实例的通用策略。尽管它们之间的区别很小，但可以认为广义规划是一种*完全指定的解决方案*，不需要在特定情况下应用规划器。另一方面，DCK对应于*部分指定的解决方案*（包含非确定性构造以及规划器在生成规划时需要确定的缺失/未完成部分）。因此，DCK要求规划器针对给定的经典规划实例提供**完全指定的**解决方案。</p>
+<p>定义DCK的另一种方法是使用已解决实例的数据库。实际上，广义规划的另一种观点是将其视为一个紧凑的规划库。<em>基于案例的规划</em>（CBP）是一种自动化规划方法，旨在通过重用以前找到的解决方案来节省计算量。CBP系统实现了识别与待求解实例相似实例的*检索*机制，以及修复检索到的解决方案中的缺陷以使其适用于另一实例的*适应*机制。CBP的检索和适应机制与*自下而上的*广义规划算法相关，因为它们可以识别给定的广义规划何时不覆盖某实例，并对其进行调整以覆盖该实例。遵循领域无关的方法，为大型案例库开发此类机制仍然是一个开放挑战。</p>
+<p>表示和利用DCK的另一种形式主义是***层次规划***。与经典规划类似，层次规划处理确定性和完全可观察的规划任务，但使用不同的任务表示形式。在传统规划动作中，动作的前提条件和后置条件由规划器自动计算选择和排序，而*层次规划*则指定了解决方案的草图，其中包含关于（1）要追求的子目标和/或（2）哪些动作可以实现给定子目标的额外信息。</p>
+<p>在层次规划中，待求解任务的表示与解决方案之间的界限不如传统规划那样清晰。层次规划任务可以理解为部分指定的广义规划（或领域特定的规划器），其中通过运行层次规划器可以确定规划的缺失部分。</p>
+<h3 id="golog">GOLOG<a class="headerlink" href="#golog" title="Permanent link">&para;</a></h3>
+<p>Golog系列动作语言已被证明是自主智能体高级控制的有效工具。除条件、循环和递归过程外，Golog程序的一个有趣特性是它们可以包含非确定性的部分。Golog程序不一定表示完全指定的解决方案，而是一个草图，其中非确定性部分是需要由系统填补的空白。此功能使Golog程序员能够在以下两者之间灵活地选择合适的平衡点：预定义行为的确定性（通常意味着较大的程序），以及通过搜索保留系统需要解决的某些部分（通常意味着更长的计算时间）。</p>
+<p>基本的Golog解释器使用PROLOG回溯机制来解决搜索。这种机制本质上相当于盲目搜索，因此，在解决规划任务时，除最小规模的实例外，它很快变得不可行。IndiGolog扩展了Golog，使其包含多种内置规划机制。此外，可以利用Golog和PDDL之间的语义兼容性，并且可以嵌入PDDL规划器来解决本质上属于组合性的子问题。</p>
+<h3 id="_14">程序综合<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>程序综合是自动生成满足给定高级规范的程序的任务。该研究领域的许多理念与广义规划相关，但由于广义规划遵循领域无关的方法并针对其自身特定的状态、动作和目标表示形式，因此它们并非直接适用。在此，我们回顾了两种最成功的程序综合方法：</p>
+<ul>
+<li>
+<p><strong>示例编程</strong>（PbE），计算与一组给定的输入输出示例一致的程序。输入输出示例对于非程序员来说直观易懂，可以用于创建程序；这种类型的规范使程序综合比基于抽象程序状态的推理更易于处理。PbE技术已在现实世界中部署，并且是Office 2013中Excel的Flash Fill功能的一部分，该功能可生成用于字符串转换的程序。在此情况下，使用称为**版本空间代数**（version space algebras）的数据结构以受限的领域特定语言（DSL）简洁地表示一组合成程序。程序的计算采用实现分治策略的领域特定搜索方法。</p>
+</li>
+<li>
+<p><strong>通过草图编程</strong>（PbS），程序员提供部分指定的程序，即表示实现的高级结构但留下由合成器确定的未定义细节的程序。这种形式的程序综合依赖一种称为**SKETCH**的编程语言来绘制部分程序。PbS在由两个通信的SAT求解器（归纳合成器和验证器）构建的合成验证循环上实现反例驱动的迭代，以自动生成测试输入并确保程序满足它们。尽管在最坏情况下，程序的合成比NP完全更困难，但这种反例驱动的搜索在仅解决少数SAT实例后就终止了许多实际问题。</p>
+</li>
+</ul>
+<p>先前的工作包括*通过示例进行编程*从输入/输出示例中合成解析器的技术。</p>
+<h2 id="_15">总结<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>广义规划能够解决经典规划范围之外的规划任务：它们可以解决包含多个实例或对象数量不受限制的规划任务，以及具有部分可观察性和不确定性动作的规划任务。广义规划是解决问题的一种有前景的范例，但仍需进一步研究以有效解决任意规划任务。</p>
+<ul>
+<li>
+<p>**广义规划任务的表示。**隐式表示允许处理大量规划实例。但是，这些表示需要特定的状态演进机制以及测试目标和动作前提条件的机制，这与现成规划器中传统实现的机制不同。除了表示形式主义之外，广义规划任务中给定的实例集也会影响用于计算广义规划的不同方法的性能。有时，可以使用*极端情况*构建少量代表性实例。*极端情况*将状态变量推到其最小值或最大值，因此仅在那些特定状态下才考虑规划行为，而非考虑所有可能的输入实例。对于一般情况而言，自动识别少量代表性实例非常复杂，因此仍然需要手动完成对广义规划任务中代表性实例的选择。自动确定实例以计算通用解决方案的第一步是表征将策略泛化为其他问题的条件。这种方法为自动生成计算泛化解决方案所需的最简单实例集的方法开发打开了大门。</p>
+</li>
+<li>
+<p>**广义规划的计算。**当前用于广义规划的算法只能解决相对较小的任务。进一步研究广义规划的特定启发式方法、自动识别相关状态变量（例如，查找可能出现在循环和分支条件下的状态变量的子集）或目标的自动序列化，有助于提升广义规划器的能力。特定领域的分解还可以解决更具挑战性的广义规划任务。不幸的是，这些分解目前需要手工完成，如何从广义规划任务的表示中自动计算它们仍然是一个悬而未决的问题。考虑到这一点，<em>规划地标*可能是一个有趣的研究方向。另一种提高广义规划器可扩展性的工作方向是探索将给定规划任务转换为更小任务的方法，该任务（1）可通过相同的广义规划解决，且（2）具有更易于处理的搜索空间。关于广义规划的重用，关键问题在于针对给定规划实例评估给定广义规划的适用性（例如*基于案例的规划中的相似性度量</em>），以及不完整或不正确的广义规划的重用。在此情况下，将现有的广义规划用作*领域特定的启发式方法*或*偏好*是一种更安全的方法，该方法强制在每个时刻遵循广义规划。</p>
+</li>
+<li>
+<p>**广义规划的表示。**与仅包含一系列具象动作的规划相比，包含变量和控制流的广义规划需要更复杂的执行机制，但它们可能能够代表更多任务。对于完全指定的解决方案，相同的主张也适用于部分指定的解决方案（其执行更为复杂，因为需要规划器）。对于一般的规划任务，确定更适合解决该问题的解决方案类型也是一个未解决的问题。广义规划的计算受广义规划任务中给定的实例约束，但也受给定的状态、动作和目标编码表示形式的约束。自动生成替代表示以允许更有效地计算广义规划是一个有前途的研究方向，与先前AI研究（例如ILP*谓词发明*或ML中的*特征生成*）有多处关联。</p>
+</li>
+</ul>
+<p>最后但同样重要的是，广义规划是生成式模型，可以解决规划之外的任务。例如，给定广义规划和执行轨迹，可以将*解析任务*定义为确定是否可以使用给定的广义规划生成该执行轨迹的任务。这种方法对于对象分类、目标识别和任务分类都颇具价值。此外，实现这些任务的解决方案可以使用与广义规划计算非常类似的技术。出于同样的考虑，先前的工作包括*通过示例进行编程*从输入/输出示例中合成解析器的技术。对于小上下文无关文法的经典规划已经解决了该任务，但必须开展进一步研究以构建更具挑战性的解析器。</p>
+<h2 id="_16">参考<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Jimenez, S., Segovia-Aguas, J., &amp; Jonsson, A. (2019). A review of generalized planning. <em>The Knowledge Engineering Review, 34</em>.</li>
+<li>Rajeev Alur, Rastislav Bodik, Garvit Juniwal, Milo MK Martin, Mukund Raghothaman, Sanjit A Seshia, Rishabh Singh, Armando Solar-Lezama, Emina Torlak, and Abhishek Udupa. (2015). Syntax-guided synthesis. <em>Dependable Software Systems Engineering, 40</em>, 1-25.</li>
+<li>Sumit Gulwani, Jose Hernandez-Orallo, Emanuel Kitzelmann, Stephen H Muggleton, Ute Schmid, and Benjamin Zorn. (2015). Inductive programming meets the real world. <em>Communications of the ACM, 58</em>, 90-99.</li>
+<li>Emina Torlak and Rastislav Bodik. (2013). Growing solver-aided languages with Rosette. In <em>ACM international symposium on New ideas, new paradigms, and reflections on programming &amp; software</em>, pp. 135-152.</li>
+<li>Alexandre Albore, Hector Palacios, and Hector Geffner. (2009). A translation-based approach to contingent planning. In <em>IJCAI</em>.</li>
+<li>Carmel Domshlak. (2013). Fault tolerant planning: Complexity and compilation. In <em>ICAPS</em>.</li>
+<li>Christian Muise, Sheila A. McIlraith, and Vaishak Belle. (2014). Non-deterministic planning with conditional effects. In <em>ICAPS</em>.</li>
+<li>Elly Winner and Manuela Veloso. (2003). Distill: Learning domain-specific planners by example. In <em>ICML</em>.</li>
+<li>Elly Winner and Manuela Veloso. (2007). Loopdistill: Learning looping domain-specific planners from example plans. In <em>ICAPS, Workshop on Artificial Intelligence Planning and Learning</em>.</li>
+<li>Allen Newell, JC Shaw, and Herbert A Simon. (1959). A general problem-solving program for a computer. <em>Computers and Automation, 8</em>(7), 10-16.</li>
+<li>Javier Segovia-Aguas, Sergio Jimenez, and Anders Jonsson. (2016). Generalized planning with procedural domain control knowledge. In <em>ICAPS</em>.</li>
+<li>Javier Segovia-Aguas, Sergio Jimenez, and Anders Jonsson. (2016). Hierarchical finite state controllers for generalized planning. In <em>IJCAI</em>.</li>
+<li>Blai Bonet, Hector Palacios, and Hector Geffner. (2010). Automatic derivation of finite-state machines for behavior control. In <em>AAAI</em>.</li>
+<li>Cedric Pralet, Gerard Verfaillie, Michel Lemaitre, and Guillaume Infantes. (2010). Constraint-based controller synthesis in non-deterministic and partially observable domains. In <em>ECAI</em>.</li>
+<li>Yuxiao Hu and Giuseppe De Giacomo. (2013). A generic technique for synthesizing bounded finite-state controllers. In <em>ICAPS</em>.</li>
+<li>Sergio Jimenez and Anders Jonsson. (2015). Computing Plans with Control Flow and Procedures Using a Classical Planner. In <em>SOCS</em>.</li>
+<li>Jorge A Baier, Christian Fritz, and Sheila A McIlraith. (2007). Exploiting procedural domain control knowledge in state-of-the-art planners. In <em>ICAPS</em>.</li>
+<li>Miquel Ramirez and Hector Geffner. (2016). Heuristics for planning, plan recognition and parsing. <em>arXiv preprint arXiv:1605.05807</em>.</li>
+<li>Siddharth Srivastava, Neil Immerman, and Shlomo Zilberstein. (2011). A new representation and associated algorithms for generalized planning. <em>Artificial Intelligence, 175</em>(2), 615-647.</li>
+<li>Siddharth Srivastava, Neil Immerman, Shlomo Zilberstein, and Tianjiao Zhang. (2011). Directed search for generalized plans using classical planners. In <em>ICAPS</em>.</li>
+<li>Thomas M Mitchell. (1997). <em>Machine Learning</em>. McGraw-Hill.</li>
+<li>Paul E Utgoff. (1989). Incremental induction of decision trees. <em>Machine Learning, 4</em>(2), 161-186.</li>
+<li>Mario Martin and Hector Geffner. (2004). Learning generalized policies from planning examples using concept languages. <em>Applied Intelligence, 20</em>(1), 9-19.</li>
+<li>Sungwook Yoon, Alan Fern, and Robert Givan. (2008). Learning control knowledge for forward search planning. <em>The Journal of Machine Learning Research, 9</em>, 683-718.</li>
+<li>Tomas De la Rosa, Sergio Jimenez, Raquel Fuentetaja, and Daniel Borrajo. (2011). Scaling up heuristic planning with relational decision trees. <em>Journal of Artificial Intelligence Research, 40</em>, 767-813.</li>
+<li>Blai Bonet and Hector Geffner. (2015). Policies that generalize: Solving many planning problems with the same policy. In <em>IJCAI</em>.</li>
+<li>Hector J Levesque, Raymond Reiter, Yves Lesperance, Fangzhen Lin, and Richard B Scherl. (1997). Golog: A logic programming language for dynamic domains. <em>The Journal of Logic Programming, 31</em>(1-3), 59-83.</li>
+<li>Sebastian Sardina, Giuseppe De Giacomo, Yves Lesperance, and Hector J Levesque. (2004). On the semantics of deliberation in IndiGolog from theory to implementation. <em>Annals of Mathematics and Artificial Intelligence, 41</em>(2-4), 259-299.</li>
+<li>Gabriele Roger, Malte Helmert, and Bernhard Nebel. (2008). On the relative expressiveness of ADL and Golog: The last piece in the puzzle. In <em>KR</em>.</li>
+<li>Jens Classen, Viktor Engelmann, Gerhard Lakemeyer, and Gabriele Roger. (2008). Integrating Golog and planning: An empirical evaluation. In <em>Non-Monotonic Reasoning Workshop</em>.</li>
+<li>Sumit Gulwani. (2011). Automating string processing in spreadsheets using input-output examples. In <em>ACM SIGPLAN Notices, 46</em>, 317-330.</li>
+<li>Thomas M Mitchell. (1982). Generalization as search. <em>Artificial Intelligence, 18</em>, 203-226.</li>
+<li>Armando Solar-Lezama, Liviu Tancau, Rastislav Bodik, Sanjit Seshia, and Vijay Saraswat. (2006). Combinatorial sketching for finite programs. <em>ACM SIGOPS Operating Systems Review, 40</em>, 404-415.</li>
+<li>Brenden M Lake, Ruslan Salakhutdinov, and Joshua B Tenenbaum. (2015). Human-level concept learning through probabilistic program induction. <em>Science, 350</em>(6266), 1332-1338.</li>
+<li>Alan Leung, John Sarracino, and Sorin Lerner. (2015). Interactive parser synthesis by example. In <em>ACM SIGPLAN Notices, 50</em>, 565-574.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 tridu33
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/umlconvert.js"></script>
+      
+        <script src="../../js/sequence-loader.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
+      
+    
+  </body>
+</html>

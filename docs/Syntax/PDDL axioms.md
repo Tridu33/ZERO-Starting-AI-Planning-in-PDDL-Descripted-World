@@ -1,14 +1,16 @@
+# PDDL 公理系统
 
+## 计算复杂度与表达能力
 
-PDDL axioms
+相关研究参见 [Automated Planning and Scheduling 中的计算复杂度](https://icaps16.icaps-conference.org/proceedings/summer-school/Rintanen.pdf)。
 
-https://icaps16.icaps-conference.org/proceedings/summer-school/Rintanen.pdf
+从计算理论的时间维度审视，PDDL 并非图灵完备语言，其根本原因在于缺乏无限长度的纸带模型，因而无法实现通用计算能力。
 
-Computational Complexity in AutomatedPlanning and Scheduling
+另见 [In Defense of PDDL Axioms](https://www.sciencedirect.com/science/article/pii/S0004370205000810)。
 
-从计算理论的时间维度审视，PDDL并非图灵完备语言，其根本原因在于缺乏无限长度的纸带模型，因而无法实现通用计算能力。
+## BNF 文法定义
 
-[In defense of PDDL axioms](https://www.sciencedirect.com/science/article/pii/S0004370205000810
+以下是 PDDL 公理系统的 BNF 文法：
 
 ```
 <domain>                ::= (define (domain <name>)
@@ -51,10 +53,3 @@ Computational Complexity in AutomatedPlanning and Scheduling
 <init>                  ::= (:init <ground-atomic-formula>*)
 <goal>                  ::= (:goal <formula>)
 ```
-
-
-
-
-
-
-

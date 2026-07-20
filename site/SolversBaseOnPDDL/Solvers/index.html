@@ -1,47 +1,2673 @@
-<!DOCTYPE html><html> <head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=author content=tridu33><link rel="shortcut icon" href=../../img/favicon.ico><title>Solvers &mdash; AI Planning in PDDL-Descripted World</title><link rel=stylesheet href="//fonts.googleapis.com/css?family=Lato:400,700"><link rel=stylesheet href=//cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/all.css><link rel=stylesheet href=//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css><link rel=stylesheet href=../../css/theme.css><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css><script src=//code.jquery.com/jquery-2.1.1.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js></script><script>
-        hljs.initHighlightingOnLoad();
-    </script></head> <body ontouchstart> <div id=container> <aside> <div class=home> <div class=title> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div class=search> <div role=search> <form id=rtd-search-form class=wy-form action=../../search.html method=get> <input type=text name=q placeholder="Search docs" title="Type search term here"> </form> </div> </div> </div> <nav class=nav> <ul class=root> <li class=toctree-l1><a class=nav-item href=../..>Home</a></li> <li class=toctree-l1><button class="section nav-item">规划界黑话</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">PDDL进化史</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../PlanLanguages/ADL/ class=nav-item>ADL</a></li> <li class=toctree-l3><a href=../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/ class=nav-item>STRIPS</a></li> <li class=toctree-l3><button class="section nav-item hide">PDDL</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/ class=nav-item>HelloPDDL</a></li> <li class=toctree-l4> <a href=../../PlanLanguages/version/ class=nav-item>版本迭代</a></li> <li class=toctree-l4><a href=../../PlanLanguages/Extension%20to%20PDDL%28SAS%29/ class=nav-item>PDDL扩展</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">机器人世界</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../PlanLanguages/Golog/Golog_ROS/ class=nav-item>Golog</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL使用</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Usage/LocalSolvers/ class=nav-item>本地环境使用</a></li> <li class=toctree-l2> <a href=../../Usage/OnlineSolver/ class=nav-item>线上求解器使用</a></li> <li class=toctree-l2> <a href=../../Usage/VSCode/ class=nav-item>Visual Studio Code使用</a></li> <li class=toctree-l2><button class="section nav-item hide">经典demos</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../%E5%88%8A%E7%89%A9%E4%B8%8A%E7%BB%8F%E5%85%B8demos/ class=nav-item>刊物上经典demos</a></li> <li class=toctree-l3><a href=../PDDL%20Benchmark%20Instances/ class=nav-item>BenchMark</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL语法</button> <ul class=subnav> <li class=toctree-l2> <a href=../../Syntax/PDDL%20axioms/ class=nav-item>语法总览</a></li> <li class=toctree-l2> <a href=../../Syntax/PDDLParser/ class=nav-item>Parser</a></li> </ul></li> <li class=toctree-l1><button class="section nav-item">PDDL-Descripted AI Planning World</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Papers</button> <ul class="subnav hide"> <li class=toctree-l3><a href=../../Papers/A%20review%20of%20generalized%20planning/ class=nav-item>reviewOfGP</a></li> <li class=toctree-l3><a href=../../Papers/GP_summary/ class=nav-item>GP_summary</a></li> <li class=toctree-l3><a href=../../Papers/A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/ class=nav-item>ReviewOfMLforAP</a></li> <li class=toctree-l3><a href=../../Papers/Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/ class=nav-item>GPwithDeep-RL</a></li> <li class=toctree-l3><a href=../../Papers/Survey%20of%20research%20literature/ class=nav-item>researchSurvey</a></li> </ul></li> <li class="toctree-l2 current"><button class="section nav-item">SolversBaseOnPDDL</button> <ul class=subnav> <li class=toctree-l3><a href=../PyperPlan_STRIPS/ class=nav-item>PyperPlan_STRIPS</a></li> <li class="toctree-l3 current"><a href=./ class="nav-item current">Solvers</a> <ul class=subnav> <li class=toctree-l4><a class="nav-item toc" href=#ipc>IPC 赛事：问题起源与发展脉络</a></li> <li class=toctree-l4><a class="nav-item toc" href=#cp>CP：经典规划</a></li> <li class=toctree-l4><a class="nav-item toc" href=#gp>GP：通用规划</a></li> <li class=toctree-l4><a class="nav-item toc" href=#cfg-intermediate-representation-ir>为何 CFG 控制流图是最佳中间表示（Intermediate Representation, IR）方法</a></li> <li class=toctree-l4><a class="nav-item toc" href=#planning-graph-analysis>Planning Graph Analysis：规划图分析</a></li> <li class=toctree-l4><a class="nav-item toc" href=#_2>面向动态图的最新路径查找算法</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">CP</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../CP/ffPlaner/ class=nav-item>FF</a></li> <li class=toctree-l4><a href=../CP/fast-downward/ class=nav-item>FD</a></li> <li class=toctree-l4><a href=../CP/LAPKT%E8%BD%BB%E9%87%8F%E8%87%AA%E5%8A%A8%E8%A7%84%E5%88%92%E5%B7%A5%E5%85%B7%E5%8C%85/ class=nav-item>LAPKT轻量自动规划工具包</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">GP_Numerical</button> <ul class="subnav hide"> <li class=toctree-l4> <a href=../GP_Numerical/QNP_ReduceTo_GraphProblem/ class=nav-item>QNP_ReduceTo_GraphProblem</a></li> <li class=toctree-l4><a href=../GP_Numerical/%E5%9B%BE%E6%B3%95QNP/ class=nav-item>图法QNP</a></li> <li class=toctree-l4><a href=../GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/ class=nav-item>LPG</a></li> <li class=toctree-l4><a href=../GP_Numerical/grahPlan/ class=nav-item>grahPlan</a></li> <li class=toctree-l4><a href=../GP_Numerical/SGPlan6/ class=nav-item>SGPlan6</a></li> <li class=toctree-l4><a href=../GP_Numerical/PRP/ class=nav-item>PRP</a></li> <li class=toctree-l4><a href=../GP_Numerical/myND/ class=nav-item>myND</a></li> </ul></li> <li class=toctree-l3><button class="section nav-item hide">QNP_FONS_SAT</button> <ul class="subnav hide"> <li class=toctree-l4><a href=../GP_Numerical/QNP_FONS_SAT/CNF_py/ class=nav-item>CNF_py</a></li> <li class=toctree-l4><a href=../GP_Numerical/QNP_FONS_SAT/FOND/ class=nav-item>FOND</a></li> <li class=toctree-l4><a href=../GP_Numerical/QNP_FONS_SAT/QA_FOND/ class=nav-item>QA_FOND</a></li> <li class=toctree-l4><a href=../GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/ class=nav-item>例解FOND</a></li> <li class=toctree-l4><a href=../GP_Numerical/QNP_FONS_SAT/QNP/ class=nav-item>QNP</a></li> <li class=toctree-l4><a href=../GP_Numerical/QNP_FONS_SAT/qnp2fond/ class=nav-item>qnp2fond</a></li> <li class=toctree-l4><a href=../GP_Numerical/QNP_FONS_SAT/QNP2SAT/ class=nav-item>QNP2SAT</a></li> </ul></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-plan-validators</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/PDDL-plan-validator.md>validators</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator.md>INVAL</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/PDDL-plan-validator/VScode-PDDL插件VAL.md>VAL</a></li> </ul></li> <li class=toctree-l2><button class="section nav-item hide">PDDL-Auto Planning</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href="../../Extensions/AP/PDDL4j_Java for自动规划.md">PDDL4j</a></li> <li class=toctree-l3> <a class=nav-item href="../../Extensions/AP/Tarski - An AI Planning Modeling Framework.md">Tarski</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/AP/实例中学习QNP定义实现AP(AutomatedPlanning).md>QNP2AP</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/RL/PDDLGYM.md>PDDLGYM</a></li> <li class=toctree-l3> <a class=nav-item href=../../Extensions/RL/RLPlanPapers.md>PDDL+RL强化学习</a></li> </ul></li> </ul></li> <li class=toctree-l1><button class="section nav-item">进击的PDDL</button> <ul class=subnav> <li class=toctree-l2><button class="section nav-item hide">Curry-Howard correspondence</button> <ul class="subnav hide"> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/控制流图CFG语义网络petri迁移系统扩展应用.md>CFG语义网络</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/PDDL-Solver2AST.md>PDDL-Solver2AST</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/TransitionSystemModelCheck.md>CFG=TransitionSystemModelCheck.md</a></li> <li class=toctree-l3> <a class=nav-item href=../../FurtherMore/qnp2ast2program.md>qnp2ast2program</a></li> </ul></li> </ul></li> <li class=toctree-l1> <a class=nav-item href=https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues>Issue跟踪讨论</a></li> </ul> </nav> <div class=repo> <div class=link> </div> <div class=previous><a href=../PyperPlan_STRIPS/ >&laquo; Previous</a></div> <div class=next><a href=../CP/ffPlaner/ >Next &raquo;</a></div> </div> </aside> <div id=spacer><button class=arrow></button></div> <main> <div class=home-top> <button class=hamburger></button> <a href=../.. class=site-name> AI Planning in PDDL-Descripted World</a> </div> <div id=main> <nav class=breadcrumbs> <ul> <li>PDDL-Descripted AI Planning World &raquo; </li><li>SolversBaseOnPDDL</li> </ul> </nav> <div id=content><h1 id=_1>求解器综述<a class=headerlink href=#_1 title="Permanent link">&para;</a></h1> <h2 id=ipc>IPC 赛事：问题起源与发展脉络<a class=headerlink href=#ipc title="Permanent link">&para;</a></h2> <p><a href=https://www.icaps-conference.org/competitions/ >https://www.icaps-conference.org/competitions/</a> 该链接汇总了历届比赛的完整信息</p> <p>An Overview of the International Planning Competition chrome-extension://oemmndcbldboiebfnladdacbdfmadadm/<a href=https://www.nms.kcl.ac.uk/andrew.coles/PlanningCompetitionAAAISlides.pdf>https://www.nms.kcl.ac.uk/andrew.coles/PlanningCompetitionAAAISlides.pdf</a></p> <p><a href=https://helios.hud.ac.uk/scommv/IPC-14/selection.html>https://helios.hud.ac.uk/scommv/IPC-14/selection.html</a> 2014年</p> <p>International Planning Competition</p> <p><a href=https://ipc2018-classical.bitbucket.io/ >https://ipc2018-classical.bitbucket.io/</a> 2018年</p> <p>eecs.oregonstate.edu/ipc-learn/ 第六届</p> <p>cs.cmu.edu/afs/cs/project/jair/pub/volume20/long03a-html/node2.html 国际规划大赛系列</p> <p>依据问题特性，主要可划分为如下两类：</p> <p>经典规划（Classical Planning, CP）：每个实例对应于一个独立的解；</p> <p>通用规划（General Planning, GP）：多个实例共享同一个解子图算法（即控制流图 Control Flow Graph），常见形式化范式包括 QNP 与 FOND。</p> <h2 id=cp>CP：经典规划<a class=headerlink href=#cp title="Permanent link">&para;</a></h2> <p>FF</p> <p>FD</p> <p>LAPKT</p> <h2 id=gp>GP：通用规划<a class=headerlink href=#gp title="Permanent link">&para;</a></h2> <ul> <li> <p>MyND</p> </li> <li> <p>PRP</p> </li> <li> <p>FOND-SAT</p> </li> <li> <p>PRP_planner-for-relevant-policies</p> </li> </ul> <p>从宏观视角审视，学界通常沿两条技术路径展开探索：</p> <p>自顶向下（Top-Down）方法：在与或树（亦可理解为控制流图 Control Flow Graph）中进行搜索，从而得到类算法（algorithm-like）的策略（policy）。就其本质而言，这乃是符号化 goto 语句所对应的底层汇编算法的等价表述。</p> <p>以及</p> <p>自底向上（Bottom-Up）方法：在经典规划中生成实例，据此完善并补全抽象图，并以响应式方式持续打补丁。FOND-SAT 可被视为一种文法自动机，通过符号 SAT 可满足性求解实现规划。据本文作者理解，其本质归属于自顶向下（Top-Down）的"求解"范式。</p> <p>诸如 Merging Example Plans into Generalized Plans for Non-deterministic Environments 以及 Directed Search for Generalized Plans Using Classical Planners 等研究工作即属于此类范畴。</p> <blockquote> <p>正如 Dijkstra 在其经典著作中所阐述的，编程应当是经由严谨思考与推理所得的算法产物，而不应是在意大利面条式代码中盲目调试、反复试错，以及为各种特殊情况仓促打补丁的结果。</p> <p>图灵所开创的自动编程篇章，令人坚信规划（plan）将是一种优雅的解法。</p> </blockquote> <p>QNP 的提出，实际上是受模拟包含 while 循环的链表反转（Linked List Reverse）过程的启发。此类问题的解子图策略（policy），本质上便是**包含 while 循环的算法（algorithm）**。</p> <p>从实例中学习时，不可避免地需要考量**覆盖率**（即已解决问题数目占规划问题总数的比例）。我们设想，倘若存在一个较为完善的通用规划（GP）的良性定义，其结果应当是经过精心设计的自顶向下结构的产物，而非仓促上线、不断打补丁的拼合体——尽管在多数实践场景中，后者往往成为常态。</p> <p>一个较为合适的算法示例是三数之和问题：</p> <blockquote> <p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c，使得 a + b + c = 0？请找出所有满足和为 0 且不重复的三元组。</p> <p>注意：答案中不得包含重复的三元组。 </p> </blockquote> <div class=highlight><pre><span></span><code><span class=k>class</span><span class=w> </span><span class=nc>Solution</span><span class=w> </span><span class=p>{</span>
-<span class=k>public</span><span class=o>:</span>
-<span class=w>    </span><span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;</span><span class=w> </span><span class=n>threeSum</span><span class=p>(</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&amp;</span><span class=w> </span><span class=n>nums</span><span class=p>)</span><span class=w> </span><span class=p>{</span>
-<span class=w>        </span><span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;</span><span class=w> </span><span class=n>res</span><span class=p>;</span>
-<span class=w>        </span><span class=n>sort</span><span class=p>(</span><span class=n>nums</span><span class=p>.</span><span class=n>begin</span><span class=p>(),</span><span class=n>nums</span><span class=p>.</span><span class=n>end</span><span class=p>());</span>
-<span class=w>        </span><span class=k>for</span><span class=p>(</span><span class=kt>int</span><span class=w> </span><span class=n>i</span><span class=w> </span><span class=o>=</span><span class=mi>0</span><span class=p>;</span><span class=n>i</span><span class=o>&lt;</span><span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>();</span><span class=n>i</span><span class=o>++</span><span class=p>){</span>
-<span class=w>            </span><span class=k>if</span><span class=p>(</span><span class=n>nums</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=w> </span><span class=o>&gt;</span><span class=w> </span><span class=mi>0</span><span class=p>)</span><span class=w> </span><span class=k>return</span><span class=w> </span><span class=n>res</span><span class=p>;</span>
-<span class=w>            </span><span class=c1>// 错误去重方法，将会漏掉-1,-1,2 这种情况</span>
-<span class=w>            </span><span class=cm>/*</span>
-<span class=cm>            if (nums[i] == nums[i + 1]) {</span>
-<span class=cm>                continue;</span>
-<span class=cm>            }</span>
-<span class=cm>            */</span>
-<span class=w>            </span><span class=c1>// 正确去重方法</span>
-<span class=w>            </span><span class=k>if</span><span class=p>(</span><span class=n>i</span><span class=w> </span><span class=o>&gt;</span><span class=mi>0</span><span class=w> </span><span class=o>&amp;&amp;</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>i</span><span class=w> </span><span class=o>-</span><span class=w> </span><span class=mi>1</span><span class=p>]</span><span class=w> </span><span class=p>){</span>
-<span class=w>                </span><span class=k>continue</span><span class=p>;</span>
-<span class=w>            </span><span class=p>};</span>
-<span class=w>            </span><span class=kt>int</span><span class=w> </span><span class=n>left</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>;</span>
-<span class=w>            </span><span class=kt>int</span><span class=w> </span><span class=n>right</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>()</span><span class=w> </span><span class=mi>-1</span><span class=p>;</span>
-<span class=w>            </span><span class=k>while</span><span class=p>(</span><span class=n>left</span><span class=w> </span><span class=o>&lt;</span><span class=w> </span><span class=n>right</span><span class=p>){</span>
-<span class=w>                </span><span class=c1>// 去重复逻辑如果放在这里，0，0，0 的情况，可能直接导致 right&lt;=left 了，从而漏掉了 0,0,0 这种三元组</span>
-<span class=w>                </span><span class=cm>/*</span>
-<span class=cm>                while (right &gt; left &amp;&amp; nums[right] == nums[right - 1]) right--;</span>
-<span class=cm>                while (right &gt; left &amp;&amp; nums[left] == nums[left + 1]) left++;</span>
-<span class=cm>                */</span>
-<span class=w>                </span><span class=k>if</span><span class=p>(</span><span class=n>nums</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>left</span><span class=p>]</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>right</span><span class=p>]</span><span class=w> </span><span class=o>&gt;</span><span class=w> </span><span class=mi>0</span><span class=p>){</span>
-<span class=w>                    </span><span class=n>right</span><span class=w> </span><span class=o>--</span><span class=p>;</span>
-<span class=w>                </span><span class=p>}</span><span class=k>else</span><span class=w> </span><span class=k>if</span><span class=p>(</span><span class=n>nums</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>left</span><span class=p>]</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>right</span><span class=p>]</span><span class=w> </span><span class=o>&lt;</span><span class=w>  </span><span class=mi>0</span><span class=p>){</span>
-<span class=w>                    </span><span class=n>left</span><span class=o>++</span><span class=p>;</span>
-<span class=w>                </span><span class=p>}</span><span class=k>else</span><span class=p>{</span><span class=c1>//nums[i] + nums[left] + nums[right] = 0</span>
-<span class=w>                    </span><span class=n>res</span><span class=p>.</span><span class=n>push_back</span><span class=p>(</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span><span class=p>{</span><span class=n>nums</span><span class=p>[</span><span class=n>i</span><span class=p>],</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>left</span><span class=p>],</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>right</span><span class=p>]});</span>
-<span class=w>                    </span><span class=c1>// 去重逻辑应该放在找到一个三元组之后</span>
-<span class=w>                    </span><span class=k>while</span><span class=w> </span><span class=p>(</span><span class=n>right</span><span class=w> </span><span class=o>&gt;</span><span class=w> </span><span class=n>left</span><span class=w> </span><span class=o>&amp;&amp;</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>right</span><span class=p>]</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>right</span><span class=w> </span><span class=o>-</span><span class=w> </span><span class=mi>1</span><span class=p>])</span><span class=w> </span><span class=n>right</span><span class=o>--</span><span class=p>;</span>
-<span class=w>                    </span><span class=k>while</span><span class=w> </span><span class=p>(</span><span class=n>right</span><span class=w> </span><span class=o>&gt;</span><span class=w> </span><span class=n>left</span><span class=w> </span><span class=o>&amp;&amp;</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>left</span><span class=p>]</span><span class=w> </span><span class=o>==</span><span class=w> </span><span class=n>nums</span><span class=p>[</span><span class=n>left</span><span class=w> </span><span class=o>+</span><span class=w> </span><span class=mi>1</span><span class=p>])</span><span class=w> </span><span class=n>left</span><span class=o>++</span><span class=p>;</span>
 
-<span class=w>                    </span><span class=c1>// 找到答案时，双指针同时收缩</span>
-<span class=w>                    </span><span class=n>right</span><span class=o>--</span><span class=p>;</span>
-<span class=w>                    </span><span class=n>left</span><span class=o>++</span><span class=p>;</span>
-<span class=w>                </span><span class=p>}</span><span class=w>    </span>
-<span class=w>            </span><span class=p>}</span>
-<span class=w>        </span><span class=p>}</span>
-<span class=w>        </span><span class=k>return</span><span class=w> </span><span class=n>res</span><span class=p>;</span>
-<span class=w>    </span><span class=p>}</span>
-<span class=p>};</span>
-</code></pre></div> <p>审视上述示例，需着重关注以下要点：</p> <blockquote> <p>错误的去重方法将会遗漏诸如 -1, -1, 2 这类情形；去重逻辑的放置位置亦会对最终结果产生显著影响，例如 0, 0, 0 的案例所示。</p> </blockquote> <p>由此可得出的启示，正如 Dijkstra 在其著作中所阐述的：唯有自顶向下（Top-Down）的精巧设计，方能产生兼具实用价值与强鲁棒性的算法解，而非仅止于玩具级别的实现。</p> <p>而这一点，恰恰是从实例经典规划（CP）中学习通用规划（GP）抽象图、不断打补丁的自底向上（Bottom-Up）方法所无法习得的。经由后者所习得的 GP 抽象控制流图往往千疮百孔、遍布补丁，甚至无法通过足够的测试用例以满足所需的测例覆盖率。</p> <h2 id=cfg-intermediate-representation-ir>为何 CFG 控制流图是最佳中间表示（Intermediate Representation, IR）方法<a class=headerlink href=#cfg-intermediate-representation-ir title="Permanent link">&para;</a></h2> <h2 id=planning-graph-analysis>Planning Graph Analysis：规划图分析<a class=headerlink href=#planning-graph-analysis title="Permanent link">&para;</a></h2> <p>Fast planning through planning graph analysis 1997</p> <p><a href=https://dblp.uni-trier.de/pid/b/AvrimBlum.html>https://dblp.uni-trier.de/pid/b/AvrimBlum.html</a> 作者主页</p> <p>2003 SAT-Based Model-Checking of Security Protocols Using Planning Graph Analysis.</p> <p>2006</p> <p>2017</p> <p>link.springer.com/chapter/10.1007%2F3-540-46238-4_31</p> <p>On Plan Adaptation through Planning Graph Analysis</p> <p>A Planning Heuristic Based on Causal Graph Analysis 2004</p> <p>aaai.org/Library/ICAPS/2004/icaps04-021.php</p> <p>上述问题对于基于规划图（如 IPP、Graphplan 和 Blackbox）的现行规划器而言，具有重要的理论意义与实践价值。</p> <h2 id=_2>面向动态图的最新路径查找算法<a class=headerlink href=#_2 title="Permanent link">&para;</a></h2> <p>面向动态图（D*、D* Lite、LPA* 等）的最新路径查找算法之间存在何种本质差异？</p> <p><a href=https://qastack.cn/cstheory/11855/how-do-the-state-of-the-art-pathfinding-algorithms-for-changing-graphs-d-d-l>https://qastack.cn/cstheory/11855/how-do-the-state-of-the-art-pathfinding-algorithms-for-changing-graphs-d-d-l</a></p> <p>截至目前所整理的相关算法清单如下：</p> <p>```</p> <p>D*（1994年）</p> <p>Focused D*（1995年）</p> <p>Dynamic SWSF-FP（1996年）</p> <p>LPA（1997年）</p> <p>LPA* / Incremental A*（2001年）</p> <p>D* Lite（2002年）</p> <p>SetA*（2002年）</p> <p>HPA*（2004年）</p> <p>Anytime D*（2005年）</p> <p>PRA*（2005年）</p> <p>Field D*（2007年）</p> <p>Theta*（2007年）</p> <p>HAA*（2008年）</p> <p>GAA*（2008年）</p> <p>LEARCH（2009年）</p> <p>BDDD*（2009年——笔者无法获取该论文）</p> <p>Incremental Phi*（2009年）</p> <p>GFRA*（2010年）</p> <p>MTD*-Lite（2010年）</p> <p>Tree-AA*（2011年）</p> <p>```</p> <p>可以在上述问题栏中找到每篇论文的对应链接。</p> <p>简单重计算</p> <p>```</p> <p>D*（亦称 Dynamic A*，1994年）：在初次运行时，D* 的行为与 A* 高度相似，能够迅速找到从起点至终点的最优路径。然而，当单元沿路径移动且图结构发生变化时，D* 能够极为高效地重新计算从当前单元位置至终点的最优路径，其速度远超重新运行 A* 的方案。然而，D* 以其实现复杂性而著称，更为简洁的 D* Lite 已完全取代了 D*。</p> <p>Focused D*（1995年）：对 D* 的改进，旨在提升运算速度以实现"更接近实时"的性能表现。笔者未能找到其与 D* Lite 的直接对比资料，但鉴于其提出年代较早且 D* Lite 的讨论更为广泛，可以合理推断 D* Lite 更具优势。</p> <p>Dynamic SWSF-FP（1996年）：存储从每个节点至目标节点的距离估算值。初始设置阶段需计算所有距离，计算开销较大。当图结构发生变化后，该算法仅更新距离发生变化的节点。该算法与 A* 及 D* 无直接关联。适用于每次变更后需计算从多个节点至目标距离的场景；否则，LPA* 或 D* Lite 通常是更为实用的选择。</p> <p>LPA* / Incremental A*（2001年）：LPA*（Lifelong Planning A*，亦称 Incremental A*，有时被混淆地简称为"LPA"，但其与另一同名算法并无关联）是 Dynamic SWSF-FP 与 A* 的结合体。初次运行时，其行为与 A* 完全一致。然而，在图结构发生小幅变更后，相比于重新运行 A* 进行同一起讫点对的搜索，LPA* 能够利用先前运行中积累的信息，大幅减少需要检查的节点数量。这恰好契合了笔者的需求，因此 LPA* 被认为是最佳选择。LPA* 与 D* 的不同之处在于，它始终寻求从同一固定起点到同一固定终点的最优路径，不适用于起点发生移动的场景（例如沿初始最优路径移动的单元）。然而……</p> <p>D* Lite（2002年）：该算法利用 LPA* 来模拟 D* 的行为。换言之，当单元沿初始最优路径移动且图结构发生变化时，D* Lite 调用 LPA* 来计算该单元的新最优路径。D* Lite 被公认在实现上远比 D* 简洁，并且其运行速度始终不逊于 D*，因此已完全淘汰了 D*。从任何角度来看，都没有继续使用 D* 的充分理由，建议改用 D* Lite。</p> <p>任意角度运动</p> <p>Field D*（2007年）：D* Lite 的一种变体，不再将运动限制于网格约束之内。换言之，最优路径可使单元沿任意角度移动，而不仅限于网格点之间的 45 度（或 90 度）方向。该技术已被美国国家航空航天局（NASA）应用于火星探测车的路径规划。</p> <p>Theta*（2007年）：A* 的一种变体，能够提供比 Field D* 更优（更短）的路径。然而，由于其基于 A* 而非 D* Lite，因此不具备 Field D* 所具有的快速重规划能力。另请参阅相关文献。</p> <p>Incremental Phi*（2009年）：兼具两者之长。Theta* 的增量版本（即支持快速重规划）。</p> <p>移动目标点</p> <p>GAA*（2008年）：GAA*（Generalized Adaptive A*）是 A* 的一种变体，专门用于处理运动目标点场景。这是更早的算法"Moving Target Adaptive A*"的泛化推广。</p> <p>GFRA*（2010年）：GFRA*（Generalized Edge Retrieval A*）似乎是 GAA* 的进一步泛化，通过使用另一种称为 FRA* 的算法，将其适用范围拓展至任意图结构（即不限于二维网格）。</p> <p>MTD*-Lite（2010年）：MTD*-Lite（Moving Target D* Lite）是"D* Lite 的扩展，它使用 Generalized Edge Retrieval A* 背后的原理"来实现面向移动目标的高效重规划搜索。</p> <p>Tree-AA*（2011年）：（待考证）似乎是一种用于未知地形搜索的算法，但与本小节中的所有其他算法一样，它同样基于 Adaptive A*，因此在此一并列出。与本节中其他算法的对比尚不明确。</p> <p>快速/次优</p> <p>Anytime D*（2005年）：这是 D* Lite 的"随时"变体，通过将 D* Lite 与称为 Anytime Repairing A* 的算法相结合而实现。随时算法是一种可在任意时间约束下运行的算法——它能够迅速找到一条初始的次优路径作为起点，然后在给定更多时间的情况下，对该路径进行持续改进。</p> <p>HPA*（2004年）：HPA*（Hierarchical Pathfinding A*）专为在大型图上为大量单元（例如 RTS 实时策略视频游戏中的单位）寻找路径而设计。这些单元各自具有不同的起始位置，且可能具有不同的目标位置。HPA* 将图分解为层次结构，从而能够快速找到所有这些单元的"接近最优"路径，其速度远胜于在每个单元上单独运行 A* 的方案。另请参阅相关文献。</p> <p>PRA*（2005年）：据笔者理解，PRA*（Partial Refinement A*）解决了与 HPA* 相同的问题，但采用了不同的实现方式。两者具有"相似的性能特征"。</p> <p>HAA*（2008年）：HAA*（Hierarchical Annotated A*）是 HPA* 的泛化推广，允许限制某些单元在某些地形上的通行能力（例如，某些通道大型单位无法通过而小型单位则可以；或仅飞行单位能够穿过的孔洞等）。</p> <p>其他/未知</p> <p>LPA（1997年）：LPA（Loop-free Pathfinding Algorithm）似乎是一种路由算法，与本节中其他算法所解决的问题仅存在轻微关联。笔者在此提及它，仅因为该论文在互联网上多处被混淆地（且错误地）引用为介绍 LPA* 的文献，实则并非如此。</p> <p>LEARCH（2009年）：LEARCH 是一组机器学习算法的组合，用于教导机器人如何自主寻找接近最优的路径。作者建议将 LEARCH 与 Field D* 结合使用以获得更优效果。</p> <p>BDDD*（2009年）：（待考证）笔者无法获取该论文。</p> <p>SetA*（2002年）：（待考证）这显然是 A* 的一种变体，用于搜索图的"二元决策图"（BDD）模型。据称在某些情况下，其运行速度"比 A* 快数个数量级"。然而，若笔者的理解正确，这些情况是指图中每个节点均具有大量边的场景。</p> <p>综合上述分析，LPA* 似乎最适合笔者所面临的问题。</p> <p>```</p></div> <footer> <div class=footer-buttons> <div class=previous><a href=../PyperPlan_STRIPS/ title=PyperPlan_STRIPS><span>Previous</span></a></div> <div class=next><a href=../CP/ffPlaner/ title=FF><span>Next</span></a></div> </div> <div class=footer-note> <p> Built with <a href=http://www.mkdocs.org>MkDocs</a> using <a href=https://github.com/daizutabi/mkdocs-ivory>Ivory theme</a>. </p> </div> </footer> </div> </main> </div> <script>var base_url = '../..';</script> <script src=../../js/theme.js></script> <script src=../../js/umlconvert.js></script> <script src=../../js/sequence-loader.js></script> <script src=https://unpkg.com/mermaid/dist/mermaid.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js></script> <script src=../../search/main.js></script> </body> </html>
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ZERO-Starting AI Planning in PDDL-Descripted World">
+      
+      
+        <meta name="author" content="tridu33">
+      
+      
+      
+        <link rel="prev" href="../../Papers/Survey%20of%20research%20literature/">
+      
+      
+        <link rel="next" href="../CP/ffPlaner/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../imgs/logo.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Solvers - AI Planning in PDDL-Descripted World</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-header__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Planning in PDDL-Descripted World
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Solvers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-nav__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    AI Planning in PDDL-Descripted World
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    规划界黑话
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    规划界黑话
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL进化史
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL进化史
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/ADL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HelloPDDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本迭代
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/Extension%20to%20PDDL%28SAS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL扩展
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器人世界
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    机器人世界
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PlanLanguages/Golog/Golog_ROS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Golog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL使用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL使用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Usage/VSCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Studio Code使用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL语法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL语法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Syntax/PDDL%20axioms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    语法总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Syntax/PDDLParser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Descripted AI Planning World
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Descripted AI Planning World
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Papers/A%20review%20of%20generalized%20planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    reviewOfGP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Papers/GP_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Papers/A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ReviewOfMLforAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Papers/Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPwithDeep-RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Papers/Survey%20of%20research%20literature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    researchSurvey
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolversBaseOnPDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SolversBaseOnPDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solvers
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solvers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPC 赛事：问题起源与发展脉络
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CP：经典规划
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GP：通用规划
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cfg-intermediate-representation-ir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为何 CFG 控制流图是最佳中间表示（Intermediate Representation, IR）方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-graph-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning Graph Analysis：规划图分析
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向动态图的最新路径查找算法
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_2" id="__nav_5_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CP/ffPlaner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CP/fast-downward/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_3" id="__nav_5_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_Numerical
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GP_Numerical
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/QNP_ReduceTo_GraphProblem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_ReduceTo_GraphProblem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/%E5%9B%BE%E6%B3%95QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图法QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LPG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/grahPlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    grahPlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/SGPlan6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SGPlan6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/myND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    myND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_4" id="__nav_5_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_FONS_SAT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QNP_FONS_SAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/QNP_FONS_SAT/CNF_py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CNF_py
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/QNP_FONS_SAT/FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/QNP_FONS_SAT/QA_FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA_FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例解FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/QNP_FONS_SAT/QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/QNP_FONS_SAT/qnp2fond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2fond
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GP_Numerical/QNP_FONS_SAT/QNP2SAT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2SAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-plan-validators
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-plan-validators
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/PDDL-plan-validator/PDDL-plan-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    validators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INVAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Auto Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Auto Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2AP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Extensions/RL/PDDLGYM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDLGYM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进击的PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进击的PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Curry-Howard correspondence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Curry-Howard correspondence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG语义网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/TransitionSystemModelCheck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG=TransitionSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FurtherMore/qnp2ast2program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2ast2program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issue跟踪讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPC 赛事：问题起源与发展脉络
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CP：经典规划
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GP：通用规划
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cfg-intermediate-representation-ir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为何 CFG 控制流图是最佳中间表示（Intermediate Representation, IR）方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-graph-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning Graph Analysis：规划图分析
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向动态图的最新路径查找算法
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">求解器综述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="ipc">IPC 赛事：问题起源与发展脉络<a class="headerlink" href="#ipc" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.icaps-conference.org/competitions/">IPC 赛事官方网站</a> 汇总了历届比赛的完整信息</p>
+<p><a href="https://www.nms.kcl.ac.uk/andrew.coles/PlanningCompetitionAAAISlides.pdf">国际规划大赛概述（幻灯片）</a></p>
+<p><a href="https://helios.hud.ac.uk/scommv/IPC-14/selection.html">IPC 2014 年赛事</a></p>
+<p><a href="https://ipc2018-classical.bitbucket.io/">IPC 2018 年经典规划赛事</a></p>
+<p><a href="http://eecs.oregonstate.edu/ipc-learn/">第六届国际规划大赛学习页面</a></p>
+<p><a href="http://cs.cmu.edu/afs/cs/project/jair/pub/volume20/long03a-html/node2.html">国际规划大赛系列概述</a></p>
+<p>依据问题特性，主要可划分为如下两类：</p>
+<p><strong>经典规划（Classical Planning, CP）</strong>：每个实例对应于一个独立的解；</p>
+<p><strong>通用规划（General Planning, GP）</strong>：多个实例共享同一个解子图算法（即控制流图 Control Flow Graph），常见形式化范式包括 QNP 与 FOND。</p>
+<h2 id="cp">CP：经典规划<a class="headerlink" href="#cp" title="Permanent link">&para;</a></h2>
+<ul>
+<li>FF</li>
+<li>FD</li>
+<li>LAPKT</li>
+</ul>
+<h2 id="gp">GP：通用规划<a class="headerlink" href="#gp" title="Permanent link">&para;</a></h2>
+<ul>
+<li>MyND</li>
+<li>PRP</li>
+<li>FOND-SAT</li>
+<li>PRP_planner-for-relevant-policies</li>
+</ul>
+<p>从宏观视角审视，学界通常沿两条技术路径展开探索：</p>
+<p><strong>自顶向下（Top-Down）方法</strong>：在与或树（亦可理解为控制流图 Control Flow Graph）中进行搜索，从而得到类算法（algorithm-like）的策略（policy）。就其本质而言，这乃是符号化 goto 语句所对应的底层汇编算法的等价表述。</p>
+<p><strong>自底向上（Bottom-Up）方法</strong>：在经典规划中生成实例，据此完善并补全抽象图，并以响应式方式持续打补丁。FOND-SAT 可被视为一种文法自动机，通过符号 SAT 可满足性求解实现规划。据本文作者理解，其本质归属于自顶向下（Top-Down）的"求解"范式。</p>
+<p>诸如 Merging Example Plans into Generalized Plans for Non-deterministic Environments 以及 Directed Search for Generalized Plans Using Classical Planners 等研究工作即属于此类范畴。</p>
+<blockquote>
+<p>正如 Dijkstra 在其经典著作中所阐述的，编程应当是经由严谨思考与推理所得的算法产物，而不应是在意大利面条式代码中盲目调试、反复试错，以及为各种特殊情况仓促打补丁的结果。</p>
+<p>图灵所开创的自动编程篇章，令人坚信规划（plan）将是一种优雅的解法。</p>
+</blockquote>
+<p>QNP 的提出，实际上是受模拟包含 while 循环的链表反转（Linked List Reverse）过程的启发。此类问题的解子图策略（policy），本质上便是**包含 while 循环的算法（algorithm）**。</p>
+<p>从实例中学习时，不可避免地需要考量**覆盖率**（即已解决问题数目占规划问题总数的比例）。我们设想，倘若存在一个较为完善的通用规划（GP）的良性定义，其结果应当是经过精心设计的自顶向下结构的产物，而非仓促上线、不断打补丁的拼合体——尽管在多数实践场景中，后者往往成为常态。</p>
+<p>一个较为合适的算法示例是三数之和问题：</p>
+<blockquote>
+<p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c，使得 a + b + c = 0？请找出所有满足和为 0 且不重复的三元组。</p>
+<p>注意：答案中不得包含重复的三元组。</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">threeSum</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">        </span><span class="n">sort</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">            </span><span class="c1">// 错误去重方法，将会漏掉-1,-1,2 这种情况</span>
+<span class="w">            </span><span class="cm">/*</span>
+<span class="cm">            if (nums[i] == nums[i + 1]) {</span>
+<span class="cm">                continue;</span>
+<span class="cm">            }</span>
+<span class="cm">            */</span>
+<span class="w">            </span><span class="c1">// 正确去重方法</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">){</span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">            </span><span class="p">};</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">){</span>
+<span class="w">                </span><span class="c1">// 去重复逻辑如果放在这里，0，0，0 的情况，可能直接导致 right&lt;=left 了，从而漏掉了 0,0,0 这种三元组</span>
+<span class="w">                </span><span class="cm">/*</span>
+<span class="cm">                while (right &gt; left &amp;&amp; nums[right] == nums[right - 1]) right--;</span>
+<span class="cm">                while (right &gt; left &amp;&amp; nums[left] == nums[left + 1]) left++;</span>
+<span class="cm">                */</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">                    </span><span class="n">right</span><span class="w"> </span><span class="o">--</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w">  </span><span class="mi">0</span><span class="p">){</span>
+<span class="w">                    </span><span class="n">left</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="c1">//nums[i] + nums[left] + nums[right] = 0</span>
+<span class="w">                    </span><span class="n">res</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">],</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]});</span>
+<span class="w">                    </span><span class="c1">// 去重逻辑应该放在找到一个三元组之后</span>
+<span class="w">                    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="n">right</span><span class="o">--</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="n">left</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">                    </span><span class="c1">// 找到答案时，双指针同时收缩</span>
+<span class="w">                    </span><span class="n">right</span><span class="o">--</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">left</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>审视上述示例，需着重关注以下要点：</p>
+<blockquote>
+<p>错误的去重方法将会遗漏诸如 -1, -1, 2 这类情形；去重逻辑的放置位置亦会对最终结果产生显著影响，例如 0, 0, 0 的案例所示。</p>
+</blockquote>
+<p>由此可得出的启示，正如 Dijkstra 在其著作中所阐述的：唯有自顶向下（Top-Down）的精巧设计，方能产生兼具实用价值与强鲁棒性的算法解，而非仅止于玩具级别的实现。</p>
+<p>而这一点，恰恰是从实例经典规划（CP）中学习通用规划（GP）抽象图、不断打补丁的自底向上（Bottom-Up）方法所无法习得的。经由后者所习得的 GP 抽象控制流图往往千疮百孔、遍布补丁，甚至无法通过足够的测试用例以满足所需的测例覆盖率。</p>
+<h2 id="cfg-intermediate-representation-ir">为何 CFG 控制流图是最佳中间表示（Intermediate Representation, IR）方法<a class="headerlink" href="#cfg-intermediate-representation-ir" title="Permanent link">&para;</a></h2>
+<h2 id="planning-graph-analysis">Planning Graph Analysis：规划图分析<a class="headerlink" href="#planning-graph-analysis" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://dblp.uni-trier.de/pid/b/AvrimBlum.html">Fast Planning Through Planning Graph Analysis (1997)</a> —— 作者主页</li>
+<li>SAT-Based Model-Checking of Security Protocols Using Planning Graph Analysis (2003)</li>
+<li><a href="https://link.springer.com/chapter/10.1007%2F3-540-46238-4_31">On Plan Adaptation through Planning Graph Analysis</a></li>
+<li><a href="https://aaai.org/Library/ICAPS/2004/icaps04-021.php">A Planning Heuristic Based on Causal Graph Analysis (2004)</a></li>
+</ul>
+<p>上述问题对于基于规划图（如 IPP、Graphplan 和 Blackbox）的现行规划器而言，具有重要的理论意义与实践价值。</p>
+<h2 id="_2">面向动态图的最新路径查找算法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>面向动态图（D*、D* Lite、LPA* 等）的最新路径查找算法之间存在何种本质差异？</p>
+<p><a href="https://qastack.cn/cstheory/11855/how-do-the-state-of-the-art-pathfinding-algorithms-for-changing-graphs-d-d-l">算法差异讨论</a></p>
+<p>截至目前所整理的相关算法清单如下：</p>
+<div class="highlight"><pre><span></span><code>D*（1994年）
+Focused D*（1995年）
+Dynamic SWSF-FP（1996年）
+LPA（1997年）
+LPA* / Incremental A*（2001年）
+D* Lite（2002年）
+SetA*（2002年）
+HPA*（2004年）
+Anytime D*（2005年）
+PRA*（2005年）
+Field D*（2007年）
+Theta*（2007年）
+HAA*（2008年）
+GAA*（2008年）
+LEARCH（2009年）
+BDDD*（2009年——笔者无法获取该论文）
+Incremental Phi*（2009年）
+GFRA*（2010年）
+MTD*-Lite（2010年）
+Tree-AA*（2011年）
+</code></pre></div>
+<p>可以在上述问题栏中找到每篇论文的对应链接。</p>
+<p><strong>简单重计算</strong></p>
+<div class="highlight"><pre><span></span><code>D*（亦称 Dynamic A*，1994年）：在初次运行时，D* 的行为与 A* 高度相似，能够迅速找到从起点至终点的最优路径。然而，当单元沿路径移动且图结构发生变化时，D* 能够极为高效地重新计算从当前单元位置至终点的最优路径，其速度远超重新运行 A* 的方案。然而，D* 以其实现复杂性而著称，更为简洁的 D* Lite 已完全取代了 D*。
+
+Focused D*（1995年）：对 D* 的改进，旨在提升运算速度以实现&quot;更接近实时&quot;的性能表现。笔者未能找到其与 D* Lite 的直接对比资料，但鉴于其提出年代较早且 D* Lite 的讨论更为广泛，可以合理推断 D* Lite 更具优势。
+
+Dynamic SWSF-FP（1996年）：存储从每个节点至目标节点的距离估算值。初始设置阶段需计算所有距离，计算开销较大。当图结构发生变化后，该算法仅更新距离发生变化的节点。该算法与 A* 及 D* 无直接关联。适用于每次变更后需计算从多个节点至目标距离的场景；否则，LPA* 或 D* Lite 通常是更为实用的选择。
+
+LPA* / Incremental A*（2001年）：LPA*（Lifelong Planning A*，亦称 Incremental A*，有时被混淆地简称为&quot;LPA&quot;，但其与另一同名算法并无关联）是 Dynamic SWSF-FP 与 A* 的结合体。初次运行时，其行为与 A* 完全一致。然而，在图结构发生小幅变更后，相比于重新运行 A* 进行同一起讫点对的搜索，LPA* 能够利用先前运行中积累的信息，大幅减少需要检查的节点数量。这恰好契合了笔者的需求，因此 LPA* 被认为是最佳选择。LPA* 与 D* 的不同之处在于，它始终寻求从同一固定起点到同一固定终点的最优路径，不适用于起点发生移动的场景（例如沿初始最优路径移动的单元）。然而……
+
+D* Lite（2002年）：该算法利用 LPA* 来模拟 D* 的行为。换言之，当单元沿初始最优路径移动且图结构发生变化时，D* Lite 调用 LPA* 来计算该单元的新最优路径。D* Lite 被公认在实现上远比 D* 简洁，并且其运行速度始终不逊于 D*，因此已完全淘汰了 D*。从任何角度来看，都没有继续使用 D* 的充分理由，建议改用 D* Lite。
+</code></pre></div>
+<p><strong>任意角度运动</strong></p>
+<div class="highlight"><pre><span></span><code>Field D*（2007年）：D* Lite 的一种变体，不再将运动限制于网格约束之内。换言之，最优路径可使单元沿任意角度移动，而不仅限于网格点之间的 45 度（或 90 度）方向。该技术已被美国国家航空航天局（NASA）应用于火星探测车的路径规划。
+
+Theta*（2007年）：A* 的一种变体，能够提供比 Field D* 更优（更短）的路径。然而，由于其基于 A* 而非 D* Lite，因此不具备 Field D* 所具有的快速重规划能力。另请参阅相关文献。
+
+Incremental Phi*（2009年）：兼具两者之长。Theta* 的增量版本（即支持快速重规划）。
+</code></pre></div>
+<p><strong>移动目标点</strong></p>
+<div class="highlight"><pre><span></span><code>GAA*（2008年）：GAA*（Generalized Adaptive A*）是 A* 的一种变体，专门用于处理运动目标点场景。这是更早的算法&quot;Moving Target Adaptive A*&quot;的泛化推广。
+
+GFRA*（2010年）：GFRA*（Generalized Edge Retrieval A*）似乎是 GAA* 的进一步泛化，通过使用另一种称为 FRA* 的算法，将其适用范围拓展至任意图结构（即不限于二维网格）。
+
+MTD*-Lite（2010年）：MTD*-Lite（Moving Target D* Lite）是&quot;D* Lite 的扩展，它使用 Generalized Edge Retrieval A* 背后的原理&quot;来实现面向移动目标的高效重规划搜索。
+
+Tree-AA*（2011年）：（待考证）似乎是一种用于未知地形搜索的算法，但与本小节中的所有其他算法一样，它同样基于 Adaptive A*，因此在此一并列出。与本节中其他算法的对比尚不明确。
+</code></pre></div>
+<p><strong>快速/次优</strong></p>
+<div class="highlight"><pre><span></span><code>Anytime D*（2005年）：这是 D* Lite 的&quot;随时&quot;变体，通过将 D* Lite 与称为 Anytime Repairing A* 的算法相结合而实现。随时算法是一种可在任意时间约束下运行的算法——它能够迅速找到一条初始的次优路径作为起点，然后在给定更多时间的情况下，对该路径进行持续改进。
+
+HPA*（2004年）：HPA*（Hierarchical Pathfinding A*）专为在大型图上为大量单元（例如 RTS 实时策略视频游戏中的单位）寻找路径而设计。这些单元各自具有不同的起始位置，且可能具有不同的目标位置。HPA* 将图分解为层次结构，从而能够快速找到所有这些单元的&quot;接近最优&quot;路径，其速度远胜于在每个单元上单独运行 A* 的方案。另请参阅相关文献。
+
+PRA*（2005年）：据笔者理解，PRA*（Partial Refinement A*）解决了与 HPA* 相同的问题，但采用了不同的实现方式。两者具有&quot;相似的性能特征&quot;。
+
+HAA*（2008年）：HAA*（Hierarchical Annotated A*）是 HPA* 的泛化推广，允许限制某些单元在某些地形上的通行能力（例如，某些通道大型单位无法通过而小型单位则可以；或仅飞行单位能够穿过的孔洞等）。
+</code></pre></div>
+<p><strong>其他/未知</strong></p>
+<div class="highlight"><pre><span></span><code>LPA（1997年）：LPA（Loop-free Pathfinding Algorithm）似乎是一种路由算法，与本节中其他算法所解决的问题仅存在轻微关联。笔者在此提及它，仅因为该论文在互联网上多处被混淆地（且错误地）引用为介绍 LPA* 的文献，实则并非如此。
+
+LEARCH（2009年）：LEARCH 是一组机器学习算法的组合，用于教导机器人如何自主寻找接近最优的路径。作者建议将 LEARCH 与 Field D* 结合使用以获得更优效果。
+
+BDDD*（2009年）：（待考证）笔者无法获取该论文。
+
+SetA*（2002年）：（待考证）这显然是 A* 的一种变体，用于搜索图的&quot;二元决策图&quot;（BDD）模型。据称在某些情况下，其运行速度&quot;比 A* 快数个数量级&quot;。然而，若笔者的理解正确，这些情况是指图中每个节点均具有大量边的场景。
+</code></pre></div>
+<p>综合上述分析，LPA* 似乎最适合笔者所面临的问题。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 tridu33
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/umlconvert.js"></script>
+      
+        <script src="../../js/sequence-loader.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
+      
+    
+  </body>
+</html>
