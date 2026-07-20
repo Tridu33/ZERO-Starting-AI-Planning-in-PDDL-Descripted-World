@@ -121,27 +121,3 @@ VS Code 的 PDDL 扩展插件（[pddl](https://marketplace.visualstudio.com/item
 | [Pacman Capture the Flag](https://ieeexplore.ieee.org/document/8468047) | Nir Lipovetzky, Sebastian Sardina | 基于 Berkeley AI Pacman 框架的竞赛 | [Competition](https://sites.google.com/view/pacman-capture-hall-fame), [Code](https://bitbucket.org/ssardina-teaching/pacman-contest/src/master/) |
 | [ICAPS 2020 Summer School](https://icaps20subpages.icaps-conference.org/students/summer-school/icaps-online-summer-school-lab-plan-synthesis/) | Michael Cashmore | 使用 PDDL 进行规划建模的入门实验 | [Lab Details](http://education.planning.domains/lecturer_area/icaps20-ss-lab1.zip) |
 
-## 关于本文档
-
-### 构建方式
-
-本文档使用 [MkDocs](https://www.mkdocs.org) 构建，可便捷地将 Markdown 笔记转化为美观的在线文档。
-
-常用命令：
-- `mkdocs new [dir-name]` —— 创建新项目
-- `mkdocs serve` —— 启动实时重载的文档服务器
-- `mkdocs build` —— 构建静态文档站点
-- `mkdocs -h` —— 打印帮助信息
-
-### 项目布局
-
-```
-mkdocs.yml    # 配置文件
-docs/
-    index.md  # 文档主页
-    ...       # 其他 Markdown 页面、图片及其他文件
-```
-
----
-
-*本文档以 Typora 与 Vnote 在本地 PC 笔记系统中撰写，通过 MkDocs 转化为在线帮助文档。*
