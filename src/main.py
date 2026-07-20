@@ -71,7 +71,7 @@ PROJECT_ROOT_STR = str(ROOT)
 DOMAIN_DIR = ROOT / "domains" / "blocks_clear"
 POLICY_DIR = ROOT / "policies" / "block_clear"
 ARTIFACT_DIR = ROOT / "artifacts"
-PRP_POLICY_DIR = Path("/tridu33/SAVG/PRP_planner-for-relevant-policies/solutionsByPRP")
+PRP_POLICY_DIR = ROOT.parent / "PRP_planner-for-relevant-policies" / "solutionsByPRP"
 
 for d in (POLICY_DIR, ARTIFACT_DIR, PRP_POLICY_DIR):
     d.mkdir(parents=True, exist_ok=True)

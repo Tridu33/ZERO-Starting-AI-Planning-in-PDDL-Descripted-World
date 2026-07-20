@@ -1,0 +1,2 @@
+[console_scripts]
+policy4fondrl2bnn = main:main

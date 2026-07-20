@@ -1,0 +1,255 @@
+Metadata-Version: 2.4
+Name: policy4fondrl2bnn
+Version: 0.5.0
+Summary: Pipeline: PDDL-Gym Blocks_clear → RL → Brevitas BNN → PRP-equivalent policy
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: gymnasium>=1.0
+Requires-Dist: numpy>=1.26
+Requires-Dist: torch>=2.1
+Requires-Dist: torch-geometric>=2.5
+Requires-Dist: brevitas>=0.12
+
+# Policy4FONDRL2BNN
+
+> **FOND policy via Deep RL → Binary Neural Network → PRP-equivalent DAG**
+
+This project demonstrates an end-to-end pipeline:
+
+```
+PDDL domain (blocks_clear) ──► BlocksClearEnv (Gymnasium)
+                                       │
+                          ┌────────────┴────────────┐
+                          ▼                         ▼
+              PyG relational encoder       DQN (small MLP)
+            (state -> 4-bit features)     (4 -> 32 -> 32 -> 11)
+                          │                         │
+                          ▼                         ▼
+        4-bit feature vector [BlocksCleared, H, VGoal, VStart]
+                          │                         │
+                          ▼                         ▼
+                     Abstract MDP          Q-table (16 × n_actions)
+                  (value iteration)               │
+                          │                       │
+                          └────────► Q-table (16 × 4)  ◄──────┘
+                                          │
+                                  supervise (CE loss)
+                                          │
+                                          ▼
+                       Brevitas BinaryPolicyNet (BNN)
+                                          │
+                                          ▼
+                                ┌──────────────────────┐
+                                │ 16/16 equivalence?   │
+                                │ (argmax_Q == argmax_BNN) │
+                                └──────────────────────┘
+                                          │
+                                          ▼
+                            PRP policy.out / human_policy.out
+                                (equivalent DAG)
+```
+
+---
+
+## 1. What this project proves
+
+- **Q-table → PRP policy**: Value-iteration on the 16-state × 4-action MDP yields the
+  optimal Q-table. The argmax over actions mirrors the canonical FOND policy by
+  Tagawa / Pozanco et al. ([`solutionsByPRP/fond_blocks_clear_human_policy.out`](../PRP_planner-for-relevant-policies/solutionsByPRP/fond_blocks_clear_human_policy.out)).
+
+- **Q-table → BNN → PRP policy**: A Brevitas quantised MLP, supervised by the
+  Q-table, achieves **16/16** argmax equivalence across the full 16-state space,
+  proving that the binary-weight BNN is a *behaviourally equivalent* representation
+  of the Q-table. Re-exporting the BNN's argmax gives an identical PRP policy.
+
+---
+
+## 2. Files
+
+```
+Policy4FONDRL2BNN/
+├── pyproject.toml                 # uv-compatible project manifest
+├── README.md                      # this file
+├── main.py                        # 8-stage orchestration entry point
+├── src/
+│   ├── blocks_clear_env.py        # PDDL→Gym state-machine, 11 grounded actions
+│   ├── state_enumerator.py        # BFS over reachable PDDL states
+│   ├── feature_extractor.py       # PyG relational encoder
+│   ├── dqn.py                     # Deep Q-Network (small MLP)
+│   ├── tabular_q.py               # Tabular Q-learning baseline
+│   ├── mdp_solver.py              # 4×16 abstract MDP + value iteration
+│   ├── bnn.py                     # Brevitas BinaryPolicyNet + supervised training
+│   ├── equivalence.py             # BNN ↔ Q-table equivalence verifier
+│   └── policy_exporter.py         # PRP policy.out / human_policy.out writer
+├── tests/test_pipeline.py         # 6 end-to-end tests
+├── domains/blocks_clear/          # PDDL domain & problem (forwarded to env)
+├── policies/block_clear/          # Generated PRP-compatible policies
+└── artifacts/                     # Encoders, BNN weights, JSON summary
+```
+
+---
+
+## 3. Running
+
+> **Python 3.12+ required** (Python 3.14 is fine after the one-line patch for
+> the `_dependencies` library that some Brevitas builds transitively pull in; see
+> `INSTALL.md` for the patch detail).
+
+```bash
+# 1. One-time install
+uv venv
+uv pip install -e .
+
+# 2. Run the full pipeline (≈20s on CPU)
+uv run python main.py
+
+# 3. Inspect the outputs
+cat policies/block_clear/fond_blocks_clear_human_policy.out
+cat policies/block_clear/fond_blocks_clear_policy.out
+cat artifacts/summary.json | head -50
+
+# 4. Run tests
+uv run python tests/test_pipeline.py
+```
+
+The pipeline produces files in two locations:
+
+- **Local project**: `policies/block_clear/fond_blocks_clear_{policy,human_policy}.out`
+- **Mirror into**: `PRP_planner-for-relevant-policies/solutionsByPRP/` — drop-in
+  replacement for the human-authored policy file.
+
+---
+
+## 4. Pipeline stages
+
+| Stage | Module | Description |
+|------:|--------|-------------|
+| 1 | `blocks_clear_env.py` | Build `BlocksClearEnv` (Gymnasium). obs = 4-bit `[BlocksCleared, H, VGoal, VStart]`, action = 11 grounded STRIPS ops + `virtual_source_act` + `goal`. |
+| 2 | `feature_extractor.py` | Train a PyG GIN-style encoder to predict the 4-bit feature vector from the raw PDDL state graph. |
+| 3 | `dqn.py` | Small MLP DQN (4 → 32 → 32 → 11) trained for 500 episodes. Demonstrates the RL component. |
+| 4 | `mdp_solver.py` | Lift MDP onto the abstract (16 × 4) space, run value iteration. **This is the canonical Q-table.** |
+| 5 | `bnn.py` | Brevitas `BinaryPolicyNet` (32 → 64 → 32 hidden) trained with cross-entropy loss on the Q-table argmax. Sweep over 8 seeds for stability. |
+| 6 | `equivalence.py` | Enumerate all 16 binary states, compare argmax over Q-table vs BNN. Target: 16/16. |
+| 7 | `policy_exporter.py` | Emit `fond_blocks_clear_policy.out` (PRP variable form) and `fond_blocks_clear_human_policy.out` (semantic predicate form). |
+| 8 | `main.py` (summary) | Persist a JSON summary with Q-table snapshots, equivalence verdict, BNN hyperparameters. |
+
+---
+
+## 5. The 4 Boolean features
+
+The Blocks_clear domain reduces planning decisions to the following 4 derived
+predicates, exactly mirroring the existing PRP variable mapping:
+
+```
+var0 ↔ BlocksCleared   ≡ clear(A)        (whether A has been cleared)
+var1 ↔ H                ≡ ∃x. holding(x)  (arm is holding some block)
+var2 ↔ VGoal            ≡ BlocksCleared   (goal reached iff A is clear)
+var3 ↔ VStart           ≡ virtual source  (special start-state marker)
+```
+
+These 4 bits give a 16-state MDP.  Four *abstract* actions suffice:
+
+```
+0: virtual_source_act   (only meaningful at VStart)
+1: goal                  (terminate when var2)
+2: putdown               (execute putdown when H is true)
+3: unstack               (execute unstack when arm is empty)
+```
+
+The abstract MDP plus value iteration recovers the canonical human policy
+(seen in `fond_blocks_clear_human_policy.out`):
+
+```
+Var(VStart  ∧ ¬BlocksCleared ∧ ¬H ∧ ¬VGoal) → unstack
+Var(VStart  ∧ BlocksCleared)                  → goal  [implicit via 1]
+Var(VStart)                                  → virtual_source_act
+Var(¬VStart ∧ ¬BlocksCleared ∧ H ∧ ¬VGoal)   → putdown
+Var(VGoal)                                    → goal
+```
+
+---
+
+## 6. Verification details
+
+After training, `bnn_truth_table(model)` enumerates all 2⁴ = 16 binary states
+and compares the BNN's argmax against the Q-table's argmax. With the default
+configurations (CE loss, 600 epochs, hidden=(32, 64, 32)) the verification
+hits **16/16** on every random seed (0–7).
+
+Both the Q-table-argmax and the BNN-argmax derive independent PRP-format
+policies (via `policy_exporter.py`) that are byte-identical at the rule level.
+
+---
+
+
+
+```mermaid
+flowchart TD
+    %% 节点样式定义
+    classDef env fill:#1a1a2e,stroke:#4ecca3,stroke-width:2px,color:#fff,font-size:13px
+    classDef model fill:#16213e,stroke:#0f3460,stroke-width:2px,color:#e94560,font-size:12px
+    classDef data fill:#0f3460,stroke:#533483,stroke-width:2px,color:#fff,font-size:11px
+    classDef verify fill:#1a1a2e,stroke:#ffd700,stroke-width:3px,color:#ffd700,font-size:14px
+    classDef output fill:#16213e,stroke:#4ecca3,stroke-width:2px,color:#fff,font-size:12px
+    
+    %% 起点：PDDL 环境
+    PDDL["PDDL domain<br/>(blocks_clear)"]:::env --> Gym["BlocksClearEnv<br/>(Gymnasium)"]:::env
+    
+    %% 并行路径开始
+    Gym --> PyG
+    Gym --> DQN
+    
+    %% 左路径：PyG 关系编码器
+    subgraph LeftPath [特征提取与抽象 MDP]
+        direction TB
+        PyG["PyG relational encoder<br/>(state → 4-bit features)"]:::model
+        PyG --> FeatureVec["4-bit feature vector<br/>[BlocksCleared, H, VGoal, VStart]"]:::data
+        FeatureVec --> QTableAbs["Abstract MDP Q-table<br/>(16 × n_actions)<br/>value iteration"]:::model
+    end
+    
+    %% 右路径：DQN 小 MLP
+    subgraph RightPath [深度强化学习策略]
+        direction TB
+        DQN["DQN (small MLP)<br/>(4 → 32 → 32 → 11)"]:::model
+    end
+    
+    %% 汇聚到具体 Q-table
+    QTableAbs --> QTable["Q-table<br/>(16 × 4)"]:::data
+    DQN --> QTable
+    
+    %% 监督学习
+    QTable -->|"supervise (CE loss)"| BNN["Brevitas BinaryPolicyNet<br/>(BNN)"]:::model
+    
+    %% 等价性验证
+    BNN --> Verify{"16/16 equivalence?<br/>(argmax_Q == argmax_BNN)"}:::verify
+    
+    %% 最终输出
+    Verify --> Output["PRP policy.out / human_policy.out<br/>(equivalent DAG)"]:::output
+    
+    %% 连线样式
+    linkStyle default stroke:#4ecca3,stroke-width:1.5px
+    linkStyle 4,5 stroke:#e94560,stroke-width:2px
+    linkStyle 6 stroke:#ffd700,stroke-width:2.5px
+```
+
+## 7. Extending to larger domains
+
+The same pipeline applies to any FOND domain with a known grounding:
+
+1. Implement the domain in `blocks_clear_env.py` style, exposing `(state,
+   applicable_action_indices)` over PDDL-grounded action space.
+2. Define the abstract MDP (which operator types are abstract actions).
+3. Run value iteration → Q-table.
+4. Train the BNN → verify equivalence → export policy.
+
+The numbers shown in `summary.json` give a quick sanity check on the
+state-space size and the per-state Q-values.
+
+---
+
+## 8. References
+
+- PRP planner: `../PRP_planner-for-relevant-policies/`
+- Brevitas: <https://github.com/Xilinx/brevitas>
+- PyTorch Geometric: <https://pytorch-geometric.readthedocs.io/>
+- Gymnasium: <https://gymnasium.farama.org/>
