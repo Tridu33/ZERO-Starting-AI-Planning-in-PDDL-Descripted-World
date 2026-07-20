@@ -46,11 +46,6 @@ extra:
 remote_branch: gh-pages
 remote_name: origin
 
-# Google Analytics
-google_analytics:
-  - 'UA-XXXXXXXX-X'
-  - 'auto'
-
 # Extensions 
 # markdown扩展markdown_extensions:
 markdown_extensions:
@@ -59,8 +54,8 @@ markdown_extensions:
       generic: true
     # 参考[Icons + Emojis](https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/)，执行Markdown Emoji
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.caret 
   - pymdownx.critic 
   - pymdownx.details 
