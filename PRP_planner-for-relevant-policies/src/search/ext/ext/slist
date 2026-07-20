@@ -1,0 +1,19 @@
+#ifndef EXT_SLIST_COMPAT_H
+#define EXT_SLIST_COMPAT_H
+
+// Compatibility header: provides __gnu_cxx::slist using std::forward_list.
+// The original code used GCC's ext/slist (SGI singly-linked list).
+// On modern clang/libc++ this header does not exist, so we emulate it
+// with std::forward_list which has a compatible API for the operations
+// used in this codebase (begin, end, empty, push_front, iteration).
+
+#include <forward_list>
+
+namespace __gnu_cxx {
+
+template<class T, class Alloc = std::allocator<T> >
+using slist = std::forward_list<T, Alloc>;
+
+} // namespace __gnu_cxx
+
+#endif // EXT_SLIST_COMPAT_H

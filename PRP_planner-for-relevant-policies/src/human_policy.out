@@ -1,0 +1,108 @@
+Mapping:
+
+  var0:0	<-> 	 counter(d0, b0)
+  var0:1	<-> 	 not(counter(d0, b0))
+  var10:0	<-> 	 counter(d1, b4)
+  var10:1	<-> 	 not(counter(d1, b4))
+  var11:0	<-> 	 counter(d1, b5)
+  var11:1	<-> 	 not(counter(d1, b5))
+  var12:0	<-> 	 counter(d2, b0)
+  var12:1	<-> 	 not(counter(d2, b0))
+  var13:0	<-> 	 counter(d2, b1)
+  var13:1	<-> 	 not(counter(d2, b1))
+  var14:0	<-> 	 counter(d2, b2)
+  var14:1	<-> 	 not(counter(d2, b2))
+  var15:0	<-> 	 counter(d2, b3)
+  var15:1	<-> 	 not(counter(d2, b3))
+  var16:0	<-> 	 counter(d2, b4)
+  var16:1	<-> 	 not(counter(d2, b4))
+  var17:0	<-> 	 counter(d2, b5)
+  var17:1	<-> 	 not(counter(d2, b5))
+  var18:0	<-> 	 e()
+  var18:1	<-> 	 not(e())
+  var19:0	<-> 	 g()
+  var19:1	<-> 	 not(g())
+  var1:0	<-> 	 counter(d0, b1)
+  var1:1	<-> 	 not(counter(d0, b1))
+  var20:0	<-> 	 stack-depth(d0)
+  var20:1	<-> 	 stack-depth(d1)
+  var20:2	<-> 	 stack-depth(d2)
+  var20:3	<-> 	 stack-depth(d3)
+  var21:0	<-> 	 stack-in(n_x)
+  var21:1	<-> 	 not(stack-in(n_x))
+  var22:0	<-> 	 stack-in(n_y)
+  var22:1	<-> 	 not(stack-in(n_y))
+  var23:0	<-> 	 stack-index(n_x, d1)
+  var23:1	<-> 	 not(stack-index(n_x, d1))
+  var24:0	<-> 	 stack-index(n_x, d2)
+  var24:1	<-> 	 not(stack-index(n_x, d2))
+  var25:0	<-> 	 stack-index(n_x, d3)
+  var25:1	<-> 	 not(stack-index(n_x, d3))
+  var26:0	<-> 	 stack-index(n_y, d1)
+  var26:1	<-> 	 not(stack-index(n_y, d1))
+  var27:0	<-> 	 stack-index(n_y, d2)
+  var27:1	<-> 	 not(stack-index(n_y, d2))
+  var28:0	<-> 	 stack-index(n_y, d3)
+  var28:1	<-> 	 not(stack-index(n_y, d3))
+  var29:0	<-> 	 top-counter(0)
+  var29:1	<-> 	 not(top-counter(0))
+  var2:0	<-> 	 counter(d0, b2)
+  var2:1	<-> 	 not(counter(d0, b2))
+  var30:0	<-> 	 x()
+  var30:1	<-> 	 not(x())
+  var31:0	<-> 	 zero(n_x)
+  var31:1	<-> 	 not(zero(n_x))
+  var32:0	<-> 	 zero(n_y)
+  var32:1	<-> 	 not(zero(n_y))
+  var3:0	<-> 	 counter(d0, b3)
+  var3:1	<-> 	 not(counter(d0, b3))
+  var4:0	<-> 	 counter(d0, b4)
+  var4:1	<-> 	 not(counter(d0, b4))
+  var5:0	<-> 	 counter(d0, b5)
+  var5:1	<-> 	 not(counter(d0, b5))
+  var6:0	<-> 	 counter(d1, b0)
+  var6:1	<-> 	 not(counter(d1, b0))
+  var7:0	<-> 	 counter(d1, b1)
+  var7:1	<-> 	 not(counter(d1, b1))
+  var8:0	<-> 	 counter(d1, b2)
+  var8:1	<-> 	 not(counter(d1, b2))
+  var9:0	<-> 	 counter(d1, b3)
+  var9:1	<-> 	 not(counter(d1, b3))
+
+Policy:
+
+If holds: g()
+Execute: goal / SC / d=0
+
+If holds: zero(n_x)/x()/zero(n_y)/not(e())/not(stack-in(n_y))/not(g())
+Execute: put-x-on-y  / SC / d=1
+
+If holds: zero(n_x)/not(x())/zero(n_y)/e()/not(stack-in(n_y))/not(g())
+Execute: pick-x  / SC / d=2
+
+If holds: zero(n_x)/not(x())/zero(n_y)/not(e())/not(stack-in(n_y))/not(g())
+Execute: put-aside-1  / SC / d=3
+
+If holds: zero(n_x)/not(x())/zero(n_y)/not(e())/stack-index(n_y, d1)/stack-depth(d1)/stack-in(n_y)/not(g())
+Execute: pop_at_d1 n_y / SC / d=4
+
+If holds: zero(n_x)/not(x())/not(zero(n_y))/e()/stack-index(n_y, d1)/stack-depth(d1)/stack-in(n_y)/not(g())
+Execute: pick-ab-y_f0_d1  / SC / d=5
+
+If holds: zero(n_x)/not(x())/not(zero(n_y))/e()/not(counter(d0, b0))/stack-depth(d0)/not(g())
+Execute: push_at_d0_b0 n_y / SC / d=6
+
+If holds: zero(n_x)/not(x())/not(zero(n_y))/not(e())/stack-index(n_y, d1)/stack-depth(d1)/stack-in(n_y)/not(g())
+Execute: put-aside-1  / SC / d=6
+
+If holds: zero(n_x)/not(x())/not(zero(n_y))/not(e())/not(counter(d0, b0))/stack-depth(d0)/not(g())
+Execute: put-aside-1  / SC / d=7
+
+If holds: not(zero(n_x))/not(x())/not(zero(n_y))/e()/stack-depth(d0)/not(g())
+Execute: pick-ab-x  / SC / d=8
+
+If holds: not(zero(n_x))/not(x())/not(zero(n_y))/not(e())/stack-depth(d0)/not(g())
+Execute: put-aside-2  / SC / d=9
+
+FSAP:
+

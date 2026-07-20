@@ -1,0 +1,1 @@
+g++  -m32  -g  -static -static-libgcc .obj/planner.o .obj/axiom.o .obj/causal_graph.o .obj/domain_transition_graph.o .obj/helper_functions.o .obj/max_dag.o .obj/mutex_group.o .obj/operator.o .obj/scc.o .obj/state.o .obj/successor_generator.o .obj/variable.o   -o preprocess

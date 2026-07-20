@@ -1,0 +1,381 @@
+1. Running translator
+Second argument is a file name: use two translator arguments.
+Parsing...
+Parsing: [0.000s CPU, 0.002s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.002s wall-clock]
+Generated 67 rules.
+Computing model... [5.040s CPU, 5.063s wall-clock]
+515452 relevant atoms
+288250 auxiliary atoms
+803702 final queue length
+1581311 total queue pushes
+Completing instantiation... [16.130s CPU, 16.122s wall-clock]
+Instantiating: [21.370s CPU, 21.399s wall-clock]
+Computing fact groups...
+Finding invariants...
+10 initial candidates
+Finding invariants: [0.020s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.004s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.001s wall-clock]
+Choosing groups...
+51 uncovered facts
+Choosing groups: [0.000s CPU, 0.003s wall-clock]
+Building translation key... [0.000s CPU, 0.002s wall-clock]
+Computing fact groups: [0.030s CPU, 0.023s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.001s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.001s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.001s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.950s CPU, 0.947s wall-clock]
+Translating task: [12.960s CPU, 12.977s wall-clock]
+252450 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+Removed false proposition: 51 = <none of those>
+Removed false proposition: 52 = <none of those>
+Removed false proposition: 53 = <none of those>
+Removed false proposition: 54 = <none of those>
+Removed false proposition: 55 = <none of those>
+Removed false proposition: 56 = <none of those>
+Removed false proposition: 57 = <none of those>
+Removed false proposition: 58 = <none of those>
+Removed false proposition: 59 = <none of those>
+Removed false proposition: 60 = <none of those>
+Removed false proposition: 61 = <none of those>
+Removed false proposition: 62 = <none of those>
+Removed false proposition: 63 = <none of those>
+Removed false proposition: 64 = <none of those>
+Removed false proposition: 65 = <none of those>
+Removed false proposition: 66 = <none of those>
+Removed false proposition: 67 = <none of those>
+Removed false proposition: 68 = <none of those>
+Removed false proposition: 69 = <none of those>
+Removed false proposition: 70 = <none of those>
+Removed false proposition: 71 = <none of those>
+Removed false proposition: 72 = <none of those>
+Removed false proposition: 73 = <none of those>
+Removed false proposition: 74 = <none of those>
+Removed false proposition: 75 = <none of those>
+Removed false proposition: 76 = <none of those>
+Removed false proposition: 77 = <none of those>
+Removed false proposition: 78 = <none of those>
+Removed false proposition: 79 = <none of those>
+Removed false proposition: 80 = <none of those>
+Removed false proposition: 81 = <none of those>
+Removed false proposition: 82 = <none of those>
+Removed false proposition: 83 = <none of those>
+Removed false proposition: 84 = <none of those>
+Removed false proposition: 85 = <none of those>
+Removed false proposition: 86 = <none of those>
+Removed false proposition: 87 = <none of those>
+Removed false proposition: 88 = <none of those>
+Removed false proposition: 89 = <none of those>
+Removed false proposition: 90 = <none of those>
+Removed false proposition: 91 = <none of those>
+Removed false proposition: 92 = <none of those>
+Removed false proposition: 93 = <none of those>
+Removed false proposition: 94 = <none of those>
+Removed false proposition: 95 = <none of those>
+Removed false proposition: 96 = <none of those>
+Removed false proposition: 97 = <none of those>
+Removed false proposition: 98 = <none of those>
+Removed false proposition: 99 = <none of those>
+Removed false proposition: 100 = <none of those>
+0 operators removed
+50 propositions removed
+Detecting unreachable propositions: [1.720s CPU, 1.720s wall-clock]
+Translator variables: 101
+Translator derived variables: 0
+Translator facts: 2702
+Translator goal facts: 60
+Translator mutex groups: 51
+Translator total mutex groups size: 2651
+Translator operators: 380000
+Translator axioms: 0
+Translator task size: 2535264
+Translator peak memory: 0 KB
+Writing output... [2.880s CPU, 2.872s wall-clock]
+Done! [39.810s CPU, 39.844s wall-clock]
+
+2. Running preprocessor
+Building causal graph...
+The causal graph is not acyclic.
+101 variables of 101 necessary
+1 of 51 mutex groups necessary.
+380000 of 380000 operators necessary.
+0 of 0 axiom rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...
+Preprocessor facts: 2702
+Preprocessor derived variables: 0
+Preprocessor task size: 2532664
+Writing output...
+done
+
+
+3. Running search
+./../../src/search/downward ipc policy-repair --optimized-scd 1 --online-deadends 1 --partial-planlocal 1 --plan-with-policy 1 --limit-planlocal 1 --jic-limit 18000 --generalize-deadends 1 --trials 100 --fullstate 0 --forgetpolicy 0 --planlocal 1 --detect-deadends 1
+This is a unit task.
+./../../src/search/downward-release --heuristic "h=ff(cost_type=1)" --search "lazy_greedy([h],preferred=[h])" --random-seed 814102613 --optimized-scd 1 --online-deadends 1 --partial-planlocal 1 --plan-with-policy 1 --limit-planlocal 1 --jic-limit 18000 --generalize-deadends 1 --trials 100 --fullstate 0 --forgetpolicy 0 --planlocal 1 --detect-deadends 1 < output
+Simplifying transitions... done!
+Variables: 101
+Bytes per state: 44
+
+Total allotted time (s): 18000
+Max time for core JIC (remaining used in final-round repairs): 18000
+Max time for each of the 1 epochs: 18000
+
+ !! Warning: Disabling the simplification of unary operators !!
+ !!           to keep the non-deterministic planning sound.  !!
+Generated 97087 state(s).
+Dead ends: 0 state(s). (0 recorded)
+pick-tower_DETDUP_1 b50 b5 b43 (1)
+put-down b5 (1)
+pick-tower_DETDUP_1 b30 b21 b25 (1)
+put-down b21 (1)
+pick-tower_DETDUP_1 b37 b45 b29 (1)
+put-down b45 (1)
+pick-tower_DETDUP_1 b28 b41 b38 (1)
+put-down b41 (1)
+pick-tower_DETDUP_1 b13 b8 b32 (1)
+put-down b8 (1)
+pick-up_DETDUP_1 b50 b5 (1)
+pick-tower_DETDUP_1 b47 b14 b26 (1)
+put-down b14 (1)
+pick-up_DETDUP_1 b30 b21 (1)
+pick-tower_DETDUP_1 b1 b11 b19 (1)
+put-on-block_DETDUP_0 b11 b50 (1)
+pick-tower_DETDUP_1 b16 b12 b46 (1)
+put-on-block_DETDUP_0 b12 b19 (1)
+pick-up_DETDUP_0 b15 b23 (1)
+put-on-block_DETDUP_0 b15 b43 (1)
+pick-tower_DETDUP_1 b48 b16 b12 (1)
+put-on-block_DETDUP_0 b16 b46 (1)
+pick-tower_DETDUP_1 b44 b17 b34 (1)
+put-on-block_DETDUP_0 b17 b1 (1)
+pick-tower_DETDUP_1 b49 b22 b47 (1)
+put-on-block_DETDUP_0 b22 b25 (1)
+pick-tower_DETDUP_1 b35 b2 b18 (1)
+put-on-block_DETDUP_0 b2 b3 (1)
+pick-up-from-table_DETDUP_1 b18 (1)
+put-on-block_DETDUP_0 b18 b47 (1)
+pick-tower_DETDUP_1 b22 b25 b27 (1)
+put-on-block_DETDUP_0 b25 b9 (1)
+pick-tower_DETDUP_1 b12 b19 b36 (1)
+put-on-block_DETDUP_0 b19 b27 (1)
+pick-tower_DETDUP_1 b40 b20 b4 (1)
+put-on-block_DETDUP_0 b20 b16 (1)
+pick-up_DETDUP_0 b39 b44 (1)
+put-on-block_DETDUP_0 b39 b20 (1)
+pick-tower_DETDUP_1 b31 b13 b8 (1)
+put-on-block_DETDUP_0 b13 b44 (1)
+pick-tower_DETDUP_1 b17 b1 b11 (1)
+put-on-block_DETDUP_0 b1 b13 (1)
+pick-up-from-table_DETDUP_1 b21 (1)
+put-on-block_DETDUP_0 b21 b36 (1)
+pick-up_DETDUP_0 b34 b24 (1)
+put-on-block_DETDUP_0 b34 b5 (1)
+pick-up_DETDUP_0 b26 b40 (1)
+put-on-block_DETDUP_0 b26 b34 (1)
+pick-tower_DETDUP_1 b19 b27 b35 (1)
+put-on-block_DETDUP_0 b27 b45 (1)
+pick-tower_DETDUP_1 b10 b28 b41 (1)
+put-on-block_DETDUP_0 b28 b2 (1)
+pick-up_DETDUP_0 b29 b49 (1)
+put-on-block_DETDUP_0 b29 b12 (1)
+pick-tower_DETDUP_1 b2 b3 b6 (1)
+put-on-block_DETDUP_0 b3 b39 (1)
+pick-tower_DETDUP_1 b42 b31 b13 (1)
+put-on-block_DETDUP_0 b31 b40 (1)
+pick-tower_DETDUP_1 b33 b7 b42 (1)
+put-on-block_DETDUP_0 b7 b31 (1)
+pick-up-from-table_DETDUP_1 b24 (1)
+put-on-block_DETDUP_0 b24 b42 (1)
+pick-up_DETDUP_0 b32 b48 (1)
+put-on-block_DETDUP_0 b32 b29 (1)
+pick-up_DETDUP_0 b37 b45 (1)
+put-on-block_DETDUP_0 b37 b22 (1)
+pick-tower_DETDUP_1 b31 b40 b20 (1)
+put-on-block_DETDUP_0 b40 b15 (1)
+pick-tower_DETDUP_1 b24 b42 b31 (1)
+put-on-block_DETDUP_0 b42 b32 (1)
+pick-tower_DETDUP_1 b13 b44 b17 (1)
+put-on-block_DETDUP_0 b44 b21 (1)
+pick-tower_DETDUP_1 b18 b47 b14 (1)
+put-on-block_DETDUP_0 b47 b37 (1)
+pick-up_DETDUP_0 b49 b22 (1)
+put-on-block_DETDUP_0 b49 b6 (1)
+pick-tower_DETDUP_1 b49 b6 b33 (1)
+put-on-block_DETDUP_0 b6 b28 (1)
+pick-up_DETDUP_0 b10 b28 (1)
+put-on-block_DETDUP_0 b10 b26 (1)
+pick-up-from-table_DETDUP_1 b23 (1)
+put-on-block_DETDUP_0 b23 b33 (1)
+pick-up_DETDUP_0 b35 b2 (1)
+put-on-block_DETDUP_0 b35 b18 (1)
+pick-up-from-table_DETDUP_1 b38 (1)
+put-on-block_DETDUP_0 b38 b17 (1)
+pick-up_DETDUP_0 b48 b16 (1)
+put-on-block_DETDUP_0 b48 b49 (1)
+pick-tower_DETDUP_1 b40 b15 b43 (1)
+put-down b15 (1)
+pick-up-from-table_DETDUP_1 b43 (1)
+put-on-block_DETDUP_0 b43 b24 (1)
+pick-up-from-table_DETDUP_1 b15 (1)
+put-on-block_DETDUP_0 b15 b43 (1)
+pick-tower_DETDUP_1 b20 b16 b46 (1)
+put-down b16 (1)
+pick-up-from-table_DETDUP_1 b46 (1)
+put-on-block_DETDUP_0 b46 b11 (1)
+pick-up-from-table_DETDUP_1 b16 (1)
+put-on-block_DETDUP_0 b16 b46 (1)
+pick-tower_DETDUP_1 b26 b34 b5 (1)
+put-down b34 (1)
+pick-up-from-table_DETDUP_1 b5 (1)
+put-on-block_DETDUP_0 b5 b41 (1)
+pick-up-from-table_DETDUP_1 b34 (1)
+put-on-block_DETDUP_0 b34 b5 (1)
+Plan length: 106 step(s).
+Plan cost: 106
+Initial search time: 45.97s
+Initial total time: 55.28s
+
+
+Creating the simulator...
+
+
+Regressing the plan...
+
+
+Generating an initial policy...
+
+
+Computing just-in-time repairs...
+Generated 87 state(s).
+Dead ends: 0 state(s).
+Generated 87 state(s).
+Dead ends: 0 state(s).
+Generated 87 state(s).
+Dead ends: 0 state(s).
+Generated 86 state(s).
+Dead ends: 0 state(s).
+Generated 85 state(s).
+Dead ends: 0 state(s).
+Generated 84 state(s).
+Dead ends: 0 state(s).
+Generated 83 state(s).
+Dead ends: 0 state(s).
+Generated 83 state(s).
+Dead ends: 0 state(s).
+Generated 81 state(s).
+Dead ends: 0 state(s).
+Generated 80 state(s).
+Dead ends: 0 state(s).
+Generated 80 state(s).
+Dead ends: 0 state(s).
+Generated 79 state(s).
+Dead ends: 0 state(s).
+Generated 77 state(s).
+Dead ends: 0 state(s).
+Generated 75 state(s).
+Dead ends: 0 state(s).
+Generated 74 state(s).
+Dead ends: 0 state(s).
+Generated 73 state(s).
+Dead ends: 0 state(s).
+Generated 72 state(s).
+Dead ends: 0 state(s).
+Generated 71 state(s).
+Dead ends: 0 state(s).
+Generated 71 state(s).
+Dead ends: 0 state(s).
+Generated 70 state(s).
+Dead ends: 0 state(s).
+Generated 70 state(s).
+Dead ends: 0 state(s).
+Generated 70 state(s).
+Dead ends: 0 state(s).
+Generated 69 state(s).
+Dead ends: 0 state(s).
+Generated 67 state(s).
+Dead ends: 0 state(s).
+Generated 65 state(s).
+Dead ends: 0 state(s).
+Generated 63 state(s).
+Dead ends: 0 state(s).
+Generated 61 state(s).
+Dead ends: 0 state(s).
+Generated 59 state(s).
+Dead ends: 0 state(s).
+Generated 57 state(s).
+Dead ends: 0 state(s).
+Generated 58 state(s).
+Dead ends: 0 state(s).
+Generated 57 state(s).
+Dead ends: 0 state(s).
+Generated 55 state(s).
+Dead ends: 0 state(s).
+Generated 41 state(s).
+Dead ends: 0 state(s).
+Generated 37 state(s).
+Dead ends: 0 state(s).
+
+Could not close 0 of 34 open leaf states.
+Investigated 222 states for the strong cyclic plan.
+Went through another policy of score 1
+
+Could not close 0 of 0 open leaf states.
+Investigated 1 states for the strong cyclic plan.
+Marking policy strong cyclic.
+Went through another policy of score 1
+
+
+Running a final SCD check...
+
+
+Running the simulation...
+
+
+
+                  -{ General Statistics }-
+
+        FSAP Combination Count: 0
+       Monotonicity violations: 0
+             Successful states: 198.34 +/- 18.2818
+                       Replans: 0 +/- 0
+                       Actions: 198.34 +/- 18.2818
+             Recorded Deadends: 0
+            State-Action Pairs: 141
+  Forbidden State-Action Pairs: 0
+               Strongly Cyclic: True
+                  Policy Score: 1
+                     Succeeded: 100 / 100
+ Depth limit (of 1000) reached: 0 / 100
+
+
+                  -{ Timing Statistics }-
+
+        Regression Computation: 0s
+         Engine Initialization: 0.22s
+                   Search Time: 48.42s
+           Policy Construction: 4.41s
+ Evaluating the policy quality: 0.88s
+              Using the policy: 0.91s
+          Just-in-case Repairs: 60.13s
+                Simulator time: 0.08s
+                    Total time: 69.53s
+
+
+
+Strong cyclic plan found.
+Peak memory: 0 KB

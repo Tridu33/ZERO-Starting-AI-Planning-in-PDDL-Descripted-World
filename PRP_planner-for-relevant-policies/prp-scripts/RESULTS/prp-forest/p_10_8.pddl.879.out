@@ -1,0 +1,380 @@
+1. Running translator
+Second argument is a file name: use two translator arguments.
+Parsing...
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Parsing: [0.000s CPU, 0.019s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.011s wall-clock]
+Preparing model... [0.000s CPU, 0.006s wall-clock]
+Generated 374 rules.
+Computing model... [0.100s CPU, 0.093s wall-clock]
+11259 relevant atoms
+6300 auxiliary atoms
+17559 final queue length
+27655 total queue pushes
+Completing instantiation... [0.190s CPU, 0.202s wall-clock]
+Instantiating: [0.300s CPU, 0.315s wall-clock]
+Computing fact groups...
+Finding invariants...
+45 initial candidates
+Finding invariants: [0.020s CPU, 0.010s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+179 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.001s wall-clock]
+Computing fact groups: [0.020s CPU, 0.014s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.030s CPU, 0.023s wall-clock]
+Translating task: [0.250s CPU, 0.253s wall-clock]
+9347 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+Removed false proposition: 0 = <none of those>
+Removed false proposition: 1 = <none of those>
+Removed true proposition: None = Atom enabled(x1, y1)
+Removed false proposition: None = NegatedAtom enabled(x1, y1)
+Removed false proposition: 64 = <none of those>
+Removed false proposition: 65 = <none of those>
+Removed false proposition: 66 = <none of those>
+Removed false proposition: 67 = <none of those>
+Removed false proposition: 68 = <none of those>
+Removed false proposition: 69 = <none of those>
+Removed false proposition: 70 = <none of those>
+Removed false proposition: 71 = <none of those>
+Removed false proposition: 72 = <none of those>
+Removed false proposition: 73 = <none of those>
+Removed false proposition: None = Atom initialized(x10, y1)
+Removed true proposition: None = Atom ninitialized(x10, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 74 = <none of those>
+Removed false proposition: None = Atom initialized(x10, y2)
+Removed true proposition: None = Atom ninitialized(x10, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x10, y3)
+Removed true proposition: None = Atom ninitialized(x10, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x10, y4)
+Removed true proposition: None = Atom ninitialized(x10, y4)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x10, y5)
+Removed true proposition: None = Atom ninitialized(x10, y5)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x10, y6)
+Removed true proposition: None = Atom ninitialized(x10, y6)
+Removed false proposition: None = <none of those>
+Removed false proposition: 75 = <none of those>
+Removed false proposition: 76 = <none of those>
+Removed false proposition: 77 = <none of those>
+Removed false proposition: None = Atom initialized(x2, y1)
+Removed true proposition: None = Atom ninitialized(x2, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 78 = <none of those>
+Removed false proposition: None = Atom initialized(x2, y2)
+Removed true proposition: None = Atom ninitialized(x2, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: 79 = <none of those>
+Removed false proposition: 80 = <none of those>
+Removed false proposition: 81 = <none of those>
+Removed false proposition: 82 = <none of those>
+Removed false proposition: 83 = <none of those>
+Removed false proposition: 84 = <none of those>
+Removed false proposition: 85 = <none of those>
+Removed false proposition: None = Atom initialized(x3, y1)
+Removed true proposition: None = Atom ninitialized(x3, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 86 = <none of those>
+Removed false proposition: None = Atom initialized(x3, y2)
+Removed true proposition: None = Atom ninitialized(x3, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: 87 = <none of those>
+Removed false proposition: 88 = <none of those>
+Removed false proposition: 89 = <none of those>
+Removed false proposition: 90 = <none of those>
+Removed false proposition: 91 = <none of those>
+Removed false proposition: 92 = <none of those>
+Removed false proposition: 93 = <none of those>
+Removed false proposition: None = Atom initialized(x4, y1)
+Removed true proposition: None = Atom ninitialized(x4, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 94 = <none of those>
+Removed false proposition: None = Atom initialized(x4, y2)
+Removed true proposition: None = Atom ninitialized(x4, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x4, y3)
+Removed true proposition: None = Atom ninitialized(x4, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: 95 = <none of those>
+Removed false proposition: 96 = <none of those>
+Removed false proposition: 97 = <none of those>
+Removed false proposition: 98 = <none of those>
+Removed false proposition: 99 = <none of those>
+Removed false proposition: 100 = <none of those>
+Removed false proposition: None = Atom initialized(x5, y1)
+Removed true proposition: None = Atom ninitialized(x5, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 101 = <none of those>
+Removed false proposition: None = Atom initialized(x5, y2)
+Removed true proposition: None = Atom ninitialized(x5, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x5, y3)
+Removed true proposition: None = Atom ninitialized(x5, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: 102 = <none of those>
+Removed false proposition: 103 = <none of those>
+Removed false proposition: 104 = <none of those>
+Removed false proposition: 105 = <none of those>
+Removed false proposition: 106 = <none of those>
+Removed false proposition: 107 = <none of those>
+Removed false proposition: None = Atom initialized(x6, y1)
+Removed true proposition: None = Atom ninitialized(x6, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 108 = <none of those>
+Removed false proposition: None = Atom initialized(x6, y2)
+Removed true proposition: None = Atom ninitialized(x6, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x6, y3)
+Removed true proposition: None = Atom ninitialized(x6, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x6, y4)
+Removed true proposition: None = Atom ninitialized(x6, y4)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x6, y5)
+Removed true proposition: None = Atom ninitialized(x6, y5)
+Removed false proposition: None = <none of those>
+Removed false proposition: 109 = <none of those>
+Removed false proposition: 110 = <none of those>
+Removed false proposition: 111 = <none of those>
+Removed false proposition: 112 = <none of those>
+Removed false proposition: None = Atom initialized(x7, y1)
+Removed true proposition: None = Atom ninitialized(x7, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 113 = <none of those>
+Removed false proposition: None = Atom initialized(x7, y2)
+Removed true proposition: None = Atom ninitialized(x7, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x7, y3)
+Removed true proposition: None = Atom ninitialized(x7, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x7, y4)
+Removed true proposition: None = Atom ninitialized(x7, y4)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x7, y5)
+Removed true proposition: None = Atom ninitialized(x7, y5)
+Removed false proposition: None = <none of those>
+Removed false proposition: 114 = <none of those>
+Removed false proposition: 115 = <none of those>
+Removed false proposition: 116 = <none of those>
+Removed false proposition: 117 = <none of those>
+Removed false proposition: None = Atom initialized(x8, y1)
+Removed true proposition: None = Atom ninitialized(x8, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 118 = <none of those>
+Removed false proposition: None = Atom initialized(x8, y2)
+Removed true proposition: None = Atom ninitialized(x8, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x8, y3)
+Removed true proposition: None = Atom ninitialized(x8, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x8, y4)
+Removed true proposition: None = Atom ninitialized(x8, y4)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x8, y5)
+Removed true proposition: None = Atom ninitialized(x8, y5)
+Removed false proposition: None = <none of those>
+Removed false proposition: 119 = <none of those>
+Removed false proposition: 120 = <none of those>
+Removed false proposition: 121 = <none of those>
+Removed false proposition: 122 = <none of those>
+Removed false proposition: None = Atom initialized(x9, y1)
+Removed true proposition: None = Atom ninitialized(x9, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 123 = <none of those>
+Removed false proposition: None = Atom initialized(x9, y2)
+Removed true proposition: None = Atom ninitialized(x9, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x9, y3)
+Removed true proposition: None = Atom ninitialized(x9, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x9, y4)
+Removed true proposition: None = Atom ninitialized(x9, y4)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x9, y5)
+Removed true proposition: None = Atom ninitialized(x9, y5)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x9, y6)
+Removed true proposition: None = Atom ninitialized(x9, y6)
+Removed false proposition: None = <none of those>
+Removed false proposition: 124 = <none of those>
+Removed false proposition: 125 = <none of those>
+Removed false proposition: 126 = <none of those>
+Removed true proposition: None = Atom solved(x1, y1)
+Removed false proposition: None = NegatedAtom solved(x1, y1)
+Removed true proposition: None = Atom solved(x10, y10)
+Removed false proposition: None = NegatedAtom solved(x10, y10)
+Removed true proposition: None = Atom solved(x2, y2)
+Removed false proposition: None = NegatedAtom solved(x2, y2)
+Removed true proposition: None = Atom solved(x3, y3)
+Removed false proposition: None = NegatedAtom solved(x3, y3)
+Removed true proposition: None = Atom solved(x4, y4)
+Removed false proposition: None = NegatedAtom solved(x4, y4)
+Removed true proposition: None = Atom solved(x5, y5)
+Removed false proposition: None = NegatedAtom solved(x5, y5)
+Removed true proposition: None = Atom solved(x6, y6)
+Removed false proposition: None = NegatedAtom solved(x6, y6)
+Removed true proposition: None = Atom solved(x7, y7)
+Removed false proposition: None = NegatedAtom solved(x7, y7)
+Removed true proposition: None = Atom solved(x8, y8)
+Removed false proposition: None = NegatedAtom solved(x8, y8)
+Removed true proposition: None = Atom solved(x9, y9)
+Removed false proposition: None = NegatedAtom solved(x9, y9)
+0 operators removed
+198 propositions removed
+Detecting unreachable propositions: [0.050s CPU, 0.048s wall-clock]
+Translator variables: 233
+Translator derived variables: 0
+Translator facts: 482
+Translator goal facts: 2
+Translator mutex groups: 65
+Translator total mutex groups size: 146
+Translator operators: 10066
+Translator axioms: 0
+Translator task size: 60655
+Translator peak memory: 0 KB
+Writing output... [0.090s CPU, 0.094s wall-clock]
+Done! [0.740s CPU, 0.776s wall-clock]
+
+2. Running preprocessor
+Building causal graph...
+The causal graph is not acyclic.
+233 variables of 233 necessary
+0 of 65 mutex groups necessary.
+10066 of 10066 operators necessary.
+0 of 0 axiom rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...
+Preprocessor facts: 482
+Preprocessor derived variables: 0
+Preprocessor task size: 60509
+Writing output...
+done
+
+
+3. Running search
+./../../src/search/downward ipc policy-repair --optimized-scd 1 --online-deadends 1 --partial-planlocal 1 --plan-with-policy 1 --limit-planlocal 1 --jic-limit 18000 --generalize-deadends 1 --trials 100 --fullstate 0 --forgetpolicy 0 --planlocal 1 --detect-deadends 1
+This is a unit task.
+./../../src/search/downward-release --heuristic "h=ff(cost_type=1)" --search "lazy_greedy([h],preferred=[h])" --random-seed 814102613 --optimized-scd 1 --online-deadends 1 --partial-planlocal 1 --plan-with-policy 1 --limit-planlocal 1 --jic-limit 18000 --generalize-deadends 1 --trials 100 --fullstate 0 --forgetpolicy 0 --planlocal 1 --detect-deadends 1 < output
+Simplifying transitions... done!
+Variables: 233
+Bytes per state: 32
+
+Total allotted time (s): 18000
+Max time for core JIC (remaining used in final-round repairs): 18000
+Max time for each of the 1 epochs: 18000
+
+ !! Warning: Disabling the simplification of unary operators !!
+ !!           to keep the non-deterministic planning sound.  !!
+Switch from bucket-based to heap-based queue at key = 515, num_pushes = 322
+Peak memory: 0 KB
+caught signal 2 -- exiting

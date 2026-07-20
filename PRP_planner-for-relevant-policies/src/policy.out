@@ -1,0 +1,33 @@
+
+If holds: var19:0
+Execute: goal / SC / d=0
+
+If holds: var31:0 var30:0 var32:0 var18:1 var22:1 var19:1
+Execute: put-x-on-y  / SC / d=1
+
+If holds: var31:0 var30:1 var32:0 var18:0 var22:1 var19:1
+Execute: pick-x  / SC / d=2
+
+If holds: var31:0 var30:1 var32:0 var18:1 var22:1 var19:1
+Execute: put-aside-1  / SC / d=3
+
+If holds: var31:0 var30:1 var32:0 var18:1 var26:0 var20:1 var22:0 var19:1
+Execute: pop_at_d1 n_y / SC / d=4
+
+If holds: var31:0 var30:1 var32:1 var18:0 var26:0 var20:1 var22:0 var19:1
+Execute: pick-ab-y_f0_d1  / SC / d=5
+
+If holds: var31:0 var30:1 var32:1 var18:0 var0:1 var20:0 var19:1
+Execute: push_at_d0_b0 n_y / SC / d=6
+
+If holds: var31:0 var30:1 var32:1 var18:1 var26:0 var20:1 var22:0 var19:1
+Execute: put-aside-1  / SC / d=6
+
+If holds: var31:0 var30:1 var32:1 var18:1 var0:1 var20:0 var19:1
+Execute: put-aside-1  / SC / d=7
+
+If holds: var31:1 var30:1 var32:1 var18:0 var20:0 var19:1
+Execute: pick-ab-x  / SC / d=8
+
+If holds: var31:1 var30:1 var32:1 var18:1 var20:0 var19:1
+Execute: put-aside-2  / SC / d=9

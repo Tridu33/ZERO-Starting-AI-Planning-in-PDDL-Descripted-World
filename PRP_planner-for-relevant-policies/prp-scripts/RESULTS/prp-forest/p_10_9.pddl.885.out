@@ -1,0 +1,936 @@
+1. Running translator
+Second argument is a file name: use two translator arguments.
+Parsing...
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x1, y1) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x2, y2) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x3, y3) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x4, y4) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x5, y5) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x6, y6) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x7, y7) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x8, y8) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x9, y9) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Warning: Atom solved(x10, y10) is specified twice in initial state specification
+Parsing: [0.000s CPU, 0.005s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.020s CPU, 0.011s wall-clock]
+Preparing model... [0.000s CPU, 0.006s wall-clock]
+Generated 374 rules.
+Computing model... [0.110s CPU, 0.108s wall-clock]
+11279 relevant atoms
+7085 auxiliary atoms
+18364 final queue length
+28367 total queue pushes
+Completing instantiation... [0.210s CPU, 0.222s wall-clock]
+Instantiating: [0.340s CPU, 0.351s wall-clock]
+Computing fact groups...
+Finding invariants...
+45 initial candidates
+Finding invariants: [0.020s CPU, 0.009s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.000s CPU, 0.001s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+208 uncovered facts
+Choosing groups: [0.020s CPU, 0.019s wall-clock]
+Building translation key... [0.010s CPU, 0.001s wall-clock]
+Computing fact groups: [0.050s CPU, 0.033s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.012s wall-clock]
+Translating task: [0.250s CPU, 0.250s wall-clock]
+9085 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+Removed false proposition: 0 = <none of those>
+Removed false proposition: 1 = <none of those>
+Removed true proposition: None = Atom enabled(x1, y1)
+Removed false proposition: None = NegatedAtom enabled(x1, y1)
+Removed false proposition: 79 = <none of those>
+Removed false proposition: 80 = <none of those>
+Removed false proposition: 81 = <none of those>
+Removed false proposition: 82 = <none of those>
+Removed false proposition: 83 = <none of those>
+Removed false proposition: 84 = <none of those>
+Removed false proposition: 85 = <none of those>
+Removed false proposition: 86 = <none of those>
+Removed false proposition: 87 = <none of those>
+Removed false proposition: 88 = <none of those>
+Removed false proposition: None = Atom initialized(x10, y1)
+Removed true proposition: None = Atom ninitialized(x10, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 89 = <none of those>
+Removed false proposition: None = Atom initialized(x10, y2)
+Removed true proposition: None = Atom ninitialized(x10, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x10, y3)
+Removed true proposition: None = Atom ninitialized(x10, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: 90 = <none of those>
+Removed false proposition: 91 = <none of those>
+Removed false proposition: 92 = <none of those>
+Removed false proposition: 93 = <none of those>
+Removed false proposition: 94 = <none of those>
+Removed false proposition: 95 = <none of those>
+Removed false proposition: 96 = <none of those>
+Removed false proposition: 97 = <none of those>
+Removed false proposition: 98 = <none of those>
+Removed false proposition: 99 = <none of those>
+Removed false proposition: 100 = <none of those>
+Removed false proposition: 101 = <none of those>
+Removed false proposition: 102 = <none of those>
+Removed false proposition: 103 = <none of those>
+Removed false proposition: 104 = <none of those>
+Removed false proposition: 105 = <none of those>
+Removed false proposition: None = Atom initialized(x3, y1)
+Removed true proposition: None = Atom ninitialized(x3, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 106 = <none of those>
+Removed false proposition: None = Atom initialized(x3, y2)
+Removed true proposition: None = Atom ninitialized(x3, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: 107 = <none of those>
+Removed false proposition: 108 = <none of those>
+Removed false proposition: 109 = <none of those>
+Removed false proposition: 110 = <none of those>
+Removed false proposition: 111 = <none of those>
+Removed false proposition: 112 = <none of those>
+Removed false proposition: 113 = <none of those>
+Removed false proposition: None = Atom initialized(x4, y1)
+Removed true proposition: None = Atom ninitialized(x4, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 114 = <none of those>
+Removed false proposition: None = Atom initialized(x4, y2)
+Removed true proposition: None = Atom ninitialized(x4, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: 115 = <none of those>
+Removed false proposition: 116 = <none of those>
+Removed false proposition: 117 = <none of those>
+Removed false proposition: 118 = <none of those>
+Removed false proposition: 119 = <none of those>
+Removed false proposition: 120 = <none of those>
+Removed false proposition: 121 = <none of those>
+Removed false proposition: None = Atom initialized(x5, y1)
+Removed true proposition: None = Atom ninitialized(x5, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 122 = <none of those>
+Removed false proposition: None = Atom initialized(x5, y2)
+Removed true proposition: None = Atom ninitialized(x5, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x5, y3)
+Removed true proposition: None = Atom ninitialized(x5, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: 123 = <none of those>
+Removed false proposition: 124 = <none of those>
+Removed false proposition: 125 = <none of those>
+Removed false proposition: 126 = <none of those>
+Removed false proposition: 127 = <none of those>
+Removed false proposition: 128 = <none of those>
+Removed false proposition: None = Atom initialized(x6, y1)
+Removed true proposition: None = Atom ninitialized(x6, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 129 = <none of those>
+Removed false proposition: None = Atom initialized(x6, y2)
+Removed true proposition: None = Atom ninitialized(x6, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x6, y3)
+Removed true proposition: None = Atom ninitialized(x6, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: 130 = <none of those>
+Removed false proposition: 131 = <none of those>
+Removed false proposition: 132 = <none of those>
+Removed false proposition: 133 = <none of those>
+Removed false proposition: 134 = <none of those>
+Removed false proposition: 135 = <none of those>
+Removed false proposition: None = Atom initialized(x7, y1)
+Removed true proposition: None = Atom ninitialized(x7, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 136 = <none of those>
+Removed false proposition: None = Atom initialized(x7, y2)
+Removed true proposition: None = Atom ninitialized(x7, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x7, y3)
+Removed true proposition: None = Atom ninitialized(x7, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: 137 = <none of those>
+Removed false proposition: 138 = <none of those>
+Removed false proposition: 139 = <none of those>
+Removed false proposition: 140 = <none of those>
+Removed false proposition: 141 = <none of those>
+Removed false proposition: 142 = <none of those>
+Removed false proposition: None = Atom initialized(x8, y1)
+Removed true proposition: None = Atom ninitialized(x8, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 143 = <none of those>
+Removed false proposition: None = Atom initialized(x8, y2)
+Removed true proposition: None = Atom ninitialized(x8, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x8, y3)
+Removed true proposition: None = Atom ninitialized(x8, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: 144 = <none of those>
+Removed false proposition: 145 = <none of those>
+Removed false proposition: 146 = <none of those>
+Removed false proposition: 147 = <none of those>
+Removed false proposition: 148 = <none of those>
+Removed false proposition: 149 = <none of those>
+Removed false proposition: None = Atom initialized(x9, y1)
+Removed true proposition: None = Atom ninitialized(x9, y1)
+Removed false proposition: None = <none of those>
+Removed false proposition: 150 = <none of those>
+Removed false proposition: None = Atom initialized(x9, y2)
+Removed true proposition: None = Atom ninitialized(x9, y2)
+Removed false proposition: None = <none of those>
+Removed false proposition: None = Atom initialized(x9, y3)
+Removed true proposition: None = Atom ninitialized(x9, y3)
+Removed false proposition: None = <none of those>
+Removed false proposition: 151 = <none of those>
+Removed false proposition: 152 = <none of those>
+Removed false proposition: 153 = <none of those>
+Removed false proposition: 154 = <none of those>
+Removed false proposition: 155 = <none of those>
+Removed false proposition: 156 = <none of those>
+Removed true proposition: None = Atom solved(x1, y1)
+Removed false proposition: None = NegatedAtom solved(x1, y1)
+Removed true proposition: None = Atom solved(x10, y10)
+Removed false proposition: None = NegatedAtom solved(x10, y10)
+Removed true proposition: None = Atom solved(x2, y2)
+Removed false proposition: None = NegatedAtom solved(x2, y2)
+Removed true proposition: None = Atom solved(x3, y3)
+Removed false proposition: None = NegatedAtom solved(x3, y3)
+Removed true proposition: None = Atom solved(x4, y4)
+Removed false proposition: None = NegatedAtom solved(x4, y4)
+Removed true proposition: None = Atom solved(x5, y5)
+Removed false proposition: None = NegatedAtom solved(x5, y5)
+Removed true proposition: None = Atom solved(x6, y6)
+Removed false proposition: None = NegatedAtom solved(x6, y6)
+Removed true proposition: None = Atom solved(x7, y7)
+Removed false proposition: None = NegatedAtom solved(x7, y7)
+Removed true proposition: None = Atom solved(x8, y8)
+Removed false proposition: None = NegatedAtom solved(x8, y8)
+Removed true proposition: None = Atom solved(x9, y9)
+Removed false proposition: None = NegatedAtom solved(x9, y9)
+0 operators removed
+168 propositions removed
+Detecting unreachable propositions: [0.030s CPU, 0.042s wall-clock]
+Translator variables: 277
+Translator derived variables: 0
+Translator facts: 570
+Translator goal facts: 2
+Translator mutex groups: 80
+Translator total mutex groups size: 176
+Translator operators: 9943
+Translator axioms: 0
+Translator task size: 60018
+Translator peak memory: 0 KB
+Writing output... [0.070s CPU, 0.070s wall-clock]
+Done! [0.770s CPU, 0.773s wall-clock]
+
+2. Running preprocessor
+Building causal graph...
+The causal graph is not acyclic.
+277 variables of 277 necessary
+0 of 80 mutex groups necessary.
+9943 of 9943 operators necessary.
+0 of 0 axiom rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...
+Preprocessor facts: 570
+Preprocessor derived variables: 0
+Preprocessor task size: 59842
+Writing output...
+done
+
+
+3. Running search
+./../../src/search/downward ipc policy-repair --optimized-scd 1 --online-deadends 1 --partial-planlocal 1 --plan-with-policy 1 --limit-planlocal 1 --jic-limit 18000 --generalize-deadends 1 --trials 100 --fullstate 0 --forgetpolicy 0 --planlocal 1 --detect-deadends 1
+This is a unit task.
+./../../src/search/downward-release --heuristic "h=ff(cost_type=1)" --search "lazy_greedy([h],preferred=[h])" --random-seed 814102613 --optimized-scd 1 --online-deadends 1 --partial-planlocal 1 --plan-with-policy 1 --limit-planlocal 1 --jic-limit 18000 --generalize-deadends 1 --trials 100 --fullstate 0 --forgetpolicy 0 --planlocal 1 --detect-deadends 1 < output
+Simplifying transitions... done!
+Variables: 277
+Bytes per state: 36
+
+Total allotted time (s): 18000
+Max time for core JIC (remaining used in final-round repairs): 18000
+Max time for each of the 1 epochs: 18000
+
+ !! Warning: Disabling the simplification of unary operators !!
+ !!           to keep the non-deterministic planning sound.  !!
+Switch from bucket-based to heap-based queue at key = 511, num_pushes = 391
+Generated 36035 state(s).
+Dead ends: 57 state(s). (16 recorded)
+up-x-2_DETDUP_1 x1 y1 x2 y2 (1)
+make-enabled x1 y1 x1 y2 (1)
+initialize-blocksworld x1 y2 (1)
+unstack c a (1)
+putdown c (1)
+pickup b (1)
+stack b c (1)
+pickup a (1)
+stack a b (1)
+solve-blocksworld x1 y2 (1)
+up-x-2_DETDUP_1 x1 y2 x2 y3 (1)
+make-enabled x1 y2 x1 y3 (1)
+initialize-blocksworld x1 y3 (1)
+unstack c a (1)
+putdown c (1)
+pickup b (1)
+stack b c (1)
+pickup a (1)
+stack a b (1)
+solve-blocksworld x1 y3 (1)
+down-y-2_DETDUP_1 x1 y3 y2 x2 (1)
+make-enabled x1 y3 x2 y3 (1)
+initialize-logistics x2 y3 (1)
+load-truck t1 p1 l12 (1)
+move-truck t1 l12 l11 c1 (1)
+unload-truck t1 p1 l11 (1)
+load-plane a1 p1 l11 (1)
+move-plane a1 l11 l21 (1)
+unload-plane a1 p1 l21 (1)
+load-truck t2 p1 l21 (1)
+move-truck t2 l21 l22 c2 (1)
+unload-truck t2 p1 l22 (1)
+solve-logistics x2 y3 (1)
+down-y-2_DETDUP_1 x2 y3 y2 x3 (1)
+down-y-2_DETDUP_1 x3 y3 y2 x4 (1)
+make-enabled x3 y3 x4 y3 (1)
+initialize-blocksworld x4 y3 (1)
+unstack c a (1)
+putdown c (1)
+pickup b (1)
+stack b c (1)
+pickup a (1)
+stack a b (1)
+solve-blocksworld x4 y3 (1)
+down-x-2_DETDUP_1 x4 y3 x3 y4 (1)
+down-y-2_DETDUP_1 x4 y4 y3 x5 (1)
+make-enabled x4 y4 x5 y4 (1)
+initialize-blocksworld x5 y4 (1)
+unstack c a (1)
+putdown c (1)
+pickup b (1)
+stack b c (1)
+pickup a (1)
+stack a b (1)
+solve-blocksworld x5 y4 (1)
+down-x-2_DETDUP_1 x5 y4 x4 y5 (1)
+down-x-2_DETDUP_1 x5 y5 x4 y6 (1)
+make-enabled x5 y5 x5 y6 (1)
+initialize-logistics x5 y6 (1)
+load-truck t1 p1 l12 (1)
+move-truck t1 l12 l11 c1 (1)
+unload-truck t1 p1 l11 (1)
+load-plane a1 p1 l11 (1)
+move-plane a1 l11 l21 (1)
+unload-plane a1 p1 l21 (1)
+load-truck t2 p1 l21 (1)
+move-truck t2 l21 l22 c2 (1)
+unload-truck t2 p1 l22 (1)
+solve-logistics x5 y6 (1)
+down-y-2_DETDUP_1 x5 y6 y5 x6 (1)
+down-y-2_DETDUP_1 x6 y6 y5 x7 (1)
+make-enabled x6 y6 x7 y6 (1)
+initialize-blocksworld x7 y6 (1)
+unstack c a (1)
+putdown c (1)
+pickup b (1)
+stack b c (1)
+pickup a (1)
+stack a b (1)
+solve-blocksworld x7 y6 (1)
+down-x-2_DETDUP_1 x7 y6 x6 y7 (1)
+down-y-2_DETDUP_1 x7 y7 y6 x8 (1)
+make-enabled x7 y7 x8 y7 (1)
+initialize-logistics x8 y7 (1)
+load-truck t1 p1 l12 (1)
+move-truck t1 l12 l11 c1 (1)
+unload-truck t1 p1 l11 (1)
+load-plane a1 p1 l11 (1)
+move-plane a1 l11 l21 (1)
+unload-plane a1 p1 l21 (1)
+load-truck t2 p1 l21 (1)
+move-truck t2 l21 l22 c2 (1)
+unload-truck t2 p1 l22 (1)
+solve-logistics x8 y7 (1)
+down-y-2_DETDUP_1 x8 y7 y6 x9 (1)
+make-enabled x8 y7 x9 y7 (1)
+initialize-logistics x9 y7 (1)
+load-truck t1 p1 l12 (1)
+move-truck t1 l12 l11 c1 (1)
+unload-truck t1 p1 l11 (1)
+load-plane a1 p1 l11 (1)
+move-plane a1 l11 l21 (1)
+unload-plane a1 p1 l21 (1)
+load-truck t2 p1 l21 (1)
+move-truck t2 l21 l22 c2 (1)
+unload-truck t2 p1 l22 (1)
+solve-logistics x9 y7 (1)
+down-y-2_DETDUP_1 x9 y7 y6 x10 (1)
+make-enabled x9 y7 x10 y7 (1)
+initialize-grid sx10 sy10 x10 y7 (1)
+s-down-x sx10 sy10 sx9 x10 y7 (1)
+s-down-x sx9 sy10 sx8 x10 y7 (1)
+s-down-x sx8 sy10 sx7 x10 y7 (1)
+s-down-x sx7 sy10 sx6 x10 y7 (1)
+s-down-x sx6 sy10 sx5 x10 y7 (1)
+s-down-x sx5 sy10 sx4 x10 y7 (1)
+s-down-x sx4 sy10 sx3 x10 y7 (1)
+s-down-x sx3 sy10 sx2 x10 y7 (1)
+s-down-x sx2 sy10 sx1 x10 y7 (1)
+s-down-y sx1 sy10 sy9 x10 y7 (1)
+s-down-y sx1 sy9 sy8 x10 y7 (1)
+s-down-y sx1 sy8 sy7 x10 y7 (1)
+s-down-y sx1 sy7 sy6 x10 y7 (1)
+s-down-y sx1 sy6 sy5 x10 y7 (1)
+s-down-y sx1 sy5 sy4 x10 y7 (1)
+s-down-y sx1 sy4 sy3 x10 y7 (1)
+s-down-y sx1 sy3 sy2 x10 y7 (1)
+s-down-y sx1 sy2 sy1 x10 y7 (1)
+solve-grid sx1 sy1 x10 y7 (1)
+down-x-2_DETDUP_1 x10 y7 x9 y8 (1)
+make-enabled x10 y7 x10 y8 (1)
+initialize-grid sx10 sy10 x10 y8 (1)
+s-down-x sx10 sy10 sx9 x10 y7 (1)
+s-down-x sx9 sy10 sx8 x10 y7 (1)
+s-down-x sx8 sy10 sx7 x10 y7 (1)
+s-down-x sx7 sy10 sx6 x10 y7 (1)
+s-down-x sx6 sy10 sx5 x10 y7 (1)
+s-down-x sx5 sy10 sx4 x10 y7 (1)
+s-down-x sx4 sy10 sx3 x10 y7 (1)
+s-down-x sx3 sy10 sx2 x10 y7 (1)
+s-down-x sx2 sy10 sx1 x10 y7 (1)
+s-down-y sx1 sy10 sy9 x10 y7 (1)
+s-down-y sx1 sy9 sy8 x10 y8 (1)
+s-down-y sx1 sy8 sy7 x10 y8 (1)
+s-down-y sx1 sy7 sy6 x10 y8 (1)
+s-down-y sx1 sy6 sy5 x10 y8 (1)
+s-down-y sx1 sy5 sy4 x10 y8 (1)
+s-down-y sx1 sy4 sy3 x10 y8 (1)
+s-down-y sx1 sy3 sy2 x10 y7 (1)
+s-down-y sx1 sy2 sy1 x10 y8 (1)
+solve-grid sx1 sy1 x10 y8 (1)
+down-x-2_DETDUP_1 x10 y8 x9 y9 (1)
+make-enabled x10 y8 x10 y9 (1)
+initialize-blocksworld x10 y9 (1)
+unstack c a (1)
+putdown c (1)
+pickup b (1)
+stack b c (1)
+pickup a (1)
+stack a b (1)
+solve-blocksworld x10 y9 (1)
+down-x-2_DETDUP_1 x10 y9 x9 y10 (1)
+Plan length: 162 step(s).
+Plan cost: 162
+Initial search time: 2.02s
+Initial total time: 2.25s
+
+
+Creating the simulator...
+
+
+Regressing the plan...
+
+
+Generating an initial policy...
+
+
+Computing just-in-time repairs...
+Generated 131 state(s).
+Dead ends: 78 state(s).
+Generated 939 state(s).
+Dead ends: 0 state(s). (0 recorded)
+Generated 26 state(s).
+Dead ends: 9 state(s).
+Generated 470 state(s).
+Dead ends: 0 state(s).
+Generated 28 state(s).
+Dead ends: 0 state(s).
+Generated 28 state(s).
+Dead ends: 0 state(s).
+Generated 45 state(s).
+Dead ends: 0 state(s).
+Generated 294 state(s).
+Dead ends: 0 state(s).
+Generated 29 state(s).
+Dead ends: 0 state(s).
+Generated 29 state(s).
+Dead ends: 0 state(s).
+Generated 24 state(s).
+Dead ends: 9 state(s).
+Generated 42 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 203 state(s).
+Dead ends: 0 state(s).
+Generated 15 state(s).
+Dead ends: 0 state(s).
+Generated 194 state(s).
+Dead ends: 0 state(s).
+Generated 164 state(s).
+Dead ends: 0 state(s).
+Generated 15 state(s).
+Dead ends: 0 state(s).
+
+Could not close 0 of 17 open leaf states.
+Investigated 530 states for the strong cyclic plan.
+Went through another policy of score 0
+Generated 1481 state(s).
+Dead ends: 0 state(s).
+Generated 89974 state(s).
+Dead ends: 7 state(s). (1 recorded)
+Generated 30 state(s).
+Dead ends: 7 state(s).
+Generated 38 state(s).
+Dead ends: 0 state(s).
+Generated 84 state(s).
+Dead ends: 0 state(s).
+Generated 76 state(s).
+Dead ends: 0 state(s).
+Generated 46 state(s).
+Dead ends: 0 state(s).
+Generated 76 state(s).
+Dead ends: 0 state(s).
+Generated 37 state(s).
+Dead ends: 0 state(s).
+Generated 45 state(s).
+Dead ends: 0 state(s).
+Generated 44 state(s).
+Dead ends: 0 state(s).
+Generated 36 state(s).
+Dead ends: 0 state(s).
+Generated 35 state(s).
+Dead ends: 0 state(s).
+Generated 43 state(s).
+Dead ends: 0 state(s).
+Generated 33 state(s).
+Dead ends: 0 state(s).
+Generated 41 state(s).
+Dead ends: 0 state(s).
+Generated 33 state(s).
+Dead ends: 0 state(s).
+Generated 33 state(s).
+Dead ends: 0 state(s).
+Generated 33 state(s).
+Dead ends: 0 state(s).
+Generated 623 state(s).
+Dead ends: 1 state(s).
+Generated 42 state(s).
+Dead ends: 0 state(s).
+Generated 68 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 579 state(s).
+Dead ends: 1 state(s).
+Generated 40 state(s).
+Dead ends: 0 state(s).
+Generated 64 state(s).
+Dead ends: 0 state(s).
+Generated 54 state(s).
+Dead ends: 0 state(s).
+Generated 23 state(s).
+Dead ends: 0 state(s).
+Generated 1172 state(s).
+Dead ends: 50 state(s).
+Generated 2599 state(s).
+Dead ends: 0 state(s). (0 recorded)
+Generated 34 state(s).
+Dead ends: 0 state(s).
+Generated 42 state(s).
+Dead ends: 0 state(s).
+Generated 32 state(s).
+Dead ends: 0 state(s).
+Generated 668 state(s).
+Dead ends: 0 state(s).
+Generated 30 state(s).
+Dead ends: 0 state(s).
+Generated 557 state(s).
+Dead ends: 1 state(s).
+Generated 39 state(s).
+Dead ends: 0 state(s).
+Generated 62 state(s).
+Dead ends: 0 state(s).
+Generated 557 state(s).
+Dead ends: 1 state(s).
+Generated 39 state(s).
+Dead ends: 0 state(s).
+Generated 62 state(s).
+Dead ends: 0 state(s).
+Generated 38 state(s).
+Dead ends: 0 state(s).
+Generated 60 state(s).
+Dead ends: 0 state(s).
+Generated 557 state(s).
+Dead ends: 0 state(s).
+Generated 39 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 634 state(s).
+Dead ends: 0 state(s).
+Generated 28 state(s).
+Dead ends: 0 state(s).
+Generated 513 state(s).
+Dead ends: 0 state(s).
+Generated 37 state(s).
+Dead ends: 0 state(s).
+Generated 29 state(s).
+Dead ends: 0 state(s).
+Generated 29 state(s).
+Dead ends: 0 state(s).
+Generated 590 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 470 state(s).
+Dead ends: 0 state(s).
+Generated 329 state(s).
+Dead ends: 0 state(s).
+Generated 305 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 41 state(s).
+Dead ends: 0 state(s).
+Generated 268 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 48 state(s).
+Dead ends: 0 state(s).
+Generated 48 state(s).
+Dead ends: 0 state(s).
+Generated 37 state(s).
+Dead ends: 0 state(s).
+Generated 242 state(s).
+Dead ends: 0 state(s).
+Generated 44 state(s).
+Dead ends: 0 state(s).
+Generated 236 state(s).
+Dead ends: 0 state(s).
+Generated 42 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 203 state(s).
+Dead ends: 0 state(s).
+Generated 15 state(s).
+Dead ends: 0 state(s).
+Generated 194 state(s).
+Dead ends: 0 state(s).
+Generated 164 state(s).
+Dead ends: 0 state(s).
+Generated 15 state(s).
+Dead ends: 0 state(s).
+
+Could not close 0 of 77 open leaf states.
+Investigated 25192 states for the strong cyclic plan.
+Found a better policy of score 1
+Generated 1481 state(s).
+Dead ends: 0 state(s).
+Generated 90255 state(s).
+Dead ends: 0 state(s). (0 recorded)
+Generated 38 state(s).
+Dead ends: 0 state(s).
+Generated 84 state(s).
+Dead ends: 0 state(s).
+Generated 76 state(s).
+Dead ends: 0 state(s).
+Generated 46 state(s).
+Dead ends: 0 state(s).
+Generated 76 state(s).
+Dead ends: 0 state(s).
+Generated 37 state(s).
+Dead ends: 0 state(s).
+Generated 45 state(s).
+Dead ends: 0 state(s).
+Generated 44 state(s).
+Dead ends: 0 state(s).
+Generated 36 state(s).
+Dead ends: 0 state(s).
+Generated 35 state(s).
+Dead ends: 0 state(s).
+Generated 43 state(s).
+Dead ends: 0 state(s).
+Generated 33 state(s).
+Dead ends: 0 state(s).
+Generated 41 state(s).
+Dead ends: 0 state(s).
+Generated 33 state(s).
+Dead ends: 0 state(s).
+Generated 33 state(s).
+Dead ends: 0 state(s).
+Generated 33 state(s).
+Dead ends: 0 state(s).
+Generated 623 state(s).
+Dead ends: 1 state(s).
+Generated 42 state(s).
+Dead ends: 0 state(s).
+Generated 68 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 579 state(s).
+Dead ends: 1 state(s).
+Generated 40 state(s).
+Dead ends: 0 state(s).
+Generated 64 state(s).
+Dead ends: 0 state(s).
+Generated 54 state(s).
+Dead ends: 0 state(s).
+Generated 23 state(s).
+Dead ends: 0 state(s).
+Generated 1172 state(s).
+Dead ends: 50 state(s).
+Generated 2599 state(s).
+Dead ends: 0 state(s). (0 recorded)
+Generated 34 state(s).
+Dead ends: 0 state(s).
+Generated 42 state(s).
+Dead ends: 0 state(s).
+Generated 32 state(s).
+Dead ends: 0 state(s).
+Generated 668 state(s).
+Dead ends: 0 state(s).
+Generated 30 state(s).
+Dead ends: 0 state(s).
+Generated 557 state(s).
+Dead ends: 1 state(s).
+Generated 39 state(s).
+Dead ends: 0 state(s).
+Generated 62 state(s).
+Dead ends: 0 state(s).
+Generated 557 state(s).
+Dead ends: 1 state(s).
+Generated 39 state(s).
+Dead ends: 0 state(s).
+Generated 62 state(s).
+Dead ends: 0 state(s).
+Generated 38 state(s).
+Dead ends: 0 state(s).
+Generated 60 state(s).
+Dead ends: 0 state(s).
+Generated 557 state(s).
+Dead ends: 0 state(s).
+Generated 39 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 634 state(s).
+Dead ends: 0 state(s).
+Generated 28 state(s).
+Dead ends: 0 state(s).
+Generated 513 state(s).
+Dead ends: 0 state(s).
+Generated 37 state(s).
+Dead ends: 0 state(s).
+Generated 29 state(s).
+Dead ends: 0 state(s).
+Generated 29 state(s).
+Dead ends: 0 state(s).
+Generated 590 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 470 state(s).
+Dead ends: 0 state(s).
+Generated 329 state(s).
+Dead ends: 0 state(s).
+Generated 305 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 41 state(s).
+Dead ends: 0 state(s).
+Generated 268 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 26 state(s).
+Dead ends: 0 state(s).
+Generated 48 state(s).
+Dead ends: 0 state(s).
+Generated 48 state(s).
+Dead ends: 0 state(s).
+Generated 37 state(s).
+Dead ends: 0 state(s).
+Generated 242 state(s).
+Dead ends: 0 state(s).
+Generated 44 state(s).
+Dead ends: 0 state(s).
+Generated 236 state(s).
+Dead ends: 0 state(s).
+Generated 42 state(s).
+Dead ends: 0 state(s).
+Generated 31 state(s).
+Dead ends: 0 state(s).
+Generated 203 state(s).
+Dead ends: 0 state(s).
+Generated 15 state(s).
+Dead ends: 0 state(s).
+Generated 194 state(s).
+Dead ends: 0 state(s).
+Generated 164 state(s).
+Dead ends: 0 state(s).
+Generated 15 state(s).
+Dead ends: 0 state(s).
+
+Could not close 0 of 76 open leaf states.
+Investigated 25192 states for the strong cyclic plan.
+Went through another policy of score 1
+
+Could not close 0 of 0 open leaf states.
+Investigated 25192 states for the strong cyclic plan.
+Marking policy strong cyclic.
+Found a better policy of score 1
+
+
+Running a final SCD check...
+
+
+Running the simulation...
+
+
+
+                  -{ General Statistics }-
+
+        FSAP Combination Count: 0
+       Monotonicity violations: 10
+             Successful states: 367.19 +/- 54.588
+                       Replans: 0 +/- 0
+                       Actions: 367.19 +/- 54.588
+             Recorded Deadends: 26
+            State-Action Pairs: 675
+  Forbidden State-Action Pairs: 124153
+               Strongly Cyclic: True
+                  Policy Score: 1
+                     Succeeded: 100 / 100
+ Depth limit (of 1000) reached: 0 / 100
+
+
+                  -{ Timing Statistics }-
+
+        Regression Computation: 0s
+         Engine Initialization: 0s
+                   Search Time: 3.17s
+           Policy Construction: 1.99s
+ Evaluating the policy quality: 17.63s
+              Using the policy: 12.16s
+          Just-in-case Repairs: 27.02s
+                Simulator time: 0.1s
+                    Total time: 27.4s
+
+
+
+Strong cyclic plan found.
+Peak memory: 0 KB

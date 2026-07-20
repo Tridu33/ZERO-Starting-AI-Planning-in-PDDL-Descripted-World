@@ -1,0 +1,131 @@
+1. Running translator
+Second argument is a file name: use two translator arguments.
+Parsing...
+Parsing: [0.000s CPU, 0.002s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.002s wall-clock]
+Generated 67 rules.
+Computing model... [5.300s CPU, 5.291s wall-clock]
+515452 relevant atoms
+288250 auxiliary atoms
+803702 final queue length
+1581311 total queue pushes
+Completing instantiation... [18.050s CPU, 18.291s wall-clock]
+Instantiating: [23.540s CPU, 23.781s wall-clock]
+Computing fact groups...
+Finding invariants...
+10 initial candidates
+Finding invariants: [0.000s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.004s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.001s wall-clock]
+Choosing groups...
+51 uncovered facts
+Choosing groups: [0.000s CPU, 0.004s wall-clock]
+Building translation key... [0.000s CPU, 0.002s wall-clock]
+Computing fact groups: [0.010s CPU, 0.024s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.001s wall-clock]
+Building dictionary for full mutex groups... [0.020s CPU, 0.001s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.001s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.640s CPU, 0.648s wall-clock]
+Translating task: [14.240s CPU, 14.299s wall-clock]
+252450 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+Removed false proposition: 51 = <none of those>
+Removed false proposition: 52 = <none of those>
+Removed false proposition: 53 = <none of those>
+Removed false proposition: 54 = <none of those>
+Removed false proposition: 55 = <none of those>
+Removed false proposition: 56 = <none of those>
+Removed false proposition: 57 = <none of those>
+Removed false proposition: 58 = <none of those>
+Removed false proposition: 59 = <none of those>
+Removed false proposition: 60 = <none of those>
+Removed false proposition: 61 = <none of those>
+Removed false proposition: 62 = <none of those>
+Removed false proposition: 63 = <none of those>
+Removed false proposition: 64 = <none of those>
+Removed false proposition: 65 = <none of those>
+Removed false proposition: 66 = <none of those>
+Removed false proposition: 67 = <none of those>
+Removed false proposition: 68 = <none of those>
+Removed false proposition: 69 = <none of those>
+Removed false proposition: 70 = <none of those>
+Removed false proposition: 71 = <none of those>
+Removed false proposition: 72 = <none of those>
+Removed false proposition: 73 = <none of those>
+Removed false proposition: 74 = <none of those>
+Removed false proposition: 75 = <none of those>
+Removed false proposition: 76 = <none of those>
+Removed false proposition: 77 = <none of those>
+Removed false proposition: 78 = <none of those>
+Removed false proposition: 79 = <none of those>
+Removed false proposition: 80 = <none of those>
+Removed false proposition: 81 = <none of those>
+Removed false proposition: 82 = <none of those>
+Removed false proposition: 83 = <none of those>
+Removed false proposition: 84 = <none of those>
+Removed false proposition: 85 = <none of those>
+Removed false proposition: 86 = <none of those>
+Removed false proposition: 87 = <none of those>
+Removed false proposition: 88 = <none of those>
+Removed false proposition: 89 = <none of those>
+Removed false proposition: 90 = <none of those>
+Removed false proposition: 91 = <none of those>
+Removed false proposition: 92 = <none of those>
+Removed false proposition: 93 = <none of those>
+Removed false proposition: 94 = <none of those>
+Removed false proposition: 95 = <none of those>
+Removed false proposition: 96 = <none of those>
+Removed false proposition: 97 = <none of those>
+Removed false proposition: 98 = <none of those>
+Removed false proposition: 99 = <none of those>
+Removed false proposition: 100 = <none of those>
+0 operators removed
+50 propositions removed
+Detecting unreachable propositions: [2.050s CPU, 2.049s wall-clock]
+Translator variables: 101
+Translator derived variables: 0
+Translator facts: 2702
+Translator goal facts: 60
+Translator mutex groups: 51
+Translator total mutex groups size: 2651
+Translator operators: 380000
+Translator axioms: 0
+Translator task size: 2535264
+Translator peak memory: 0 KB
+Writing output... [2.890s CPU, 2.905s wall-clock]
+Done! [44.120s CPU, 44.463s wall-clock]
+
+2. Running preprocessor
+Building causal graph...
+The causal graph is not acyclic.
+101 variables of 101 necessary
+1 of 51 mutex groups necessary.
+380000 of 380000 operators necessary.
+0 of 0 axiom rules necessary.
+Building domain transition graphs...
+solveable in poly time 0
+Building successor generator...
+Preprocessor facts: 2702
+Preprocessor derived variables: 0
+Preprocessor task size: 2532664
+Writing output...
+done
+
+
+3. Running search
+./../../src/search/downward ipc policy-repair --optimized-scd 1 --online-deadends 1 --partial-planlocal 1 --plan-with-policy 1 --limit-planlocal 1 --jic-limit 18000 --generalize-deadends 1 --trials 100 --fullstate 0 --forgetpolicy 0 --planlocal 1 --detect-deadends 1
+This is a unit task.
+./../../src/search/downward-release --heuristic "h=ff(cost_type=1)" --search "lazy_greedy([h],preferred=[h])" --random-seed 814102613 --optimized-scd 1 --online-deadends 1 --partial-planlocal 1 --plan-with-policy 1 --limit-planlocal 1 --jic-limit 18000 --generalize-deadends 1 --trials 100 --fullstate 0 --forgetpolicy 0 --planlocal 1 --detect-deadends 1 < output
+Peak memory: 0 KB
+caught signal 2 -- exiting
