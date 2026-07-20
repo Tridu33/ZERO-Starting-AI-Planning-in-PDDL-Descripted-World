@@ -1,0 +1,34 @@
+
+If holds: var0:1 var1:1 var2:1 var3:1
+Execute: 0_unstack_1_7 / SC / d=1
+If holds: var0:1 var1:1 var2:1 var3:0
+Execute: 8_virtual_source_act_0 / SC / d=2
+If holds: var0:1 var1:1 var2:0 var3:1
+Execute: goal / SC / d=0
+If holds: var0:1 var1:1 var2:0 var3:0
+Execute: 8_virtual_source_act_0 / SC / d=0
+If holds: var0:1 var1:0 var2:1 var3:1
+Execute: 1_putdown_0 / SC / d=1
+If holds: var0:1 var1:0 var2:1 var3:0
+Execute: 8_virtual_source_act_0 / SC / d=2
+If holds: var0:1 var1:0 var2:0 var3:1
+Execute: goal / SC / d=0
+If holds: var0:1 var1:0 var2:0 var3:0
+Execute: 8_virtual_source_act_0 / SC / d=0
+If holds: var0:0 var1:1 var2:1 var3:1
+Execute: goal / SC / d=1
+If holds: var0:0 var1:1 var2:1 var3:0
+Execute: 8_virtual_source_act_0 / SC / d=2
+If holds: var0:0 var1:1 var2:0 var3:1
+Execute: goal / SC / d=0
+If holds: var0:0 var1:1 var2:0 var3:0
+Execute: 8_virtual_source_act_0 / SC / d=0
+If holds: var0:0 var1:0 var2:1 var3:1
+Execute: goal / SC / d=1
+If holds: var0:0 var1:0 var2:1 var3:0
+Execute: 8_virtual_source_act_0 / SC / d=2
+If holds: var0:0 var1:0 var2:0 var3:1
+Execute: 1_putdown_0 / SC / d=0
+If holds: var0:0 var1:0 var2:0 var3:0
+Execute: 8_virtual_source_act_0 / SC / d=0
+

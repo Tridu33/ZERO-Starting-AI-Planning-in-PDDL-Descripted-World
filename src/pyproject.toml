@@ -1,0 +1,29 @@
+[project]
+name = "policy4fondrl2bnn"
+version = "0.5.0"
+description = "Pipeline: PDDL-Gym Blocks_clear → RL → Brevitas BNN → PRP-equivalent policy"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "gymnasium>=1.0",
+    "numpy>=1.26",
+    "torch>=2.1",
+    "torch-geometric>=2.5",
+    "brevitas>=0.12",
+]
+
+[project.scripts]
+policy4fondrl2bnn = "main:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["main"]
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.setuptools.packages.find]
+where = ["src"]

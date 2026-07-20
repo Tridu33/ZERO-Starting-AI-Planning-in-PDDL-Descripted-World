@@ -1,0 +1,66 @@
+Mapping:
+
+  var0:0	<-> 	 blockscleared()
+  var0:1	<-> 	 not(blockscleared())
+
+  var1:0	<-> 	 h()
+  var1:1	<-> 	 not(h())
+
+  var2:0	<-> 	 vgoal()
+  var2:1	<-> 	 not(vgoal())
+
+  var3:0	<-> 	 vstart()
+  var3:1	<-> 	 not(vstart())
+
+Policy:
+
+If holds: not(blockscleared())/not(h())/not(vgoal())/not(vstart())
+Execute: 0_unstack_1_7  / SC / d=1
+
+If holds: not(blockscleared())/not(h())/not(vgoal())/vstart
+Execute: 8_virtual_source_act_0  / SC / d=2
+
+If holds: not(blockscleared())/not(h())/vgoal/not(vstart())
+Execute: goal  / SC / d=0
+
+If holds: not(blockscleared())/not(h())/vgoal/vstart
+Execute: 8_virtual_source_act_0  / SC / d=0
+
+If holds: not(blockscleared())/h/not(vgoal())/not(vstart())
+Execute: 1_putdown_0  / SC / d=1
+
+If holds: not(blockscleared())/h/not(vgoal())/vstart
+Execute: 8_virtual_source_act_0  / SC / d=2
+
+If holds: not(blockscleared())/h/vgoal/not(vstart())
+Execute: goal  / SC / d=0
+
+If holds: not(blockscleared())/h/vgoal/vstart
+Execute: 8_virtual_source_act_0  / SC / d=0
+
+If holds: blockscleared/not(h())/not(vgoal())/not(vstart())
+Execute: goal  / SC / d=1
+
+If holds: blockscleared/not(h())/not(vgoal())/vstart
+Execute: 8_virtual_source_act_0  / SC / d=2
+
+If holds: blockscleared/not(h())/vgoal/not(vstart())
+Execute: goal  / SC / d=0
+
+If holds: blockscleared/not(h())/vgoal/vstart
+Execute: 8_virtual_source_act_0  / SC / d=0
+
+If holds: blockscleared/h/not(vgoal())/not(vstart())
+Execute: goal  / SC / d=1
+
+If holds: blockscleared/h/not(vgoal())/vstart
+Execute: 8_virtual_source_act_0  / SC / d=2
+
+If holds: blockscleared/h/vgoal/not(vstart())
+Execute: 1_putdown_0  / SC / d=0
+
+If holds: blockscleared/h/vgoal/vstart
+Execute: 8_virtual_source_act_0  / SC / d=0
+
+FSAP:
+
