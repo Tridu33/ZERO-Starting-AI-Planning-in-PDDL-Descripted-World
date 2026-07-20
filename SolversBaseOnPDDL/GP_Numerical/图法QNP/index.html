@@ -1,0 +1,3969 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ZERO-Starting AI Planning in PDDL-Descripted World">
+      
+      
+        <meta name="author" content="tridu33">
+      
+      
+      
+        <link rel="prev" href="../QNP_ReduceTo_GraphProblem/">
+      
+      
+        <link rel="next" href="../LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../imgs/logo.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>图法QNP - AI Planning in PDDL-Descripted World</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qnp" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-header__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Planning in PDDL-Descripted World
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              图法QNP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-nav__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    AI Planning in PDDL-Descripted World
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    规划界黑话
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    规划界黑话
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL进化史
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL进化史
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/ADL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HelloPDDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本迭代
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/Extension%20to%20PDDL%28SAS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL扩展
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器人世界
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    机器人世界
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/Golog/Golog_ROS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Golog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL使用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL使用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Usage/VSCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Studio Code使用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL语法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL语法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Syntax/PDDL%20axioms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    语法总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Syntax/PDDLParser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Descripted AI Planning World
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Descripted AI Planning World
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/A%20review%20of%20generalized%20planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    reviewOfGP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/GP_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ReviewOfMLforAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPwithDeep-RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/Survey%20of%20research%20literature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    researchSurvey
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolversBaseOnPDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SolversBaseOnPDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Solvers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solvers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_2" id="__nav_5_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CP/ffPlaner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CP/fast-downward/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_3" id="__nav_5_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_Numerical
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GP_Numerical
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QNP_ReduceTo_GraphProblem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_ReduceTo_GraphProblem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图法QNP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图法QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个变量
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一个变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两个变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qnp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QNP 问题形式化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        States
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "单一状态链等效"——弃用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution 图解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution 图解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        矩阵对角元 1-1：强连通关系的等效节点——强连通等效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ism-boolean-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISM 法（Boolean-Matrix）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gripper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gripper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gripper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点：有环有向图 → DAG 算法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设计 Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类图设计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="类图设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证明"程序终止性"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输出
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键代码和实现 demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demo 封装 Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考 2-SAT 问题求解算法
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LPG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../grahPlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    grahPlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SGPlan6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SGPlan6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../myND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    myND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_4" id="__nav_5_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_FONS_SAT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QNP_FONS_SAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QNP_FONS_SAT/CNF_py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CNF_py
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QNP_FONS_SAT/FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QNP_FONS_SAT/QA_FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA_FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例解FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QNP_FONS_SAT/QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QNP_FONS_SAT/qnp2fond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2fond
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QNP_FONS_SAT/QNP2SAT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2SAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-plan-validators
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-plan-validators
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Extensions/PDDL-plan-validator/PDDL-plan-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    validators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Extensions/PDDL-plan-validator/Lisp-pddl-INVAL-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INVAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Auto Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Auto Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Extensions/AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2AP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Extensions/RL/PDDLGYM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDLGYM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进击的PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进击的PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Curry-Howard correspondence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Curry-Howard correspondence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG语义网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FurtherMore/TransitionSystemModelCheck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG=TransitionSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FurtherMore/qnp2ast2program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2ast2program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issue跟踪讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个变量
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一个变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        两个变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qnp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QNP 问题形式化
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        States
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "单一状态链等效"——弃用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution 图解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution 图解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        矩阵对角元 1-1：强连通关系的等效节点——强连通等效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ism-boolean-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ISM 法（Boolean-Matrix）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gripper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gripper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gripper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重点：有环有向图 → DAG 算法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设计 Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类图设计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="类图设计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        证明"程序终止性"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输出
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键代码和实现 demo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Demo 封装 Packages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考 2-SAT 问题求解算法
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<div class="toc">
+<ul>
+<li><a href="#qnp">QNP 图解</a><ul>
+<li><a href="#_1">一个变量</a><ul>
+<li><a href="#_2">两个变量</a></li>
+</ul>
+</li>
+<li><a href="#qnp_1">QNP 问题形式化</a></li>
+<li><a href="#states">States</a></li>
+<li><a href="#actions">Actions</a></li>
+<li><a href="#_3">"单一状态链等效"——弃用</a></li>
+<li><a href="#solution">Solution 图解</a><ul>
+<li><a href="#1-1">矩阵对角元 1-1：强连通关系的等效节点——强连通等效</a></li>
+<li><a href="#ism-boolean-matrix">ISM 法（Boolean-Matrix）</a></li>
+</ul>
+</li>
+<li><a href="#gripper">Gripper</a><ul>
+<li><a href="#dag">重点：有环有向图 → DAG 算法</a></li>
+</ul>
+</li>
+<li><a href="#design">设计 Design</a></li>
+<li><a href="#_4">输入</a></li>
+<li><a href="#_5">类图设计</a><ul>
+<li><a href="#_6">证明"程序终止性"</a></li>
+</ul>
+</li>
+<li><a href="#_7">输出</a></li>
+<li><a href="#demo">关键代码和实现 demo</a></li>
+<li><a href="#demo-packages">Demo 封装 Packages</a></li>
+<li><a href="#2-sat">参考 2-SAT 问题求解算法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="qnp">QNP 图解<a class="headerlink" href="#qnp" title="Permanent link">&para;</a></h1>
+<h2 id="_1">一个变量<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>积木世界</p>
+<p><img alt="Q_clear" src="../_v_images/q_clear_1597996912_12064.png" /></p>
+<h3 id="_2">两个变量<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>积木世界接龙版</p>
+<p><img alt="Q_clearProblem" src="../_v_images/q_clearpro_1597997815_4139.png" /></p>
+<p>文中所示的解法图示，笔者认为并不完全妥当：</p>
+<p><img alt="QNP2FOND然后用FOND-SAT求出来的" src="../_v_images/fondsat%E6%B1%82%E5%87%BA%E6%9D%A5_1597996983_13429.png" /></p>
+<p>直观而言，清理完 <span class="arithmatex">\(X\)</span> 上方的 <span class="arithmatex">\(n\)</span> 块积木后再清理 <span class="arithmatex">\(Y\)</span> 上方的 <span class="arithmatex">\(m\)</span> 块积木，绝非唯一可行的策略，</p>
+<p>亦可能先处理 <span class="arithmatex">\(Y\)</span> 而后处理 <span class="arithmatex">\(X\)</span>。</p>
+<p>**更有可能的求解图**应当如下所示，即 <span class="arithmatex">\(X\)</span> 与 <span class="arithmatex">\(Y\)</span> 的清理工作交替进行：</p>
+<p><img alt="好像更可能发生的搬运方法" src="../_v_images/%E5%AE%9E%E9%99%85%E7%9A%84%E8%A7%A3%E6%B3%95_1597996702_15152.png" /></p>
+<h2 id="qnp_1">QNP 问题形式化<a class="headerlink" href="#qnp_1" title="Permanent link">&para;</a></h2>
+<p>QNP 问题可形式化定义为：<span class="arithmatex">\(Q = \langle F, V, I, O, G \rangle\)</span></p>
+<p><span class="arithmatex">\(F = \{ E\ \text{空手}, X\ \text{手持积木}'x', D\ \text{达成目标积木}'x'\ \text{放在积木}'y'\ \text{上方} \}\)</span></p>
+<p><span class="arithmatex">\(V = \{ \text{积木}'x'\ \text{上方有}\ n\ \text{块积木},\ \text{积木}'y'\ \text{上方有非负整数}\ m\ \text{块积木} \}\)</span></p>
+<p>注：笔者认为，即便涉及小数 <span class="arithmatex">\(n, m\)</span>（例如晶圆堆叠制造），只要属于可定义单位数量的离散事件，均可通过求取 <span class="arithmatex">\(\gcd(n, m)\)</span> 并令 <span class="arithmatex">\(n' = n / \gcd,\ m' = m / \gcd\)</span> 转化为整数单位。因此，本文仅考虑整数 <span class="arithmatex">\(n, m\)</span> 的情形。</p>
+<h2 id="states">States<a class="headerlink" href="#states" title="Permanent link">&para;</a></h2>
+<p><span class="arithmatex">\(\text{Init} = S_{16}: (E, \overline{X}, \overline{D}, n &gt; 0, m &gt; 0)\)</span></p>
+<p><span class="arithmatex">\(\text{Goal} = S_{22}: (E, \overline{X}, D, n = 0, m &gt; 0)\)</span></p>
+<p>每个状态均由 <span class="arithmatex">\(S = F + V = f_1, f_2, \ldots, f_f + v_1, v_2, \ldots, v_v\)</span> 组成。</p>
+<p>为便于状态的枚举过程做到不重不漏，并简化后续图示，约定一种"状态 <span class="arithmatex">\(s\)</span> → 整数 <span class="arithmatex">\(\in \{0, 1, 2, \ldots, 2^{f+v} - 1\}\)</span>"的映射方式，即状态码。</p>
+<p>若直接进行全局枚举，则将存在 <span class="arithmatex">\(2^n \times 2^n\)</span> 阶的状态关系可达矩阵 <span class="arithmatex">\(M\)</span>。需设计一种算法：当状态节点 <span class="arithmatex">\(S_i\)</span> 的行与列均为全零时，该节点为孤立节点（或孤立子图），可予以删减。</p>
+<table>
+<thead>
+<tr>
+<th>空手</th>
+<th>手持 X</th>
+<th>Goal</th>
+<th>X 上 n</th>
+<th>Y 上 m</th>
+<th>状态编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E</td>
+<td>X</td>
+<td>D</td>
+<td>n=0</td>
+<td>m=0</td>
+<td><span class="arithmatex">\(11111_B = 31_H\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\overline{E}\)</span></td>
+<td><span class="arithmatex">\(\overline{X}\)</span></td>
+<td><span class="arithmatex">\(\overline{D}\)</span></td>
+<td>n&gt;0</td>
+<td>m&gt;0</td>
+<td><span class="arithmatex">\(00000_B = 0_H\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Pick-above-x = <span class="arithmatex">\(h E, \neg X, \neg D, n &gt; 0, m &gt; 0; \neg E, n \downarrow i\)</span> to pick the topmost block that is above x,</p>
+</li>
+<li>
+<p><span class="arithmatex">\(a_1\)</span>, Pick-above-x（捡起 <span class="arithmatex">\(x\)</span> 上方积木）：</p>
+</li>
+</ul>
+<pre class="mermaid"><code>graph LR;
+　　S16(E,非X,非D,n&gt;0,m&gt;0) --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0(非E,非X,非D,n&gt;0,m&gt;0);
+　　S16(E,非X,非D,n&gt;0,m&gt;0) --&gt;|当n==1拿x上石n_DownArrow| S2(非E,非X,非D,n=0,m&gt;0) ;
+　　S17(E,非X,非D,n&gt;0,m=0) --&gt;|当n&gt;1拿x上石n_DownArrow| S1(非E,非X,非D,n&gt;0,m=0);
+　　S17(E,非X,非D,n&gt;0,m=0) --&gt;|当n==1拿x上石n_DownArrow| S3(非E,非X,非D,n=0,m=0);</code></pre>
+<ul>
+<li>
+<p><span class="arithmatex">\(a_2\)</span>, Pick-above-y（捡起 <span class="arithmatex">\(y\)</span> 上方积木）：</p>
+</li>
+<li>
+<p>Pick-above-y = <span class="arithmatex">\(h E, \neg X, \neg D, n = 0, m &gt; 0; \neg E, m \downarrow i\)</span> to pick the topmost block that is above x,</p>
+</li>
+</ul>
+<pre class="mermaid"><code>graph LR;
+　　S16(E,非X,非D,n&gt;0,m&gt;0) --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0(非E,非X,非D,n&gt;0,m&gt;0);
+　　S18(E,非X,非D,n=0,m&gt;0) --&gt;|当m&gt;1拿y上石m_DownArrow| S2(非E,非X,非D,n=0,m&gt;0);
+　　S18(E,非X,非D,n=0,m&gt;0) --&gt;|当m==1拿y上石m_DownArrow| S3(非E,非X,非D,n=0,m=0);
+　　S16(E,非X,非D,n&gt;0,m&gt;0) --&gt;|当m==1拿y上石m_DownArrow| S1(非E,非X,非D,n&gt;0,m=0) ;</code></pre>
+<ul>
+<li><span class="arithmatex">\(a_3\)</span>, put-aside（将积木放到一边，不包括 <span class="arithmatex">\(x\)</span>；手持 <span class="arithmatex">\(x\)</span> 放一边称为 put-x-aside，系下文讨论的动作）放至桌面 Table：</li>
+<li>
+<p>Putaside-1 = <span class="arithmatex">\(h \neg E, \neg X, \neg D, n = 0; E \uparrow i\)</span> to put aside (not above x or y) the block being held,</p>
+</li>
+<li>
+<p>Putaside-2 = <span class="arithmatex">\(h \neg E, \neg X, \neg D, n &gt; 0, m &gt; 0; E \uparrow i\)</span> to put aside (not above x or y) the block being held,</p>
+</li>
+</ul>
+<pre class="mermaid"><code>graph LR;
+　　S0(非E,非X,非D,n&gt;0,m&gt;0) --&gt;|put-aside放一边| S16(E,非X,非D,n&gt;0,m&gt;0);
+　　S2(非E,非X,非D,n=0,m&gt;0) --&gt;|put_aside放一边| S18(E,非X,非D,n=0,m&gt;0);
+　　S1(非E,非X,非D,n&gt;0,m=0) --&gt;|put_aside放一边| S17(E,非X,非D,n&gt;0,m=0);
+　　S3(非E,非X,非D,n=0,m=0) --&gt;|put_aside放一边| S19(E,非X,非D,n=0,m=0);</code></pre>
+<ul>
+<li><span class="arithmatex">\(a_4\)</span>, pick-x（拿起 <span class="arithmatex">\(x\)</span> 石头），<strong>关键动作</strong>，其 precondition 与 effect 之间存在一对一映射关系。可将 <span class="arithmatex">\(\boldsymbol{g^{\ldots}} \to \ldots \to g' \to G\)</span> 状态链合并表示为 <span class="arithmatex">\(g^{\ldots}\)</span> 状态，即目标状态 <span class="arithmatex">\(G\)</span> 的"等价态 <span class="arithmatex">\(s\)</span>"，从而减少状态数量，避免不必要的排序。</li>
+<li>Pick-x = <span class="arithmatex">\(h E, \neg X, \neg D, n = 0, m = 0; \neg E, X \uparrow i\)</span> to pick block x,</li>
+</ul>
+<pre class="mermaid"><code>graph LR;
+　　S19(E,非X,非D,n=0,m=0) --&gt;|拿x积木| S11(E,非X,非D,n=0,m=0);</code></pre>
+<h2 id="_3"><strong>"单一状态链等效"——弃用</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>算法原理：矩阵 <span class="arithmatex">\(A\)</span> 中某节点行列均仅有一个非零元素且不相等，可将其合并为一个节点。鉴于该操作会提高复杂度且并非必要，故最终决定舍弃此等效方案，不予采用。</p>
+<p>同理，除终止等价态外，过程中亦可将一对一映射的单一状态链等价标识为 <span class="arithmatex">\(S'_{\text{状态链中最早（左）的状态}}\)</span>。</p>
+<p>例如：<span class="arithmatex">\(S_3 \to S_{19} \to S_{11} \to S_{21}\)</span></p>
+<pre class="mermaid"><code>graph LR;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<p>标识为 <span class="arithmatex">\(S_3'\)</span></p>
+<pre class="mermaid"><code>graph LR;
+　　S3';</code></pre>
+<ul>
+<li><span class="arithmatex">\(a_5\)</span>, put-x-on-y, 把手中的 <span class="arithmatex">\(x\)</span> 放在 <span class="arithmatex">\(y\)</span> 上方：</li>
+<li>Put-x-on-y = <span class="arithmatex">\(h \neg E, X, \neg D, n = 0, m = 0; E, \neg X, D, m \uparrow i\)</span> to put x on y.</li>
+</ul>
+<pre class="mermaid"><code>graph LR;
+　　S11(E,非X,非D,n=0,m=0) --&gt;|把x放在y上| S22(E,非X,D,n=0,m&gt;0);</code></pre>
+<ul>
+<li><span class="arithmatex">\(a_6\)</span>, put-x-aside。建议不定义此动作，这是一个危险且毫无意义的多余动作。由于未定义 pick-block-from-table，若将 <span class="arithmatex">\(x\)</span> 放置桌面后无法重新拾起，则任务宣告失败，此路径须予以剪枝。然而，在对问题分析不够透彻的情况下，仍有可能传入此类错误动作。</li>
+<li>Put-x-aside = <span class="arithmatex">\(h \neg E, X, \neg D, n = 0, m &gt; 0; E, \neg X \uparrow i\)</span> to put block x aside (not above y), and</li>
+</ul>
+<pre class="mermaid"><code>graph LR;
+　　S11(E,非X,非D,n=0,m=0) --&gt;|put_x_aside| S19(E,非X,非D,n=0,m=0);</code></pre>
+<p>（1）若不允许 put-x-aside 行为：</p>
+<pre class="mermaid"><code>graph LR;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<p>或者将 pick-x 理解为"从 <span class="arithmatex">\(x\)</span> 所在 tower 取出 <span class="arithmatex">\(x\)</span>"（机械臂定点于两个 tower 取件），而非"pick-x 可自动检索 table 中 <span class="arithmatex">\(x\)</span> 的位置，即便 <span class="arithmatex">\(x\)</span> 在 tower 上且 <span class="arithmatex">\(x\)</span> 上方无积木，仍能自动抓取 <span class="arithmatex">\(x\)</span>"。后者将陷入 <span class="arithmatex">\(a_6\)</span> 放 <span class="arithmatex">\(x\)</span> 然后 <span class="arithmatex">\(a_4\)</span> 抓起 <span class="arithmatex">\(x\)</span> 的无意义循环。当然，若问题分析足够清晰，不定义此动作即可避免。</p>
+<p>我们的期望是，即使问题分析不够清晰且定义了 <span class="arithmatex">\(a_6\)</span>，求解时仍能避开导向 Error 的失败 Plan。</p>
+<p>（2）若允许 put-x-aside 行为：</p>
+<pre class="mermaid"><code>graph LR;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|put_x_aside| S19;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<p>只要对问题有足够清晰的思考，输入时便不会出现 put-x-aside 的情况。问题在于，很多时候我们的 action 并不具备如下清晰的表达形式：</p>
+<div class="highlight"><pre><span></span><code>全局唯一标识状态码的 precondition --&gt; 全局唯一标识状态码的 effect
+</code></pre></div>
+<p>因此存在以下几个问题：</p>
+<ol>
+<li>可能出现冗余的 action。对于复杂问题，难以在一开始就将问题描述得十分清晰，并确定所有可能达到的状态总数。例如，"放下石头"的唯一直观形式化表示为 <span class="arithmatex">\(\langle \overline{E}, E \rangle\)</span>，其对应的实际状态为：</li>
+</ol>
+<pre class="mermaid"><code>graph LR;
+　　S_(非E,_,_,_,_) --&gt;|put-aside| S__(E,_,_,_,_);</code></pre>
+<p>简而言之，缺省值正是 QNPSAT 方法中将 <span class="arithmatex">\(r\)</span> 步以内 "<span class="arithmatex">\(S_0, S_G, S_1, \ldots, S_{r-2}\)</span>" 状态值全部枚举并输入生成"原子命题"的原因所在。</p>
+<p>根据此表格，直接枚举的结果为：</p>
+<table>
+<thead>
+<tr>
+<th>空手</th>
+<th>手持 X</th>
+<th>Goal</th>
+<th>X 上 n</th>
+<th>Y 上 m</th>
+<th>状态编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E</td>
+<td>X</td>
+<td>D</td>
+<td>n&gt;0</td>
+<td>m&gt;0</td>
+<td><span class="arithmatex">\(11111_B = 31_H\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\overline{E}\)</span></td>
+<td><span class="arithmatex">\(\overline{X}\)</span></td>
+<td><span class="arithmatex">\(\overline{D}\)</span></td>
+<td>n=0</td>
+<td>m=0</td>
+<td><span class="arithmatex">\(00000_B = 0_H\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>闭着眼睛枚举的话，</p>
+<pre class="mermaid"><code>graph LR;
+　　S12(非E,X,D,n&gt;0,m&gt;0) --&gt;|put-aside放一边| S28(E,X,D,n&gt;0,m&gt;0);
+　　S14(非E,X,D,n=0,m&gt;0) --&gt;|put_aside放一边| S30(E,X,D,n=0,m&gt;0);
+　　S13(非E,X,D,n&gt;0,m=0) --&gt;|put_aside放一边| S29(E,X,D,n&gt;0,m=0);
+　　S15(非E,X,D,n=0,m=0) --&gt;|put_aside放一边| S31(E,X,D,n=0,m=0);　
+　　S8(非E,X,非D,n&gt;0,m&gt;0) --&gt;|put-aside放一边| S24(E,X,非D,n&gt;0,m&gt;0);
+　　S10(非E,X,非D,n=0,m&gt;0) --&gt;|put_aside放一边| S26(E,X,非D,n=0,m&gt;0);
+　　S9(非E,X,非D,n&gt;0,m=0) --&gt;|put_aside放一边| S25(E,X,非D,n&gt;0,m=0);
+　　S11(非E,X,非D,n=0,m=0) --&gt;|put_aside放一边| S27(E,X,非D,n=0,m=0);
+　　S4(非E,非X,D,n&gt;0,m&gt;0) --&gt;|put-aside放一边| S20(E,非X,D,n&gt;0,m&gt;0);
+　　S6(非E,非X,D,n=0,m&gt;0) --&gt;|put_aside放一边| S22(E,非X,D,n=0,m&gt;0);
+　　S5(非E,非X,D,n&gt;0,m=0) --&gt;|put_aside放一边| S21(E,非X,D,n&gt;0,m=0);
+　　S7(非E,非X,D,n=0,m=0) --&gt;|put_aside放一边| S23(E,非X,D,n=0,m=0);　
+　　S0(非E,非X,非D,n&gt;0,m&gt;0) --&gt;|put-aside放一边| S16(E,非X,非D,n&gt;0,m&gt;0);
+　　S2(非E,非X,非D,n=0,m&gt;0) --&gt;|put_aside放一边| S18(E,非X,非D,n=0,m&gt;0);
+　　S1(非E,非X,非D,n&gt;0,m=0) --&gt;|put_aside放一边| S17(E,非X,非D,n&gt;0,m=0);
+　　S3(非E,非X,非D,n=0,m=0) --&gt;|put_aside放一边| S19(E,非X,非D,n=0,m=0);</code></pre>
+<p>这样会多出若干孤立子图。需设计一种算法：当状态节点 <span class="arithmatex">\(S_i\)</span> 的行与列均为全零时，该节点即为孤立节点，可予以删减。</p>
+<p>若这些冗余且不可达的状态不幸构成另一段节点数大于 1 的子图，则需运用（下文所述的）ISM 技术去除无关区域。</p>
+<pre class="mermaid"><code>graph LR;
+　　S0(非E,非X,非D,n&gt;0,m&gt;0) --&gt;|put-aside放一边| S16(E,非X,非D,n&gt;0,m&gt;0);
+　　S2(非E,非X,非D,n=0,m&gt;0) --&gt;|put_aside放一边| S18(E,非X,非D,n=0,m&gt;0);
+　　S1(非E,非X,非D,n&gt;0,m=0) --&gt;|put_aside放一边| S17(E,非X,非D,n&gt;0,m=0);
+　　S3(非E,非X,非D,n=0,m=0) --&gt;|put_aside放一边| S19(E,非X,非D,n=0,m=0);</code></pre>
+<p>实际上，真正可能发生的只有上述四种情况。</p>
+<h2 id="solution">Solution 图解<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
+<p>整个问题的图解即"在下面这张图中找到一条路径"：</p>
+<pre class="mermaid"><code>graph LR;
+　　S16 --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
+　　S0 --&gt;|put-aside放一边| S16;
+　　S16 --&gt;|当n==1拿x上石n_DownArrow| S2 ;
+　　S2 --&gt;|put_aside放一边| S18;
+　　S18 --&gt;|当m&gt;1拿y上石m_DownArrow| S2;
+　　S18 --&gt;|当m==1拿y上石m_DownArrow| S3;
+　　S16 --&gt;|当m==1拿y上石m_DownArrow| S1 ;
+　　S1 --&gt;|put_aside放一边| S17;
+　　S17 --&gt;|当n&gt;1拿x上石n_DownArrow| S1;
+　　S17 --&gt;|当n==1拿x上石n_DownArrow| S3;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|put_x_aside| S19;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<p>其中：</p>
+<p><span class="arithmatex">\(S16(E,非X,非D,n&gt;0,m&gt;0), S0(非E,非X,非D,n&gt;0,m&gt;0)\)</span>
+<span class="arithmatex">\(S2(非E,非X,非D,n=0,m&gt;0), S18(E,非X,非D,n=0,m&gt;0)\)</span>
+<span class="arithmatex">\(S1(非E,非X,非D,n&gt;0,m=0), S17(E,非X,非D,n&gt;0,m=0)\)</span>
+<span class="arithmatex">\(S3(非E,非X,非D,n=0,m=0), S11(E,非X,非D,n=0,m=0)\)</span>
+<span class="arithmatex">\(S19(E,非X,非D,n=0,m=0), S22(E,非X,D,n=0,m&gt;0)\)</span></p>
+<p>若换为状态详细的图示则为：</p>
+<pre class="mermaid"><code>graph LR;
+　　S16(E,非X,非D,n&gt;0,m&gt;0) --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0(非E,非X,非D,n&gt;0,m&gt;0);
+　　S0(非E,非X,非D,n&gt;0,m&gt;0) --&gt;|put-aside放一边| S16(E,非X,非D,n&gt;0,m&gt;0);
+　　S16(E,非X,非D,n&gt;0,m&gt;0) --&gt;|当n==1拿x上石n_DownArrow| S2(非E,非X,非D,n=0,m&gt;0) ;
+　　S2(非E,非X,非D,n=0,m&gt;0) --&gt;|put_aside放一边| S18(E,非X,非D,n=0,m&gt;0);
+　　S18(E,非X,非D,n=0,m&gt;0) --&gt;|当m&gt;1拿y上石m_DownArrow| S2(非E,非X,非D,n=0,m&gt;0);
+　　S18(E,非X,非D,n=0,m&gt;0) --&gt;|当m==1拿y上石m_DownArrow| S3(非E,非X,非D,n=0,m=0);
+　　S16(E,非X,非D,n&gt;0,m&gt;0) --&gt;|当m==1拿y上石m_DownArrow| S1(非E,非X,非D,n&gt;0,m=0) ;
+　　S1(非E,非X,非D,n&gt;0,m=0) --&gt;|put_aside放一边| S17(E,非X,非D,n&gt;0,m=0);
+　　S17(E,非X,非D,n&gt;0,m=0) --&gt;|当n&gt;1拿x上石n_DownArrow| S1(非E,非X,非D,n&gt;0,m=0);
+　　S17(E,非X,非D,n&gt;0,m=0) --&gt;|当n==1拿x上石n_DownArrow| S3(非E,非X,非D,n=0,m=0);
+　　S3(非E,非X,非D,n=0,m=0) --&gt;|put_aside放一边| S19(E,非X,非D,n=0,m=0);
+　　S19(E,非X,非D,n=0,m=0) --&gt;|拿x积木| S11(E,非X,非D,n=0,m=0);
+　　S11(E,非X,非D,n=0,m=0) --&gt;|put_x_aside| S19(E,非X,非D,n=0,m=0);
+　　S11(E,非X,非D,n=0,m=0) --&gt;|把x放在y上| S22(E,非X,D,n=0,m&gt;0);</code></pre>
+<p><strong>现将求解步骤总结如下：</strong></p>
+<ol>
+<li>标注所有状态：根据动作全观察描述，将动作 precondition 与 effect 中涉及的所有 States 均以"状态编码"标注为节点 node；</li>
+<li>打印问题描述的网络图（上图）；</li>
+<li>在有向连通图 DG 中找到从 <span class="arithmatex">\(S_{\text{初始}}\)</span> 到 <span class="arithmatex">\(S_{\text{目标}}\)</span> 的某一条路径，即规划成功！</li>
+</ol>
+<p>DG 有向图</p>
+<pre class="mermaid"><code>graph LR;
+　　DG有向图 --&gt;|前向搜索从S初始开始| 解答思路一;
+　　DG有向图 --&gt;|后向搜索从S目标回溯| 解答思路二能得到所有路径;
+　　DG有向图 --&gt;|dijkstra等等最短路算法每经节点+1消耗最短| 解答思路三最短路径;
+　　DG有向图 --&gt;|QNP2SAT.md文档| 解答方法四;</code></pre>
+<p>前向搜索从 <span class="arithmatex">\(S_{\text{初始}}\)</span> 开始，涵盖各种启发式方法、广度优先搜索及深度优先搜索等枚举策略。</p>
+<p>后向搜索从 <span class="arithmatex">\(S_{\text{目标}}\)</span> 回溯，通过多个栈存储多个 action 序列，每个栈分支按照后进先出原则得到所有方案（可达矩阵 <span class="arithmatex">\(M = (A + I)^r\)</span>，每步递增一步，多出的部分可通过 <span class="arithmatex">\((A + I)^r - (A + I)^{r-1}\)</span> 从至表矩阵获取。检查上次节点对应的入度"列"中非零元素状态，当该状态不是 <span class="arithmatex">\(S_{\text{初始}}\)</span> 时予以标记，若是则结束该分支）。若仅需寻找一条路径，则逆向遍历时遇到的岔路相对较少。</p>
+<ol>
+<li>计算 <span class="arithmatex">\((A + I)^\infty = (A + I)^r\)</span>，即最长 <span class="arithmatex">\(r\)</span> 步的有向图可达矩阵 <span class="arithmatex">\(M_r\)</span>。若 <span class="arithmatex">\(M[\text{初}, \text{目标}] = 1\)</span>，说明有解；否则无解，退出程序。</li>
+<li>回溯 <span class="arithmatex">\((A + I)^r - (A + I)^{r-1} = A^r\)</span>，在第 <span class="arithmatex">\(r\)</span> 步新增可达矩阵中，寻找 <span class="arithmatex">\(S_{\text{目标}}\)</span> 状态节点所在列中（行 <span class="arithmatex">\(\neq 0\)</span> 的横坐标）的入度节点集合，判断其是否等于 <span class="arithmatex">\(S_{\text{初}}\)</span>。若不等于 <span class="arithmatex">\(S_{\text{初}}\)</span>，则全部入栈，将这些节点集标记为 <span class="arithmatex">\(\text{ReachableG}(r)\)</span>，表示 <span class="arithmatex">\(r\)</span> 步内可达。若其中某节点等于 <span class="arithmatex">\(S_{\text{初}}\)</span>，则说明找到其中一条路径。</li>
+<li>回溯 <span class="arithmatex">\((A + I)^{r-1} - (A + I)^{r-2} = A^{r-1}\)</span>，在第 <span class="arithmatex">\(r-1\)</span> 步新增可达矩阵中循环。</li>
+<li>...</li>
+<li>回溯至 <span class="arithmatex">\((A + I)^1 - (A + I)^0 = (A + I)^1 - I = A\)</span>。正常情况下，只要每次有 <span class="arithmatex">\(S_{\text{初}}\)</span> 的路径均找出并入栈，即可得到所有路径！若此前所有循环中均未找到 <span class="arithmatex">\(S_{\text{初}}\)</span>，则一开始就不可能满足"<span class="arithmatex">\(M[\text{初}, \text{目标}] = 1\)</span> 说明有解"，说明输入错误或发生了某些程序错误，否则第一步就应退出程序。</li>
+</ol>
+<h3 id="1-1"><strong>矩阵对角元 1-1：强连通关系的等效节点——强连通等效</strong><a class="headerlink" href="#1-1" title="Permanent link">&para;</a></h3>
+<p>此外，还存在一种简化图的求解思路，即"将 <span class="arithmatex">\(n &gt; 0, n = 0\)</span> 视为非确定性（non-deterministic）"。</p>
+<p><img alt="S16和S0" src="../_v_images/s16%E5%92%8Cs0_1598433309_20903.png" /></p>
+<p>等效为下图：</p>
+<p><img alt="S16-0" src="../_v_images/s160_1598433520_1594.png" /></p>
+<p>其中可能经历多次循环，但在求解 <span class="arithmatex">\(S_{\text{初始}} \to S_{\text{目标}}\)</span> 问题的过程中，我们并不关心循环的具体次数。因为具体问题中 <span class="arithmatex">\(n, m\)</span> 的数值无需保持一致，只需将其视为等效节点 <span class="arithmatex">\(S_{16-0}\)</span> 即可。这不仅有助于降低计算复杂度，亦能更好地把握问题求解的本质——即寻找一条 <span class="arithmatex">\(S_{\text{初始}} \to S_{\text{目标}}\)</span> 的路径。</p>
+<p>于是原问题的图</p>
+<p>A 邻接矩阵：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>S16</th>
+<th>S0</th>
+<th>S2</th>
+<th>S18</th>
+<th>S1</th>
+<th>S17</th>
+<th>S3'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S16</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S18</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S17</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S3'</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>一步内走完的 <span class="arithmatex">\(M^1 = (A + I)^1\)</span></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>S16</th>
+<th>S0</th>
+<th>S2</th>
+<th>S18</th>
+<th>S1</th>
+<th>S17</th>
+<th>S3'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S16</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S18</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S17</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S3'</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>此矩阵中的 <span class="arithmatex">\(S_3'\)</span> 是：对 <span class="arithmatex">\(S_{19}\)</span> 和 <span class="arithmatex">\(S_{11}\)</span> 应用"强连通等效"之后，再应用"单一状态链等效"所得，如下图所示：</p>
+<p><img alt="S3状态链等效" src="../_v_images/s3%E7%8A%B6%E6%80%81%E9%93%BE%E7%AD%89%E6%95%88_1598522955_11855.jpg" /></p>
+<p>注意，在数据结构中需保存入度和出度的对应关系，形成二维表格。例如，对于"S19-11，S19 入度，S11 出度"，合并时需存储如下信息（以便还原求解路径）：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S19</th>
+<th>S11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入度</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>出度</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>实际上，对于一张图，我们可以设置标记变量 <span class="arithmatex">\(\text{changed} = 0/1\)</span>，对一张图反复循环应用两个等效：</p>
+<pre class="mermaid"><code>graph LR;
+　　S16 --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
+　　S0 --&gt;|put-aside放一边| S16;
+　　S16 --&gt;|当n==1拿x上石n_DownArrow| S2 ;
+　　S2 --&gt;|put_aside放一边| S18;
+　　S18 --&gt;|当m&gt;1拿y上石m_DownArrow| S2;
+　　S18 --&gt;|当m==1拿y上石m_DownArrow| S3;
+　　S16 --&gt;|当m==1拿y上石m_DownArrow| S1 ;
+　　S1 --&gt;|put_aside放一边| S17;
+　　S17 --&gt;|当n&gt;1拿y上石n_DownArrow| S1;
+　　S17 --&gt;|当n==1拿y上石n_DownArrow| S3;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|put_x_aside| S19;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">do</span><span class="p">:</span>
+    <span class="n">changed</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">存在对角元素</span> <span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">强连通等效</span> <span class="o">+</span> <span class="n">changed</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">actions</span> <span class="n">的</span> <span class="n">pre</span><span class="o">-</span><span class="n">effect</span> <span class="n">中存在</span> <span class="mi">1</span><span class="o">-</span><span class="mi">1</span> <span class="n">映射的情况</span><span class="p">:</span>
+        <span class="n">单一状态链等效</span> <span class="o">+</span> <span class="n">changed</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">changed</span> <span class="o">!=</span> <span class="mi">0</span>
+</code></pre></div>
+<p>变成新的图</p>
+<pre class="mermaid"><code>graph LR;
+　　S0-16 --&gt;|当n==1拿x上石n_DownArrow| S2-18 ;
+　　S2-18 --&gt;|当m==1拿y上石m_DownArrow| S3;
+　　S0-16 --&gt;|当m==1拿y上石m_DownArrow| S1-17 ;
+　　S1-17 --&gt;|当n==1拿y上石n_DownArrow| S3;
+　　S3 --&gt;|put_aside放一边| S19-11;
+　　S19-11 --&gt;|把x放在y上| S22;</code></pre>
+<p>A 邻接矩阵：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>S0-16</th>
+<th>S2-18</th>
+<th>S1-17</th>
+<th>S3'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0-16</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2-18</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S1-17</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S3'</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>一步内走完的 <span class="arithmatex">\(M^1 = (A + I)^1\)</span></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>S0-16</th>
+<th>S2-18</th>
+<th>S1-17</th>
+<th>S3'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0-16</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2-18</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S1-17</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S3'</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>布尔代数法：
+<span class="arithmatex">\(0 + 0 = 0\)</span>，<span class="arithmatex">\(0 + 1 = 1\)</span>，<span class="arithmatex">\(1 + 0 = 1\)</span>，<span class="arithmatex">\(1 + 1 = 1\)</span>
+<span class="arithmatex">\(0 \cdot 0 = 0\)</span>，<span class="arithmatex">\(0 \cdot 1 = 0\)</span>，<span class="arithmatex">\(1 \cdot 0 = 0\)</span>，<span class="arithmatex">\(1 \cdot 1 = 1\)</span></p>
+</blockquote>
+<p>两步内走完的可达矩阵 <span class="arithmatex">\(M^2 = (A + I)^2 = A^2 + (A + I)\)</span></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>S0-16</th>
+<th>S2-18</th>
+<th>S1-17</th>
+<th>S3'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0-16</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S2-18</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S1-17</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S3'</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(A^2\)</span> 矩阵：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>S0-16</th>
+<th>S2-18</th>
+<th>S1-17</th>
+<th>S3'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0-16</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td><span class="arithmatex">\(1 = 0 \cdot 0 + 1 \cdot 1 + 1 \cdot 1 + 0 \cdot 0\)</span></td>
+</tr>
+<tr>
+<td>S2-18</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S1-17</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S3'</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>其中多出的可达关系可由 <span class="arithmatex">\(M^2 - M^1 - A = A^2 - A\)</span> 表示：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>S0-16</th>
+<th>S2-18</th>
+<th>S1-17</th>
+<th>S3'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0-16</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S2-18</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S1-17</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S3'</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>直接得到。</p>
+<p>第......步</p>
+<p>假设该有向图 DG 最多 <span class="arithmatex">\(r\)</span> 步以内从初始点可抵达目标坐标，则有：</p>
+<p><span class="arithmatex">\((A + I)^1 \neq (A + I)^2 \neq \ldots \neq (A + I)^r = (A + I)^{r+1} = \ldots = (A + I)^{\infty}\)</span></p>
+<p>因此，最后 <span class="arithmatex">\(r\)</span> 步内可达的图即可达矩阵 <span class="arithmatex">\(M\)</span>，其意义为："<span class="arithmatex">\(r\)</span> 步（或无穷步）内，图中行节点 <span class="arithmatex">\(i\)</span> 连通列节点 <span class="arithmatex">\(j\)</span> 若为真，则可达矩阵对应 <span class="arithmatex">\(M[i, j] = 1\)</span>，否则 <span class="arithmatex">\(M[i, j] = 0\)</span>。"</p>
+<p>本 demo 中 <span class="arithmatex">\(r = 2\)</span>，对于更大的 <span class="arithmatex">\(r\)</span> 计算方式相同。最终得到 <span class="arithmatex">\(r\)</span> 步（或无穷步）内的可达矩阵：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>S0-16</th>
+<th>S2-18</th>
+<th>S1-17</th>
+<th>S3'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0-16</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S2-18</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S1-17</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>S3'</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>入度列全为零，起始集 <span class="arithmatex">\(B(S) = \{ \text{S0-16} \}\)</span>，可达集为 S0-16 行对应列为 1 的 <span class="arithmatex">\(\{ \text{S0-16}, \text{S2-18}, \text{S1-17}, \text{S3'} \}\)</span>。当 <span class="arithmatex">\(B(S)\)</span> 中所有元素各自的可达集交集为空时，说明区域可分。此处 <span class="arithmatex">\(B(s)\)</span> 仅有一个元素，故区域不可分。</p>
+<p>出度行全为零，终止集 <span class="arithmatex">\(E(S) = \{ \text{S3'} \}\)</span>，同样可检查先行集有无交集（略），亦可判断区域不可分。</p>
+<h3 id="ism-boolean-matrix">ISM 法（Boolean-Matrix）<a class="headerlink" href="#ism-boolean-matrix" title="Permanent link">&para;</a></h3>
+<p><strong>亦可采用拓扑排序，以求得先后次序序列</strong></p>
+<p>ISM 技术即递阶结构模型化技术（Interpretive Structural Modeling），最初由美国 J. N. 沃菲尔德教授于 1973 年提出，用于分析社会经济系统的结构性问题。</p>
+<ol>
+<li>区域划分</li>
+<li>级位划分</li>
+<li>提取骨架矩阵</li>
+<li>绘制多级递阶有向图 <span class="arithmatex">\(D(A')\)</span></li>
+</ol>
+<pre class="mermaid"><code>graph LR;
+　　M --&gt;|区域划分| 块对角M_P;
+　　块对角M_P --&gt; |级位划分| 区域块三角M_L;
+　　区域块三角M_L --&gt; |缩减强连接要素合并| 区域块三角M'_L;
+　　区域块三角M'_L --&gt; |剔除越级关系| 骨架矩阵M''_L;
+　　骨架矩阵M''_L --&gt; |去掉结点自身可达关系| A';
+　　A' --&gt; |绘图| G_A';</code></pre>
+<p>最终输出的结果是使计算机能够"理解"图中节点之间的先后次序、重要性层级与等级关系，从而显式地打印出该问题所对应图的层次化结构：</p>
+<pre class="mermaid"><code>graph LR;
+　　S0-16 --&gt;|bala| S2-18 ;
+　　S2-18 --&gt;|bala| S3';
+　　S0-16 --&gt;|bala| S1-17 ;
+　　S1-17 --&gt;|bala| S3';</code></pre>
+<p>即</p>
+<p><img alt="ISM技术结果" src="../_v_images/ism%E6%8A%80%E6%9C%AF%E7%BB%93%E6%9E%9C_1598522924_29159.jpg" /></p>
+<p>ISM 算法在本问题中优势不甚明显，原因在于问题本身过于简单。若存在大量路径，ISM 可揭示哪些元素是等效的，并可忽略或合并某些循环/一对一状态链，或等价地视为虚拟状态节点，从而显著节省计算成本。</p>
+<p>可设计一个更加充分的 demo：</p>
+<ul>
+<li>展示"剪枝"功能，去除无关子图。例如，给定过多 action，部分 actions 与求解 <span class="arithmatex">\(S_{\text{初始}} \to S_{\text{目标}}\)</span> 问题毫无关联。在状态生成阶段，需利用 ISM 算法中的"区域划分"去除无关的不连通子图。</li>
+<li>若存在多条路径可求解 <span class="arithmatex">\(S_{\text{初始}} \to S_{\text{目标}}\)</span> 问题，ISM 方法能够实现分级、分距离处理，以最为清晰简明的方式提取复杂有向图的"骨架矩阵"，即最核心、最精炼的图结构！经此处理之后，保存、搜索路径及求解的效果均极为理想。</li>
+</ul>
+<h2 id="gripper">Gripper<a class="headerlink" href="#gripper" title="Permanent link">&para;</a></h2>
+<p><img alt="GrippersProblem" src="../_v_images/gripperspr_1597997846_3160.png" /></p>
+<p><img alt="用FOND-SAT求解的Gripper" src="../_v_images/1597997057_22453.png" /></p>
+<table>
+<thead>
+<tr>
+<th>目标房间</th>
+<th>要被移走的 ball</th>
+<th><span class="arithmatex">\(0 \leq\)</span> 搬运中的 <span class="arithmatex">\(\leq 2\)</span></th>
+<th>空夹子数</th>
+<th>状态编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T</td>
+<td>b &gt; 0</td>
+<td>c &gt; 0</td>
+<td>g &gt; 0</td>
+<td><span class="arithmatex">\(1111_B = 15_H\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\overline{T}\)</span></td>
+<td>b = 0</td>
+<td>c &gt;= 0</td>
+<td>g = 0</td>
+<td><span class="arithmatex">\(0000_B = 0_H\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>图的节点即状态数量，需先确定共有多少状态：</p>
+<ul>
+<li>actions 中出现的、能够被完全表达且唯一确认的状态需先逐一列出；</li>
+<li>
+<p>对于带有缺省值的情况，例如上例中"放下积木"的 <span class="arithmatex">\(\langle \overline{E}, \_, \_, \_, \_; E, \_, \_, \_, \_ \rangle\)</span>，需结合问题中的隐含约束，将状态表达清晰，确保确定的 precondition 状态对应确定的 effect 状态，方为"充分的问题描述"。</p>
+</li>
+<li>
+<p><strong>不可能发生的矛盾状态</strong>：隐含条件"<span class="arithmatex">\(c = 0\)</span>（未夹持）且 <span class="arithmatex">\(g = 0\)</span>（空夹子数量为零）"不可能同时成立。此问题需要形式化求解者自行理解清楚，在 action 中不应输入此类状态。否则计算机的自动化运算亦无法处理——计算机并不知晓实际语义是否允许这些矛盾状态，其仅负责语法层面的合理性推导！</p>
+</li>
+</ul>
+<p><span class="arithmatex">\(S_{\ldots}: (\_, \_, c = 0, g = 0)\)</span></p>
+<p>具体即以下四种：</p>
+<p><span class="arithmatex">\(S_0: (\overline{T}, b = 0, c = 0, g = 0)\)</span>
+<span class="arithmatex">\(S_4: (\overline{T}, b &gt; 0, c = 0, g = 0)\)</span>
+<span class="arithmatex">\(S_8: (T, b = 0, c = 0, g = 0)\)</span>
+<span class="arithmatex">\(S_{12}: (T, b &gt; 0, c = 0, g = 0)\)</span></p>
+<ol>
+<li><strong>过程中不关心的无关状态</strong>：</li>
+</ol>
+<p><span class="arithmatex">\(S_1: (\overline{T}, b = 0, c = 0, g &gt; 0)\)</span></p>
+<h3 id="dag"><strong>重点：有环有向图 → DAG 算法</strong><a class="headerlink" href="#dag" title="Permanent link">&para;</a></h3>
+<p>状态编码仅为方便处理一对一映射的唯一全局状态标识，故亦可定义为：<span class="arithmatex">\(v_i &gt; 0\)</span> 取 <span class="arithmatex">\(1\)</span>，<span class="arithmatex">\(v_i = 0\)</span> 取 <span class="arithmatex">\(0\)</span>。标识方式本身无关紧要，但编写程序时需统一约定。例如，我们约定 <span class="arithmatex">\(f_i\)</span> 为真取 <span class="arithmatex">\(1\)</span>，<span class="arithmatex">\(\neg f_i\)</span> 为真取 <span class="arithmatex">\(0\)</span>；<span class="arithmatex">\(v_i &gt; 0\)</span> 取 <span class="arithmatex">\(1\)</span>，<span class="arithmatex">\(v_i = 0\)</span> 取 <span class="arithmatex">\(0\)</span>。</p>
+<p>此处故意采用与 Block World 不同的编码约定：</p>
+<table>
+<thead>
+<tr>
+<th>目标房间</th>
+<th>剩下要移 ball</th>
+<th>carried ball</th>
+<th>空 gripper 数</th>
+<th>状态编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T</td>
+<td>b &gt; 0</td>
+<td>c &gt; 0</td>
+<td>g &gt; 0</td>
+<td><span class="arithmatex">\(1111_B = 15_H\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\overline{T}\)</span></td>
+<td>b = 0</td>
+<td>c = 0</td>
+<td>g = 0</td>
+<td><span class="arithmatex">\(0000_B = 0_H\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="QNPCoded" src="../_v_images/qnpcoded_1598520857_22944.jpg" /></p>
+<pre class="mermaid"><code>graph LR;
+　　S5 --&gt;|Pick1-2| S7;
+　　S7 --&gt;|Pick1| S6;
+　　S7 --&gt;|Pick1| S2;　　
+　　S5 --&gt;|Pick1-2| S6;
+　　S6 --&gt;|MoveFullyLoaded| S14;
+　　S14 --&gt;|Drop2| S13;
+　　S14 --&gt;|Drop1| S15;
+　　S15 --&gt;|Drop1| S13;
+　　S13 --&gt;|LeaveTargetRoom| S5;
+　　S5 --&gt;|b==1Pick1| S3;
+　　S5 --&gt;|b==2Pick2| S2;
+　　S3 --&gt;|MoveHalfLoaded| S11;
+　　S11 --&gt;|Drop1| S9;
+　　S2 --&gt;|MoveFullyLoaded| S10 ;
+　　S10 --&gt;|Drop2| S9;
+　　S10 --&gt;|Drop1| S11;</code></pre>
+<p>找出所有环，将环上节点合并为一个节点，直至图中不存在环为止。具体代码应如何实现？</p>
+<p>识别"强连通分量"（Strongly Connected Components, SCC），然后等效替换强连通分量。</p>
+<p>将有向图分解为强连通分量：</p>
+<blockquote>
+<p>深度优先遍历的重要应用，SCC 算法，Strongly Connected Components(G)
+参见《算法导论》第 P357 页</p>
+</blockquote>
+<pre class="mermaid"><code>graph LR;
+　　S5_6_7_13_14_15 --&gt;|b==1Pick1| S3;
+　　S5_6_7_13_14_15 --&gt;|b==2Pick2或者Pick1| S2;
+　　S3 --&gt;|MoveHalfLoaded| S11;
+　　S11 --&gt;|Drop1| S9;
+　　S2 --&gt;|MoveFullyLoaded| S10 ;
+　　S10 --&gt;|Drop2| S9;
+　　S10 --&gt;|Drop1| S11;</code></pre>
+<p>此有向无环图 DAG 可使用 ISM 技术或拓扑排序进行处理。</p>
+<h2 id="design">设计 Design<a class="headerlink" href="#design" title="Permanent link">&para;</a></h2>
+<h2 id="_4">输入<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>定义一个标准文本描述格式 FVIOGO.qnp，只需明确描述 <span class="arithmatex">\(\langle F, V, I, G, O \rangle\)</span> 即可。以 Block World 问题为例：</p>
+<div class="highlight"><pre><span></span><code>E,X,D#不管你用什么符号，F读取后，自动重命名存成布尔命题f1,f2,f3---1；-f1,-f2,-f3---0
+n,m#建议使用v1,v2,v3,...命名。不管你用什么符号，V读取后，程序自动重命名存成v1,v2。约定v1&gt;0,v2&gt;0取值0；v1=0,v2=0取值1；
+E,-S,-D,n&gt;0,m&gt;0#初始I，程序先替换为10000B=16D,只需要存一个Interger表示S_0
+E,-S,D,n=0,m&gt;0#初始G，程序先替换为10110B=22D,只需要存一个Interger表示S_G
+a1:#action 1:Pick-above-x捡起来x上方积木:
+　　(E,-X,-D,n&gt;0,m&gt;0), (-E,-X,-D,n&gt;0,m&gt;0);#代码中应该存成命名a1的二维矩阵？或者一维序列每个元素是元组(S16,S0)下同，写成这样
+    S16(E,-X,-D,n&gt;0,m&gt;0), S2(-E,-X,-D,n=0,m&gt;0) ;#(S,S)
+　　S17(E,-X,-D,n&gt;0,m=0), S1(-E,-X,-D,n&gt;0,m=0);#(S,S)
+　　S17(E,-X,-D,n&gt;0,m=0), S3(-E,-X,-D,n=0,m=0);#(S,S)
+
+a2：#Pick-above-y捡起来y上方积木:
+　　S16(E,-X,-D,n&gt;0,m&gt;0), S0(-E,-X,-D,n&gt;0,m&gt;0);#(S,S)
+　　S18(E,-X,-D,n=0,m&gt;0),S2(-E,-X,-D,n=0,m&gt;0);#(S,S)
+　　S18(E,-X,-D,n=0,m&gt;0) , S3(-E,-X,-D,n=0,m=0);#(S,S)
+　　S16(E,-X,-D,n&gt;0,m&gt;0) ,S1(-E,-X,-D,n&gt;0,m=0) ;#(S,S)
+
+a3：#put-aside积木(不包括x，手持x放一边叫做put-x-aside是下面讨论的一个动作)放一边到桌面Table
+#包括这个 Putaside-1 = h¬E,¬X,¬D,n=0;Ei to put aside (not above x or y) the block being held,
+# 也包括这个 Putaside-2 = h¬E,¬X,¬D,n&gt;0,m&gt;0;Ei to put aside (not above x or y) the block being held,
+　　S0(-E,-X,-D,n&gt;0,m&gt;0) ,S16(E,-X,-D,n&gt;0,m&gt;0);#(S,S)
+　　S2(-E,-X,-D,n=0,m&gt;0),S18(E,-X,-D,n=0,m&gt;0);#(S,S)
+　　S1(-E,-X,-D,n&gt;0,m=0) , S17(E,-X,-D,n&gt;0,m=0);#(S,S)
+　　S3(-E,-X,-D,n=0,m=0) , S19(E,-X,-D,n=0,m=0);#(S,S)
+#这里需要提一点：允许_缺省项
+#比如放下石头，唯一的直观形式化表示&lt;-E,E&gt;,其实对应的状态有：
+       S_(-E,_,_,_,_) --&gt;|put-aside| S__(E,_,_,_,_);
+#然后可以运用PC内部程序需要自动化地枚举遍历：
+　　S12(-E,X,D,n&gt;0,m&gt;0) , S28(E,X,D,n&gt;0,m&gt;0);#(S,S)
+　　S14(-E,X,D,n=0,m&gt;0) ,S30(E,X,D,n=0,m&gt;0);#(S,S)
+　　S13(-E,X,D,n&gt;0,m=0) ,S29(E,X,D,n&gt;0,m=0);#(S,S)
+　　S15(-E,X,D,n=0,m=0) ,S31(E,X,D,n=0,m=0);　#(S,S)
+　　S8(-E,X,-D,n&gt;0,m&gt;0) ,S24(E,X,-D,n&gt;0,m&gt;0);#(S,S)
+　　S10(-E,X,-D,n=0,m&gt;0) ,S26(E,X,-D,n=0,m&gt;0);#(S,S)
+　　S9(-E,X,-D,n&gt;0,m=0) ,S25(E,X,-D,n&gt;0,m=0);#(S,S)
+　　S11(-E,X,-D,n=0,m=0) ,S27(E,X,-D,n=0,m=0);#(S,S)
+　　S4(-E,-X,D,n&gt;0,m&gt;0) , S20(E,-X,D,n&gt;0,m&gt;0);#(S,S)
+　　S6(-E,-X,D,n=0,m&gt;0) ,S22(E,-X,D,n=0,m&gt;0);#(S,S)
+　　S5(-E,-X,D,n&gt;0,m=0) ,S21(E,-X,D,n&gt;0,m=0);#(S,S)
+　　S7(-E,-X,D,n=0,m=0) ,S23(E,-X,D,n=0,m=0);　#(S,S)
+　　S0(-E,-X,-D,n&gt;0,m&gt;0),S16(E,-X,-D,n&gt;0,m&gt;0);#(S,S)
+　　S2(-E,-X,-D,n=0,m&gt;0) ,S18(E,-X,-D,n=0,m&gt;0);#(S,S)
+　　S1(-E,-X,-D,n&gt;0,m=0) ,S17(E,-X,-D,n&gt;0,m=0);#(S,S)
+　　S3(-E,-X,-D,n=0,m=0) ,S19(E,-X,-D,n=0,m=0);#(S,S)
+#多出来的可以通过ISM技术的&quot;区域划分&quot;去掉&quot;无S0,SG无关的孤立图们&quot;，结果就只剩下这几个真正会用的&quot;可达状态&quot;：
+　　S0(-E,-X,-D,n&gt;0,m&gt;0) ,S16(E,-X,-D,n&gt;0,m&gt;0);#(S,S)
+　　S2(-E,-X,-D,n=0,m&gt;0) ,S18(E,-X,-D,n=0,m&gt;0);#(S,S)
+　　S1(-E,-X,-D,n&gt;0,m=0) ,S17(E,-X,-D,n&gt;0,m=0);#(S,S)
+　　S3(-E,-X,-D,n=0,m=0) ,S19(E,-X,-D,n=0,m=0);#(S,S)
+
+#但是如果需要隐含条件推理的&quot;不可能状态&quot;需要人工输入的时候排除，因为PC不知道语义，只知道语法推导没毛病就行。或者需要另外定义一行可选项，用来输入不可能状态，在矩阵处理前去掉这个&quot;不可能状态结点&quot;。可选项怎么弄呢？
+a4：#pick-x，拿起来x石头，**关键动作**，pre一对一映射effect的行为，
+       S19(E,-X,-D,n=0,m=0) , S11(E,-X,-D,n=0,m=0);#(S,S)
+
+a5：#put-x-on-y,把手中的x放在y上方：
+　　S11(E,-X,-D,n=0,m=0) , S22(E,-X,D,n=0,m&gt;0);#(S,S)
+
+a6   #put-x-aside,建议别定义这动作，这是一个危险（毫无意义而且多余）的动作
+　　S11(E,-X,-D,n=0,m=0) , S19(E,-X,-D,n=0,m=0);#(S,S)
+</code></pre></div>
+<p>注：此处 <span class="arithmatex">\(n &gt; 0, n = 0\)</span> 可视为单纯的文字命题，分别代表非零和零。同时，不确定性动作无需传递 if (n == 1) 应走哪条分支路径，因为路径的选择默认由用户根据输出自行判断，甚至 <span class="arithmatex">\(n = n - 1\)</span> 执行多少次亦无需关心。</p>
+<p>这是因为结果输出后，用户"自行判断何时到达 <span class="arithmatex">\(n = 1\)</span> 临界数值标识状态"，从而开始走非循环的那条路径（此功能主要由"强连通分量的等效图"实现）。</p>
+<p>区别于 QNP2SAT 方法中将 <span class="arithmatex">\(n, n-1, n-2, \ldots, 2, 1\)</span> 均区分为不同状态，每个动作前提需写为：</p>
+<blockquote>
+<p>S16 &rarr;|当n==1拿x上石n_DownArrow| S2 ;</p>
+</blockquote>
+<p>以此动作为例：</p>
+<div class="highlight"><pre><span></span><code>{n=1}^S16 --&gt; S2^{n=n-1};#QNP2SAT要写成这样的，如果一个很弱智的问题，但是n比较大，复杂度增加也会很大，这是因为方法不好。
+</code></pre></div>
+<p>在"分量图中找到一条路径解"之后，**还原强连通分量**为"完整问题解路径"的过程中，代码还需处理一个细节：原始图 <span class="arithmatex">\(G\)</span> 中分量图的输入输出需还原回来。</p>
+<p>例如，<span class="arithmatex">\(S5\_6\_7\_13\_14\_15\)</span> 中，哪些节点是出度节点？哪些是入度节点？</p>
+<p>各自指向谁，均需**还原**到完整路径解中（亦即在原始图 <span class="arithmatex">\(G\)</span> 中读取这些信息，写入分量图补充完整，输出结果即为这样一张图 = Plan 规划方案）。</p>
+<p>其实问题亦十分简单。通过观察规律，我们发现**最后找到的分量图中间解还原出来的是原始图 <span class="arithmatex">\(G\)</span> 中的子图**。换言之，从原始图 <span class="arithmatex">\(G\)</span> 的矩阵中，挑选出"仅包含分量图中间解所提及的所有节点坐标"，填入该节点集横纵坐标所对应的新邻接矩阵，即得子图的矩阵。</p>
+<h2 id="_5">类图设计<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><img alt="QNP图法设计" src="../_v_images/qnp%E5%9B%BE%E6%B3%95%E8%AE%BE%E8%AE%A1_1598498581_30912.png" /></p>
+<p>此处的"最短路"仅指拓扑意义上的路径最短，并不等同于实际的步数最短。由于强连通分量的循环次数已被合并缩减为一个节点，无从得知一个节点所对应的实际步数，除非引入加权机制，将每次循环 <span class="arithmatex">\((n-1)\)</span> 次或 <span class="arithmatex">\((m-1)\)</span> 次的路径均显式表示出来。然而，如此实现较为困难，因为序列中可能先不确定地执行若干次，而后到达关键节点才执行 <span class="arithmatex">\((n-1)\)</span> 次。因此，本方法的不足之处在于无法找到绝对数值意义上路径最短的 Plan。</p>
+<p>值得肯定的是，某些 Plan 只要能走通，其路径消耗长度是相同的。</p>
+<p>示例如下：</p>
+<p><img alt="扫雪" src="../_v_images/%E6%89%AB%E9%9B%AA_1598604094_4287.png" /></p>
+<h3 id="_6">证明"程序终止性"<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>笔者接连使用了 Tarjan、ISM、Dijkstra 等现有图论算法，这些算法是否尚需单独证明？或许仅需证明非现成算法的部分——即"为每个强连通分量（环）寻找一条确定性路径"的算法。</p>
+<p>对此算法的构想如下：采用节点封装后的"强连通分量子图"，从子图的入口节点 <span class="arithmatex">\(S_i\)</span> 出发，通过 Dijkstra/Floyd 算法找到一条抵达出口节点 <span class="arithmatex">\(S_j\)</span> 的路径。这些似乎均属于图论范畴内的既有方法……既然每个用到的现有图论算法均可保证终止，那么依次串联使用，是否必然能够保证"整体一定终止"？</p>
+<h2 id="_7">输出<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>原始问题的图 <span class="arithmatex">\(G\)</span></li>
+</ul>
+<p>例如：</p>
+<pre class="mermaid"><code>graph LR;
+　　S16 --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
+　　S0 --&gt;|put-aside放一边| S16;
+　　S16 --&gt;|当n==1拿x上石n_DownArrow| S2 ;
+　　S2 --&gt;|put_aside放一边| S18;
+　　S18 --&gt;|当m&gt;1拿y上石m_DownArrow| S2;
+　　S18 --&gt;|当m==1拿y上石m_DownArrow| S3;
+　　S16 --&gt;|当m==1拿y上石m_DownArrow| S1 ;
+　　S1 --&gt;|put_aside放一边| S17;
+　　S17 --&gt;|当n&gt;1拿x上石n_DownArrow| S1;
+　　S17 --&gt;|当n==1拿x上石n_DownArrow| S3;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|put_x_aside| S19;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<ul>
+<li>缩减之后的图 DAG</li>
+</ul>
+<p>例如：</p>
+<pre class="mermaid"><code>graph LR;
+　　S0-16 --&gt;|bala| S2-18 ;
+　　S2-18 --&gt;|bala| S3;
+　　S0-16 --&gt;|bala| S1-17 ;
+　　S1-17 --&gt;|bala| S3;
+　　S3 --&gt;|put_aside放一边| S11-19;
+　　S11-19 --&gt;|把x放在y上| S22;　　</code></pre>
+<p>此处最好能自动绘制出 ISM 递阶等级的图。</p>
+<ul>
+<li>一条缩减的路径解图</li>
+</ul>
+<p>例如：</p>
+<pre class="mermaid"><code>graph LR;
+　　S0-16 --&gt;|bala| S2-18 ;
+　　S2-18 --&gt;|bala| S3;
+　　S3 --&gt;|put_aside放一边| S11-19;
+　　S11-19 --&gt;|把x放在y上| S22;　　　　</code></pre>
+<ul>
+<li>一条未经缩减的路径解图</li>
+</ul>
+<p>例如：</p>
+<pre class="mermaid"><code>graph LR;
+　　S16 --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
+　　S0 --&gt;|put-aside放一边| S16;
+　　S16 --&gt;|当n==1拿x上石n_DownArrow| S2 ;
+　　S2 --&gt;|put_aside放一边| S18;
+　　S18 --&gt;|当m&gt;1拿y上石m_DownArrow| S2;
+　　S18 --&gt;|当m==1拿y上石m_DownArrow| S3;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|put_x_aside| S19;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<hr />
+<pre class="mermaid"><code>graph LR;
+　　S16 --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
+　　S0 --&gt;|put-aside放一边| S16;
+　　S16 --&gt;|当n==1拿x上石n_DownArrow| S2 ;
+　　S2 --&gt;|put_aside放一边| S18;
+　　S18 --&gt;|当m&gt;1拿y上石m_DownArrow| S2;
+　　S18 --&gt;|当m==1拿y上石m_DownArrow| S3;
+　　S16 --&gt;|当m==1拿y上石m_DownArrow| S1 ;
+　　S1 --&gt;|put_aside放一边| S17;
+　　S17 --&gt;|当n&gt;1拿x上石n_DownArrow| S1;
+　　S17 --&gt;|当n==1拿x上石n_DownArrow| S3;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|put_x_aside| S19;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<hr />
+<pre class="mermaid"><code>graph LR;
+　　S16 --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
+　　S0 --&gt;|put-aside放一边| S16;
+　　S16 --&gt;|当n==1拿x上石n_DownArrow| S2 ;
+　　S16 --&gt;|当m==1拿y上石m_DownArrow| S1 ;
+　　S1 --&gt;|put_aside放一边| S17;
+　　S17 --&gt;|当n&gt;1拿x上石n_DownArrow| S1;
+　　S17 --&gt;|当n==1拿x上石n_DownArrow| S3;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|put_x_aside| S19;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<hr />
+<pre class="mermaid"><code>graph LR;
+　　S16 --&gt;|拿x上石n_DownArrow或拿y上石m_DownArrow| S0;
+　　S0 --&gt;|put-aside放一边| S16;
+　　S16 --&gt;|当n==1拿x上石n_DownArrow| S2 ;
+　　S2 --&gt;|put_aside放一边| S18;
+　　S18 --&gt;|当m&gt;1拿y上石m_DownArrow| S2;
+　　S18 --&gt;|当m==1拿y上石m_DownArrow| S3;
+　　S3 --&gt;|put_aside放一边| S19;
+　　S19 --&gt;|拿x积木| S11;
+　　S11 --&gt;|put_x_aside| S19;
+　　S11 --&gt;|把x放在y上| S22;</code></pre>
+<h2 id="demo">关键代码和实现 demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
+<p>Jupyter Notebook</p>
+<h2 id="demo-packages">Demo 封装 Packages<a class="headerlink" href="#demo-packages" title="Permanent link">&para;</a></h2>
+<p>Python Package</p>
+<h2 id="2-sat">参考 2-SAT 问题求解算法<a class="headerlink" href="#2-sat" title="Permanent link">&para;</a></h2>
+<p><a href="https://wenku.baidu.com/view/0f96c3daa58da0116c1749bc.html">2-SAT 问题求解算法 (百度文库)</a></p>
+<p><a href="https://blog.csdn.net/JarjingX/article/details/8521690">2-SAT 算法详解 (CSDN)</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 tridu33
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../js/umlconvert.js"></script>
+      
+        <script src="../../../js/sequence-loader.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2712 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ZERO-Starting AI Planning in PDDL-Descripted World">
+      
+      
+        <meta name="author" content="tridu33">
+      
+      
+      
+        <link rel="prev" href="../../AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/">
+      
+      
+        <link rel="next" href="../../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../imgs/logo.jpg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>PDDLGYM - AI Planning in PDDL-Descripted World</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pddlgympddl" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-header__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Planning in PDDL-Descripted World
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PDDLGYM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://Tridu33.github.io/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/" title="AI Planning in PDDL-Descripted World" class="md-nav__button md-logo" aria-label="AI Planning in PDDL-Descripted World" data-md-component="logo">
+      
+  <img src="../../../imgs/logo.jpg" alt="logo">
+
+    </a>
+    AI Planning in PDDL-Descripted World
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PDDL笔记
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    规划界黑话
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    规划界黑话
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL进化史
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL进化史
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/ADL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/STRIPS%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_3" id="__nav_2_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/PDDL%E8%AF%AD%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HelloPDDL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/version/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本迭代
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/Extension%20to%20PDDL%28SAS%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL扩展
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    机器人世界
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    机器人世界
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PlanLanguages/Golog/Golog_ROS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Golog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL使用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL使用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Usage/VSCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Studio Code使用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL语法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL语法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Syntax/PDDL%20axioms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    语法总览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Syntax/PDDLParser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Descripted AI Planning World
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Descripted AI Planning World
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Papers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Papers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/A%20review%20of%20generalized%20planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    reviewOfGP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/GP_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/A%20Review%20of%20Machine%20Learning%20for%20Automated%20Planning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ReviewOfMLforAP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/Generalized%20Planning%20With%20Deep%20Reinforcement%20Learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPwithDeep-RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Papers/Survey%20of%20research%20literature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    researchSurvey
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolversBaseOnPDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SolversBaseOnPDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/Solvers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solvers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_2" id="__nav_5_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/CP/ffPlaner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/CP/fast-downward/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_3" id="__nav_5_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GP_Numerical
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GP_Numerical
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/QNP_ReduceTo_GraphProblem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_ReduceTo_GraphProblem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/%E5%9B%BE%E6%B3%95QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图法QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/LPG%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%92%E5%9B%BE%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LPG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/grahPlan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    grahPlan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/SGPlan6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SGPlan6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/myND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    myND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_4" id="__nav_5_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP_FONS_SAT
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QNP_FONS_SAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/CNF_py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CNF_py
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QA_FOND/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA_FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/%E4%BE%8B%E8%A7%A3FOND%2BCNF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    例解FOND
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/qnp2fond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2fond
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SolversBaseOnPDDL/GP_Numerical/QNP_FONS_SAT/QNP2SAT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2SAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-plan-validators
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-plan-validators
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PDDL-plan-validator/PDDL-plan-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    validators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PDDL-plan-validator/Lisp-pddl-INVAL-validator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INVAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDL-Auto Planning
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDDL-Auto Planning
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AP/%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%AD%A6%E4%B9%A0QNP%E5%AE%9A%E4%B9%89%E5%AE%9E%E7%8E%B0AP%28AutomatedPlanning%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QNP2AP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDLGYM
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDDLGYM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pddlgympddlgym" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDDLGym：基于PDDL问题的Gym环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 引言
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 引言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-pddl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 背景：PDDL域与问题文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 观察和行动空间
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 初始化和重置环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 步进（step）方法的实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 开发现状
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pddlgym" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 PDDLGym的量化分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 PDDLGym的量化分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 环境概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 环境难度的差异性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进击的PDDL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    进击的PDDL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Curry-Howard correspondence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Curry-Howard correspondence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FurtherMore/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BECFG%E8%AF%AD%E4%B9%89%E7%BD%91%E7%BB%9Cpetri%E8%BF%81%E7%A7%BB%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%B1%95%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG语义网络
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FurtherMore/TransitionSystemModelCheck/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CFG=TransitionSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FurtherMore/qnp2ast2program/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    qnp2ast2program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World/issues" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issue跟踪讨论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pddlgympddlgym" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDDLGym：基于PDDL问题的Gym环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 引言
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 引言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-pddl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 背景：PDDL域与问题文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 观察和行动空间
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 初始化和重置环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 步进（step）方法的实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 开发现状
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pddlgym" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 PDDLGym的量化分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 PDDLGym的量化分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 环境概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 环境难度的差异性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<div class="toc">
+<ul>
+<li><a href="#pddlgympddl">PDDLGym：基于PDDL问题的强化学习环境框架</a><ul>
+<li><a href="#pddlgympddlgym">PDDLGym：基于PDDL问题的Gym环境</a></li>
+<li><a href="#1">1 引言</a><ul>
+<li><a href="#21-pddl">2.1 背景：PDDL域与问题文件</a></li>
+<li><a href="#22">2.2 观察和行动空间</a></li>
+<li><a href="#23">2.3 初始化和重置环境</a></li>
+<li><a href="#24-step">2.4 步进（step）方法的实现</a></li>
+<li><a href="#25">2.5 开发现状</a></li>
+</ul>
+</li>
+<li><a href="#3-pddlgym">3 PDDLGym的量化分析</a><ul>
+<li><a href="#31">3.1 环境概述</a></li>
+<li><a href="#32">3.2 环境难度的差异性</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="pddlgympddl">PDDLGym：基于PDDL问题的强化学习环境框架<a class="headerlink" href="#pddlgympddl" title="Permanent link">&para;</a></h1>
+<p><a href="https://arxiv.org/abs/2002.06432">PDDLGym: Gym Environments from PDDL Problems</a></p>
+<ul>
+<li><a href="https://github.com/tomsilver/pddlgym">PDDLGym 开源仓库</a></li>
+<li><a href="https://github.com/ronuchit/pddlgym_planners">PDDLGym 规划器集合</a></li>
+</ul>
+<h2 id="pddlgympddlgym">PDDLGym：基于PDDL问题的Gym环境<a class="headerlink" href="#pddlgympddlgym" title="Permanent link">&para;</a></h2>
+<p>麻省理工学院计算机科学与人工智能实验室（tslvr，<a href="mailto:ronuchitj@mit.edu">ronuchitj@mit.edu</a>）</p>
+<p>2020年9月17日</p>
+<p><strong>摘要</strong></p>
+<p>本文提出PDDLGym，一个能够依据PDDL（规划域定义语言，Planning Domain Definition Language）域文件与问题文件自动构建OpenAI Gym环境的开源框架。在PDDLGym中，观察与动作均以关系性表征呈现，从而使其特别适用于关系强化学习及关系序列决策的相关研究。与此同时，PDDLGym亦可作为一种通用框架，借助简洁且规范的描述语言快速构建多样化的基准测试集。本文详细阐述了该框架的设计决策与实现细节，并基于规划难度与模型学习难度两个维度，对内置的20种环境之间的经验性差异进行了深入分析。我们期望PDDLGym能够架设起强化学习社区（催生Gym之领域）与AI规划社区（催生PDDL之领域）之间的桥梁。</p>
+<h2 id="1">1 引言<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>基准测试的建立往往能够加速人工智能各子领域的研究进程[<a href="#bookmark3">1，</a><a href="#bookmark4">2，</a><a href="#bookmark5">3] </a>。在序列决策任务中，诸如OpenAI Gym [<a href="#bookmark6">4]</a>中的环境与国际规划大赛（IPC）[<a href="#bookmark7">5]</a>中的规划任务等基准，极大地推动了相关领域的蓬勃发展。Gym定义了智能体与环境交互的标准化接口，从而便于对各种强化学习算法进行对比评估。IPC则提供了一组采用规划域定义语言（PDDL）[<a href="#bookmark8">6]</a>编写的规划域与问题实例，进而便于对不同符号规划器展开系统性的比较分析。</p>
+<p>在本项工作中，我们介绍PDDLGym，一个融合Gym与PDDL元素的开源框架。<strong>PDDLGym是一个Python库，能够根据PDDL域文件与问题文件自动创建Gym环境。</strong></p>
+<p>该库托管于<a href="https://github.com/tomsilver/pddlgym">PDDLGym GitHub仓库</a>。欢迎提交拉取请求（Pull Request）！</p>
+<p>与Gym类似，PDDLGym支持智能体与环境之间进行周期性的闭环交互：智能体从环境接收观察结果，执行动作，如此循环直至情节终止。与PDDL一致，PDDLGym在本质上是关系性的：观察结果是基于对象的具体化关系集合（例如，on(盘子, 桌子上)），动作则是与对象绑定的模板化操作（例如，pick(盘子)）。因此，PDDLGym特别适用于关系学习与序列决策的相关研究。关于当前PDDLGym中部分环境的可视化渲染效果，参见图<a href="#bookmark9">1</a>；代码示例参见图<a href="#bookmark10">2</a>。</p>
+<p>强化学习中所使用的Gym API定义了智能体与环境之间的明确界限。具体而言，智能体*仅*通过执行动作与接收观察结果来与环境进行交互。环境执行一个步进函数（step），该函数根据智能体施加的动作推进状态；该函数定义了环境的转移模型。类似地，PDDL域通过其运算符对转移模型进行编码。然而，在典型用法中，PDDL被理解为完全存在于智能体的"思维"之中，随后由独立的过程负责将规划转化为智能体在现实世界中可执行的动作序列。</p>
+<p>PDDLGym打破了这一惯例：在PDDLGym中，PDDL域与问题被牢固地置于智能体-环境边界的环境一侧。环境利用PDDL文件实现步进（step）功能，从而在给定动作的条件下推进状态。因此，将PDDLGym理解为对PDDL用途的一种重构更为恰当。在实现层面，这一用途具有微妙但重要的含义，相关讨论参见第<a href="#bookmark11">2.2节</a>。</p>
+<p><img alt="pddlgym1" src="../_v_images/pddlgym1.jpg" /></p>
+<p>图1：<strong>PDDLGym中实现的部分环境示例。</strong> 从左上角起依次为：推箱子（Sokoban）、河内塔（Towers of Hanoi）、积木世界（Blocks World）、旅行商问题（TSP）、数字华容道（Sliding Puzzle）以及手工制作（Crafting）。</p>
+<p><img alt="pddlgym2" src="../_v_images/pddlgym2.jpg" /></p>
+<p>图2：<strong>PDDLGym代码示例。</strong> PDDLGym环境由PDDL域文件与PDDL问题文件列表共同定义。（A）PDDL域文件中的一个操作符示例。（B）一段简洁的PDDL问题文件摘录。（C）在使用PDDL域文件与问题文件注册名为"PDDLEnvBlocks-v0"的环境后，仅需数行Python代码即可与此PDDLGym环境进行交互。</p>
+<p>PDDLGym具有三个主要用途：</p>
+<p><strong>（1）促进为关系域中的序列决策创建多样化的基准测试集。</strong> PDDLGym允许在PDDL中定义任务，从而依据PDDL文件自动构建Gym环境。PDDL提供了一种用于描述域的紧凑符号语言，而直接通过Gym API进行定义则可能显得繁琐且冗余。</p>
+<p><strong>（2）搭建强化学习与规划研究之间的桥梁。</strong> PDDLGym使规划研究人员与机器学习研究人员能够在完全相同的基准集上测试各自的方法，并可融合两种方法的优势开发新技术。此外，由于PDDLGym包含内置的域与问题，因此进行同类比较（Apple-to-Apple comparison）时无需从不同来源收集第三方代码（另参见[<a href="#bookmark12">7]</a>）。</p>
+<p><strong>（3）促进关系域中序列决策的研究。</strong> 在我们自身的研究实践中，我们发现PDDLGym在探索驱动的操作符学习[<a href="#bookmark13">8]</a>、分层目标条件策略学习[<a href="#bookmark14">9]</a>以及状态抽象[<a href="#bookmark15">10]</a>等方面具有重要价值。其他可能受益于PDDLGym的开放性研究问题包括：关系强化学习[<a href="#bookmark16">11，</a><a href="#bookmark17">12，</a><a href="#bookmark18">13] </a>，操作符符号描述的自动学习[<a href="#bookmark16">11，</a><a href="#bookmark19">14，</a><a href="#bookmark20">15] </a>，发现相关转移规则以促进高效规划[<a href="#bookmark21">16，</a><a href="#bookmark22">17] </a>，以及选择性学习（learning unselecting）[<a href="#bookmark23">18，19</a><a href="#bookmark24">，</a><a href="#bookmark25">20，</a><a href="#bookmark26">21] </a>。</p>
+<p>本文的其余部分组织结构如下。第<a href="#bookmark27">2节</a>讨论PDDLGym的设计决策与实现细节。第<a href="#bookmark28">3节</a>概述内置的PDDLGym域，并提供基础性经验结果，以阐明这些域在规划难度与学习难度方面的多样性。最后，第<a href="#bookmark29">4节</a>探讨扩展与改进PDDLGym的潜在途径。</p>
+<p>Gym API通过三种核心方法将环境定义为Python类：</p>
+<ul>
+<li><strong><strong>init</strong></strong>：用于初始化环境；</li>
+<li><strong>reset</strong>：开始新的情节（episode）并返回观察值；</li>
+<li><strong>step</strong>：从智能体接收动作，推进当前状态，并返回观察值、奖励、指示情节是否完成的布尔值以及可选的调试信息。</li>
+</ul>
+<p>该API还包含其他辅助方法，例如处理渲染与随机种子的相关方法。</p>
+<p>最后，Gym环境需要实现一个**action_space**（用以表示可能的动作空间）与一个**observation_space**（用以表示可能的观察空间）。</p>
+<p>接下来，我们将简要概述PDDL文件的基本结构，然后详细阐述PDDLGym中动作空间与观察空间的定义方式。随后，我们将讨论上述三种基本方法的具体实现。关于PDDLGym中主要数据结构的实现细节，可参阅代码中的**structs.py**文件。</p>
+<h3 id="21-pddl">2.1 背景：PDDL域与问题文件<a class="headerlink" href="#21-pddl" title="Permanent link">&para;</a></h3>
+<p>PDDL文件分为两种类型：域文件与问题文件。单个*基准测试*由一个域文件与多个问题文件共同定义。</p>
+<p>PDDL域文件包含*谓词*（带有占位符变量的命名关系，例如 on(?x, ?y)）与*运算符*。运算符由名称、参数列表、描述运算符前提条件的一阶逻辑公式（作用于参数）以及描述运算符效果的一阶逻辑公式（作用于参数）构成。前提条件与效果公式的形式通常受PDDL版本的限制。PDDL的早期版本仅允许基础谓词的合取[<a href="#bookmark31">22]</a>；更高版本则支持析取与量词[<a href="#bookmark32">23]</a>。PDDL运算符的示例参见图<a href="#bookmark10">2A</a>。</p>
+<p>PDDL问题文件包括一组*对象*（命名实体）、<em>初始状态*与*目标</em>。初始状态是一组带有对象的谓词。依据封闭世界假设（Closed-World Assumption），任何不在状态中的基化谓词均被视为假。目标是对象上的一阶逻辑公式（目标的形式受PDDL版本的限制，例如运算符、前提条件与效果）。值得注意的是，PDDL（以及PDDLGym）还允许对对象与变量进行*类型化*。有关PDDL问题文件的部分示例，请参见图<a href="#bookmark10">2B</a>。</p>
+<h3 id="22">2.2 观察和行动空间<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>PDDLGym中的每个观察对象 obs 包含三个组件，这些组件镜像了PDDL问题文件的组成结构：obs.objects 是问题中所有对象的集合；obs.goal 包含问题目标；obs.literals 是在当前状态下为真的所有基化谓词的集合。上述观察结果完全封装了环境状态，即PDDLGym环境被完全观察。观察空间是所有可能的基化谓词以及静态对象与目标的幂集。该幂集通常规模庞大，但幸运的是，通常无需对其进行显式计算。观察空间亦可视为离散空间，其大小等于该幂集的基数。</p>
+<p>PDDLGym环境的动作空间是框架中较为微妙的方面之一，存在两种可选方案。代码仓库的README文档中，在"第3步：注册Gym环境"一节提供了这两种途径的详细说明。</p>
+<p>如果仅希望将现成的PDDL文件与PDDLGym配合使用，则第一种方法较为适宜。具体而言，在环境注册时将 operator_as_actions 设置为 True，此举告知PDDLGym：PDDL域文件中的运算符本身应被视为环境中的动作，并由这些运算符的参数进行参数化。</p>
+<p>建议采用第二种途径以开展更为严谨的研究，这是由于经典AI规划中的"操作符"与强化学习中的"动作"之间存在根本性的语义差异。在AI规划中，动作通常等同于基化操作符，即其参数绑定到具体对象的操作符。然而，在大多数PDDL域中，仅有一部分操作符参数是*自由的*（就控制智能体而言）。其余参数之所以包含在操作符中，是因为它们是前提条件或效果表达式的组成部分，但其取值可从当前状态或自由参数的选择中推导得出。PDDL本身并不区分自由参数与非自由参数。例如，考虑图<a href="#bookmark34">3A</a>所示的推箱子操作符。该操作符表示玩家(?p)从某一单元格(?from)向另一单元格(?to)沿某个方向(?dir)移动的规则。在实际的推箱子游戏中，智能体做出的唯一选择是移动方向——仅 ?dir 参数是自由的。玩家 ?p 始终保持不变，?from 由智能体在当前状态下的位置决定，?to 则可从 ?from 与智能体对 ?dir 的选择中推导得出。为了正确定义PDDLGym环境的动作空间，我们必须明确区分自由参数与非自由参数。</p>
+<p><img alt="pddlgym3" src="../_v_images/pddlgym4.jpg" /></p>
+<p>图3：<strong>PDDL操作符中自由参数的显式化。</strong> 传统上，PDDL操作符将自由参数与非自由参数混合在一起。例如，在推箱子（Sokoban）（A）的典型移动操作符中，自由参数 ?dir 与非自由参数共同包含在内。PDDLGym必须区分自由参数以正确定义动作空间。一种方案是要求所有操作符参数均为自由参数，并在操作符体中相应引入量词（B）；但该方法操作繁琐，且导致笨拙且深度嵌套的操作符结构，因此我们*不*采纳此方案。相反，我们选择引入与操作符相关联的新谓词，其参数仅为操作符的自由参数（C）。此类新谓词的示例以黄色高亮显示（已选中移动动作）。</p>
+<p>一种备选方案是要求操作符参数全部为自由参数，随后利用量词将非自由参数折叠为前提条件与效果[<a href="#bookmark32">23]</a>；相关示例参见图<a href="#bookmark34">3B</a>。然而，这种方法操作繁琐，且会导致笨拙且深度嵌套的操作符结构。因此，我们并未采用该方案。相反，我们选择引入代表操作符的谓词，这些谓词的变量即为操作符的自由参数。随后，我们将这些谓词包含在各个操作符的前提条件之中；参见图<a href="#bookmark34">3C</a>的示例。此做法仅需对现有PDDL文件进行最小程度的修改，且不影响可读性，但需要添加关于智能体-环境边界的领域知识。需要注意的是，该领域知识实质上等同于定义动作空间，这在强化学习中是一种常见操作，并非强假设。在此情况下，PDDLGym环境的动作空间即为新引入谓词的所有可能基化结果所构成的离散空间。</p>
+<p>当从PDDLGym环境的动作空间进行采样时，PDDLGym将仅自动采样*有效*动作，即满足某些操作符前提条件的动作。借助Fast Downward的翻译器[<a href="#bookmark35">24]</a>进行有效性检查，在大型问题实例中可能引入不可忽略的计算开销。</p>
+<h3 id="23">2.3 初始化和重置环境<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>PDDLGym环境由PDDL域文件与PDDL问题文件列表共同参数化。为便于研究，每个PDDLGym环境均关联一个*测试*版本，其中域文件保持不变，但问题文件有所差异（例如，可对更复杂的规划任务进行编码，以衡量泛化能力）。在环境初始化期间，所有PDDL文件均被解析为Python对象。</p>
+<p>为此，我们采用自定义PDDL解析器。调用 reset 时，将随机选择一个问题实例<a href="#bookmark37">。</a><a href="#bookmark38">1</a>该问题实例的初始状态即作为环境的初始状态。</p>
+<p>为方便起见，reset 还会在调试信息中返回指向当前情节的PDDL域文件与问题文件的路径。这使得用户可以便捷地使用符号规划器，并在环境中执行所生成的规划方案。</p>
+<p>关于使用 Fast-Forward [<a href="#bookmark39">25]</a> 的示例，请参见<a href="https://github.com/tomsilver/pddlgym">PDDLGym GitHub仓库</a>中的README文档。</p>
+<h3 id="24-step">2.4 步进（step）方法的实现<a class="headerlink" href="#24-step" title="Permanent link">&para;</a></h3>
+<p>PDDLGym环境的 step 方法接收一个动作，更新环境状态，并返回观察结果、奖励、表示情节是否完成的布尔值以及调试信息。为确定状态更新，PDDLGym检查在当前状态下，给定动作是否满足任一PDDL操作符的前提条件。值得注意的是，不可能"意外匹配"到不期望的操作符：每个操作符均具有唯一的前提条件（如图<a href="#bookmark34">3C</a>所示），该前提条件根据传入的动作自动生成。由于动作与操作符并非一一对应（参见第<a href="#bookmark11">2.2节）</a>，前提条件满足性检查并非平凡问题——非自由参数必须被绑定。我们已实现两个推理后端以执行此检查。</p>
+<p>第一个是基于类型化SLD解析的Python实现，当查询仅涉及合取时，此为默认选择。</p>
+<p>第二个是SWI Prolog [<a href="#bookmark41">26]</a>的封装，它使我们能够处理涉及析取与量词的更为复杂的前提条件。后者虽比前者速度慢，但更具通用性。当没有操作符前提条件满足给定动作时，默认情况下状态保持不变。在某些应用场景中，如果无前提条件可满足，则可引发错误；可选的初始化参数 raise_error_on_invalid_action 用于控制此行为。</p>
+<p>PDDLGym中的奖励是稀疏且二进制的。具体而言，当达到问题目标时奖励为1.0，否则为0.0。类似地，当达到目标时完成布尔值为 True，否则为 False（实际使用中通常会设置最大情节长度）。</p>
+<p>如果底层PDDL域具备概率性效应（如PPDDL [<a href="#bookmark42">27]</a>），step 方法将对此进行适当解析，并根据给定的概率分布选择一种效应。若给定概率之和不为1，则添加默认的平凡效应。</p>
+<h3 id="25">2.5 开发现状<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
+<p>从代码行数的角度来看，PDDLGym的大部分代码专用于PDDL文件的解析与推断（在 step 方法中使用）。我们将持续开发这两种功能，以便支持更广泛的PDDL域。</p>
+<p>PDDLGym目前支持的PDDL 1.2特性包括：STRIPS、分层类型、等式、量词、常量以及派生谓词。值得注意的不支持特性包括条件效应与操作成本。此外，更高版本的PDDL（如数值流函数）亦不在支持范围之内。</p>
+<p>我们的短期目标是为PDDL 1.2提供全面支持。目前，PDDLGym已较好地支持众多标准PDDL域，概述参见第<a href="#bookmark28">3节</a>。我们欢迎通过GitHub页面或电子邮件提交功能请求与扩展建议。本文顶部提供了作者的联系邮箱。</p>
+<h2 id="3-pddlgym">3 PDDLGym的量化分析<a class="headerlink" href="#3-pddlgym" title="Permanent link">&para;</a></h2>
+<p>在本节中，我们首先概述PDDLGym中内置的域（截至本文最新更新日期2020年9月17日）。随后，我们呈现一系列实验结果，以揭示这些域在规划难度与模型学习难度两个维度上的差异性。所有实验均在一台配备32GB RAM与2.9GHz Intel Core i9处理器的笔记本电脑上完成。</p>
+<h3 id="31">3.1 环境概述<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>目前，PDDLGym中内置了20个域。其中大部分域改编自现有的PDDL存储库；其余域则是我们在自身研究过程中发现具有实用价值的基准测试。我们已经为其中11个域实现了自定义渲染（示例参见图<a href="#bookmark9">1</a>）。表<a href="#bookmark46">1</a>列出了所有环境及其来源，以及它们的平均每秒帧数（FPS）——该数据通过对10个时间步长的100个情节执行随机策略（无渲染）计算得出。</p>
+<h3 id="32">3.2 环境难度的差异性<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>现在，我们提供一系列结果，以阐明PDDLGym内置域之间的差异性。我们考察了两个变化维度：规划难度与转移模型学习的难度。</p>
+<p>图<a href="#bookmark48">4</a>（左）展示了Fast-Forward[<a href="#bookmark39">25]</a>在每个确定性环境中寻找规划方案所花费的平均时间，并在所有问题实例上进行平均。结果显示规划时间的分布范围极广：最难区域（Depot，为清晰起见从图中省略）的规划时间比最简单区域（TSP）高出两个数量级。结果同时表明，从现代规划器的视角来看，许多内置域相对"简单"。然而，即便在这些简单的域中，依然存在诸多有趣的挑战，例如从交互数据中学习真正的PDDL操作符，或定义适用于学习的良好状态抽象。如有必要，研究者始终可以构造规模更大的问题实例，以挑战现代规划器的极限。</p>
+<p>图<a href="#bookmark48">4</a>（右）揭示了在某些环境中学习转移模型难度的相关信息。对于每种环境，智能体针对地平线为25的情节执行随机策略。观测到的转移将被用于学习转移模型，随后将该模型应用于一系列测试问题的规划求解。已解决的测试问题比例被报告为所学转移模型的性能指标。为学习转移模型，我们采用一阶逻辑决策树（FOLDT）学习算法[<a href="#bookmark49">32]</a>。为清晰起见，仅对五个域进行了可视化呈现；其余域展现出了可比较的结果模式。</p>
+<p><img alt="pddlgym3" src="../_v_images/pddlgym3.jpg" /></p>
+<p>图4：<strong>PDDLGym环境之间的差异性。</strong> PDDLGym中内置的PDDL域与问题在规划难度（左图）与模型学习难度（右图）方面展现出显著差异。详细信息请参见正文。为清晰起见，Depot域被省略，但其规划时间比最简单的域（TSP）高出两个数量级。</p>
+<p>对于图示的方法而言，其他域（包括Baking、Depot与Sokoban）对我们的学习方法而言较为困难：FOLDT学习算法无法在合理的时间内找到适配数据的模型。当然，模型学习的难度因学习方法与探索策略的不同而存在显著差异。我们在此采取简单策略以展示这些结果，但上述未来的研究方向正是我们期望通过PDDLGym所推动的。</p>
+<p>本文介绍了PDDLGym，一个能够依据PDDL域文件与问题文件自动创建OpenAI Gym环境的开源Python框架。我们的经验结果表明，内置环境之间存在相当显著的差异性。我们在关系序列决策与强化学习的研究中一直积极使用PDDLGym。我们还期望将PDDLGym与其他相关开源框架（尤其是Planning.domains [<a href="#bookmark12">7]</a>中的PDDL集合与工具）进行对接，使用户仅需指定指向PDDL文件存储库的URL（以及关于自由参数的部分领域特定信息）即可使用。</p>
+<p>我们期待收集社区的反馈意见，并据此持续扩展可用的环境与功能集合。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020 tridu33
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Tridu33/ZERO-Starting-AI-Planning-in-PDDL-Descripted-World" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../js/umlconvert.js"></script>
+      
+        <script src="../../../js/sequence-loader.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.12.0/underscore-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sequence-diagrams/1.0.6/sequence-diagram-min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script>
+      
+    
+  </body>
+</html>
